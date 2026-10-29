@@ -1,0 +1,258 @@
+{
+  "fixture_sha256": "e35f2a0010e85bf582cd59dacbc8023080df6da0c4ddec3170dc75272df2a40f",
+  "corpus": [
+    "Toplantıları öğleden sonra yapmayı tercih ederim.",
+    "Dosya yedekleri her cuma harici diske kopyalanır.",
+    "Mobil uygulama projesinde veritabanı olarak PostgreSQL seçildi.",
+    "E-posta bildirimleri kapalı, yalnızca uygulama içi bildirimler açık.",
+    "İnceleme sırasında hata bulunursa değişikliği düzeltip testi tekrar çalıştır.",
+    "Kitap okurken sessiz bir ortam isterim.",
+    "Proje raporlarını Markdown biçiminde hazırlamayı seviyorum.",
+    "Arayüz tasarımında büyük yazı boyutu kullanılmalı.",
+    "Tıklamadan önce ikinci ajan düğmenin hedefini doğrulasın.",
+    "Kişisel veriler yerel cihazda saklanır ve buluta gönderilmez.",
+    "Kod örneklerini TypeScript dilinde görmek istiyorum.",
+    "Uzun listeler yerine bağlantılı paragraflarla cevap ver.",
+    "İşlem başarıyla bittikten sonra kısa bir sonuç bildir.",
+    "Fotoğraf albümünü yıllara göre klasörlere ayırdık."
+  ],
+  "cases": [
+    {
+      "query": "Görüşmeler için günün hangi bölümünü seviyorum?",
+      "expected": "Toplantıları öğleden sonra yapmayı tercih ederim.",
+      "top1": true,
+      "recall5": true,
+      "returned_values": [
+        "Toplantıları öğleden sonra yapmayı tercih ederim."
+      ]
+    },
+    {
+      "query": "Yedekler hangi gün nereye taşınıyor?",
+      "expected": "Dosya yedekleri her cuma harici diske kopyalanır.",
+      "top1": false,
+      "recall5": false,
+      "returned_values": []
+    },
+    {
+      "query": "Mobil projede hangi veri tabanını kullanıyoruz?",
+      "expected": "Mobil uygulama projesinde veritabanı olarak PostgreSQL seçildi.",
+      "top1": true,
+      "recall5": true,
+      "returned_values": [
+        "Mobil uygulama projesinde veritabanı olarak PostgreSQL seçildi.",
+        "Proje raporlarını Markdown biçiminde hazırlamayı seviyorum.",
+        "Kişisel veriler yerel cihazda saklanır ve buluta gönderilmez."
+      ]
+    },
+    {
+      "query": "Mail uyarıları açık mı?",
+      "expected": "E-posta bildirimleri kapalı, yalnızca uygulama içi bildirimler açık.",
+      "top1": true,
+      "recall5": true,
+      "returned_values": [
+        "E-posta bildirimleri kapalı, yalnızca uygulama içi bildirimler açık."
+      ]
+    },
+    {
+      "query": "İncelemede bug çıkarsa nasıl ilerlemelisin?",
+      "expected": "İnceleme sırasında hata bulunursa değişikliği düzeltip testi tekrar çalıştır.",
+      "top1": true,
+      "recall5": true,
+      "returned_values": [
+        "İnceleme sırasında hata bulunursa değişikliği düzeltip testi tekrar çalıştır."
+      ]
+    },
+    {
+      "query": "Kitapları gürültülü ortamda mı okumayı seviyorum?",
+      "expected": "Kitap okurken sessiz bir ortam isterim.",
+      "top1": true,
+      "recall5": true,
+      "returned_values": [
+        "Kitap okurken sessiz bir ortam isterim."
+      ]
+    },
+    {
+      "query": "Raporları hangi formatta hazırlıyoruz?",
+      "expected": "Proje raporlarını Markdown biçiminde hazırlamayı seviyorum.",
+      "top1": true,
+      "recall5": true,
+      "returned_values": [
+        "Proje raporlarını Markdown biçiminde hazırlamayı seviyorum.",
+        "Uzun listeler yerine bağlantılı paragraflarla cevap ver."
+      ]
+    },
+    {
+      "query": "Ekrandaki metin boyutu nasıl olmalı?",
+      "expected": "Arayüz tasarımında büyük yazı boyutu kullanılmalı.",
+      "top1": true,
+      "recall5": true,
+      "returned_values": [
+        "Arayüz tasarımında büyük yazı boyutu kullanılmalı."
+      ]
+    },
+    {
+      "query": "Düğmeye basmadan önce kim kontrol etmeli?",
+      "expected": "Tıklamadan önce ikinci ajan düğmenin hedefini doğrulasın.",
+      "top1": true,
+      "recall5": true,
+      "returned_values": [
+        "Tıklamadan önce ikinci ajan düğmenin hedefini doğrulasın."
+      ]
+    },
+    {
+      "query": "Veriler uzaktaki sunuculara yollanabilir mi?",
+      "expected": "Kişisel veriler yerel cihazda saklanır ve buluta gönderilmez.",
+      "top1": true,
+      "recall5": true,
+      "returned_values": [
+        "Kişisel veriler yerel cihazda saklanır ve buluta gönderilmez."
+      ]
+    },
+    {
+      "query": "Örnek kodları hangi dilde istemiştim?",
+      "expected": "Kod örneklerini TypeScript dilinde görmek istiyorum.",
+      "top1": true,
+      "recall5": true,
+      "returned_values": [
+        "Kod örneklerini TypeScript dilinde görmek istiyorum."
+      ]
+    },
+    {
+      "query": "Yanıtlarını madde madde mi paragraf mı yazmalısın?",
+      "expected": "Uzun listeler yerine bağlantılı paragraflarla cevap ver.",
+      "top1": true,
+      "recall5": true,
+      "returned_values": [
+        "Uzun listeler yerine bağlantılı paragraflarla cevap ver."
+      ]
+    },
+    {
+      "query": "İşi bitirince bana ne bildirmelisin?",
+      "expected": "İşlem başarıyla bittikten sonra kısa bir sonuç bildir.",
+      "top1": false,
+      "recall5": false,
+      "returned_values": []
+    },
+    {
+      "query": "Fotoğrafları nasıl gruplamıştık?",
+      "expected": "Fotoğraf albümünü yıllara göre klasörlere ayırdık.",
+      "top1": true,
+      "recall5": true,
+      "returned_values": [
+        "Fotoğraf albümünü yıllara göre klasörlere ayırdık."
+      ]
+    },
+    {
+      "query": "Toplantı öğleden sonra",
+      "expected": "Toplantıları öğleden sonra yapmayı tercih ederim.",
+      "top1": true,
+      "recall5": true,
+      "returned_values": [
+        "Toplantıları öğleden sonra yapmayı tercih ederim."
+      ]
+    },
+    {
+      "query": "cuma harici disk",
+      "expected": "Dosya yedekleri her cuma harici diske kopyalanır.",
+      "top1": true,
+      "recall5": true,
+      "returned_values": [
+        "Dosya yedekleri her cuma harici diske kopyalanır."
+      ]
+    },
+    {
+      "query": "PostgreSQL",
+      "expected": "Mobil uygulama projesinde veritabanı olarak PostgreSQL seçildi.",
+      "top1": true,
+      "recall5": true,
+      "returned_values": [
+        "Mobil uygulama projesinde veritabanı olarak PostgreSQL seçildi."
+      ]
+    },
+    {
+      "query": "Markdown",
+      "expected": "Proje raporlarını Markdown biçiminde hazırlamayı seviyorum.",
+      "top1": true,
+      "recall5": true,
+      "returned_values": [
+        "Proje raporlarını Markdown biçiminde hazırlamayı seviyorum."
+      ]
+    },
+    {
+      "query": "TypeScript",
+      "expected": "Kod örneklerini TypeScript dilinde görmek istiyorum.",
+      "top1": true,
+      "recall5": true,
+      "returned_values": [
+        "Kod örneklerini TypeScript dilinde görmek istiyorum."
+      ]
+    },
+    {
+      "query": "fotoğraf albümü",
+      "expected": "Fotoğraf albümünü yıllara göre klasörlere ayırdık.",
+      "top1": true,
+      "recall5": true,
+      "returned_values": [
+        "Fotoğraf albümünü yıllara göre klasörlere ayırdık."
+      ]
+    }
+  ],
+  "top1": 18,
+  "recall5": 18,
+  "total": 20,
+  "unknown": [
+    {
+      "query": "Köpeğimin adı nedir?",
+      "returned": 0
+    },
+    {
+      "query": "Pasaport numaramı hatırlıyor musun?",
+      "returned": 0
+    },
+    {
+      "query": "Kiralık evimin adresi ne?",
+      "returned": 0
+    },
+    {
+      "query": "Venüs projesinin bütçesi ne kadar?",
+      "returned": 0
+    },
+    {
+      "query": "Ayakkabı numaram kaç?",
+      "returned": 0
+    }
+  ],
+  "real_model_learning": [
+    {
+      "text": "Dağıtım öncesi bağlantı testini çalıştır",
+      "evidence_count": 1,
+      "match_method": "exact",
+      "candidate": false
+    },
+    {
+      "text": "Dağıtım öncesi bağlantı testlerini çalıştır",
+      "evidence_count": 2,
+      "match_method": "semantic_complete_link",
+      "candidate": false
+    },
+    {
+      "text": "Dağıtımdan önce bağlantı testini çalıştır",
+      "evidence_count": 3,
+      "match_method": "semantic_complete_link",
+      "candidate": true
+    },
+    {
+      "text": "Dağıtım öncesi bağlantı testini çalıştırma",
+      "evidence_count": 1,
+      "match_method": "exact",
+      "candidate": false
+    },
+    {
+      "text": "Dağıtım öncesi bağlantı testini 2 kez çalıştır",
+      "evidence_count": 1,
+      "match_method": "exact",
+      "candidate": false
+    }
+  ],
+  "limitations": "Small synthetic set authored in the same development round; no external quality or LLM-answer guarantee."
+}

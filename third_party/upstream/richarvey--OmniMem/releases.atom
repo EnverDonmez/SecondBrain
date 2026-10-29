@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:https://github.com/richarvey/OmniMem/releases</id>
+  <link type="text/html" rel="alternate" href="https://github.com/richarvey/OmniMem/releases"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/richarvey/OmniMem/releases.atom"/>
+  <title>Release notes from OmniMem</title>
+  <updated>2026-10-24T16:23:43Z</updated>
+  <entry>
+    <id>tag:github.com,2008:Repository/1300825690/dev-v7.0.x</id>
+    <updated>2026-10-24T16:23:43Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/richarvey/OmniMem/releases/tag/dev-v7.0.x"/>
+    <title>dev-v7.0.x: fix(deps): ctutils 0.4.5 and tokio 1.54.1 for two new advisories</title>
+    <content type="html">&lt;p&gt;The security scan on &lt;a class=&quot;commit-link&quot; data-hovercard-type=&quot;commit&quot; data-hovercard-url=&quot;https://github.com/richarvey/OmniMem/commit/48d40fb4055b92f41afd0fab0a735294cf1c1c60/hovercard&quot; href=&quot;https://github.com/richarvey/OmniMem/commit/48d40fb4055b92f41afd0fab0a735294cf1c1c60&quot;&gt;&lt;tt&gt;48d40fb&lt;/tt&gt;&lt;/a&gt; failed on RUSTSEC-2026-0385, published on&lt;br&gt;
+23 October: ctutils 0.4.2&#39;s mask generation and u128 comparisons&lt;br&gt;
+weren&#39;t constant-time (fixed in 0.4.4). tokio 1.53.1 also carried an&lt;br&gt;
+unsoundness warning, RUSTSEC-2026-0386 (AsyncFd::new and related&lt;br&gt;
+constructors violate I/O safety), and 1.54.1 clears it. Both are&lt;br&gt;
+lockfile updates. A local cargo audit now reports no vulnerabilities,&lt;br&gt;
+and the 356 workspace tests pass.&lt;/p&gt;
+&lt;p&gt;Co-Authored-By: Claude Opus 5.5 &lt;a href=&quot;mailto:noreply@anthropic.com&quot;&gt;noreply@anthropic.com&lt;/a&gt;&lt;br&gt;
+Claude-Session: &lt;a href=&quot;https://claude.ai/code/session_01V9cZqempzHD2h4Xyjm3gFL&quot; rel=&quot;nofollow&quot;&gt;https://claude.ai/code/session_01V9cZqempzHD2h4Xyjm3gFL&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>richarvey</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/532137?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1300825690/v7.0.3</id>
+    <updated>2026-10-21T13:05:39Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/richarvey/OmniMem/releases/tag/v7.0.3"/>
+    <title>v7.0.3</title>
+    <content type="html">&lt;p&gt;OmniMem 7.0.3&lt;/p&gt;</content>
+    <author>
+      <name>richarvey</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/532137?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1300825690/v7.0.3-dev</id>
+    <updated>2026-10-19T20:31:32Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/richarvey/OmniMem/releases/tag/v7.0.3-dev"/>
+    <title>v7.0.3-dev</title>
+    <content type="html">&lt;p&gt;OmniMem 7.0.3-dev&lt;/p&gt;</content>
+    <author>
+      <name>richarvey</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/532137?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1300825690/v7.0.2-dev</id>
+    <updated>2026-10-19T15:51:03Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/richarvey/OmniMem/releases/tag/v7.0.2-dev"/>
+    <title>v7.0.2-dev: OmniMem 7.0.2-dev</title>
+    <content type="html">&lt;p&gt;First tagged OmniMem 7 development build: the Rust single binary, a macOS&lt;br&gt;
+menu bar app (Apple silicon) with Add to Claude Desktop / Claude Code, and&lt;br&gt;
+Linux headless and tray app tarballs (amd64, arm64).&lt;/p&gt;</content>
+    <author>
+      <name>richarvey</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/532137?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1300825690/v6.7.1</id>
+    <updated>2026-09-15T07:59:27Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/richarvey/OmniMem/releases/tag/v6.7.1"/>
+    <title>v6.7.1</title>
+    <content type="html">&lt;p&gt;v6.7.1&lt;/p&gt;</content>
+    <author>
+      <name>richarvey</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/532137?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1300825690/v6.5.1</id>
+    <updated>2026-07-24T16:01:53Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/richarvey/OmniMem/releases/tag/v6.5.1"/>
+    <title>v6.5.1</title>
+    <content type="html">&lt;p&gt;Merge pull request &#39;Merge v6.5.x into main&#39; (#27) from v6.5.x into main&lt;/p&gt;</content>
+    <author>
+      <name>richarvey</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/532137?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1300825690/v6.4.2</id>
+    <updated>2026-07-19T23:26:07Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/richarvey/OmniMem/releases/tag/v6.4.2"/>
+    <title>v6.4.2</title>
+    <content type="html">&lt;p&gt;v6.4.2: skill export/import, auto skill scan, articles view fixes&lt;/p&gt;</content>
+    <author>
+      <name>richarvey</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/532137?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1300825690/v6.3.2</id>
+    <updated>2026-07-17T15:00:48Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/richarvey/OmniMem/releases/tag/v6.3.2"/>
+    <title>v6.3.2: chore: bump CLAUDE.md version to 6.3.2</title>
+    <content type="html">&lt;p&gt;Co-Authored-By: Claude Fable 5 &lt;a href=&quot;mailto:noreply@anthropic.com&quot;&gt;noreply@anthropic.com&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>richarvey</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/532137?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1300825690/V6.3.2</id>
+    <updated>2026-07-17T15:05:43Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/richarvey/OmniMem/releases/tag/V6.3.2"/>
+    <title>V6.3.2</title>
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Five platform deployment guides&lt;/strong&gt;: step-by-step setup for macOS (Docker Desktop, Apple Silicon and Intel), Raspberry Pi (64-bit OS, native arm64), AWS EC2 (Linux), GCP Compute Engine (Linux), and any Linux server with Tailscale Funnel for a public HTTPS endpoint without a domain or port forwarding. All linked from the README&#39;s documentation table and the docs index&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Skill demo playbook&lt;/strong&gt;: &lt;code&gt;scripts/skill_demo_playbook.md&lt;/code&gt; walks a self-contained demo of the skill compiler — fictional moo-reports memories in, reinforcement gate visibly excluding a one-off lesson, propose-and-accept compile, a report written under the skill, knowledge watch flagging a contradicting article, and full cleanup. The seeded wordings and thresholds are verified against a live server (lesson texts cluster at 0.80; the watch trigger clears the 0.35 discovery-similarity floor)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;The README became a front door and the manual moved to &lt;code&gt;docs/&lt;/code&gt;&lt;/strong&gt;: the README had grown to over 600 lines of everything at once. It now reads like the &lt;a href=&quot;https://omnimem.org&quot; rel=&quot;nofollow&quot;&gt;omnimem.org&lt;/a&gt; landing page — the problem, what OmniMem remembers, what makes it different, a quick start, and links out for the rest — while the detail moved into nine focused pages under &lt;code&gt;docs/&lt;/code&gt;: quick start, features in depth, the skill compiler, the MCP tool reference, the configuration reference, RSS and knowledge, remote access (reverse proxy, OAuth, the 421/403 troubleshooting guide), the web UI tour, and architecture. A new &lt;code&gt;docs/README.md&lt;/code&gt; indexes the lot, including the existing memory type specs and connection guides&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;The architecture diagram is Mermaid now&lt;/strong&gt;: the ASCII box drawing gave way to a rendered Mermaid diagram in both the README and &lt;code&gt;docs/architecture.md&lt;/code&gt;, which also gains a Mermaid recall-pipeline flowchart; the memory lifecycle in &lt;code&gt;docs/features.md&lt;/code&gt; picked up a state diagram to match. Forgejo renders all three natively&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;README front-door polish&lt;/strong&gt;: the omnimem.org link sits directly under the title, the Codeberg notice moved below the badges in small print (and is repeated in the contributing section), a get-going-quickly installer one-liner appears above the fold in a tip callout, the per-namespace memory specs are linked from the documentation section, and the long-obsolete SSE deprecation warning is gone&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Security scans and Docker builds moved to the self-hosted sqcows runner; Python 3.12 is provisioned via uv (setup-python cannot install interpreters on Debian runners)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>richarvey</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/532137?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1300825690/v6.1.0</id>
+    <updated>2026-07-10T22:15:38Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/richarvey/OmniMem/releases/tag/v6.1.0"/>
+    <title>v6.1.0</title>
+    <content type="html">&lt;p&gt;release: v6.1.0 — skills in the web UI, dashboard rework, regrouped s…&lt;/p&gt;</content>
+    <author>
+      <name>richarvey</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/532137?s=60&amp;v=4"/>
+  </entry>
+</feed>

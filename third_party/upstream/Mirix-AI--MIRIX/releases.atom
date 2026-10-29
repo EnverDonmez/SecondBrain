@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:https://github.com/Mirix-AI/MIRIX/releases</id>
+  <link type="text/html" rel="alternate" href="https://github.com/Mirix-AI/MIRIX/releases"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/Mirix-AI/MIRIX/releases.atom"/>
+  <title>Release notes from MIRIX</title>
+  <updated>2026-07-23T23:46:07Z</updated>
+  <entry>
+    <id>tag:github.com,2008:Repository/964567893/graph_revision_pre_squash</id>
+    <updated>2026-07-23T23:46:07Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/Mirix-AI/MIRIX/releases/tag/graph_revision_pre_squash"/>
+    <title>graph_revision_pre_squash</title>
+    <content type="html">&lt;p&gt;feat(auto_dream): graph_only mode — refine the graph, leave flat memo…&lt;/p&gt;</content>
+    <author>
+      <name>Jasonya</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/76511727?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/964567893/v0.1.6</id>
+    <updated>2025-12-25T18:44:14Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/Mirix-AI/MIRIX/releases/tag/v0.1.6"/>
+    <title>Brand-new release of memory system api to power various agent applications</title>
+    <content type="html">&lt;h2&gt;🚀 MIRIX 0.1.6 — Pure Memory System API for Any Agent&lt;/h2&gt;
+&lt;p&gt;This release marks a major evolution of MIRIX.&lt;/p&gt;
+&lt;p&gt;Starting from &lt;strong&gt;v0.1.6&lt;/strong&gt;, MIRIX becomes a &lt;strong&gt;dedicated, plug-and-play advanced memory system&lt;/strong&gt; that any agent can integrate with — rather than a bundled desktop personal assistant.&lt;/p&gt;
+&lt;p&gt;With this release, MIRIX now provides:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;⚙️ &lt;strong&gt;Unified Memory API&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;🧠 &lt;strong&gt;Meta-agent &amp;amp; multi-memory architecture&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;☁️ &lt;strong&gt;Hosted Cloud Memory Service&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;📊 &lt;strong&gt;Web Dashboard for visualization, debugging &amp;amp; control&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;⚡ &lt;strong&gt;Ultra-fast retrieval with hybrid search&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;🔍 Optional &lt;strong&gt;embedding search for deeper reasoning&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;🔐 Secure API key–based access&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2&gt;✨ What’s New&lt;/h2&gt;
+&lt;h3&gt;✅ MIRIX as a Standalone Memory Platform&lt;/h3&gt;
+&lt;p&gt;MIRIX is now designed to act as the long-term memory layer for:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;LLM agents&lt;/li&gt;
+&lt;li&gt;desktop assistants&lt;/li&gt;
+&lt;li&gt;chatbots&lt;/li&gt;
+&lt;li&gt;automation systems&lt;/li&gt;
+&lt;li&gt;multi-agent systems&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Just install and start using:&lt;/p&gt;
+&lt;div class=&quot;highlight highlight-source-shell notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;pip install mirix==0.1.6&quot;&gt;&lt;pre&gt;pip install mirix==0.1.6&lt;/pre&gt;&lt;/div&gt;
+&lt;hr&gt;
+&lt;h3&gt;☁️ MIRIX Cloud + Dashboard&lt;/h3&gt;
+&lt;p&gt;We now provide:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Hosted Cloud Memory Service&lt;/strong&gt; (no infrastructure needed)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Memory Dashboard&lt;/strong&gt;
+&lt;ul&gt;
+&lt;li&gt;inspect stored memories&lt;/li&gt;
+&lt;li&gt;search &amp;amp; debug&lt;/li&gt;
+&lt;li&gt;monitor usage&lt;/li&gt;
+&lt;li&gt;manage API keys&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Sign up at:&lt;br&gt;
+👉 &lt;a href=&quot;https://app.mirix.io&quot; rel=&quot;nofollow&quot;&gt;https://app.mirix.io&lt;/a&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;🔄 Branches &amp;amp; Migration&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;main&lt;/code&gt; (≥ v0.1.6)&lt;/strong&gt; → Pure Memory System (API + Cloud)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;desktop-agent&lt;/code&gt; branch&lt;/strong&gt; → Legacy Desktop Personal Assistant&lt;br&gt;
+(deprecated, but still available)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The previous desktop personal assistant (frontend + backend) is &lt;strong&gt;no longer shipped on &lt;code&gt;main&lt;/code&gt;&lt;/strong&gt;.&lt;/p&gt;
+&lt;p&gt;If you still need the old integrated desktop app:&lt;br&gt;
+👉 switch to &lt;code&gt;desktop-agent&lt;/code&gt; branch&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2&gt;🧨 Breaking Changes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Desktop personal assistant removed from &lt;code&gt;main&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;API-first architecture introduced&lt;/li&gt;
+&lt;li&gt;Cloud usage requires API key&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h2&gt;🧪 Example Usage&lt;/h2&gt;
+&lt;h3&gt;Add Memory&lt;/h3&gt;
+&lt;div class=&quot;highlight highlight-source-python notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;client.add(
+    messages=[
+        {&amp;quot;role&amp;quot;: &amp;quot;user&amp;quot;, &amp;quot;content&amp;quot;: [{&amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;We discussed MirixDB indexing performance&amp;quot;}]},
+        {&amp;quot;role&amp;quot;: &amp;quot;assistant&amp;quot;, &amp;quot;content&amp;quot;: [{&amp;quot;type&amp;quot;: &amp;quot;text&amp;quot;, &amp;quot;text&amp;quot;: &amp;quot;Noted, I will remember that&amp;quot;}]},
+    ],
+)&quot;&gt;&lt;pre&gt;&lt;span class=&quot;pl-s1&quot;&gt;client&lt;/span&gt;.&lt;span class=&quot;pl-c1&quot;&gt;add&lt;/span&gt;(
+    &lt;span class=&quot;pl-s1&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;pl-c1&quot;&gt;=&lt;/span&gt;[
+        {&lt;span class=&quot;pl-s&quot;&gt;&quot;role&quot;&lt;/span&gt;: &lt;span class=&quot;pl-s&quot;&gt;&quot;user&quot;&lt;/span&gt;, &lt;span class=&quot;pl-s&quot;&gt;&quot;content&quot;&lt;/span&gt;: [{&lt;span class=&quot;pl-s&quot;&gt;&quot;type&quot;&lt;/span&gt;: &lt;span class=&quot;pl-s&quot;&gt;&quot;text&quot;&lt;/span&gt;, &lt;span class=&quot;pl-s&quot;&gt;&quot;text&quot;&lt;/span&gt;: &lt;span class=&quot;pl-s&quot;&gt;&quot;We discussed MirixDB indexing performance&quot;&lt;/span&gt;}]},
+        {&lt;span class=&quot;pl-s&quot;&gt;&quot;role&quot;&lt;/span&gt;: &lt;span class=&quot;pl-s&quot;&gt;&quot;assistant&quot;&lt;/span&gt;, &lt;span class=&quot;pl-s&quot;&gt;&quot;content&quot;&lt;/span&gt;: [{&lt;span class=&quot;pl-s&quot;&gt;&quot;type&quot;&lt;/span&gt;: &lt;span class=&quot;pl-s&quot;&gt;&quot;text&quot;&lt;/span&gt;, &lt;span class=&quot;pl-s&quot;&gt;&quot;text&quot;&lt;/span&gt;: &lt;span class=&quot;pl-s&quot;&gt;&quot;Noted, I will remember that&quot;&lt;/span&gt;}]},
+    ],
+)&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Retrieve Conversational Memory&lt;/h3&gt;
+&lt;div class=&quot;highlight highlight-source-python notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;memories = client.retrieve_with_conversation(
+    messages=[
+        {&amp;quot;role&amp;quot;: &amp;quot;user&amp;quot;, &amp;quot;content&amp;quot;:[{&amp;quot;type&amp;quot;:&amp;quot;text&amp;quot;,&amp;quot;text&amp;quot;:&amp;quot;What did we discuss recently?&amp;quot;}]},
+    ],
+)
+print(memories)&quot;&gt;&lt;pre&gt;&lt;span class=&quot;pl-s1&quot;&gt;memories&lt;/span&gt; &lt;span class=&quot;pl-c1&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;pl-s1&quot;&gt;client&lt;/span&gt;.&lt;span class=&quot;pl-c1&quot;&gt;retrieve_with_conversation&lt;/span&gt;(
+    &lt;span class=&quot;pl-s1&quot;&gt;messages&lt;/span&gt;&lt;span class=&quot;pl-c1&quot;&gt;=&lt;/span&gt;[
+        {&lt;span class=&quot;pl-s&quot;&gt;&quot;role&quot;&lt;/span&gt;: &lt;span class=&quot;pl-s&quot;&gt;&quot;user&quot;&lt;/span&gt;, &lt;span class=&quot;pl-s&quot;&gt;&quot;content&quot;&lt;/span&gt;:[{&lt;span class=&quot;pl-s&quot;&gt;&quot;type&quot;&lt;/span&gt;:&lt;span class=&quot;pl-s&quot;&gt;&quot;text&quot;&lt;/span&gt;,&lt;span class=&quot;pl-s&quot;&gt;&quot;text&quot;&lt;/span&gt;:&lt;span class=&quot;pl-s&quot;&gt;&quot;What did we discuss recently?&quot;&lt;/span&gt;}]},
+    ],
+)
+&lt;span class=&quot;pl-en&quot;&gt;print&lt;/span&gt;(&lt;span class=&quot;pl-s1&quot;&gt;memories&lt;/span&gt;)&lt;/pre&gt;&lt;/div&gt;
+&lt;h3&gt;Deep Embedding Search&lt;/h3&gt;
+&lt;div class=&quot;highlight highlight-source-python notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;client.search(
+    memory_type=&amp;quot;episodic&amp;quot;,
+    search_field=&amp;quot;summary&amp;quot;,
+    search_method=&amp;quot;embedding&amp;quot;
+)&quot;&gt;&lt;pre&gt;&lt;span class=&quot;pl-s1&quot;&gt;client&lt;/span&gt;.&lt;span class=&quot;pl-c1&quot;&gt;search&lt;/span&gt;(
+    &lt;span class=&quot;pl-s1&quot;&gt;memory_type&lt;/span&gt;&lt;span class=&quot;pl-c1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;pl-s&quot;&gt;&quot;episodic&quot;&lt;/span&gt;,
+    &lt;span class=&quot;pl-s1&quot;&gt;search_field&lt;/span&gt;&lt;span class=&quot;pl-c1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;pl-s&quot;&gt;&quot;summary&quot;&lt;/span&gt;,
+    &lt;span class=&quot;pl-s1&quot;&gt;search_method&lt;/span&gt;&lt;span class=&quot;pl-c1&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;pl-s&quot;&gt;&quot;embedding&quot;&lt;/span&gt;
+)&lt;/pre&gt;&lt;/div&gt;
+&lt;hr&gt;
+&lt;h2&gt;❤️ Thank You&lt;/h2&gt;
+&lt;p&gt;Thanks to everyone supporting MIRIX — this upgrade enables MIRIX to power agents of all kinds while scaling to real-world workloads. Much more is coming 😊&lt;/p&gt;
+&lt;p&gt;If you’re building with MIRIX, we’d love to hear what you create!&lt;/p&gt;</content>
+    <author>
+      <name>wangyu-ustc</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/44958517?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/964567893/v0.1.3</id>
+    <updated>2025-08-23T19:51:33Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/Mirix-AI/MIRIX/releases/tag/v0.1.3"/>
+    <title>Add Multi-User Support, Gmail MCP, Web Search, Better Memorization Triggering</title>
+    <content type="html">&lt;h2&gt;🚀 Update Log&lt;/h2&gt;
+&lt;h3&gt;New Features&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Multi-User Support&lt;/strong&gt; : Added support for multiple users in both the SDK and Desktop App.  📖 &lt;a href=&quot;https://docs.mirix.io/user-guide/multi-user/&quot; rel=&quot;nofollow&quot;&gt;See documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Gmail MCP Tool&lt;/strong&gt;: Integrated Gmail as an MCP tool for seamless email connectivity.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Web Search&lt;/strong&gt;: Introduced built-in Web Search for more dynamic and up-to-date responses.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SDK&lt;/strong&gt;: New PYPI package at &lt;a href=&quot;https://pypi.org/project/mirix/&quot; rel=&quot;nofollow&quot;&gt;https://pypi.org/project/mirix/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Enhanced Memorizing Mechanism&lt;/strong&gt;: Previous complaints about the chat agent not saving information into memory have been fully resolved. Memory retention now works reliably and consistently.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixes&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Summarization issues with Azure&lt;/li&gt;
+&lt;li&gt;Customized model configuration problems&lt;/li&gt;
+&lt;li&gt;Other small stability improvements&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>wangyu-ustc</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/44958517?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/964567893/v0.1.2</id>
+    <updated>2025-08-08T08:50:57Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/Mirix-AI/MIRIX/releases/tag/v0.1.2"/>
+    <title>Application-Specific Monitoring &amp; Python SDK</title>
+    <content type="html">&lt;h2&gt;Release Notes&lt;/h2&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Application-Specific Monitoring&lt;/strong&gt;: Implemented selective application monitoring functionality, allowing users to restrict agent visibility to specific applications rather than the entire screen.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Python SDK Released&lt;/strong&gt;: Introduced official Python SDK for enhanced integration capabilities. Available at &lt;a href=&quot;https://pypi.org/project/mirix/&quot; rel=&quot;nofollow&quot;&gt;https://pypi.org/project/mirix/&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;System Improvements&lt;/strong&gt;:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Modified backend port to 47283 to enhance system stability and prevent conflicts with other applications&lt;/li&gt;
+&lt;li&gt;Added support for OpenAI models as memory managers (note: may increase latency)&lt;/li&gt;
+&lt;li&gt;Implemented custom API key configuration for third-party models including Qwen3-32B&lt;/li&gt;
+&lt;li&gt;Enhanced UI functionality and resolved various minor issues in the frontend&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content>
+    <author>
+      <name>Mirix-AI</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/174368647?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/964567893/v0.1.1</id>
+    <updated>2025-07-28T19:24:13Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/Mirix-AI/MIRIX/releases/tag/v0.1.1"/>
+    <title>support vllm served models</title>
+    <content type="html">&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;vLLM Integration for Model Serving: MIRIX now supports serving models using vLLM. Developers can register their models through the UI by following the configuration template provided in configs/mirix_custom_model.yaml. For detailed instructions, refer to our documentation at &lt;a href=&quot;https://docs.mirix.io/user-guide/custom-models/&quot; rel=&quot;nofollow&quot;&gt;https://docs.mirix.io/user-guide/custom-models/&lt;/a&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Enhanced Chat Agent Behavior: The chat agent has been upgraded to allow direct updates to the memory system, even when screen monitoring is disabled.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;</content>
+    <author>
+      <name>Mirix-AI</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/174368647?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/964567893/v0.1.0</id>
+    <updated>2025-07-09T07:58:25Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/Mirix-AI/MIRIX/releases/tag/v0.1.0"/>
+    <title>The initial version </title>
+    <content type="html">&lt;p&gt;MIRIX is the initial release of the personal assistant with our most advanced memory system that can see your screen, record your activities and understand you.&lt;/p&gt;
+&lt;h3&gt;Features&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Separated backend and frontend architecture for developers.&lt;/li&gt;
+&lt;li&gt;Easy installation via &lt;code&gt;.dmg&lt;/code&gt; file.&lt;/li&gt;
+&lt;li&gt;Allow multi-modal conversation. User can drag the images into the chatting window.&lt;/li&gt;
+&lt;li&gt;Can monitor the screen via screenshots and build your personal memory.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Installation&lt;/h3&gt;
+&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;Download the .dmg file below.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Open it and drag MIRIX into your Applications folder.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Launch the app.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Because this app is not notarized by Apple, you may see a security warning when launching it. To allow the app to run, you can either:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Right-click (Control-click) the app in Applications and choose &quot;Open,&quot; then confirm in the dialog.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;or&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Run this command in Terminal to remove the quarantine attribute:
+&lt;div class=&quot;snippet-clipboard-content notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;xattr -d com.apple.quarantine /Applications/MIRIX.app&quot;&gt;&lt;pre class=&quot;notranslate&quot;&gt;&lt;code&gt;xattr -d com.apple.quarantine /Applications/MIRIX.app
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This is expected behavior for open-source software distributed outside the App Store. The app is built directly from the code in this repository.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3&gt;Known Issues&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The app may not support dark mode yet.&lt;/li&gt;
+&lt;li&gt;There might be unknown bugs so we greatly appreciate it if you can report the bugs to us so we can improve!&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Feedback&lt;/h3&gt;
+&lt;p&gt;If you encounter problems, please open an issue on this repository.&lt;/p&gt;</content>
+    <author>
+      <name>Mirix-AI</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/174368647?s=60&amp;v=4"/>
+  </entry>
+</feed>

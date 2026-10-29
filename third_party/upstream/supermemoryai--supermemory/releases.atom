@@ -1,0 +1,167 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:https://github.com/supermemoryai/supermemory/releases</id>
+  <link type="text/html" rel="alternate" href="https://github.com/supermemoryai/supermemory/releases"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/supermemoryai/supermemory/releases.atom"/>
+  <title>Release notes from supermemory</title>
+  <updated>2026-10-12T10:47:50Z</updated>
+  <entry>
+    <id>tag:github.com,2008:Repository/764287615/server-v0.0.9</id>
+    <updated>2026-10-12T18:59:36Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/supermemoryai/supermemory/releases/tag/server-v0.0.9"/>
+    <title>Supermemory Local 0.0.9</title>
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;Added prebuilt Docker images for Linux amd64 and arm64.&lt;/li&gt;
+&lt;li&gt;Improved Local uploads, namespace operations, search scoping and CLI commands.&lt;/li&gt;
+&lt;li&gt;Added API v5 support. See the &lt;a href=&quot;https://supermemory.ai/changelog/supermemory-api-v5/&quot; rel=&quot;nofollow&quot;&gt;API v5 upgrade guide&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Before upgrading, back up your store and keep your existing directory and API key. Localhost requests now require the key; &lt;code&gt;WORKFLOW_ENGINE=direct&lt;/code&gt; is no longer supported.&lt;/p&gt;
+&lt;p&gt;Before migrating an existing store, Local verifies a complete original backup. Existing cleanup can remove older duplicate documents and their source links.&lt;/p&gt;
+&lt;p&gt;Native Windows remains on 0.0.8 for now.&lt;/p&gt;</content>
+    <author>
+      <name>Dhravya</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/63950637?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/764287615/server-v0.0.9-rc.3</id>
+    <updated>2026-10-12T09:34:28Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/supermemoryai/supermemory/releases/tag/server-v0.0.9-rc.3"/>
+    <title>server-v0.0.9-rc.3</title>
+    <content type="html">&lt;p&gt;feat(memory-graph): add opt-in stacked nodes and emphasized connectio…&lt;/p&gt;
+
+&lt;p&gt;…ns (&lt;a class=&quot;issue-link js-issue-link&quot; href=&quot;https://github.com/supermemoryai/supermemory/pull/1792&quot;&gt;#1792&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;Co-authored-by: capy-ai[bot] &amp;lt;230910855+capy-ai[bot]@users.noreply.github.com&amp;gt;&lt;/p&gt;</content>
+    <author>
+      <name>Dhravya</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/63950637?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/764287615/archive/web-2026-09</id>
+    <updated>2026-09-02T21:49:57Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/supermemoryai/supermemory/releases/tag/archive%2Fweb-2026-09"/>
+    <title>archive/web-2026-09: fix(mcp): let getDocument read any accessible document (#1641)</title>
+    <content type="html">&lt;p&gt;getDocument filtered on the caller&#39;s active space, so an ID from listDocuments in any other space returned &quot;Document not found&quot;. With activeSpace unset the fallback is sm_project_default, which broke most cross-space reads.&lt;/p&gt;
+&lt;p&gt;The API already scopes document reads to the caller&#39;s org, so the extra filter added no protection. Verified locally against the mono API: own-space and cross-space IDs now resolve, foreign-org IDs still 404.&lt;/p&gt;</content>
+    <author>
+      <name>MaheshtheDev</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/38828053?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/764287615/server-v0.0.8</id>
+    <updated>2026-08-17T18:39:22Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/supermemoryai/supermemory/releases/tag/server-v0.0.8"/>
+    <title>supermemory-server 0.0.8</title>
+    <content type="html">&lt;p&gt;Emergency patch for stores upgraded from a 0.0.7 release candidate.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Upgrading an rc store to 0.0.7 silently wiped search vectors&lt;/strong&gt; (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5169926932&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/supermemoryai/supermemory/issues/1524&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/supermemoryai/supermemory/issues/1524/hovercard&quot; href=&quot;https://github.com/supermemoryai/supermemory/issues/1524&quot;&gt;#1524&lt;/a&gt;): the migration adoption step pruned the pgvector embedding columns, so pre-existing documents stayed listed but returned no search results while new documents worked. The adoption heal no longer touches columns.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automatic repair&lt;/strong&gt;: on boot, 0.0.8 detects rows whose vectors are missing while their text survives and re-embeds them in the background — stores already damaged by the 0.0.7 upgrade heal themselves on the first start, no manual steps.&lt;/li&gt;
+&lt;li&gt;The migration test matrix now seeds real vectors into its legacy-store fixtures and asserts they survive upgrades.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you upgraded from 0.0.7-rc.x to 0.0.7 and lost search results: install 0.0.8 and start the server — you should see &lt;code&gt;[vector-backfill] Restored search vectors …&lt;/code&gt; once it finishes.&lt;/p&gt;</content>
+    <author>
+      <name>Dhravya</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/63950637?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/764287615/server-v0.0.7</id>
+    <updated>2026-08-15T06:47:56Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/supermemoryai/supermemory/releases/tag/server-v0.0.7"/>
+    <title>supermemory-server 0.0.7</title>
+    <content type="html">&lt;p&gt;The full 0.0.7 release — everything from the release candidates plus a hardening and polish pass across the board.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;supermemory lite&lt;/strong&gt; — self-hosted is licensed up to 10,000 documents (read the license at git.new/memory); the cap is enforced at the API and shown at boot.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;New local console&lt;/strong&gt; — the welcome page gets a Memory tab: live counts, recent documents and memories, container tags, and an interactive memory graph.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;~3s boot&lt;/strong&gt; — the embedding model loads lazily in the background instead of blocking startup.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;supermemory-server doctor&lt;/strong&gt; — one command that checks storage, keys, embeddings, the native runtime, port, and workflow engine, with concrete fixes for anything broken.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Native embeddings restored&lt;/strong&gt; — the ONNX native runtime ships inside the binary again (~12x faster than WASM, far lower memory).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Store healing&lt;/strong&gt; — upgrades from 0.0.5-era stores now migrate automatically instead of failing (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;4940051047&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/supermemoryai/supermemory/issues/1325&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/supermemoryai/supermemory/issues/1325/hovercard&quot; href=&quot;https://github.com/supermemoryai/supermemory/issues/1325&quot;&gt;#1325&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Multiple servers per machine&lt;/strong&gt; — each instance owns its workflow engine; no more shared global state on port 6420.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Clean shutdown&lt;/strong&gt; — Ctrl-C drains in-flight work, snapshots, and exits without panics.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cheaper idle&lt;/strong&gt; — encrypted snapshots stream to disk and skip entirely when nothing changed.&lt;/li&gt;
+&lt;li&gt;Plus fixes across API-key rate limiting, org reset, memory-generation failure handling, the embedding setup wizard, and Windows release builds.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>Dhravya</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/63950637?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/764287615/server-v0.0.7-rc.2</id>
+    <updated>2026-07-22T00:39:11Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/supermemoryai/supermemory/releases/tag/server-v0.0.7-rc.2"/>
+    <title>supermemory-server 0.0.7-rc.2</title>
+    <content type="html">&lt;p&gt;Self-hosted large-document ingest fix: offload workflow step data past Rivet&#39;s 128 KiB KV limit, harden shutdown lifecycle. Fixes Windows build failure from rc.1.&lt;/p&gt;</content>
+    <author>
+      <name>Dhravya</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/63950637?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/764287615/server-v0.0.6</id>
+    <updated>2026-07-19T17:32:43Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/supermemoryai/supermemory/releases/tag/server-v0.0.6"/>
+    <title>server-v0.0.6: add Windows self-hosted server support</title>
+    <content type="html">&lt;p&gt;Update Gmail connector plan requirement docs (&lt;a class=&quot;issue-link js-issue-link&quot; href=&quot;https://github.com/supermemoryai/supermemory/pull/1311&quot;&gt;#1311&lt;/a&gt;)&lt;/p&gt;
+
+&lt;p&gt;Co-authored-by: Vorflux AI &amp;lt;249966464+vorflux[bot]@users.noreply.github.com&amp;gt;&lt;/p&gt;</content>
+    <author>
+      <name>Dhravya</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/63950637?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/764287615/server-v0.0.5</id>
+    <updated>2026-07-10T22:09:01Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/supermemoryai/supermemory/releases/tag/server-v0.0.5"/>
+    <title>Pluggable embeddings for self-hosted</title>
+    <content type="html">&lt;p&gt;Self-hosted supermemory can now use local or remote embedding models.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Pluggable embeddings&lt;/strong&gt; — local ONNX (default) or OpenAI / OpenAI-compatible / Google via &lt;code&gt;SUPERMEMORY_EMBEDDING_*&lt;/code&gt;; first-boot picker + plan lock in &lt;code&gt;embedding-plan.json&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Safe upgrades&lt;/strong&gt; — populated stores without a lock assume legacy &lt;code&gt;local · Xenova/bge-base-en-v1.5 · 768d&lt;/code&gt;; same-dimension model switches fail fast instead of mixing vectors&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight highlight-source-shell notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;curl -fsSL https://supermemory.ai/install | bash&quot;&gt;&lt;pre&gt;curl -fsSL https://supermemory.ai/install &lt;span class=&quot;pl-k&quot;&gt;|&lt;/span&gt; bash&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight highlight-source-shell notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;supermemory-server upgrade&quot;&gt;&lt;pre&gt;supermemory-server upgrade&lt;/pre&gt;&lt;/div&gt;</content>
+    <author>
+      <name>Dhravya</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/63950637?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/764287615/server-v0.0.4</id>
+    <updated>2026-07-10T20:41:51Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/supermemoryai/supermemory/releases/tag/server-v0.0.4"/>
+    <title>Memories generated are better now</title>
+    <content type="html">&lt;p&gt;Your local supermemory instance now turns documents into richer, more reliable memories — and gets you to searchable results faster.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Smarter memory generation&lt;/strong&gt; — documents produce fuller, more useful memories from the content you add&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Smoother ingestion&lt;/strong&gt; — uploads move through the pipeline more reliably, with less time stuck in queue&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Better file handling&lt;/strong&gt; — PDFs and spreadsheets are handled more predictably on upload&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Time-aware search&lt;/strong&gt; — ask about memories from &quot;last week&quot; or a specific period&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Richer profiles&lt;/strong&gt; — &lt;code&gt;/v4/profile&lt;/code&gt; returns organized memory buckets&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Clearer search ranking&lt;/strong&gt; — inferred memories stay available but rank below your core memories&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class=&quot;highlight highlight-source-shell notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;curl -fsSL https://supermemory.ai/install | bash&quot;&gt;&lt;pre&gt;curl -fsSL https://supermemory.ai/install &lt;span class=&quot;pl-k&quot;&gt;|&lt;/span&gt; bash&lt;/pre&gt;&lt;/div&gt;
+&lt;div class=&quot;highlight highlight-source-shell notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;supermemory-server upgrade&quot;&gt;&lt;pre&gt;supermemory-server upgrade&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Telemetry is optional — set &lt;code&gt;SUPERMEMORY_DISABLE_TELEMETRY=1&lt;/code&gt; to turn it off completely.&lt;/p&gt;</content>
+    <author>
+      <name>Dhravya</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/63950637?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/764287615/server-v0.0.3</id>
+    <updated>2026-06-13T00:59:16Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/supermemoryai/supermemory/releases/tag/server-v0.0.3"/>
+    <title>supermemory-server 0.0.3</title>
+    <content>No content.</content>
+    <author>
+      <name>Dhravya</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/63950637?s=60&amp;v=4"/>
+  </entry>
+</feed>

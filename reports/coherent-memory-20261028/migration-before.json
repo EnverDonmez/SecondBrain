@@ -1,0 +1,13 @@
+{
+  "schema": 6,
+  "tables": {
+    "events": {
+      "count": 4,
+      "sha256": "dd565f6946243990a828ee06d5de6606f9b09ce696b7b43544ef1f7d281d5652"
+    },
+    "memories": {
+      "count": 4,
+      "sha256": "d0c9a0013ab1d139df7ca1bc17f1f0404a56eebc47f612dd050bc10dabf4704a"
+    }
+  }
+}

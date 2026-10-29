@@ -1,0 +1,11 @@
+CREATE TABLE IF NOT EXISTS projection_revision(id INTEGER PRIMARY KEY CHECK(id=1), revision INTEGER NOT NULL);
+INSERT OR IGNORE INTO projection_revision VALUES(1,0);
+CREATE TRIGGER IF NOT EXISTS memory_revision_insert AFTER INSERT ON memories BEGIN UPDATE projection_revision SET revision=revision+1; END;
+CREATE TRIGGER IF NOT EXISTS memory_revision_update AFTER UPDATE ON memories BEGIN UPDATE projection_revision SET revision=revision+1; END;
+CREATE TRIGGER IF NOT EXISTS memory_revision_delete AFTER DELETE ON memories BEGIN UPDATE projection_revision SET revision=revision+1; END;
+CREATE TRIGGER IF NOT EXISTS vector_revision_insert AFTER INSERT ON vectors BEGIN UPDATE projection_revision SET revision=revision+1; END;
+CREATE TRIGGER IF NOT EXISTS vector_revision_update AFTER UPDATE ON vectors BEGIN UPDATE projection_revision SET revision=revision+1; END;
+CREATE TRIGGER IF NOT EXISTS vector_revision_delete AFTER DELETE ON vectors BEGIN UPDATE projection_revision SET revision=revision+1; END;
+CREATE TRIGGER IF NOT EXISTS chunk_revision_insert AFTER INSERT ON vector_chunks BEGIN UPDATE projection_revision SET revision=revision+1; END;
+CREATE TRIGGER IF NOT EXISTS chunk_revision_update AFTER UPDATE ON vector_chunks BEGIN UPDATE projection_revision SET revision=revision+1; END;
+CREATE TRIGGER IF NOT EXISTS chunk_revision_delete AFTER DELETE ON vector_chunks BEGIN UPDATE projection_revision SET revision=revision+1; END;

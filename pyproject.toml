@@ -1,0 +1,47 @@
+[build-system]
+requires = ["setuptools==84.2.1", "wheel==0.48.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "second-brain-os"
+version = "0.1.1"
+description = "Local-first canonical memory, provenance and portable agent context"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.12"
+classifiers = ["Development Status :: 4 - Beta", "Operating System :: Microsoft :: Windows", "Programming Language :: Python :: 3.12"]
+dependencies = ["fastapi==0.162.0", "uvicorn==0.54.0", "python-multipart==0.0.32", "cryptography==50.0.2", "pypdf==6.21.2", "python-docx==1.2.0", "Pillow==13.0.0", "numpy==2.5.4", "rank-bm25==0.2.2", "mcp==2.3.0", "httpx==0.28.1"]
+
+[project.optional-dependencies]
+engines = ["fastembed==0.9.1", "mem0ai==2.2.1"]
+media = ["rapidocr-onnxruntime==1.4.4", "faster-whisper==1.2.1", "av==19.0.2", "pypdfium2==5.14.0"]
+dev = ["pytest==9.1.1", "hypothesis==6.170.11", "ruff==0.17.2", "mypy==2.4.0", "pip-audit==2.10.1"]
+
+[project.scripts]
+second-brain = "second_brain.cli:main"
+
+[tool.setuptools.packages.find]
+include = ["second_brain*"]
+
+[tool.setuptools.package-data]
+second_brain = ["static/*", "migrations/*.sql"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 110
+
+[tool.ruff.lint]
+select = ["E4", "E7", "E9", "F", "B", "S"]
+ignore = ["S101"]
+
+[tool.ruff.lint.flake8-bugbear]
+extend-immutable-calls = ["fastapi.Depends", "fastapi.File", "fastapi.Form"]
+
+[tool.ruff.lint.per-file-ignores]
+"second_brain/core.py" = ["S608"]
+"second_brain/memory.py" = ["S608"]
+"second_brain/retrieval.py" = ["S608"]
+"second_brain/directory.py" = ["S608"]
+"second_brain/context_state.py" = ["S608"]

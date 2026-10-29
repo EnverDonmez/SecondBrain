@@ -1,0 +1,8 @@
+.venv
+.git
+data
+.test-tmp
+reports
+third_party
+__pycache__
+.env

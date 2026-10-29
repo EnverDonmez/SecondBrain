@@ -1,0 +1,93 @@
+{
+  "completed": true,
+  "completed_at": "2026-10-26T12:08:01+03:00",
+  "product_goals_fully_met": false,
+  "verdict": "partial",
+  "application_tests": {
+    "tests": 64,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "application_test_seconds": 19.487,
+  "acceptance": {
+    "total": 15,
+    "passed": 11,
+    "unmet": [
+      "project_context_contains_global_policy_and_preference",
+      "task_context_contains_global_policy",
+      "canonical_export_contains_tool_definitions",
+      "enabled_tool_discoverable_to_agent"
+    ]
+  },
+  "quality_checks": {
+    "total": 6,
+    "all_passed": true
+  },
+  "natural_preference_extraction": {
+    "found": 0,
+    "cases": 8
+  },
+  "live_data_counts_unchanged": true,
+  "live_data_counts": {
+    "events": 0,
+    "memories": 0,
+    "skills": 0,
+    "tool_configs": 0,
+    "tokens": 0,
+    "feedback": 0,
+    "vector_chunks": 0,
+    "usage": 0
+  },
+  "live_integrity": "ok",
+  "semantic_indexing": {
+    "indexed": 1000,
+    "chunks": 1000,
+    "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "wall_seconds": 441.93977000000086
+  },
+  "semantic_rss_bytes": 933269504,
+  "semantic_query_metrics": [
+    {
+      "engine": "vector",
+      "indexed_memories": 1000,
+      "queries": 10,
+      "p50_ms": 133.2125,
+      "p95_ms": 135.723,
+      "samples_ms": [
+        124.629,
+        133.426,
+        135.052,
+        133.388,
+        133.037,
+        121.903,
+        132.545,
+        135.723,
+        134.323,
+        132.17
+      ]
+    },
+    {
+      "engine": "hybrid",
+      "indexed_memories": 1000,
+      "queries": 10,
+      "p50_ms": 160.041,
+      "p95_ms": 172.263,
+      "samples_ms": [
+        160.49,
+        161.417,
+        158.183,
+        172.263,
+        159.265,
+        160.81,
+        154.523,
+        160.493,
+        156.499,
+        159.592
+      ]
+    }
+  ],
+  "idle_cpu_core_percent": 0.38970248228940246,
+  "report": "reports/GOAL_TEST_REPORT_2026-10-26.md",
+  "scope_note": "Existing application suite plus synthetic goal acceptance experiments; live personal AI/account behavior remains unverified. No application code fixes were made."
+}

@@ -1,0 +1,58 @@
+{
+  "created_at": "2026-10-26T09:17:27.655067+00:00",
+  "synthetic_only": true,
+  "scales": [
+    {
+      "engine": "vector",
+      "indexed_memories": 1000,
+      "queries": 10,
+      "p50_ms": 135.0935,
+      "p95_ms": 141.533,
+      "samples_ms": [
+        141.533,
+        138.44,
+        135.076,
+        135.111,
+        134.439,
+        134.871,
+        133.297,
+        134.746,
+        135.321,
+        137.384
+      ]
+    },
+    {
+      "engine": "hybrid",
+      "indexed_memories": 1000,
+      "queries": 10,
+      "p50_ms": 160.9155,
+      "p95_ms": 171.626,
+      "samples_ms": [
+        162.61,
+        159.688,
+        162.385,
+        171.626,
+        154.151,
+        160.278,
+        163.249,
+        160.955,
+        160.298,
+        160.876
+      ]
+    }
+  ],
+  "indexing": {
+    "indexed": 1000,
+    "chunks": 1000,
+    "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "wall_seconds": 12.586637899999914
+  },
+  "usage_after_indexing": {
+    "pid": 30820,
+    "cpu_seconds": 34.812,
+    "rss_bytes": 942252032,
+    "rss_kind": "current working set",
+    "platform": "win32"
+  },
+  "limitations": "Only 1,000 semantic records, 10 queries/engine, no quality scoring; 50,000-record earlier benchmark had no vectors."
+}

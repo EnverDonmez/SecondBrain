@@ -1,0 +1,68 @@
+{
+  "mcp_toml": "[mcp_servers.second-brain]\ncommand = 'C:\\\\path\\\\to\\\\SecondBrain\\\\.venv\\\\Scripts\\\\python.exe'\nargs = [\"-m\", \"second_brain\", \"mcp\"]\nenv_vars = [\"SB_TOKEN\"]\ncwd = 'C:\\\\path\\\\to\\\\SecondBrain'\n",
+  "hooks_json": {
+    "hooks": {
+      "SessionStart": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "\"C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe\" -m second_brain hook --client codex"
+            }
+          ]
+        }
+      ],
+      "UserPromptSubmit": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "\"C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe\" -m second_brain hook --client codex"
+            }
+          ]
+        }
+      ],
+      "PreToolUse": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "\"C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe\" -m second_brain hook --client codex"
+            }
+          ]
+        }
+      ],
+      "PostToolUse": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "\"C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe\" -m second_brain hook --client codex"
+            }
+          ]
+        }
+      ],
+      "Stop": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "\"C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe\" -m second_brain hook --client codex"
+            }
+          ]
+        }
+      ],
+      "SessionEnd": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "\"C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe\" -m second_brain hook --client codex"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "activation": "Merge into a trusted Codex configuration. Hook trust approval is required by the host. Set SB_TOKEN in its environment."
+}

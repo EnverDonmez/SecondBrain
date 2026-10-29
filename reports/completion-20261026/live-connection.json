@@ -1,0 +1,35 @@
+{
+  "mcp_initialized": true,
+  "tool_count": 16,
+  "context_read": true,
+  "outside_scope_denied": true,
+  "approval_denied": true,
+  "configured_tools": [
+    "brain.search",
+    "brain.recall",
+    "brain.prepare_context",
+    "brain.get_profile",
+    "brain.get_project_state",
+    "brain.timeline",
+    "brain.propose_memory",
+    "brain.correct_memory",
+    "brain.record_feedback",
+    "brain.list_skills",
+    "brain.get_skill",
+    "brain.get_skill_file",
+    "brain.list_capabilities",
+    "brain.sync_status"
+  ],
+  "context_record_count": null,
+  "host_session_reload_required": true,
+  "note": "Actual configured stdio command and restricted credential; SDK protocol check, not a generated model answer or host UI reload.",
+  "integrity": "ok",
+  "counts": {
+    "events": 0,
+    "memories": 0,
+    "skills": 0,
+    "tool_configs": 0,
+    "tokens": 1
+  },
+  "schema_version": 4
+}

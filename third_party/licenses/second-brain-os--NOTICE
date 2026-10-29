@@ -1,0 +1,5 @@
+Second Brain OS
+Original implementation: Second Brain OS contributors.
+Third-party runtime packages retain their original copyrights and licenses.
+See SOURCE_REGISTRY.md, LICENSE_AUDIT.md and third_party/licenses/.
+Upstream research snapshots are attributed by repository and full commit in reports/source-registry.json.

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:https://github.com/Kludex/uvicorn/releases</id>
+  <link type="text/html" rel="alternate" href="https://github.com/Kludex/uvicorn/releases"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/Kludex/uvicorn/releases.atom"/>
+  <title>Release notes from uvicorn</title>
+  <updated>2026-09-25T06:31:16Z</updated>
+  <entry>
+    <id>tag:github.com,2008:Repository/92946971/0.54.0</id>
+    <updated>2026-09-25T06:34:13Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/Kludex/uvicorn/releases/tag/0.54.0"/>
+    <title>Version 0.54.0</title>
+    <content type="html">&lt;h2&gt;📨 Send metadata after the response body&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;uvicorn&lt;/code&gt; 0.54.0 adds response trailers and &lt;code&gt;103 Early Hints&lt;/code&gt; to its experimental HTTP/2 implementation through &lt;code&gt;zttp&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;highlight highlight-text-shell-session notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;uv add uvicorn==0.54.0 &amp;quot;zttp&amp;gt;=0.0.34&amp;quot;&quot;&gt;&lt;pre&gt;&lt;span class=&quot;pl-c1&quot;&gt;uv add uvicorn==0.54.0 &quot;zttp&amp;gt;=0.0.34&quot;&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Send HTTP/2 response trailers&lt;/strong&gt; (&lt;a href=&quot;https://github.com/Kludex/uvicorn/pull/3146&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3146/hovercard&quot;&gt;#3146&lt;/a&gt;). The ASGI &lt;code&gt;http.response.trailers&lt;/code&gt; extension lets applications send metadata, such as checksums, after the response body. Clients must send &lt;code&gt;TE: trailers&lt;/code&gt; to receive them. Multiple trailer messages are combined before completing the response.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HTTP/2 remains experimental and opt-in.&lt;/strong&gt; Enable it with &lt;code&gt;--http zttp --http2&lt;/code&gt;. Upgrade-based h2c and WebSockets over HTTP/2 remain unsupported.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;💡 Hint at resources before the final response&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Send &lt;code&gt;103 Early Hints&lt;/code&gt; over HTTP/2&lt;/strong&gt; (&lt;a href=&quot;https://github.com/Kludex/uvicorn/pull/3137&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3137/hovercard&quot;&gt;#3137&lt;/a&gt;). Applications can use the ASGI &lt;code&gt;http.response.early_hint&lt;/code&gt; extension to send resource hints before the final response. Each supplied link becomes a separate &lt;code&gt;Link&lt;/code&gt; header.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full changelog:&lt;/strong&gt; &lt;a href=&quot;https://github.com/Kludex/uvicorn/compare/0.53.0...0.54.0&quot;&gt;0.53.0...0.54.0&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>Kludex</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7353520?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/92946971/0.53.0</id>
+    <updated>2026-09-14T07:35:46Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/Kludex/uvicorn/releases/tag/0.53.0"/>
+    <title>Version 0.53.0</title>
+    <content type="html">&lt;h2&gt;🌐 Opt-in HTTP/2 support&lt;/h2&gt;
+&lt;p&gt;&lt;code&gt;uvicorn&lt;/code&gt; 0.53.0 adds experimental HTTP/2 through &lt;code&gt;zttp&lt;/code&gt;, alongside a new &lt;code&gt;zuvloop&lt;/code&gt; integration and connection-handling improvements.&lt;/p&gt;
+&lt;div class=&quot;highlight highlight-text-shell-session notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;uv add uvicorn==0.53.0&quot;&gt;&lt;pre&gt;&lt;span class=&quot;pl-c1&quot;&gt;uv add uvicorn==0.53.0&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Serve HTTP/1.1 and HTTP/2 with &lt;code&gt;zttp&lt;/code&gt;&lt;/strong&gt; (&lt;a href=&quot;https://github.com/Kludex/uvicorn/pull/2982&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/2982/hovercard&quot;&gt;#2982&lt;/a&gt;, &lt;a href=&quot;https://github.com/Kludex/uvicorn/pull/3101&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3101/hovercard&quot;&gt;#3101&lt;/a&gt;). Install &lt;code&gt;zttp&lt;/code&gt;, then enable HTTP/2 with &lt;code&gt;--http zttp --http2&lt;/code&gt;. Uvicorn negotiates HTTP/2 over TLS with ALPN and supports cleartext prior knowledge.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;HTTP/2 remains experimental.&lt;/strong&gt; Upgrade-based h2c and WebSockets over HTTP/2 are not supported.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;⚙️ More event loop choice&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Run Uvicorn with &lt;code&gt;zuvloop&lt;/code&gt;&lt;/strong&gt; (&lt;a href=&quot;https://github.com/Kludex/uvicorn/pull/3104&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3104/hovercard&quot;&gt;#3104&lt;/a&gt;). Install &lt;code&gt;zuvloop&lt;/code&gt; separately and select it explicitly with &lt;code&gt;--loop zuvloop&lt;/code&gt; on CPython 3.14 or newer.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;🛡️ More reliable connections and proxies&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Honor &lt;code&gt;Connection: close&lt;/code&gt; token lists&lt;/strong&gt; (&lt;a href=&quot;https://github.com/Kludex/uvicorn/pull/3103&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3103/hovercard&quot;&gt;#3103&lt;/a&gt;). Uvicorn now parses comma-separated tokens case-insensitively across HTTP implementations.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Trust IPv6 loopback proxies by default&lt;/strong&gt; (&lt;a href=&quot;https://github.com/Kludex/uvicorn/pull/3119&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3119/hovercard&quot;&gt;#3119&lt;/a&gt;). The default &lt;code&gt;FORWARDED_ALLOW_IPS&lt;/code&gt; value now includes &lt;code&gt;::1&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Keep upgraded WebSockets alive&lt;/strong&gt; (&lt;a href=&quot;https://github.com/Kludex/uvicorn/pull/3107&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3107/hovercard&quot;&gt;#3107&lt;/a&gt;). Uvicorn cancels the HTTP keep-alive timer when the connection becomes a WebSocket.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full changelog:&lt;/strong&gt; &lt;a href=&quot;https://github.com/Kludex/uvicorn/compare/0.52.4...0.53.0&quot;&gt;0.52.4...0.53.0&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>Kludex</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7353520?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/92946971/0.52.4</id>
+    <updated>2026-08-19T06:00:54Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/Kludex/uvicorn/releases/tag/0.52.4"/>
+    <title>Version 0.52.4</title>
+    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Remove duplicate &lt;code&gt;Date&lt;/code&gt; headers from accepted WebSocket handshakes with &lt;code&gt;websockets-sansio&lt;/code&gt; (&lt;a href=&quot;https://github.com/Kludex/uvicorn/pull/3078&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3078/hovercard&quot;&gt;#3078&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/Kludex/uvicorn/compare/0.52.3...0.52.4&quot;&gt;&lt;tt&gt;0.52.3...0.52.4&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>Kludex</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7353520?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/92946971/0.52.3</id>
+    <updated>2026-08-13T16:46:56Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/Kludex/uvicorn/releases/tag/0.52.3"/>
+    <title>Version 0.52.3</title>
+    <content type="html">&lt;h3&gt;Changed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Update &lt;code&gt;zttp&lt;/code&gt; to 0.0.24 and use its combined receive path, improving HTTP/1.1 request parsing performance (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5142936273&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/Kludex/uvicorn/issues/3067&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3067/hovercard&quot; href=&quot;https://github.com/Kludex/uvicorn/pull/3067&quot;&gt;#3067&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/Kludex/uvicorn/compare/0.52.2...0.52.3&quot;&gt;&lt;tt&gt;0.52.2...0.52.3&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>Kludex</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7353520?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/92946971/0.52.2</id>
+    <updated>2026-08-13T07:01:56Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/Kludex/uvicorn/releases/tag/0.52.2"/>
+    <title>Version 0.52.2</title>
+    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Update &lt;code&gt;zttp&lt;/code&gt; to 0.0.22, fixing bodyless request receives and improving HTTP/1 request parsing performance (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5134397908&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/Kludex/uvicorn/issues/3063&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3063/hovercard&quot; href=&quot;https://github.com/Kludex/uvicorn/pull/3063&quot;&gt;#3063&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/Kludex/uvicorn/compare/0.52.1...0.52.2&quot;&gt;&lt;tt&gt;0.52.1...0.52.2&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>Kludex</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7353520?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/92946971/0.52.1</id>
+    <updated>2026-08-01T18:18:19Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/Kludex/uvicorn/releases/tag/0.52.1"/>
+    <title>Version 0.52.1</title>
+    <content type="html">&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Complete the closing handshake on server-initiated WebSocket closes in the &lt;code&gt;websockets-sansio&lt;/code&gt; and &lt;code&gt;wsproto&lt;/code&gt; implementations, waiting for the client&#39;s close reply with a 10 second timeout instead of resetting the connection (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5032438926&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/Kludex/uvicorn/issues/3053&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3053/hovercard&quot; href=&quot;https://github.com/Kludex/uvicorn/pull/3053&quot;&gt;#3053&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Add missing write flow control to the &lt;code&gt;websockets-sansio&lt;/code&gt; implementation, preventing data truncation on server-initiated closes with large in-flight payloads (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5017142837&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/Kludex/uvicorn/issues/3048&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3048/hovercard&quot; href=&quot;https://github.com/Kludex/uvicorn/pull/3048&quot;&gt;#3048&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Handle connection loss while a WebSocket write is waiting on backpressure (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5019853658&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/Kludex/uvicorn/issues/3050&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3050/hovercard&quot; href=&quot;https://github.com/Kludex/uvicorn/pull/3050&quot;&gt;#3050&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Remove duplicate &lt;code&gt;Content-Type&lt;/code&gt; and &lt;code&gt;Content-Length&lt;/code&gt; headers from WebSocket denial responses on the &lt;code&gt;websockets-sansio&lt;/code&gt; implementation, and deliver non-UTF-8 denial bodies intact (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;4995536082&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/Kludex/uvicorn/issues/3041&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3041/hovercard&quot; href=&quot;https://github.com/Kludex/uvicorn/pull/3041&quot;&gt;#3041&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/Kludex/uvicorn/compare/0.52.0...0.52.1&quot;&gt;&lt;tt&gt;0.52.0...0.52.1&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>Kludex</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7353520?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/92946971/0.52.0</id>
+    <updated>2026-07-29T07:53:32Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/Kludex/uvicorn/releases/tag/0.52.0"/>
+    <title>Version 0.52.0</title>
+    <content type="html">&lt;p&gt;This release adds an experimental HTTP/1.1 implementation backed by &lt;a href=&quot;https://zttp.marcelotryle.com/&quot; rel=&quot;nofollow&quot;&gt;zttp&lt;/a&gt;, a sans-IO HTTP parser I&#39;ve been developing on the side: a core written in Zig, with bindings to Python. It has been running under a fuzzer for some weeks now, and has been through multiple rounds of security auditing.&lt;/p&gt;
+&lt;p&gt;It is still &lt;strong&gt;experimental&lt;/strong&gt;, so don&#39;t put it in front of production traffic yet. Try it with &lt;code&gt;--http zttp&lt;/code&gt;, and please send any feedback to the &lt;a href=&quot;https://github.com/Kludex/uvicorn/issues&quot;&gt;issue tracker&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Added&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Add an experimental &lt;code&gt;zttp&lt;/code&gt; HTTP/1.1 implementation, selectable with &lt;code&gt;--http zttp&lt;/code&gt; (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;4611819120&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/Kludex/uvicorn/issues/2979&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/2979/hovercard&quot; href=&quot;https://github.com/Kludex/uvicorn/pull/2979&quot;&gt;#2979&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Keep non-ASCII WebSocket request headers intact with websockets 17.0, which encodes them with ISO-8859-1 (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;4917959610&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/Kludex/uvicorn/issues/3036&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3036/hovercard&quot; href=&quot;https://github.com/Kludex/uvicorn/pull/3036&quot;&gt;#3036&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/Kludex/uvicorn/compare/0.51.0...0.52.0&quot;&gt;&lt;tt&gt;0.51.0...0.52.0&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>Kludex</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7353520?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/92946971/0.51.0</id>
+    <updated>2026-07-08T10:58:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/Kludex/uvicorn/releases/tag/0.51.0"/>
+    <title>Version 0.51.0</title>
+    <content type="html">&lt;h2&gt;What&#39;s Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Restart workers with overlap on SIGHUP for near-zero-downtime reloads by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Kludex/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Kludex&quot;&gt;@Kludex&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;4827669023&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/Kludex/uvicorn/issues/3025&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3025/hovercard&quot; href=&quot;https://github.com/Kludex/uvicorn/pull/3025&quot;&gt;#3025&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Remove colorama from the standard extra by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Kludex/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Kludex&quot;&gt;@Kludex&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;4836647560&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/Kludex/uvicorn/issues/3027&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3027/hovercard&quot; href=&quot;https://github.com/Kludex/uvicorn/pull/3027&quot;&gt;#3027&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/Kludex/uvicorn/compare/0.50.2...0.51.0&quot;&gt;&lt;tt&gt;0.50.2...0.51.0&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>Kludex</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7353520?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/92946971/0.50.2</id>
+    <updated>2026-07-06T10:06:18Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/Kludex/uvicorn/releases/tag/0.50.2"/>
+    <title>Version 0.50.2</title>
+    <content type="html">&lt;h2&gt;What&#39;s Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Require websockets&amp;gt;=13.0 for the default sansio implementation by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Kludex/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Kludex&quot;&gt;@Kludex&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;4817804301&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/Kludex/uvicorn/issues/3021&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3021/hovercard&quot; href=&quot;https://github.com/Kludex/uvicorn/pull/3021&quot;&gt;#3021&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/Kludex/uvicorn/compare/0.50.1...0.50.2&quot;&gt;&lt;tt&gt;0.50.1...0.50.2&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>Kludex</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7353520?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/92946971/0.50.1</id>
+    <updated>2026-07-06T07:50:41Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/Kludex/uvicorn/releases/tag/0.50.1"/>
+    <title>Version 0.50.1</title>
+    <content type="html">&lt;h2&gt;What&#39;s Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Split comma-separated &lt;code&gt;Sec-WebSocket-Protocol&lt;/code&gt; values in the websockets-sansio implementation by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Aayush7352/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Aayush7352&quot;&gt;@Aayush7352&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;4814232316&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/Kludex/uvicorn/issues/3019&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3019/hovercard&quot; href=&quot;https://github.com/Kludex/uvicorn/pull/3019&quot;&gt;#3019&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;New Contributors&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Aayush7352/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Aayush7352&quot;&gt;@Aayush7352&lt;/a&gt; made their first contribution in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;4814232316&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/Kludex/uvicorn/issues/3019&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/Kludex/uvicorn/pull/3019/hovercard&quot; href=&quot;https://github.com/Kludex/uvicorn/pull/3019&quot;&gt;#3019&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/Kludex/uvicorn/compare/0.50.0...0.50.1&quot;&gt;&lt;tt&gt;0.50.0...0.50.1&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>Kludex</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7353520?s=60&amp;v=4"/>
+  </entry>
+</feed>

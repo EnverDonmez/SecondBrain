@@ -1,0 +1,17 @@
+{
+  "pid": 20484,
+  "runtime": {
+    "pid": 20484,
+    "cpu_seconds": 12.812,
+    "rss_bytes": 70238208,
+    "rss_kind": "current working set",
+    "platform": "win32"
+  },
+  "counts": {
+    "events": 0,
+    "assets": 0,
+    "memories": 0,
+    "skills": 0,
+    "jobs": 0
+  }
+}

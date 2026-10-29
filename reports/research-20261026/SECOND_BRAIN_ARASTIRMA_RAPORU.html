@@ -1,0 +1,875 @@
+<!doctype html><html lang="tr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Second Brain — Açık Kaynak Araştırması</title><style>
+    :root{color-scheme:light;font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#172635;background:#eef2f5}*{box-sizing:border-box}body{margin:0}nav{position:fixed;top:0;bottom:0;left:0;width:250px;padding:28px 20px;overflow:auto;background:#142c3b;color:white}nav strong{display:block;margin-bottom:24px}nav a{display:block;color:#dce9f0;text-decoration:none;font-size:13px;line-height:1.5;margin:12px 0}main{max-width:1220px;margin-left:250px;padding:48px 48px 90px;background:white}h1{font-size:34px;line-height:1.2;letter-spacing:-.6px}h2{font-size:25px;border-top:1px solid #d8e1e6;padding-top:26px;margin-top:44px;scroll-margin-top:24px}h3{font-size:20px;margin-top:32px}p,li{font-size:16px;line-height:1.75}a{color:#075f88;overflow-wrap:anywhere}code{font:13px ui-monospace,Consolas,monospace;background:#f0f4f6;border-radius:3px;padding:2px 4px;overflow-wrap:anywhere}table{display:block;overflow-x:auto;border-collapse:collapse;width:100%;font-size:14px;margin:22px 0}th{background:#e9f1f5;text-align:left}td,th{border:1px solid #d8e1e6;padding:11px;vertical-align:top;line-height:1.55;min-width:145px}tr:nth-child(even){background:#f8fafb}strong{font-weight:650}li{margin-bottom:8px}@media(max-width:900px){nav{position:static;width:auto;padding:20px}nav a{display:inline-block;margin:7px 10px 7px 0}main{margin:0;padding:24px}h1{font-size:28px}}@media print{nav{display:none}main{margin:0;padding:0;max-width:none}body{background:white}table{display:table;font-size:10px}td,th{min-width:0;padding:5px}h2,h3{break-after:avoid}a{color:inherit}p,li{font-size:11px}}
+    </style></head><body><nav><strong>SECOND BRAIN<br>26 Ekim 2026</strong><a href="#section-1">1. Karar özeti</a>
+<a href="#section-2">2. Araştırma yöntemi ve kanıt sınırı</a>
+<a href="#section-3">3. Hangi şartlara göre seçim yaptım?</a>
+<a href="#section-4">4. En uygun adayların ayrıntılı değerlendirmesi</a>
+<a href="#section-5">5. Diğer adaylar: ne için uygun, neden ilk seçim değil?</a>
+<a href="#section-6">6. “Sinir ağı gibi, Kruskal yaparak” ifadesinin teknik karşılığı</a>
+<a href="#section-7">7. En uygun teknik bileşim</a>
+<a href="#section-8">8. Maliyet: “açık kaynak” ve “az token” aynı şey değil</a>
+<a href="#section-9">9. Benchmark'lara nasıl baktım?</a>
+<a href="#section-10">10. Mevcut projemize dürüst etkisi</a>
+<a href="#section-11">11. Bundan sonra önerdiğim sıra</a>
+<a href="#section-12">Ek A. Tam kaynak envanteri</a>
+<a href="#section-13">Ek B. Tekrar doğrulanabilir araştırma dosyaları</a></nav><main><h1>Second Brain: ortak kişisel veritabanı için açık kaynak araştırması</h1>
+<p><strong>Tarih:</strong> 26 Ekim 2026 · <strong>Kapsam:</strong> düşük maliyetli, modelden bağımsız, kaynaklı ve uzun ömürlü kişisel hafıza · <strong>Sonuç türü:</strong> kaynak ve seçili kod incelemesine dayalı teknik karar raporu.</p>
+<h2 id="section-1">1. Karar özeti</h2>
+<p><strong>Senin tarifine en uygun çözüm, düşünme işini konuştuğun AI'ya bırakan; ham kaynakları kalıcı saklayan; bilgiyi başlık → kayıt → kaynak olarak açan tek bir kişisel veritabanıdır. Araştırdığım hiçbir hazır paketin bu koşulların tamamını, Türkçe ve uzun süreli gerçek kullanımda kanıtlanmış olarak sağladığını söyleyemiyorum.</strong></p>
+<p>En değerli adaylar ve onlardan alacağımız şeyler:</p>
+<table>
+<thead>
+<tr>
+<th>Öncelik / rol</th>
+<th>Proje</th>
+<th>Bizim hedefimize katkısı</th>
+<th>Kararım</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mevcut AI'nın hafızayı yazması</td>
+<td><a href="https://github.com/NevaMind-AI/memU">memU</a></td>
+<td>Yargı ve sentez ajan tarafında, hafıza servisi saklama/erişim tarafında</td>
+<td>Sorumluluk bölümü için en yakın referans; embedding ve kaynak arşivi sınırlarını uyarlamadan bütünüyle geçmeyelim</td>
+</tr>
+<tr>
+<td>Modelsiz, kaynaklı veritabanı çekirdeği</td>
+<td><a href="https://github.com/RamaAditya49/titen">Titen</a></td>
+<td>Gözlem, kaynaklı iddia, çelişki, kapsam ve bütçeli bağlam ayrımı</td>
+<td>İlk karşılaştırmalı prototip adayı; genç ve Bun tabanlı, büyük ürün yüzeyinin tamamına ihtiyacımız yok</td>
+</tr>
+<tr>
+<td>Genelden özele bilgi düzeni</td>
+<td><a href="https://github.com/volcengine/OpenViking">OpenViking</a></td>
+<td>Kaynak/hafıza/skill ad alanları; kısa temsil, genel bakış, ayrıntı</td>
+<td>Bilgi mimarisi için güçlü referans; tam çalışma yığını bu bütçe için ağır</td>
+</tr>
+<tr>
+<td>Hazır, okunabilir kişisel bilgi tabanı</td>
+<td><a href="https://github.com/basicmachines-co/basic-memory">Basic Memory</a></td>
+<td>Markdown, ilişki grafiği, MCP, kompakt keşif ve seçili okuma</td>
+<td>Hazır ürüne geçiş seçeneği olarak denemeye değer; tarih penceresi ve lisans planı önemli</td>
+</tr>
+<tr>
+<td>Özgün konuşmayı koruma</td>
+<td><a href="https://github.com/MemPalace/mempalace">MemPalace</a></td>
+<td>Özet yerine birebir kaynak, proje/konu kapsamları, değiştirilebilir arama arka ucu</td>
+<td>Arşiv ve kapsam fikri değerli; tam zamansal doğruluk katmanını ayrıca kurmak gerekir</td>
+</tr>
+<tr>
+<td>Yakalama ve kurtarma</td>
+<td><a href="https://github.com/rohitg00/agentmemory">agentmemory</a></td>
+<td>Host hook'ları, tekrar işleme, kesinti sırasında biriktirme, oturum devamlılığı</td>
+<td>Yakalama bileşenleri referans alınmalı; varsayılan bakım ve kalıcılık davranışı kanonik depo için aynen alınmamalı</td>
+</tr>
+<tr>
+<td>İleri ilişkisel arama</td>
+<td><a href="https://github.com/OSU-NLP-Group/HippoRAG">HippoRAG 2</a></td>
+<td>Sorgudan başlayan ilişkisel yayılım ve çok adımlı kanıt bulma</td>
+<td>Algoritma/deney adayı; tam kütüphane sıfır ek model çağrısı sağlamıyor</td>
+</tr>
+<tr>
+<td>Zaman içinde değişen ilişkiler</td>
+<td><a href="https://github.com/getzep/graphiti">Graphiti</a></td>
+<td>Zamansal bilgi grafiği ve değişen ilişkiler</td>
+<td>Zamansal şema referansı; ilk varsayılan motor olarak önermiyorum</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Önerim:</strong> Birden fazla hafıza sistemini aynı verinin sahibi yapmayalım. Mevcut kanonik SQLite çekirdeğini ölçüm tabanı olarak tutup memU'nun ajan/servis ayrımını, OpenViking'in katmanlı erişim fikrini ve Titen'in kaynak–iddia sınırlarını değerlendirelim. Titen ve Basic Memory'yi aynı veri ve bütçeyle rakip prototipler olarak sınayalım. Ölçüm başka bir çekirdeğin açık üstünlüğünü gösterirse geçiş yapalım; mevcut kodu korumayı amaç haline getirmeyelim.</p>
+<p>Bu rapor bir entegrasyon uygulaması değildir. Araştırma sırasında çalışan veritabanına yeni motor, paket, model veya otomasyon kurulmadı.</p>
+<h2 id="section-2">2. Araştırma yöntemi ve kanıt sınırı</h2>
+<p>37 depo adresi kontrol edildi; <strong>36 erişilebilir açık depo</strong> için güncel metadata ve kaynak envanteri alındı. Bir adres yanlış/eskiydi; doğru <code>asg017/sqlite-vec</code> ayrıca doğrulandı. Standart README/lisans/bağımlılık taramasına ek olarak 14 adayın seçili uygulama ve tasarım dosyaları incelendi. Ana adaylar commit SHA'sıyla sabitlendi; diğer kaynaklarda kontrol zamanı ve dosya SHA-256 kaydedildi. Ek A'da bütün adaylar, <a href="source-ledger.json">source-ledger.json</a> ve <a href="implementation-ledger.json">implementation-ledger.json</a> içinde dosya kanıtları bulunur.</p>
+<p>Üç kanıt düzeyini ayırıyorum:</p>
+<ul>
+<li><strong>Doğrulanan kaynak davranışı:</strong> okunan kod veya sözleşmede doğrudan görülen davranış. Örneğin bir arama yolunun LLM istemcisi çağırması veya bir bakım fonksiyonunun kayıt silmesi.</li>
+<li><strong>Proje sahibinin sonucu/iddiası:</strong> README veya kendi benchmark'ında yayımlanan sayı. Bağımsız ölçüm gibi kullanılmadı.</li>
+<li><strong>Benim değerlendirmem:</strong> projemizin hedeflerine göre uygunluk, mimari tercih ve önerilen deney. Bir hız/başarı garantisi değildir.</li>
+</ul>
+<p>Upstream projeler kurulup ortak corpus üzerinde çalıştırılmadı; ücretli model veya değerlendirme çağrısı yapılmadı. Dolayısıyla aşağıdaki öncelikler performans liderlik tablosu değil, gerekçeli mühendislik seçimidir. Kaynak incelemesi tam güvenlik denetimi sayılmaz. <code>main</code> belgesi, öneri durumundaki ADR ve yayımlanmış paket aynı şey değildir; gördüğüm uyuşmazlıkları ayrıca belirtiyorum.</p>
+<h2 id="section-3">3. Hangi şartlara göre seçim yaptım?</h2>
+<table>
+<thead>
+<tr>
+<th>Şart</th>
+<th>Kabul ölçütü</th>
+<th>Tek başına yeterli olmayan şey</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aynı hafızayı farklı AI'ların kullanması</td>
+<td>Açık veri biçimi, yetkili MCP/API, taşınabilir kimlik ve kapsam</td>
+<td>Bir ürünün kendi sohbet uygulamasına hafıza eklemesi</td>
+</tr>
+<tr>
+<td>Yaklaşık maliyetsiz kullanım</td>
+<td>Hafıza yazma/okuma yolunda zorunlu ayrı üretken model olmaması</td>
+<td>Açık kaynak lisansı veya “local” etiketi</td>
+</tr>
+<tr>
+<td>Bir yıl önceki şeyi hatırlama</td>
+<td>İzinli özgün kaynak arşivi, tarihli indeks ve doğrulanabilir kaynak bağlantısı</td>
+<td>Yalnız son özetin veya en sık erişilen notların tutulması</td>
+</tr>
+<tr>
+<td>Bilgi karmaşasını azaltma</td>
+<td>Sabit kimlik, alias, tür, kapsam, zaman, sürüm ve çelişki yönetimi</td>
+<td>Daha fazla kenar veya daha büyük embedding modeli</td>
+</tr>
+<tr>
+<td>Az token</td>
+<td>Kısa keşif, seçili okuma, toplam çıktı bütçesi ve görünür eksiklik</td>
+<td>Yalnız top-k döndürmek veya “compact” bayrağı</td>
+</tr>
+<tr>
+<td>Konuştukça büyüme</td>
+<td>Güvenilir yakalama, tekrar güvenliği, artımlı indeks, kaynaktan yeniden kurulum</td>
+<td>LLM'nin her seferinde hatırlamayı kendisinin akıl etmesi</td>
+</tr>
+<tr>
+<td>Kendi kendini optimize etme</td>
+<td>Kaynağı bozmayan indeks/önbellek/temsil güncellemesi; ölçülen geri bildirim</td>
+<td>Az kullanılan eski kaynağı otomatik silmek</td>
+</tr>
+</tbody>
+</table>
+<p>Bu şartlarla popüler bir “AI agent framework”, küçük bir kişisel veritabanından daha uygun olmayabilir. Skill/tool bilgisi saklamak da o aracın yeni AI oturumunda gerçekten kullanılabilir olduğu anlamına gelmez.</p>
+<h2 id="section-4">4. En uygun adayların ayrıntılı değerlendirmesi</h2>
+<h3>4.1 memU — düşünmeyi mevcut ajana bırakma bakımından en yakın eşleşme</h3>
+<p><strong>Lisans:</strong> Apache-2.0 metni doğrulandı. GitHub metadata'sındaki <code>NOASSERTION</code> etiketi tek başına karar için kullanılmadı. İncelenen ana commit: <code>42ef9fa3a8034f5817684cba23ef69fa70a58197</code>.</p>
+<p>Güncel <code>MemoryService</code>, dışarıda hazırlanmış hafıza/skill içeriğini saklayan ve embedding ile erişen bir servis. Kaynak kodunun açıklaması ve yapısı, servis içinde sohbet/üretken LLM çağrısı yerine embedding istemcisi kullandığını gösteriyor. <strong>Bu, senin “zaten konuştuğum AI gerekli bilgiyi hazırlasın” fikrine doğrudan uyuyor.</strong> <a href="https://github.com/NevaMind-AI/memU/blob/42ef9fa3a8034f5817684cba23ef69fa70a58197/src/memu/app/service.py">Servis kodu</a>.</p>
+<p>Geliştirici akışında uygulama konuşmaları sağlar; <code>prepare</code> görevleri ve çalışma alanını oluşturur; mevcut ajan hafızayı/skill'i düzenler; <code>commit</code> değişiklikleri saklar. Sentez işi ortadan kalkmaz, dışarıdaki ajana taşınır. Ayrı zamanlanmış ajan turu çalıştırılırsa mevcut hesabın kullanımını yine tüketir. Ham konuşma arşivinin uygulama tarafından ayrıca korunması gerekir; yalnız düzenlenmiş wiki çıktısını saklamak bütün ayrıntıları korumak değildir. <a href="https://github.com/NevaMind-AI/memU/blob/42ef9fa3a8034f5817684cba23ef69fa70a58197/docs/developer.md">Geliştirici sözleşmesi</a>.</p>
+<p>İkinci sınır embedding: yerel veri deposu seçmek bütün işlemleri çevrimdışı yapmaz. Varsayılan sağlayıcı ayarları bulut embedding yolları içeriyor. Buna karşılık “LLM yok” beyanı doğru kapsamda: üretken çağrı yok; embedding çağrısı var. Ayrıca eski <code>docs/sqlite.md</code> örneğinde görülen <code>llm_profiles</code> argümanı güncel servis imzasında yok; kurulum tarifini sürüme sabitlemeden kopyalamamalıyız. <a href="https://github.com/NevaMind-AI/memU/blob/42ef9fa3a8034f5817684cba23ef69fa70a58197/src/memu/embedding/defaults.py">Embedding varsayılanları</a>, <a href="https://github.com/NevaMind-AI/memU/blob/42ef9fa3a8034f5817684cba23ef69fa70a58197/docs/sqlite.md">SQLite belgesi</a>.</p>
+<p><strong>Alınacak:</strong> ajan tarafından hazırlanan yazma sözleşmesi, hafıza/skill/kaynak işlerinin ayrılması, kendisini tekrar tekrar hafızaya alan döngüleri önleme. <strong>Aynen alınmayacak:</strong> bizim zorunlu modelsiz yolumuzu değiştiren embedding varsayılanı; ham kaynağın yerine yalnız sentezlenmiş dosyaları koymak. “Wiki graph” adlı ADR öneri durumunda ve kendi içinde grafik olmayan hibrid erişim yönüne düzeltme içeriyor; adı nedeniyle uygulanmış grafik motoru kabul etmedim. <a href="https://github.com/NevaMind-AI/memU/blob/42ef9fa3a8034f5817684cba23ef69fa70a58197/docs/adr/0007-three-independent-memory-lines-wiki-graph.md">ADR 0007</a>.</p>
+<h3>4.2 Titen — ayrı model gerektirmeyen kaynaklı çekirdek için güçlü aday</h3>
+<p><strong>Lisans:</strong> Apache-2.0. Ana commit: <code>23302a16d44d01f3759ef56287847f85352d0fc1</code>. <strong>Durum:</strong> 1.0 öncesi; API'nin kararlı olduğu varsayılamaz.</p>
+<p>Varsayılan yerel yol Bun ve SQLite/FTS5 kullanıyor; embedding veya üretken LLM zorunlu değil. İddiaları çağıran taraf yazıyor. Böylece çıkarım maliyeti veritabanının gizli arka plan işine dönüşmüyor. <a href="https://github.com/RamaAditya49/titen">Proje açıklaması</a>.</p>
+<p>Veri modelinin bizim için en yararlı kısmı şu ayrım: gözlem/kanıt, kaynağa bağlı ve itiraz edilebilir iddia, çalışma noktası. Kaynak bağlantısı destekleme/çürütme/niteleme ilişkisini taşıyabiliyor; çelişen iddiaların otomatik tek gerçeğe kaynaştırılması yerine izlenebilir çözüm öngörülüyor. Tam bitemporal sorgu eşdeğerliğini bu incelemeyle kanıtlamadım. <a href="https://github.com/RamaAditya49/titen/blob/23302a16d44d01f3759ef56287847f85352d0fc1/docs/architecture/memory-model.md">Hafıza modeli</a>.</p>
+<p>Önemli artısı, yayımladığı değerlendirmelerde başarısız koşulları da açıklaması. Fakat küçük, konuya ayrılmış bir havuzla bütün geçmişin karıştığı havuzdaki sonuçlar aynı değil. Kendi raporları, kapsamlandırmanın büyük etkisini ve bazı önerilen optimizasyonların başarısızlığını gösteriyor. Bu sonuçları bizim Türkçe geçmişimizde yeniden üretmedik. <a href="https://github.com/RamaAditya49/titen/blob/23302a16d44d01f3759ef56287847f85352d0fc1/docs/testing/2026-08-07-pooled-store.md">Havuzlanmış veri deneyi</a>.</p>
+<p><strong>Alınacak:</strong> gözlem–iddia ayrımı, aramadan önce yetki/kapsam, kanıt zinciri, bütçeli bağlam, geri bildirimi ölçmeden sıralamayı değiştirmeme. <strong>Sınır:</strong> yönetişim/federasyon/ajan koordinasyonu gibi geniş yüzeyin tamamı tek kullanıcılı hafıza için gereksiz olabilir. Yaşam döngüsü/retention ayarları ham arşivin silinmemesi şartıyla incelenmeli. İngilizce ağırlıklı sözlüksel erişimin Türkçe kalitesi ayrıca ölçülmeli.</p>
+<h3>4.3 OpenViking — genelden özele temsil için en güçlü mimari referanslardan biri</h3>
+<p><strong>Lisans:</strong> AGPL-3.0. İncelenen ana commit: <code>5c066d97094d713238c483c10691d7b4e1cfbf6e</code>.</p>
+<p>Kaynaklar, hafızalar ve skill'lerin ortak bir ad alanında ele alınması bizim kapsamımıza uyuyor. Katman belgesi kısa dizin özeti, genel bakış ve kaynak ayrıntısını ayırıyor. L0/L1 dizin yan dosyaları; her normal dosya için mutlaka ikisi birden varmış gibi davranılmamalı. <a href="https://github.com/volcengine/OpenViking/blob/5c066d97094d713238c483c10691d7b4e1cfbf6e/docs/en/concepts/03-context-layers.md">Katman sözleşmesi</a>.</p>
+<p><strong>Önemli düzeltme:</strong> katmanlı bilgi temsili ile arama algoritması aynı şey değil. v0.4.23 sürüm notları dizin içinde rekürsif arama/üst düğüm puan yayılımının kaldırılıp global vektör çağırma ve tek yeniden sıralama yoluna geçildiğini açıkça söylüyor. “Dosya sistemi gibi düzenli” ifadesinden “arama mutlaka tepeden aşağı iner ve en ucuz yolu bulur” sonucu çıkmıyor. <a href="https://github.com/volcengine/OpenViking/releases/tag/v0.4.23">v0.4.23 sürüm notu</a>.</p>
+<p><code>search(mode=&quot;context&quot;)</code> bütçe, ayrıntı seviyesi ve tekrarları bir sunucu isteğinde birleştiren değerli bir yaklaşım; bazı anlam genişletme veya digest seçenekleri ise ek LLM işi yapabiliyor. Tam semantik kurulumun embedding ve VLM gereksinimi var. <a href="https://github.com/volcengine/OpenViking/blob/5c066d97094d713238c483c10691d7b4e1cfbf6e/docs/en/api/06-retrieval.md">Erişim API'si</a>, <a href="https://github.com/volcengine/OpenViking">kurulum kapsamı</a>.</p>
+<p><strong>Alınacak:</strong> açık ad alanı, kısa temsil → kaynak ayrıntısı, her kaynak türüne uygun sunum ve tek bütçe derleyicisi. <strong>Aynen alınmayacak:</strong> zorunlu VLM/embedding iş akışı ve üretilmiş özeti kaynak gerçeği saymak. Tam ürüne geçiş ancak maliyet, kaynak koruma ve lisans/dağıtım planı birlikte uygunsa düşünülmeli.</p>
+<h3>4.4 Basic Memory — hazır, insan tarafından da okunabilen alternatif</h3>
+<p><strong>Lisans:</strong> AGPL-3.0. Ana commit: <code>9643ec25918e8958629a668e3ce928981ab3ea36</code>.</p>
+<p>Markdown dosyaları, wikilink'ler, gözlemler/ilişkiler ve MCP araçları, hafızayı modele kapalı bir iç durum olmaktan çıkarıyor. Notlar farklı araçlar tarafından okunup düzenlenebiliyor; SQLite yerel kurulum yolu var. Bu, özel geliştirme yükünü azaltabilecek gerçek bir ürün alternatifi. <a href="https://github.com/basicmachines-co/basic-memory">Proje</a>.</p>
+<p>Güncel <code>bm_context</code>, grafik keşfinde <code>compact</code> ile gövdeleri/gözlemleri dışarıda bırakıp seçili notları sonradan okutabiliyor. Ancak kompakt çıktı sabit token sınırı değildir. Daha önemlisi, <strong>varsayılan <code>since=&quot;7d&quot;</code> ilişkili sonuçları yakın zamandaki değişikliklere sınırlar.</strong> Bir yıl önceki bağlantı için bu varsayılanı körlemesine kullanamayız; bu kaynakların silindiği anlamına da gelmez. <a href="https://github.com/basicmachines-co/basic-memory/blob/9643ec25918e8958629a668e3ce928981ab3ea36/src/basic_memory/man/man3/bm-context%283%29.md">Güncel araç sözleşmesi</a>, <a href="https://github.com/basicmachines-co/basic-memory/blob/9643ec25918e8958629a668e3ce928981ab3ea36/src/basic_memory/mcp/tools/context.py">araç kodu</a>.</p>
+<p><strong>Alınacak:</strong> okunabilir dosyalar, tipli ilişkiler, gövdesiz keşif ve sonra okuma. <strong>Sınır:</strong> dosya/DB senkronizasyonu ve not sürümleri, tek başına bizim valid/known time ve çelişki modelimizin yerine geçmez. Yıllık hatırlama, silme ve token bütçesi için adaptör gerekir. Hazır ürün yolu tercih edilirse, doğrudan denenecek iki adaydan biri budur.</p>
+<h3>4.5 MemPalace — özgün metin arşivi ve kapsamlı erişim için değerli</h3>
+<p><strong>Lisans:</strong> MIT. Proje, konuşmayı özetleyip yalnız seçilmiş bilgiyi tutmak yerine birebir metin olarak saklamayı; insan/proje, konu ve içerik bölümleriyle kapsamlandırmayı öne çıkarıyor. Varsayılan erişim arka ucu ChromaDB; alternatif arka uç sözleşmesi var. Bu nedenle “yerel” ve “LLM gerektirmiyor” ifadesi “hiç model yok” demek değil: semantik erişim için embedding yolu bulunuyor. <a href="https://github.com/MemPalace/mempalace">Proje</a>, <a href="https://github.com/MemPalace/mempalace/blob/develop/mempalace/backends/base.py">arka uç sözleşmesi</a>.</p>
+<p>Bizim için esas değer, yorumlanmış hafıza ile özgün konuşmayı birbirine alternatif yapmaması. Bir yıl sonra sorulan ve o gün önemsiz görünen bir ayrıntı, yalnız özette hiç bulunmayabilir.</p>
+<p><strong>Alınacak:</strong> ham arşiv, proje/konu kapsamları, aramayı kanonik içerikten ayıran adaptör. <strong>Sınır:</strong> yüksek retrieval recall, doğru güncel karar veya güvenilir Türkçe cevap garantisi değildir. Tipli tercihler, zamansal düzeltme ve yetki politikaları ayrı değerlendirilmelidir. Benchmark'taki “raw”, hibrid ve LLM ile yeniden sıralanan yolları birbirine karıştırmıyorum. <a href="https://github.com/MemPalace/mempalace/blob/develop/benchmarks/BENCHMARKS.md">Metodoloji</a>.</p>
+<h3>4.6 agentmemory — yakalama tarafında güçlü, kanonik depo olarak koşullu</h3>
+<p><strong>Lisans:</strong> Apache-2.0. Ana commit: <code>c5b8ebfb32eb6a08fe301d3bb75840f3597b66c8</code>.</p>
+<p>Native hook'lar, oturum/araç olayları, offline spool ve tekrar işleme tasarımı önemli. LLM sıkıştırması opsiyonel; modelsiz BM25 yolu mevcut. Araç yüzeyini küçük bir çekirdek listeye indirme seçeneği de token maliyeti açısından yararlı. <a href="https://github.com/rohitg00/agentmemory">Proje</a>.</p>
+<p>Fakat iki kritik sınır var. Kendi kalıcılık belgesi, varsayılan dosya tabanlı KV deposunda kabul edilmiş yazmanın hemen diskte olmayabileceğini; periyodik kayıt ve replay yolunun her API yazısı için güç kesintisi garantisi vermediğini açıklıyor. <a href="https://github.com/rohitg00/agentmemory/blob/c5b8ebfb32eb6a08fe301d3bb75840f3597b66c8/docs/reliability/state-storage.md">Kalıcılık belgesi</a>.</p>
+<p>Otomatik unutma kodunda yalnız puan düşürme değil, TTL dolan hafızanın ve belirli eski/düşük önem gözlemlerinin gerçekten silinmesi bulunuyor. Dolayısıyla “kendi kendini optimize ediyor” gerekçesiyle bu yolu ham kişisel arşive aynen uygulamak hedefimize ters düşebilir. İlgili ayarlar açıkça kontrol edilmeli. <a href="https://github.com/rohitg00/agentmemory/blob/c5b8ebfb32eb6a08fe301d3bb75840f3597b66c8/src/functions/auto-forget.ts">Unutma kodu</a>, <a href="https://github.com/rohitg00/agentmemory/blob/c5b8ebfb32eb6a08fe301d3bb75840f3597b66c8/.env.example">ayar örneği</a>.</p>
+<p><strong>Alınacak:</strong> host adaptörleri, kalıcı alım kuyruğu, kararlı olay kimliği, kendi hafıza araçlarının çıktısını tekrar yakalamayı engelleme. <strong>Aynen alınmayacak:</strong> ham veriyi silebilen otomatik bakım ve uygulamamızın kabul ettiği kayıp aralığından daha zayıf bir yazma garantisi.</p>
+<h3>4.7 HippoRAG 2 — ilişkilerden bulma için araştırma adayı</h3>
+<p><strong>Lisans:</strong> MIT. Ana commit: <code>d5c8329422e0a0b834a15874545cb6a74b4f9b26</code>.</p>
+<p>Bilgi grafiği ve Personalized PageRank ile, soruya doğrudan benzemeyen fakat ilgili bir varlık üzerinden bağlanan pasajları bulmayı ele alıyor. Bu, “konudan ilgili diğer bilgilere geçme” hedefimizle örtüşüyor. <a href="https://github.com/OSU-NLP-Group/HippoRAG">Proje ve çalışma</a>, <a href="https://arxiv.org/abs/2502.14802">makale</a>.</p>
+<p>Ancak tam boru hattı salt graf yürüyüşü değil. OpenIE çıkarımı, embedding ve sorguyla ilgili aday olguları süzen LLM yolu bulunuyor; <code>DSPyFilter</code> kodunda LLM inference çağrısı doğrudan görülüyor. <a href="https://github.com/OSU-NLP-Group/HippoRAG/blob/d5c8329422e0a0b834a15874545cb6a74b4f9b26/src/hipporag/HippoRAG.py">Ana uygulama</a>, <a href="https://github.com/OSU-NLP-Group/HippoRAG/blob/d5c8329422e0a0b834a15874545cb6a74b4f9b26/src/hipporag/rerank.py">filtre</a>.</p>
+<p><strong>Alınacak:</strong> sorguya bağlı başlangıç düğümleri ve kontrollü ilişkisel yayılım fikri. İlişkileri mevcut AI yazarsa graf algoritmasını ayrıca model çağırmadan deneyebiliriz. Bu uyarlamanın tam HippoRAG sonuçlarını koruyacağı iddiası yok. Mevcut FTS/graf tabanına karşı ölçülmeden varsayılan yapılmamalı.</p>
+<h3>4.8 Graphiti — değişen bilgiyi temsil etmek için güçlü, maliyeti ayrı</h3>
+<p><strong>Lisans:</strong> Apache-2.0. Ana commit: <code>5c27edfa8d3e0f49b2571bcebb4261bcc89ee037</code>.</p>
+<p>Zamansal graf ve episodik kaynaklardan ilişki çıkarma, geçmişte doğru olup bugün değişen bilgiyi ele almak için değerli. Fakat varsayılan kurulum graf arka ucu ve yapılandırılmış çıktı verebilen bir LLM/embedding yolu içeriyor. Başka sağlayıcı veya yerel model seçmek mümkündür; bu, ilave hesaplama işini ortadan kaldırmaz. <a href="https://github.com/getzep/graphiti">Kurulum ve tasarım</a>, <a href="https://github.com/getzep/graphiti/blob/5c27edfa8d3e0f49b2571bcebb4261bcc89ee037/pyproject.toml">bağımlılıklar</a>.</p>
+<p><strong>Alınacak:</strong> olay ile çıkarılmış ilişkiyi ayırma, geçerlilik ve geçmiş değişimini koruma. <strong>Karar:</strong> mevcut SQLite zamansal çekirdeğini sırf graf adı var diye değiştirmeyelim. İlişki sorguları gerçekten darboğaz olursa projection olarak deneyelim; ikinci kanonik gerçeklik yaratmayalım.</p>
+<h2 id="section-5">5. Diğer adaylar: ne için uygun, neden ilk seçim değil?</h2>
+<table>
+<thead>
+<tr>
+<th>Aday</th>
+<th>Yararlı tarafı</th>
+<th>Bizim hedefimiz için sınır / karar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/samrusani/AliceMemory">AliceMemory</a></td>
+<td>SQLite, az araçla devamlılık, kararlar/açık işler, kaynak açıklaması</td>
+<td>MIT; public alpha. Kendi belgelerinde kapsam, silme/türetilmiş metin ve güvenlik sınırları açık. Şu haliyle sorgusuz kanonik çekirdek seçmem; devamlılık fikirlerini incelerim</td>
+</tr>
+<tr>
+<td><a href="https://github.com/thedotmack/claude-mem">Claude-Mem</a></td>
+<td>Host hook'ları ve katmanlı aramayla oturumlar arasında devamlılık</td>
+<td>Apache-2.0. Güncel kurulum hosted observer/deneme ve host ya da harici model sağlayıcısı seçenekleri içeriyor; gözlem/sıkıştırma AI işi. Adaptör ve aşamalı okuma referansı, zorunlu ek çıkarım olmadan çalışan çekirdeğimizin doğrudan karşılığı değil</td>
+</tr>
+<tr>
+<td><a href="https://github.com/doobidoo/mcp-memory-service">doobidoo/mcp-memory-service</a></td>
+<td>Yerel embedding, SQLite-vec, ilişki ve konsolidasyon</td>
+<td>Apache-2.0. Yerel model maliyeti ve yaşam döngüsü ayrıntıları var; decay/forget politikası ham arşive uygulanmamalı</td>
+</tr>
+<tr>
+<td><a href="https://github.com/mem0ai/mem0">Mem0</a></td>
+<td>Yaygın hafıza API'si; <code>infer=False</code> ile çıkarım LLM'sini atlama</td>
+<td>Apache-2.0. Bu bayrak embedding'i kaldırmaz; graf/diğer seçenekler ayrıca incelenmeli. Mevcut projection'ı koruyabiliriz, ana verinin sahibi yapmak için neden yok</td>
+</tr>
+<tr>
+<td><a href="https://github.com/vectorize-io/hindsight">Hindsight</a></td>
+<td>Retain/recall/reflect, gözlemler, kaynaklı ve farklı arama yolları</td>
+<td>MIT. Retain/reflect üretken model işi içerebilir; PostgreSQL/servis işletimi var. Mevcut abonelik kullanılsa da ek çağrılar kullanım tüketir</td>
+</tr>
+<tr>
+<td><a href="https://github.com/MemTensor/MemOS">MemOS</a></td>
+<td>İz → strateji → dünya modeli → skill; çok katmanlı deneyim</td>
+<td>Apache-2.0. Yerel plugin ve ana proje farklı yüzeyler; reflection/sentez model işini, host bağımlılığını ve yükseltmeyi ayrıca yönetmek gerekir</td>
+</tr>
+<tr>
+<td><a href="https://github.com/topoteretes/cognee">Cognee</a></td>
+<td>Belgeden graf ve semantik hafıza</td>
+<td>Apache-2.0. LLM/embedding ve işlem hattı maliyeti; kaynaklı kişisel ledger'ın doğrudan yerine koymuyorum</td>
+</tr>
+<tr>
+<td><a href="https://github.com/letta-ai/letta">Letta</a></td>
+<td>Stateful ajan, bellek blokları ve ajan kontrollü hafıza</td>
+<td>Apache-2.0. Başlıca ürün ajan runtime'ı; bizim ince, platformdan bağımsız veritabanı hedefinden geniş</td>
+</tr>
+<tr>
+<td><a href="https://github.com/langchain-ai/langmem">LangMem</a></td>
+<td>Uzun süreli semantik/prosedürel hafıza için araçlar</td>
+<td>MIT. LangGraph/ajan ekosistemi ve sentez adımları; bütün depoyu taşımak yerine kavram referansı</td>
+</tr>
+<tr>
+<td><a href="https://github.com/agiresearch/A-mem">A-MEM</a></td>
+<td>Zettelkasten benzeri bağlantılı notlar ve evrilen hafıza</td>
+<td>MIT. Not çıkarımı/güncelleme LLM işi içerir; serbest bağlantı üretimi doğru kaynak/otorite demek değil</td>
+</tr>
+<tr>
+<td><a href="https://github.com/VectifyAI/PageIndex">PageIndex</a></td>
+<td>Uzun belgede ağaç yapısı üzerinden ayrıntıya inme</td>
+<td>MIT. Vektörsüz olmak modelsiz olmak değil: indeks/özet ve reasoning katmanında LLM kullanılıyor. Belge alt modülü adayı</td>
+</tr>
+<tr>
+<td><a href="https://github.com/parthsarthi03/raptor">RAPTOR</a></td>
+<td>Rekürsif özet ağacı</td>
+<td>MIT. Hiyerarşi üretirken özetleme/embedding işi, değişiklikte bakım; kişisel ham arşivin yerine geçmez. Son push tarihi eski; araştırma referansı</td>
+</tr>
+<tr>
+<td><a href="https://github.com/microsoft/graphrag">Microsoft GraphRAG</a></td>
+<td>Büyük corpus üzerinde topluluk/ilişki temelli bağlam</td>
+<td>MIT. Graf çıkarımı ve özetler için model işi; küçük kişisel sorgular için varsayılan yük olarak gerekçelendirilmedi</td>
+</tr>
+<tr>
+<td><a href="https://github.com/HKUDS/LightRAG">LightRAG</a></td>
+<td>Graf ve vektör erişimini birleştirme</td>
+<td>MIT. LLM/embedding çıkarım boru hattı; aynı veriyle ek kazanç ölçülmeden yeni varsayılan olmamalı</td>
+</tr>
+<tr>
+<td><a href="https://github.com/memvid/memvid">Memvid</a></td>
+<td>Taşınabilir tek dosya, zamanlı/versiyonlu içerik</td>
+<td>Apache-2.0. Arşiv/index taşınabilirliği ilginç; bizim iddia/kaynak/izin/düzeltme sözleşmesinin tamamını karşılıyor varsaymadım</td>
+</tr>
+<tr>
+<td><a href="https://github.com/MemoriLabs/Memori">Memori</a></td>
+<td>SQL temelli hafıza ve entegrasyon</td>
+<td>Apache-2.0 metni görüldü. Üretken çıkarım ve mevcut çağrıları izleme katmanını ayrıca değerlendirmek gerekir</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Cipher208/a-memory">a-memory</a></td>
+<td>SQLite, tipli graf, katmanlar ve yerel çalışma</td>
+<td>MIT. Yeni alternatif; bakım/terfi ve gerçek üretim iddiaları bağımsız doğrulanmadı. Kayıpsızlık ve Türkçe testten önce seçmem</td>
+</tr>
+<tr>
+<td><a href="https://github.com/OpenAgentHQ/localmem-mcp">localmem-mcp</a></td>
+<td>Küçük Python store + MCP, yerel embedding</td>
+<td>MIT. Küçük semantik erişim tabanı olarak uygun; kaynak/çelişki/tarihli kişisel model için ek katman gerekir</td>
+</tr>
+<tr>
+<td><a href="https://github.com/modelcontextprotocol/servers/tree/main/src/memory">MCP reference memory</a></td>
+<td>Çağıran AI'nın entity/ilişki yazdığı yalın tasarım</td>
+<td>Referans uygulama; JSONL ve substring erişimi ölçekli, kaynaklı kişisel veritabanı yerine yeterli değil. Güncel repo lisansı geçiş metni içeriyor</td>
+</tr>
+<tr>
+<td><a href="https://github.com/supermemoryai/supermemory">Supermemory</a></td>
+<td>Entegrasyon ve profil API'si açısından fikir verir</td>
+<td>Açık SDK/repo ile asıl sunucu aynı şey değil. Resmî self-host belgesi sunucu binary'sinin açık kaynak olmadığını söylüyor; tam açık kaynak motor kısa listesinden çıkarıldı</td>
+</tr>
+</tbody>
+</table>
+<p>Özellikle Alice için pazarlama özetiyle sınırlı kalmadım: kendi <a href="https://github.com/samrusani/AliceMemory/blob/a6a5f49eebb7377f40b388f2ffe07290b05b85fb/docs/alpha/known-limitations.md">bilinen sınırlar belgesindeki</a> açık noktaları kararın parçası yaptım. doobidoo için <a href="https://github.com/doobidoo/mcp-memory-service/blob/ef25b93d9565d28388175edf4923c35d39d248fa/src/mcp_memory_service/consolidation/decay.py">decay uygulaması</a> sıralama mantığının önemli olduğunu gösteriyor; bu dosyadan tek başına tüm silme davranışını çıkarmıyorum. Mem0'nun <a href="https://github.com/mem0ai/mem0/blob/main/LLM.md">varsayılan çıkarım API'si</a>, PageIndex'in <a href="https://github.com/VectifyAI/PageIndex/blob/e38b40ebaeea26d2c7206b80ce7bc9bf2935cdec/pageindex/client.py">istemci uygulaması</a> ve Supermemory'nin <a href="https://supermemory.ai/docs/self-hosting/overview">kendi sunucu açıklaması</a> maliyet/açıklık ayrımını destekliyor.</p>
+<h2 id="section-6">6. “Sinir ağı gibi, Kruskal yaparak” ifadesinin teknik karşılığı</h2>
+<p>Senin amacın açısından dört iş birbirinden ayrılmalı:</p>
+<ol>
+<li><strong>Harita:</strong> Projeler, kişiler, tercihler, konular, skill'ler ve araçlar arasında okunabilir düzen.</li>
+<li><strong>Bulma:</strong> Soruya uygun başlangıç kayıtlarını seçmek.</li>
+<li><strong>İlişkilerden genişletme:</strong> İlk kayıttan bağlantılı kanıtları bütçeli biçimde toplamak.</li>
+<li><strong>Doğruluk kontrolü:</strong> Kaynak, tarih, kapsam, çelişki ve yetkiyi kontrol etmek.</li>
+</ol>
+<p>Kruskal, ağırlıklı grafın en küçük yayılım ağacını kurar. Bir sorunun doğru cevabını veya doğru kişisel bilgiyi bulmaz. Bütün grafı böyle bir ağaca indirgemek, anlamlı çapraz bağlantıları da atabilir. Dijkstra en kısa yolu bulsa bile kenar ağırlıkları “gerçeklik” değildir. PPR, sorgu başlangıçlarından bağlantılı kayıtları puanlayabilir; doğruluğu yine kaynak/zaman katmanı sağlar. <a href="https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.tree.mst.minimum_spanning_tree.html">NetworkX MST sözleşmesi</a>, <a href="https://networkx.org/documentation/stable/reference/algorithms/generated/networkx.algorithms.link_analysis.pagerank_alg.pagerank.html">PageRank ve personalization</a>.</p>
+<p><strong>Önerdiğim erişim:</strong> izin/kapsam/tarih filtresi → doğrudan kimlik/alias/FTS adayları → gerekirse birkaç sorgu başlangıcından graf yayılımı → çelişki/güncel sürüm kontrolü → bütçeli kanıt paketi. Bilinen bir kayıt için her defasında kökten dolaşmak gereksiz; doğrudan adresleme kısa yol olmalı. Yanlış dal seçilince bütün hafızanın kaçırılmaması için alternatif indeks yolu da bulunmalı.</p>
+<p>Kanonik grafı “optimizasyon” adına budamayalım. Sorguya özel küçük bir kanıt alt grafı çıkarmak, özgün ilişkiyi silmekten farklıdır. Bir yöntemin adı biyolojik veya graph-based diye daha doğru olduğunu varsaymayalım; FTS tabanından daha iyi olduğu ölçülmeli.</p>
+<h2 id="section-7">7. En uygun teknik bileşim</h2>
+<h3>7.1 Tek kanonik depo, değiştirilebilir erişim indeksleri</h3>
+<p>SQLite + FTS5, tek kullanıcı ve yerel uygulama verisi için makul bir başlangıç olmaya devam ediyor. FTS5; önek, BM25, snippet ve özel tokenizer/synonym genişletme olanakları sunuyor. Bu bir genel dil anlama modeli değildir. <a href="https://www.sqlite.org/whentouse.html">SQLite kullanım alanı</a>, <a href="https://www.sqlite.org/fts5.html">FTS5</a>.</p>
+<table>
+<thead>
+<tr>
+<th>Parça</th>
+<th>İlk tercih</th>
+<th>Ne zaman genişletilmeli?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Özgün olaylar, iddialar, zaman ve yetkiler</td>
+<td>Tek SQLite kanonik ledger</td>
+<td>Çok cihazda eşzamanlı yazma gerçek ihtiyaç olduğunda tek bir açık sunucu DB'si değerlendirilir</td>
+</tr>
+<tr>
+<td>Sözcük ve başlık erişimi</td>
+<td>FTS5 + alias/kavram dizini</td>
+<td>Türkçe/eş anlamlı sorgu kaçırma ölçülürse tokenizer veya isteğe bağlı semantik kol</td>
+</tr>
+<tr>
+<td>İlişkisel arama</td>
+<td>İndeksli kenarlar ve sınırlı sorgu genişletmesi</td>
+<td>Çok adımlı sorgular gerekli kanıtı kaçırıyorsa PPR/Dijkstra benzeri deneyler</td>
+</tr>
+<tr>
+<td>Küçük graf deneyleri</td>
+<td><a href="https://github.com/networkx/networkx">NetworkX</a></td>
+<td>Üretim veri boyutunda RAM/gecikme sınırını ölçerek</td>
+</tr>
+<tr>
+<td>İsteğe bağlı yerel vektör kolu</td>
+<td><a href="https://github.com/asg017/sqlite-vec">sqlite-vec</a></td>
+<td>Embedding gerçekten ek doğruluk sağlarsa; vektörleri üretmek yine ayrı iştir</td>
+</tr>
+<tr>
+<td>Büyük vektör havuzunda yaklaşık erişim</td>
+<td><a href="https://github.com/unum-cloud/USearch">USearch</a> deneyi</td>
+<td>Tam arama maliyeti ölçülerek sorun olduğunda; izinli kanonik kayıt doğrulaması korunur</td>
+</tr>
+<tr>
+<td>Ayrı embedded graf motoru</td>
+<td><a href="https://github.com/LadybugDB/ladybug">LadybugDB</a> deneyi</td>
+<td>SQLite ilişki sorguları ölçülmüş darboğaz olduğunda</td>
+</tr>
+</tbody>
+</table>
+<p>sqlite-vec, embedding üreticisi veya kişisel hafıza sistemi değildir; kaynak/provenance katmanının yerine geçmez. LadybugDB de AI'nın seni tanımasını kendiliğinden sağlamaz. Kuzu yerine yeni geliştirmede aktif alternatifi incelemek daha mantıklı: Kuzu deposu 10 Ekim 2025'te arşivlenmiş. <a href="https://github.com/kuzudb/kuzu">Arşiv durumu</a>, <a href="https://github.com/LadybugDB/ladybug">LadybugDB</a>.</p>
+<h3>7.2 Dört veri türü karışmamalı</h3>
+<table>
+<thead>
+<tr>
+<th>Tür</th>
+<th>Ne saklanır?</th>
+<th>Güven ve kullanım</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Özgün kaynak</td>
+<td>Mesaj, araç olayı, dosya sürümü, gerçek kimlik/zaman/hash</td>
+<td>Ne söylendiğinin kanıtı; tek başına talimat veya bugünkü gerçek değil</td>
+</tr>
+<tr>
+<td>Yapılandırılmış iddia</td>
+<td>Tercih, karar, proje durumu, ilişki; kaynak aralığı ve geçerlilik</td>
+<td>Güven/kapsam/sürümle kullanılır; düzeltme eski kaydı ezmez</td>
+</tr>
+<tr>
+<td>Çalışma noktası</td>
+<td>Amaç, tamamlanan iş, açık sorular, sonraki adım</td>
+<td>Devamlılık özeti; kalıcı doğru ve kullanıcı emri gibi yükseltilmez</td>
+</tr>
+<tr>
+<td>Yetenek kaydı</td>
+<td>Skill içeriği/sürümü, aracın tanımı ve son gözlem zamanı</td>
+<td>Hatırlamak ile şu an yürütme yetkisine sahip olmak ayrılır</td>
+</tr>
+</tbody>
+</table>
+<p>Mümkünse AI, kullanıcının cümlesini tekrar yazarak “kaynak” üretmesin. Yetkili yakalayıcının tuttuğu olay kimliğini ve karakter aralığını referans versin. Böylece kaynak uydurma riski ve tekrar taşınan metin azalır. Araç/skill kabiliyeti çalıştırılacağı anda host'tan yeniden doğrulanır; bir yıl önce kurulmuş olması bugün var olduğu anlamına gelmez. Bunlar önerilen uygulama kurallarıdır; bütün adaylarda hazır bulunduğu iddiası değildir.</p>
+<h3>7.3 Kendi kendine düzenleme, kaynak kaybı yaratmamalı</h3>
+<p>Güvenli otomatik işler: değişen kaydın indeksini güncellemek, alias ve bağlantı önerisi üretmek, tekrarları işaretlemek, önbelleği yenilemek, bayat özeti yeniden oluşturmak, erişim planını ölçmek. Bunlar kaynak üzerine yazmadan yapılabilir.</p>
+<p>Şu işleri varsayılan yapmam: az erişildi diye kaynağı silmek, birbiriyle çelişen iki tercihi modelin sessizce birleştirmesi, AI'nın kendi önceki cevabını yeni kullanıcı kanıtı saymak, tek başarılı retrieval'dan yeni kalıcı kullanıcı kuralı üretmek. memU'nun kendi hafıza üretim turunu yeniden madenciliğe almamayı ele alan <a href="https://github.com/NevaMind-AI/memU/blob/42ef9fa3a8034f5817684cba23ef69fa70a58197/docs/adr/0015-bridging-must-not-mine-its-own-run.md">ADR'si</a> ve agentmemory'nin kendi hafıza araçlarını capture'dan dışlayan <a href="https://github.com/rohitg00/agentmemory/blob/c5b8ebfb32eb6a08fe301d3bb75840f3597b66c8/CHANGELOG.md">değişiklik notu</a>, bu döngünün pratik önemini gösteriyor.</p>
+<h3>7.4 Her AI ile ortak hafıza: protokol yeterli değil, bağlantı da gerekiyor</h3>
+<p>MCP; host, istemci ve sunucu arasındaki bağlam/araç alışverişini standartlaştırıyor. Yerel stdio ile uzak Streamable HTTP farklı bağlantı biçimleri. Protokol, host'un gelen bağlamı nasıl kullanacağını belirlemiyor. Dolayısıyla veritabanına “gereken bilgileri beyne kaydet” yazmak, bağlantısız herhangi bir AI'nın bunu görmesini veya en yüksek öncelikte uygulamasını sağlamaz. Bu, hedefin vazgeçilmesi gereken kısmı değil; host başına adaptör gerektiren kısmıdır. <a href="https://modelcontextprotocol.io/docs/2026-07-28/learn/architecture">Resmî MCP mimarisi</a>.</p>
+<p>Önerdiğim bağlantı sözleşmesi:</p>
+<table>
+<thead>
+<tr>
+<th>Host durumu</th>
+<th>Uygun bağlantı</th>
+<th>Kanıtlanması gereken</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Yerel araç/MCP destekli AI</td>
+<td>Küçük araç yüzeyi ve aynı kanonik servise erişim</td>
+<td>Yetki, oturum/proje kimliği, araç çağırma ve kesintiden kurtarma</td>
+</tr>
+<tr>
+<td>Uzak araç bağlantısı destekli AI</td>
+<td>Kimlik doğrulanan uzak MCP/API</td>
+<td>İstemcinin taşıma/kimlik doğrulama desteği; hangi verinin uzak modele gönderildiği</td>
+</tr>
+<tr>
+<td>Hook veya izinli transcript dışa aktarımı olan host</td>
+<td>Kaynak yakalayıcı + checkpoint + sorgu araçları</td>
+<td>Kaynak kapsaması, olay sırası, tekrar güvenliği ve host sürüm uyumu</td>
+</tr>
+<tr>
+<td>Hiç araç/bağlayıcı/dışa aktarım desteği olmayan kapalı platform</td>
+<td>Kullanıcının taşıdığı sınırlı bağlam paketi</td>
+<td>Otomatik çift yönlü hafıza olduğu söylenemez</td>
+</tr>
+</tbody>
+</table>
+<p>Okuma ve yazma yetkileri ayrı olmalı; aynı kullanıcıya hizmet etseler de bir istemcinin diğer projenin tüm geçmişini kendiliğinden alması gerekmez. Güvenilir kullanıcı talimatı, içe aktarılan konuşma metni ve AI'nın çıkardığı iddia ayrı tutulmalı. Hatırlanan metin yeni bir sistem talimatı gibi yürütülmemeli. İlk desteklenecek host'ları seçip bağlantı testleri tamamlanmadan “hangi AI olursa olsun otomatik çalışır” sözü vermeyelim. Bunlar önerilen entegrasyon kurallarıdır.</p>
+<h2 id="section-8">8. Maliyet: “açık kaynak” ve “az token” aynı şey değil</h2>
+<p>Hafıza maliyetini şu parçalara ayırmalıyız:</p>
+<p><strong>Toplam kullanım = yazma/çıkarım + indeks/embedding + sorgu genişletme/yeniden sıralama + AI'ya dönen bağlam + bakım.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Yol</th>
+<th>Ayrı üretken model işi</th>
+<th>Başka maliyet</th>
+<th>Bizim başlangıç tercihi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mevcut konuşma modeli kısa kayıt argümanı hazırlar</td>
+<td>Hafıza servisi çağırmaz</td>
+<td>Mevcut sohbetin çıktı token'ı ve araç sonucu</td>
+<td>Evet</td>
+</tr>
+<tr>
+<td>FTS/alias ve indeksli graf erişimi</td>
+<td>Yok</td>
+<td>Yerel CPU/disk ve dönen bağlam</td>
+<td>Evet</td>
+</tr>
+<tr>
+<td>Yerel embedding</td>
+<td>Üretken LLM yok</td>
+<td>Model dosyası, RAM, CPU, ilk indeksleme</td>
+<td>İsteğe bağlı</td>
+</tr>
+<tr>
+<td>Bulut embedding</td>
+<td>Üretken LLM olmayabilir</td>
+<td>Ayrı servis çağrısı, ücret/veri aktarımı</td>
+<td>Varsayılan değil</td>
+</tr>
+<tr>
+<td>Arka planda sentez/reflection ajanı</td>
+<td>Var</td>
+<td>Aynı hesabın kotası veya API maliyeti</td>
+<td>Ölçülmüş ihtiyaç olmadan değil</td>
+</tr>
+<tr>
+<td>Her sorguda LLM rerank/yanıt üretimi</td>
+<td>Var</td>
+<td>Ek gecikme ve kullanım</td>
+<td>İlk sürümde değil</td>
+</tr>
+</tbody>
+</table>
+<p>Bir özetin tekrar kullanılması tasarruf sağlayabilir; ama her turda yeniden özet üretmek tasarrufu yok edebilir. Kabaca, tekrar kullanımın azalttığı bağlam yükü; özet üretimi, güncelleme ve fazladan yönlendirme maliyetini aşmalıdır. Aynı model adını kullanmak veya mevcut abonelikle çalışmak, ikinci çağrının bedelsiz olduğunu göstermez.</p>
+<p>Araç tanımları da bağlam maliyetine katılabilir. Küçük bir <code>remember / navigate / read / prepare_context</code> yüzeyi, onlarca sürekli açık araçtan daha uygun olabilir. Bunun getirisi gerçek istemci/model üzerinde ölçülmeli; MCP protokol çıktısının boyutu doğrudan faturalanan sağlayıcı token sayısı değildir. Titen'in <a href="https://github.com/RamaAditya49/titen/blob/23302a16d44d01f3759ef56287847f85352d0fc1/src/core/tokens.ts">taşınabilir bütçe birimleri</a> gibi tahminler de sağlayıcı tokenizer'ının yerini kesin olarak tutmaz.</p>
+<h2 id="section-9">9. Benchmark'lara nasıl baktım?</h2>
+<h3>9.1 Birbiriyle karşılaştırılamayan sayılar</h3>
+<ul>
+<li>agentmemory'nin yayımladığı %95,2 değeri <code>recall_any@5</code>: doğru oturumlardan <strong>herhangi birinin</strong> ilk beşte olması. Bütün gerekli kanıtların geldiğini, küçük bir token bütçesine sığdığını veya yanıtın doğru olduğunu göstermez. Kendi raporu her soru için yaklaşık 48 oturumdan ayrı indeks kurulduğunu da açıklıyor. <a href="https://github.com/rohitg00/agentmemory/blob/c5b8ebfb32eb6a08fe301d3bb75840f3597b66c8/benchmark/LONGMEMEVAL.md">Metodoloji</a>.</li>
+<li>MemPalace ham/hibrid/LLM rerank sonuçlarını ayırıyor. %100'e ulaşan bir ayarın belirli yanlış sorular incelenerek iyileştirildiğini kendi benchmark belgesinde açıklaması, o sayıyı genel garanti saymamamız için yeterli. <a href="https://github.com/MemPalace/mempalace/blob/develop/benchmarks/BENCHMARKS.md">Benchmark notları</a>.</li>
+<li>Alice'ın LongMemEval belgesi, evidence oturum kimliklerindeki etiketlerin cevaplayıcıya görünmesiyle ilgili bilinen bir sorun taşıyor. Bu koşuldaki sayılar düzeltilmiş bağımsız bir kıyas yerine konamaz. <a href="https://github.com/samrusani/AliceMemory/blob/a6a5f49eebb7377f40b388f2ffe07290b05b85fb/docs/benchmarks/longmemeval/README.md">Açıklama</a>.</li>
+<li>Titen'in ayrılmış ve havuzlanmış veri koşulları çok farklı sonuç veriyor. Konu/kapsam daraltmanın faydası var; fakat doğru proje kimliği sisteme cevap anahtarından verilirse gerçek yönlendirme problemi ölçülmez. <a href="https://github.com/RamaAditya49/titen/blob/23302a16d44d01f3759ef56287847f85352d0fc1/docs/testing/2026-08-07-pooled-store.md">Koşul karşılaştırması</a>.</li>
+</ul>
+<p>Bu nedenle “A %96, B %90; A daha iyi” biçiminde bir sıralama yapmadım. Recall@1, recall_any@5, bütün kanıtların kapsanması, QA doğruluğu ve aynı bütçedeki yanıt kalitesi ayrı ölçülerdir.</p>
+<h3>9.2 Bizim için uygun açık değerlendirmeler</h3>
+<table>
+<thead>
+<tr>
+<th>Kaynak</th>
+<th>Neyi sınar?</th>
+<th>Bizim kullanımımız</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/xiaowu0162/LongMemEval">LongMemEval</a></td>
+<td>Bilgi çıkarma, oturumlar arası akıl yürütme, güncelleme, zaman ve bilmiyorum diyebilme</td>
+<td>Uzun sohbet hafızası için ana dış kıyas; temizlenmiş veri revizyonu sabitlenmeli</td>
+</tr>
+<tr>
+<td><a href="https://github.com/xiaowu0162/LongMemEval-V2">LongMemEval-V2</a></td>
+<td>Ortamı tanıyan iş arkadaşı gibi davranma; iş akışı, değişen durum, yerel tuzaklar</td>
+<td>Proje/skill/tool ve “nasıl çalışıyoruz?” beklentine özellikle yakın</td>
+</tr>
+<tr>
+<td><a href="https://github.com/snap-research/locomo">LoCoMo</a></td>
+<td>Uzun dönemli diyalog, zamansal/çok adımlı sorular</td>
+<td>Tamamlayıcı; repo lisansı CC BY-NC 4.0, veri/dağıtım koşulları ayrıca korunmalı</td>
+</tr>
+<tr>
+<td>Kendi Türkçe kabul setimiz</td>
+<td>Gerçek dil, kapsam ve kişisel karar değişiklikleri</td>
+<td>İngilizce benchmark başarılarının Türkçeye taşındığını varsaymamak için şart</td>
+</tr>
+</tbody>
+</table>
+<p>LongMemEval'in <a href="https://arxiv.org/abs/2410.10813">makalesi</a> ve LoCoMo'nun <a href="https://arxiv.org/abs/2402.17753">makalesi</a>, bunların yalnız hızlı arama benchmark'ı olmadığını gösteriyor. Veri setleri geliştirme, test ve hak/lisans açısından kendi koşullarıyla kullanılmalı.</p>
+<h3>9.3 Önerdiğim karşılaştırma protokolü</h3>
+<p><strong>Aynı olay kaydı, aynı kaynak kapsamı, aynı son cevap modeli ve aynı bağlam bütçesi:</strong> mevcut çekirdek, yalın FTS5 tabanı, Titen prototipi, Basic Memory prototipi. memU'nun ajan hazırlama yolu ayrıca aynı yazma bütçesiyle denenir. Bütün sistemleri aynı anda üretime kurmak yerine ayrı sentetik/izinli corpus üzerinde ölçeriz.</p>
+<p>İki koşul gereklidir: proje/kapsamın çağıran tarafından bilindiği durum ve doğal sorudan bulunması gereken durum. Bir de tek kullanıcıya ait tüm yılın karışık geçmişi olmalıdır; yalnız her soru için küçük ve temiz bir havuz yetmez. Kaynak kimlikleri rastgeleleştirilir, gold cevap/oturum etiketleri erişim katmanına verilmez. Önce corpus yazılır, sonra sorular sorulur; gelecekteki güncelleme önceden bilinememelidir.</p>
+<p>Ölçüler: doğru kaynak recall@k, <strong>bütün gereken kanıtların kapsanması</strong>, yanlış eski değeri seçme, gerekçesiz cevap verme, kaynakla doğrulanabilir yanıt doğruluğu, kişisel kapsam ihlali, sağlayıcının ölçtüğü giriş/çıkış token'ı, toplam araç turu ve soğuk/sıcak p50–p95–p99 gecikme. Yazma, sorgu ve bakım maliyetleri ayrı tutulur. Kayıt kabul edildiğinde process öldürme, tekrar gönderme, elektrik kesintisi benzeri durumlar ve eski yedekten geri yükleme ayrıca sınanır. Bu araştırmada bu deneyler bütün upstream adaylarda çalıştırılmadı.</p>
+<p>Önerilen Türkçe set, en az şu senaryoları içermeli:</p>
+<ol>
+<li>365 gün önce söylenmiş, sonradan hiç erişilmemiş bir ayrıntı.</li>
+<li>“SQLite seçtik” sonrasında “PostgreSQL'e geçtik”; geçmiş ve bugün için farklı doğru cevap.</li>
+<li>Aynı isimde iki proje ve iki kişi; doğru kapsamı sorudan bulma.</li>
+<li><code>İ/ı</code>, Türkçe ekler, kısaltmalar ve Türkçe/İngilizce eş anlamlı sorular.</li>
+<li>Üç veya daha fazla ilişki üzerinden gereken kanıt; mevcut iki adım sınırının kaçırdığı örnek.</li>
+<li>Yeni skill sürümü, devre dışı tool ve başka makinede mevcut olmayan yetenek.</li>
+<li>Soruda ima edilen fakat hiç kaydedilmemiş bilgi; doğru “kayıt bulamadım” yanıtı.</li>
+<li>AI çıkarımı ile doğrudan kullanıcı tercihi arasındaki fark.</li>
+<li>Tekrar işlenen aynı olay ile farklı günlerde aynı cümlenin tekrar söylenmesi.</li>
+<li>Silinen kaynak, ondan türemiş özet ve eski yedekten geri gelme denemesi.</li>
+</ol>
+<h2 id="section-10">10. Mevcut projemize dürüst etkisi</h2>
+<p>Mevcut <code>MEMORY_DATABASE.md</code>, <code>directory.py</code>, <code>retrieval.py</code>, <code>remember.py</code>, <code>memory.py</code> ve ilgili test/raporlar üzerinden değerlendirdim. Bu bölüm dış projelerin ölçümü değil, bizim kodumuz hakkındaki incelememdir.</p>
+<p><strong>Doğru yönde olanlar:</strong> tek kanonik SQLite, kaynak ile aday bilgiyi ayırma, valid/known time, harita/kart/kaynak erişimi, kaynak aralığı, düzeltme referansı, izinli projeksiyonlar, küçük bütçe, artımlı indeks ve önbellek. Bunları yeni bir hafıza framework'ü geldi diye silmek gerekmez.</p>
+<p><strong>Hedefin henüz tamamı olmayanlar:</strong></p>
+<ul>
+<li>İstemcinin seçtiği kısa alıntı, bütün özgün konuşmanın alındığını kanıtlamaz. Tam kapsamlı yakalama ve kapsama raporu, arama algoritmasından önce gelmeli.</li>
+<li><code>remember.actor</code> istemciden bildiriliyor. Güvenilir host olayı ile modelin yeniden anlattığı kullanıcı sözü farklı kanıt sınıfları olmalı; mümkünse gerçek olay kimliği/aralığına referans verilmeli.</li>
+<li>Başlık yolları ve küçük sözlük, genel Türkçe anlam/alias çözümünü tek başına karşılamıyor. Sorgu kaçırmaları ölçülmeli.</li>
+<li>Sınırlı aday sayısı ve iki graf adımı maliyeti sınırlar; bütün ilişkili kanıtların bulunmasını garanti etmez. Gerekli durumda bütçeli genişletme ve görünür eksiklik gerekir.</li>
+<li>Onaylı bilgi haritası ile henüz kaynak seviyesindeki konuşma bilgisi farklı. Kaynak hemen aranabilir olsa da sürekli büyüyen bir arşivde tüm anlamlı bilgilerin yapılandırılması ve inceleme yükü için açık politika gerekiyor.</li>
+<li>Mevcut MCP talimatı modelin her turda doğru araç çağıracağını garanti etmez. Host adaptörü, güvenilir checkpoint ve gerçekten uygulanmış yakalama yolu ölçülmeli.</li>
+<li>Geçen 117 uygulama testi, yıl boyu gerçek kişisel corpus'ta kusursuz hatırlama veya toplam token tasarrufu kanıtı değil.</li>
+</ul>
+<h2 id="section-11">11. Bundan sonra önerdiğim sıra</h2>
+<table>
+<thead>
+<tr>
+<th>Sıra</th>
+<th>İş</th>
+<th>Tamamlandı sayılması için kanıt</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Gerçek yakalama sözleşmesi ve kaynak arşivi</td>
+<td>Seçilmiş host'larda olay kapsamı, kararlı kimlik, tekrar ve çökme testi; kayıt alınmadığında açık durum</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Tipli kişisel şema ve düzeltme akışı</td>
+<td>Tercih/proje/skill/tool/çalışma noktası ayrımı; kaynak aralığı; geçmiş/güncel ve inceleme politikası</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Aynı veride rakip prototipler</td>
+<td>FTS5 tabanı, mevcut çekirdek, Titen ve Basic Memory; aynı bütçe ve aynı sorular</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Kaçırılan sorulara göre iyileştirme</td>
+<td>Önce alias/kapsam/yönlendirme; gerekiyorsa yerel embedding veya sorguya bağlı graf yayılımı</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Ölçülen güvenli otomatik bakım</td>
+<td>Özet/projection tazeliği, duplicate işaretleme, erasure closure; ham kaynak için otomatik yaş silmesi yok</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Bugün seçim yapmam gerekirse:</strong> verinin sahibini değiştirmeden devam ederim; memU'dan mevcut ajana iş devretme sözleşmesini, OpenViking'den katmanlı temsili, Titen'den kanıt/iddia ve bütçeli derleme modelini alırım. Hazır ürüne geçiş ihtimalini açık tutar, önce Titen ve Basic Memory ile ölçerim. Capture için agentmemory yaklaşımını incelerim ama onun depo ve otomatik unutma varsayılanlarını kopyalamam. HippoRAG/Graphiti/PageIndex'i ancak belirli, ölçülmüş bir sorun için devreye alırım.</p>
+<p>Bu yaklaşımın başarısı “daha fazla motor kurduk” ile değil, <strong>doğru ve güncel kanıta daha az gereksiz içerikle, sürdürülebilir maliyetle ulaşabildik mi?</strong> sorusuyla ölçülmeli.</p>
+<h2 id="section-12">Ek A. Tam kaynak envanteri</h2>
+<p>Envanter; adayların değerlendirme kapsamını, kontrol anındaki arşiv durumunu ve üst düzey lisansını gösterir. Her bağımlılığın ve dağıtılan binary'nin lisansı denetlendi anlamına gelmez. GitHub'ın otomatik lisans etiketi ile gerçek dosya farklıysa metin esas alındı. AGPL açık kaynak bir lisanstır; burada “kullanılamaz” denmiyor. Kod alma, ayrı servis kullanma ve dağıtım planı için lisans incelemesi yapılmalıdır.</p>
+<table>
+<thead>
+<tr>
+<th>Depo</th>
+<th>İncelenen rol</th>
+<th>Üst düzey lisans / kapsam</th>
+<th>Son push (UTC) / arşiv durumu</th>
+<th>Sabitleme</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/NevaMind-AI/memU">NevaMind-AI/memU</a></td>
+<td>Mevcut ajanla hafıza yazma</td>
+<td>Apache-2.0 (metin)</td>
+<td>2026-10-26 / arşivli değil</td>
+<td><code>42ef9fa3a803</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/volcengine/OpenViking">volcengine/OpenViking</a></td>
+<td>Katmanlı bağlam altyapısı</td>
+<td>AGPL-3.0</td>
+<td>2026-10-26 / arşivli değil</td>
+<td><code>5c066d97094d</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/basicmachines-co/basic-memory">basicmachines-co/basic-memory</a></td>
+<td>Taşınabilir kişisel bilgi tabanı</td>
+<td>AGPL-3.0</td>
+<td>2026-10-26 / arşivli değil</td>
+<td><code>9643ec25918e</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/doobidoo/mcp-memory-service">doobidoo/mcp-memory-service</a></td>
+<td>Yerel semantik hafıza</td>
+<td>Apache-2.0</td>
+<td>2026-10-26 / arşivli değil</td>
+<td><code>ef25b93d9565</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/samrusani/AliceMemory">samrusani/AliceMemory</a></td>
+<td>Kaynaklı oturum devamlılığı</td>
+<td>MIT</td>
+<td>2026-10-26 / arşivli değil</td>
+<td><code>a6a5f49eebb7</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/RamaAditya49/titen">RamaAditya49/titen</a></td>
+<td>Modelsiz kaynak/iddia çekirdeği</td>
+<td>Apache-2.0</td>
+<td>2026-10-19 / arşivli değil</td>
+<td><code>23302a16d44d</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/rohitg00/agentmemory">rohitg00/agentmemory</a></td>
+<td>Host yakalama ve devamlılık</td>
+<td>Apache-2.0</td>
+<td>2026-10-26 / arşivli değil</td>
+<td><code>c5b8ebfb32eb</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/modelcontextprotocol/servers">modelcontextprotocol/servers</a></td>
+<td>MCP referans sunucuları</td>
+<td>MIT → Apache-2.0 geçişi; docs CC BY 4.0</td>
+<td>2026-10-25 / arşivli değil</td>
+<td><code>ef9808f71090</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/mem0ai/mem0">mem0ai/mem0</a></td>
+<td>Hafıza API'si</td>
+<td>Apache-2.0</td>
+<td>2026-10-26 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/getzep/graphiti">getzep/graphiti</a></td>
+<td>Zamansal bilgi grafiği</td>
+<td>Apache-2.0</td>
+<td>2026-10-26 / arşivli değil</td>
+<td><code>5c27edfa8d3e</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/vectorize-io/hindsight">vectorize-io/hindsight</a></td>
+<td>Retain/recall/reflect hafızası</td>
+<td>MIT</td>
+<td>2026-10-26 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/MemTensor/MemOS">MemTensor/MemOS</a></td>
+<td>Hafıza ve skill yaşam döngüsü</td>
+<td>Apache-2.0</td>
+<td>2026-10-26 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/topoteretes/cognee">topoteretes/cognee</a></td>
+<td>Graf/semantik veri hattı</td>
+<td>Apache-2.0</td>
+<td>2026-10-26 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/letta-ai/letta">letta-ai/letta</a></td>
+<td>Stateful ajan runtime'ı</td>
+<td>Apache-2.0</td>
+<td>2026-10-18 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/memvid/memvid">memvid/memvid</a></td>
+<td>Taşınabilir hafıza dosyası</td>
+<td>Apache-2.0</td>
+<td>2026-07-14 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/supermemoryai/supermemory">supermemoryai/supermemory</a></td>
+<td>Açık SDK; sunucu çekirdeği kapalı</td>
+<td>MIT açık repo; sunucu kapalı</td>
+<td>2026-10-25 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/OSU-NLP-Group/HippoRAG">OSU-NLP-Group/HippoRAG</a></td>
+<td>İlişkisel erişim araştırması</td>
+<td>MIT</td>
+<td>2026-10-06 / arşivli değil</td>
+<td><code>d5c8329422e0</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/VectifyAI/PageIndex">VectifyAI/PageIndex</a></td>
+<td>Belge ağacı ve reasoning erişimi</td>
+<td>MIT</td>
+<td>2026-10-26 / arşivli değil</td>
+<td><code>e38b40ebaeea</code></td>
+</tr>
+<tr>
+<td><a href="https://github.com/parthsarthi03/raptor">parthsarthi03/raptor</a></td>
+<td>Özet ağacı araştırması</td>
+<td>MIT</td>
+<td>2024-09-03 / arşivli değil</td>
+<td><code>master</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/HKUDS/LightRAG">HKUDS/LightRAG</a></td>
+<td>Graf + vektör RAG</td>
+<td>MIT</td>
+<td>2026-10-22 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/langchain-ai/langmem">langchain-ai/langmem</a></td>
+<td>Ajan hafıza araçları</td>
+<td>MIT</td>
+<td>2026-10-26 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/MemoriLabs/Memori">MemoriLabs/Memori</a></td>
+<td>SQL hafıza entegrasyonu</td>
+<td>Apache-2.0 (metin)</td>
+<td>2026-10-03 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/MemPalace/mempalace">MemPalace/mempalace</a></td>
+<td>Özgün konuşma arşivi/erişim</td>
+<td>MIT</td>
+<td>2026-10-25 / arşivli değil</td>
+<td><code>develop</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/thedotmack/claude-mem">thedotmack/claude-mem</a></td>
+<td>Host capture ve AI sıkıştırması</td>
+<td>Apache-2.0</td>
+<td>2026-10-26 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/networkx/networkx">networkx/networkx</a></td>
+<td>Graf algoritmaları kütüphanesi</td>
+<td>BSD-3-Clause (metin)</td>
+<td>2026-10-22 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/kuzudb/kuzu">kuzudb/kuzu</a></td>
+<td>Arşivlenmiş embedded graf DB</td>
+<td>MIT</td>
+<td>2025-10-10 / arşivli</td>
+<td><code>master</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/LadybugDB/ladybug">LadybugDB/ladybug</a></td>
+<td>Embedded graf DB</td>
+<td>MIT</td>
+<td>2026-10-26 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/unum-cloud/USearch">unum-cloud/USearch</a></td>
+<td>Vektör ANN kütüphanesi</td>
+<td>Apache-2.0</td>
+<td>2026-10-25 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/xiaowu0162/LongMemEval">xiaowu0162/LongMemEval</a></td>
+<td>Uzun sohbet değerlendirmesi</td>
+<td>MIT</td>
+<td>2026-05-11 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/snap-research/locomo">snap-research/locomo</a></td>
+<td>Diyalog veri/değerlendirme deposu</td>
+<td>CC BY-NC 4.0; OSS lisansı değil</td>
+<td>2024-08-13 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/agiresearch/A-mem">agiresearch/A-mem</a></td>
+<td>Bağlantılı ajan notları araştırması</td>
+<td>MIT</td>
+<td>2025-12-12 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Cipher208/a-memory">Cipher208/a-memory</a></td>
+<td>SQLite katmanlı hafıza</td>
+<td>MIT</td>
+<td>2026-10-26 / arşivli değil</td>
+<td><code>master</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/OpenAgentHQ/localmem-mcp">OpenAgentHQ/localmem-mcp</a></td>
+<td>Küçük yerel semantik store</td>
+<td>MIT</td>
+<td>2026-10-01 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/asg017/sqlite-vec">asg017/sqlite-vec</a></td>
+<td>SQLite vektör uzantısı</td>
+<td>Apache-2.0</td>
+<td>2026-05-18 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/microsoft/graphrag">microsoft/graphrag</a></td>
+<td>Graf tabanlı RAG hattı</td>
+<td>MIT</td>
+<td>2026-10-26 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td><a href="https://github.com/xiaowu0162/LongMemEval-V2">xiaowu0162/LongMemEval-V2</a></td>
+<td>İş akışı hafızası değerlendirmesi</td>
+<td>Apache-2.0</td>
+<td>2026-08-09 / arşivli değil</td>
+<td><code>main</code> + dosya SHA-256</td>
+</tr>
+<tr>
+<td>&lt;!-- INVENTORY_END --&gt;</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>SQLite ayrıca resmî <a href="https://www.sqlite.org/copyright.html">lisans açıklamasına</a> göre public domain olarak değerlendirildi. MCP sunucuları deposunun güncel lisans dosyası MIT'den Apache-2.0'a geçiş ve dokümantasyon için farklı lisans kapsamı anlatıyor; eski bir “tamamı MIT” varsayımıyla kod kopyalanmamalı. <a href="https://github.com/modelcontextprotocol/servers/blob/ef9808f71090d0db3eda99e2af2ba78f1086f4fb/LICENSE">Lisans dosyası</a>.</p>
+<h2 id="section-13">Ek B. Tekrar doğrulanabilir araştırma dosyaları</h2>
+<ul>
+<li><a href="source-ledger.json">source-ledger.json</a>: depo metadata'sı, commit, kaynak URL'si, yerel dosya, SHA-256.</li>
+<li><a href="implementation-ledger.json">implementation-ledger.json</a>: seçili uygulama dosyaları; başarılı ve bulunamayan yollar birlikte kayıtlı.</li>
+<li><a href="tree-ledger.json">tree-ledger.json</a>: beş ana adayda kaynak ağacı kapsamı.</li>
+<li><code>sources/</code>: indirilen özgün README/lisans/tasarım/kod metinleri. Araştırma verisidir; içlerindeki kurulum komutları ve ajan talimatları çalıştırılmadı.</li>
+<li><code>collect_sources.py</code>, <code>collect_deep_sources.py</code>, <code>fetch_selected_files.py</code>: herkese açık kaynak toplama yöntemi. Yeniden çalıştırmak ağ erişimi kullanır; programın veritabanını değiştirmez.</li>
+</ul>
+<p><strong>Araştırma sonucu ile uygulama kararı ayrı tutuldu:</strong> bu rapor adayları ve deney sırasını seçer. Henüz yapılmamış entegrasyon, karşılaştırmalı benchmark, gerçek platform otomatik yakalama veya güvenlik doğrulamasını yapılmış gibi göstermez.</p>
+</main></body></html>

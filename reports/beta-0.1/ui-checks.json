@@ -1,0 +1,86 @@
+{
+  "checked_at": "2026-10-29T21:49:16.026Z",
+  "synthetic_only": true,
+  "personal_records_written": 0,
+  "independently_reviewed_clicks": 8,
+  "login_create_candidate_approve_active_logout": true,
+  "normal_logout_error": "",
+  "routes": [
+    {
+      "route": "dashboard",
+      "title": "Genel bakış",
+      "errors": []
+    },
+    {
+      "route": "profile",
+      "title": "Kişisel profil",
+      "errors": []
+    },
+    {
+      "route": "projects",
+      "title": "Proje hafızası",
+      "errors": []
+    },
+    {
+      "route": "timeline",
+      "title": "Zaman çizelgesi",
+      "errors": []
+    },
+    {
+      "route": "graph",
+      "title": "Bilgi grafiği",
+      "errors": []
+    },
+    {
+      "route": "skills",
+      "title": "Skill & araçlar",
+      "errors": []
+    },
+    {
+      "route": "connections",
+      "title": "AI bağlantıları",
+      "errors": []
+    },
+    {
+      "route": "capture",
+      "title": "Yakalama & senkron",
+      "errors": []
+    },
+    {
+      "route": "search",
+      "title": "Hafızada ara",
+      "errors": []
+    },
+    {
+      "route": "comparison",
+      "title": "Motor karşılaştırma",
+      "errors": []
+    },
+    {
+      "route": "benchmarks",
+      "title": "Benchmark merkezi",
+      "errors": []
+    },
+    {
+      "route": "privacy",
+      "title": "Gizlilik & güvenlik",
+      "errors": []
+    },
+    {
+      "route": "backups",
+      "title": "Yedek & kurtarma",
+      "errors": []
+    },
+    {
+      "route": "diagnostics",
+      "title": "Sistem tanılama",
+      "errors": []
+    }
+  ],
+  "mobile": {
+    "scrollWidth": 375,
+    "sidebarHidden": "true",
+    "width": 390
+  },
+  "console_errors": []
+}

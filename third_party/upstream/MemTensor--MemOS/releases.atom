@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:https://github.com/MemTensor/MemOS/releases</id>
+  <link type="text/html" rel="alternate" href="https://github.com/MemTensor/MemOS/releases"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/MemTensor/MemOS/releases.atom"/>
+  <title>Release notes from MemOS</title>
+  <updated>2026-09-23T05:24:10Z</updated>
+  <entry>
+    <id>tag:github.com,2008:Repository/1014729376/v2.0.34</id>
+    <updated>2026-09-23T05:34:23Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/MemTensor/MemOS/releases/tag/v2.0.34"/>
+    <title>v2.0.34</title>
+    <content type="html">&lt;p&gt;MemoryOS 2.0.34 release.&lt;/p&gt;
+</content>
+    <author>
+      <name>Memtensor-AI</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/272161396?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1014729376/memos-local-plugin-v2.0.20</id>
+    <updated>2026-09-21T13:30:17Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/MemTensor/MemOS/releases/tag/memos-local-plugin-v2.0.20"/>
+    <title>MemOS Local Plugin v2.0.20</title>
+    <content type="html">&lt;h2&gt;Changelog&lt;/h2&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Memory Recovery and Capture Boundaries&lt;/strong&gt;: Fixed dirty-data recovery, orphan trace writes, and LLM empty-response retry stability issues.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Memory Evolution and Hermes Installation Improvement&lt;/strong&gt;: Improved the reliability of memory evolution and Hermes installation, enhancing overall performance.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1014729376/memos-local-plugin-v2.0.19</id>
+    <updated>2026-09-08T13:03:49Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/MemTensor/MemOS/releases/tag/memos-local-plugin-v2.0.19"/>
+    <title>MemOS Local Plugin v2.0.19</title>
+    <content type="html">&lt;h2&gt;Changelog&lt;/h2&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fixed OpenClaw Installation&lt;/strong&gt;: Restored the installation and automatic memory hooks for OpenClaw.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1014729376/memos-local-plugin-v2.0.19-beta.1</id>
+    <updated>2026-09-08T10:01:05Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/MemTensor/MemOS/releases/tag/memos-local-plugin-v2.0.19-beta.1"/>
+    <title>MemOS Local Plugin v2.0.19-beta.1</title>
+    <content type="html">&lt;h2&gt;Changelog&lt;/h2&gt;
+&lt;h3&gt;Prerelease&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Published MemOS Local Plugin v2.0.19-beta.1 as a package prerelease for validation through the npm &lt;code&gt;beta&lt;/code&gt; dist-tag.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Release Evidence&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Package tag: memos-local-plugin-v2.0.19-beta.1&lt;/li&gt;
+&lt;li&gt;Previous package tag: memos-local-plugin-v2.0.18&lt;/li&gt;
+&lt;li&gt;Source commit: &lt;a class=&quot;commit-link&quot; data-hovercard-type=&quot;commit&quot; data-hovercard-url=&quot;https://github.com/MemTensor/MemOS/commit/de8069428a9247bfa7a3d35f59a9b39fa8f231d2/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/commit/de8069428a9247bfa7a3d35f59a9b39fa8f231d2&quot;&gt;&lt;tt&gt;de80694&lt;/tt&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Local plugin commits: 1&lt;/li&gt;
+&lt;li&gt;Local plugin changed files: 13&lt;/li&gt;
+&lt;li&gt;Package version: 2.0.18 -&amp;gt; 2.0.19-beta.1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This prerelease creates an independent local-plugin GitHub Prerelease for traceability. Its release.published event is intentionally ignored by Doc Agent, so it does not update the MemOS-Docs Plugin tab or trigger pre/gray deployment.&lt;/p&gt;
+</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1014729376/v2.0.33</id>
+    <updated>2026-09-03T11:29:19Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/MemTensor/MemOS/releases/tag/v2.0.33"/>
+    <title>Release v2.0.33</title>
+    <content type="html">&lt;h2&gt;What&#39;s Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;ci: make local plugin release notes resilient to large releases by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/MLittleprince/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/MLittleprince&quot;&gt;@MLittleprince&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5297251681&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2311&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2311/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2311&quot;&gt;#2311&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix: normalize numeric local-plugin source refs by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/MLittleprince/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/MLittleprince&quot;&gt;@MLittleprince&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5300472989&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2312&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2312/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2312&quot;&gt;#2312&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Preference memory fixes by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/bittergreen/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/bittergreen&quot;&gt;@bittergreen&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5331909741&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2337&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2337/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2337&quot;&gt;#2337&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;chore: change version number to dev-v2.0.33 by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/whipser030/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/whipser030&quot;&gt;@whipser030&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5334664298&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2341&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2341/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2341&quot;&gt;#2341&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix: Improve the extraction link of SkillMemory by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/whipser030/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/whipser030&quot;&gt;@whipser030&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5335010676&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2342&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2342/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2342&quot;&gt;#2342&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/MemTensor/MemOS/compare/v2.0.32...v2.0.33&quot;&gt;&lt;tt&gt;v2.0.32...v2.0.33&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>whipser030</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/48425266?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1014729376/memos-local-plugin-v2.0.18</id>
+    <updated>2026-09-01T08:11:46Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/MemTensor/MemOS/releases/tag/memos-local-plugin-v2.0.18"/>
+    <title>MemOS Local Plugin v2.0.18</title>
+    <content type="html">&lt;h2&gt;Changelog&lt;/h2&gt;
+&lt;h3&gt;Improved&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Memory Recovery and Capture Boundaries&lt;/strong&gt;: Fixed dirty-data recovery, orphan trace writes, and LLM empty-response retry stability issues.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Memory Recovery and Capture Boundaries&lt;/strong&gt;: Fixed dirty-data recovery, orphan trace writes, and LLM empty-response retry stability issues.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hermes and Bridge Experience&lt;/strong&gt;: Combines Hermes, provider, and bridge-flow improvements to reduce startup and connection friction.&lt;/li&gt;
+&lt;/ul&gt;
+
+
+</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1014729376/v2.0.32</id>
+    <updated>2026-08-28T08:37:22Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/MemTensor/MemOS/releases/tag/v2.0.32"/>
+    <title>Release v2.0.32</title>
+    <content type="html">&lt;h2&gt;What&#39;s Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;feat(plugin): add DeepSeek Harness memory adapter by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/MatthewZhuang/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/MatthewZhuang&quot;&gt;@MatthewZhuang&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5157849895&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2254&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2254/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2254&quot;&gt;#2254&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix(plugin): resolve DSH Viewer assets in clean builds by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/MatthewZhuang/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/MatthewZhuang&quot;&gt;@MatthewZhuang&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5162804289&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2257&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2257/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2257&quot;&gt;#2257&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;chore: sync MemOS Cloud OpenClaw plugin by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Hun-ger/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Hun-ger&quot;&gt;@Hun-ger&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5177804079&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2261&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2261/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2261&quot;&gt;#2261&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;docs: highlight DeepSeek Harness integrations in README by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/shinetata/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/shinetata&quot;&gt;@shinetata&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5178655435&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2262&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2262/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2262&quot;&gt;#2262&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;docs: announce DeepSeek Harness support by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/shinetata/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/shinetata&quot;&gt;@shinetata&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5181769486&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2263&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2263/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2263&quot;&gt;#2263&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix: (embedders)preserve config for cached factory instances by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/bittergreen/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/bittergreen&quot;&gt;@bittergreen&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5200401609&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2264&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2264/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2264&quot;&gt;#2264&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix: pidIsAlive self-PID check for stale lock detection by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/34262315716/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/34262315716&quot;&gt;@34262315716&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;4865873552&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2099&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2099/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2099&quot;&gt;#2099&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Dev v2.0.31 by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/CarltonXiang/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/CarltonXiang&quot;&gt;@CarltonXiang&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5204068217&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2265&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2265/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2265&quot;&gt;#2265&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix(plugin): harden local plugin runtime and embeddings by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Hun-ger/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Hun-ger&quot;&gt;@Hun-ger&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5211547379&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2266&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2266/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2266&quot;&gt;#2266&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix(memos-local-plugin): use POSIX-ERE-compatible pgrep pattern for hermes chat detection by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/kiwipaulrob/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/kiwipaulrob&quot;&gt;@kiwipaulrob&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5041022541&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2192&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2192/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2192&quot;&gt;#2192&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix(plugin): archive idle low-eta skills by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/CovD831/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/CovD831&quot;&gt;@CovD831&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5061822845&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2209&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2209/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2209&quot;&gt;#2209&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fix &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5146423323&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2245&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/MemTensor/MemOS/issues/2245/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/issues/2245&quot;&gt;#2245&lt;/a&gt;: bug: masked apiKey written to config.yaml is never resolved on daemon restart —  by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Memtensor-AI/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Memtensor-AI&quot;&gt;@Memtensor-AI&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5146471691&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2246&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2246/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2246&quot;&gt;#2246&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix(plugin): declare llm.maxTokens and llm.headers as first-class config keys by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/kiwipaulrob/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/kiwipaulrob&quot;&gt;@kiwipaulrob&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5147278283&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2248&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2248/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2248&quot;&gt;#2248&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;route suggestion and scheduler LLM configs by model &amp;amp; update env examples and readmes by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/bittergreen/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/bittergreen&quot;&gt;@bittergreen&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5246126506&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2282&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2282/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2282&quot;&gt;#2282&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix(core): bound startup recovery wait in shutdown to 15s by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/kiwipaulrob/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/kiwipaulrob&quot;&gt;@kiwipaulrob&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5157636582&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2252&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2252/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2252&quot;&gt;#2252&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix(skill): auto-generate crystallizer summary/steps instead of rejecting by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/kiwipaulrob/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/kiwipaulrob&quot;&gt;@kiwipaulrob&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5157789643&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2253&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2253/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2253&quot;&gt;#2253&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fix &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5162419017&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2255&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/MemTensor/MemOS/issues/2255/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/issues/2255&quot;&gt;#2255&lt;/a&gt;: memos_search returns Chinese text as \uXXXX unicode escapes (Hermes adapter miss by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Memtensor-AI/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Memtensor-AI&quot;&gt;@Memtensor-AI&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5162472009&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2256&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2256/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2256&quot;&gt;#2256&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix(storage): add idx_traces_ts to unblock event loop on newest-first trace reads by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/kiwipaulrob/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/kiwipaulrob&quot;&gt;@kiwipaulrob&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5253321686&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2284&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2284/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2284&quot;&gt;#2284&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix(plugin): consolidate local runtime hardening by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Hun-ger/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Hun-ger&quot;&gt;@Hun-ger&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5257308065&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2286&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2286/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2286&quot;&gt;#2286&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ci: automate paired local plugin releases after MemOS preparation by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/MLittleprince/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/MLittleprince&quot;&gt;@MLittleprince&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5147548166&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2249&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2249/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2249&quot;&gt;#2249&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;chore: change version number to v2.0.32 by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Wang-Daoji/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Wang-Daoji&quot;&gt;@Wang-Daoji&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5274057095&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2294&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2294/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2294&quot;&gt;#2294&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;ci: skip release dry run for version-only PRs by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/MLittleprince/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/MLittleprince&quot;&gt;@MLittleprince&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5275361208&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2297&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2297/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2297&quot;&gt;#2297&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Dev v2.0.32 by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Wang-Daoji/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Wang-Daoji&quot;&gt;@Wang-Daoji&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5274477115&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2295&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2295/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2295&quot;&gt;#2295&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;New Contributors&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/kiwipaulrob/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/kiwipaulrob&quot;&gt;@kiwipaulrob&lt;/a&gt; made their first contribution in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5041022541&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2192&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2192/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2192&quot;&gt;#2192&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/CovD831/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/CovD831&quot;&gt;@CovD831&lt;/a&gt; made their first contribution in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5061822845&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/MemTensor/MemOS/issues/2209&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/MemTensor/MemOS/pull/2209/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/pull/2209&quot;&gt;#2209&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/MemTensor/MemOS/compare/v2.0.30...v2.0.32&quot;&gt;&lt;tt&gt;v2.0.30...v2.0.32&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>Wang-Daoji</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/75928131?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1014729376/memos-local-plugin-v2.0.18-beta.1</id>
+    <updated>2026-08-28T06:18:56Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/MemTensor/MemOS/releases/tag/memos-local-plugin-v2.0.18-beta.1"/>
+    <title>MemOS Local Plugin v2.0.18-beta.1</title>
+    <content type="html">&lt;h2&gt;Changelog&lt;/h2&gt;
+&lt;h3&gt;Prerelease&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Published MemOS Local Plugin v2.0.18-beta.1 as a package prerelease for validation through the npm &lt;code&gt;beta&lt;/code&gt; dist-tag.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Release Evidence&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Package tag: memos-local-plugin-v2.0.18-beta.1&lt;/li&gt;
+&lt;li&gt;Previous package tag: memos-local-plugin-v2.0.17&lt;/li&gt;
+&lt;li&gt;Source commit: &lt;a class=&quot;commit-link&quot; data-hovercard-type=&quot;commit&quot; data-hovercard-url=&quot;https://github.com/MemTensor/MemOS/commit/84ae3815501957012e0c37d134238e52b9427a63/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/commit/84ae3815501957012e0c37d134238e52b9427a63&quot;&gt;&lt;tt&gt;84ae381&lt;/tt&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Local plugin commits: 35&lt;/li&gt;
+&lt;li&gt;Local plugin changed files: 57&lt;/li&gt;
+&lt;li&gt;Package version: 2.0.17 -&amp;gt; 2.0.18-beta.1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This prerelease creates an independent local-plugin GitHub Prerelease for traceability. Its release.published event is intentionally ignored by Doc Agent, so it does not update the MemOS-Docs Plugin tab or trigger pre/gray deployment.&lt;/p&gt;
+</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1014729376/memos-local-plugin-v2.0.17</id>
+    <updated>2026-08-24T07:58:35Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/MemTensor/MemOS/releases/tag/memos-local-plugin-v2.0.17"/>
+    <title>MemOS Local Plugin v2.0.17</title>
+    <content type="html">&lt;h2&gt;Changelog&lt;/h2&gt;
+&lt;h3&gt;Fixed&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;修复嵌入检查&lt;/strong&gt;：解决了嵌入审查发现的问题，提升了插件的稳定性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;增强输入处理&lt;/strong&gt;：加强了对超大嵌入输入的处理，避免了潜在的崩溃问题。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;容错处理&lt;/strong&gt;：修复了对缺失开发者对等冲突的容忍性问题，提升了系统的健壮性。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;锁定管理&lt;/strong&gt;：区分持有的锁与回收的PID，避免了锁定冲突。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;自PID检查&lt;/strong&gt;：修复了pidIsAlive自PID检查的问题，增强了过期锁检测的准确性。&lt;/li&gt;
+&lt;/ul&gt;
+
+
+</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1014729376/memos-local-plugin-v2.0.17-beta.1</id>
+    <updated>2026-08-24T07:03:53Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/MemTensor/MemOS/releases/tag/memos-local-plugin-v2.0.17-beta.1"/>
+    <title>MemOS Local Plugin v2.0.17-beta.1</title>
+    <content type="html">&lt;h2&gt;Changelog&lt;/h2&gt;
+&lt;h3&gt;Prerelease&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Published MemOS Local Plugin v2.0.17-beta.1 as a package prerelease for validation through the npm &lt;code&gt;beta&lt;/code&gt; dist-tag.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Release Evidence&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Package tag: memos-local-plugin-v2.0.17-beta.1&lt;/li&gt;
+&lt;li&gt;Previous package tag: memos-local-plugin-v2.0.16&lt;/li&gt;
+&lt;li&gt;Source commit: &lt;a class=&quot;commit-link&quot; data-hovercard-type=&quot;commit&quot; data-hovercard-url=&quot;https://github.com/MemTensor/MemOS/commit/9119efe5554e61a94b669df5eb84cc1b8ef3c0ab/hovercard&quot; href=&quot;https://github.com/MemTensor/MemOS/commit/9119efe5554e61a94b669df5eb84cc1b8ef3c0ab&quot;&gt;&lt;tt&gt;9119efe&lt;/tt&gt;&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Local plugin commits: 6&lt;/li&gt;
+&lt;li&gt;Local plugin changed files: 31&lt;/li&gt;
+&lt;li&gt;Package version: 2.0.16 -&amp;gt; 2.0.17-beta.1&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;This prerelease creates an independent local-plugin GitHub Prerelease for traceability. Its release.published event is intentionally ignored by Doc Agent, so it does not update the MemOS-Docs Plugin tab or trigger pre/gray deployment.&lt;/p&gt;
+</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+</feed>

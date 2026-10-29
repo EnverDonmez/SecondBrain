@@ -1,0 +1,19 @@
+{
+  "checked_at": "2026-10-28T07:29:20.857637+00:00",
+  "configured_stdio_initialized": true,
+  "core_tool_count": 4,
+  "core_catalog_bytes": 7861,
+  "instructions_bytes": 2900,
+  "known_state_and_skill_path_in_schema": true,
+  "direct_user_in_schema": true,
+  "fresh_context_bytes": 1591,
+  "unchanged_context_bytes": 188,
+  "unchanged_verified": true,
+  "byte_budget_verified": true,
+  "private_scope_denied": true,
+  "existing_current_personal_fact_retained": true,
+  "personal_records_written": 0,
+  "limits": "Fresh official SDK session through configured restricted credential and loopback HTTP. No personal content or credentials included. Does not prove all host models obey instructions. Existing hosts may cache older tool/instruction catalogs until MCP reconnect.",
+  "full_tool_count": 19,
+  "full_catalog_bytes": 16924
+}

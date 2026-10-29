@@ -1,0 +1,8 @@
+{
+  "installed_wheel_import": true,
+  "version": "0.1.1",
+  "static_assets_present": true,
+  "fresh_migration_schema": 7,
+  "source_files_verified": 65,
+  "database_integrity": "ok"
+}

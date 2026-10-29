@@ -1,0 +1,547 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:https://github.com/memvid/memvid/releases</id>
+  <link type="text/html" rel="alternate" href="https://github.com/memvid/memvid/releases"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/memvid/memvid/releases.atom"/>
+  <title>Release notes from memvid</title>
+  <updated>2026-05-27T19:12:48Z</updated>
+  <entry>
+    <id>tag:github.com,2008:Repository/991431142/v2.0.140</id>
+    <updated>2026-05-27T19:15:32Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/memvid/memvid/releases/tag/v2.0.140"/>
+    <title>v2.0.140</title>
+    <content type="html">&lt;h2&gt;Bug fixes&lt;/h2&gt;
+&lt;h3&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;4488666633&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/230&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/memvid/memvid/issues/230/hovercard&quot; href=&quot;https://github.com/memvid/memvid/issues/230&quot;&gt;#230&lt;/a&gt; — WAL checksum mismatch after region growth&lt;/h3&gt;
+&lt;p&gt;Sustained &lt;code&gt;put&lt;/code&gt; + &lt;code&gt;commit&lt;/code&gt; workloads that grew the embedded WAL could corrupt it, surfacing as &lt;code&gt;Embedded WAL is corrupted at offset N: wal record checksum mismatch&lt;/code&gt; (and, in some reports, runaway sparse-file growth past EOF).&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;grow_wal_region&lt;/code&gt; / &lt;code&gt;ensure_wal_capacity&lt;/code&gt; shifted the data region right by &lt;code&gt;delta&lt;/code&gt; and updated &lt;code&gt;data_end&lt;/code&gt;/&lt;code&gt;footer_offset&lt;/code&gt;, but left &lt;code&gt;cached_payload_end&lt;/code&gt; stale. &lt;code&gt;rebuild_indexes&lt;/code&gt; then seeked to that pre-growth offset — now inside the grown WAL region — and overwrote live WAL record payloads. &lt;code&gt;cached_payload_end&lt;/code&gt; is now advanced by the same &lt;code&gt;delta&lt;/code&gt;, restoring the &lt;code&gt;cached_payload_end &amp;gt;= wal_offset + wal_size&lt;/code&gt; invariant.&lt;/p&gt;
+&lt;h3&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;4202869238&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/215&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/memvid/memvid/issues/215/hovercard&quot; href=&quot;https://github.com/memvid/memvid/issues/215&quot;&gt;#215&lt;/a&gt; — Tantivy working directories leaked to the system temp dir&lt;/h3&gt;
+&lt;p&gt;Each &lt;code&gt;put()&lt;/code&gt; that rebuilt the Tantivy index created a temporary working directory that was never cleaned up, accumulating indefinitely (notably on Windows). &lt;code&gt;TantivyEngine&lt;/code&gt; declared its &lt;code&gt;TempDir&lt;/code&gt; first, so it was dropped &lt;em&gt;before&lt;/em&gt; the index/reader/writer released their open file handles and lock files — making the directory removal silently fail. The &lt;code&gt;TempDir&lt;/code&gt; now drops last and the index writer is released first, so per-&lt;code&gt;put&lt;/code&gt; working directories are cleaned up.&lt;/p&gt;
+&lt;p&gt;A &lt;code&gt;commit_per_put_survives_wal_growth&lt;/code&gt; regression test covers the &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;4488666633&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/230&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/memvid/memvid/issues/230/hovercard&quot; href=&quot;https://github.com/memvid/memvid/issues/230&quot;&gt;#230&lt;/a&gt; path across multiple WAL growth cycles.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog:&lt;/strong&gt; &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/memvid/memvid/compare/v2.0.139...v2.0.140&quot;&gt;&lt;tt&gt;v2.0.139...v2.0.140&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>Olow304</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7048571?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/991431142/v2.0.139</id>
+    <updated>2026-03-13T22:35:27Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/memvid/memvid/releases/tag/v2.0.139"/>
+    <title>v2.0.139</title>
+    <content type="html">&lt;h2&gt;v2.0.139&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Release Date:&lt;/strong&gt; March 13, 2026&lt;/p&gt;
+&lt;h3&gt;Overview&lt;/h3&gt;
+&lt;p&gt;This release completes the fix for MV005 (&lt;code&gt;Time index track is invalid: frame id out of range&lt;/code&gt;) by extending graceful stale frame_id handling to &lt;strong&gt;all&lt;/strong&gt; search paths — &lt;code&gt;find()&lt;/code&gt;, &lt;code&gt;ask()&lt;/code&gt;, Tantivy, lex fallback, vec search, and temporal metadata lookups.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;🐛 Bug Fixes&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;MV005 crash in &lt;code&gt;find()&lt;/code&gt; and &lt;code&gt;ask()&lt;/code&gt; search paths — Issue &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3911740781&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/196&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/memvid/memvid/issues/196/hovercard&quot; href=&quot;https://github.com/memvid/memvid/issues/196&quot;&gt;#196&lt;/a&gt; (continued)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;v2.0.138 fixed the &lt;code&gt;timeline.rs&lt;/code&gt; path only; stale frame_ids in Tantivy evaluation, snippet assembly, lex fallback, and temporal metadata lookups still caused hard crashes&lt;/li&gt;
+&lt;li&gt;All 5 search-path locations now gracefully skip stale frame_ids with &lt;code&gt;tracing::warn!&lt;/code&gt; instead of returning &lt;code&gt;MV005&lt;/code&gt; errors&lt;/li&gt;
+&lt;li&gt;Added &lt;code&gt;stale_index_skips&lt;/code&gt; counter on &lt;code&gt;SearchResponse&lt;/code&gt; so callers can detect index degradation&lt;/li&gt;
+&lt;li&gt;Exposed &lt;code&gt;stale_index_skips&lt;/code&gt; in both Python and Node SDK responses (only present when &amp;gt; 0)&lt;/li&gt;
+&lt;li&gt;CLI search command updated to include the new field&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Root cause:&lt;/strong&gt; Search indexes (Tantivy/lex) can hold frame_ids that no longer exist in &lt;code&gt;toc.frames&lt;/code&gt; due to &lt;code&gt;instant_index&lt;/code&gt; writing WAL sequence numbers, stale on-disk lex segments, or reopening files where the index loaded from a prior state.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;📚 Related Issues&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3911740781&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/196&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/memvid/memvid/issues/196/hovercard&quot; href=&quot;https://github.com/memvid/memvid/issues/196&quot;&gt;#196&lt;/a&gt; — &lt;code&gt;ask()&lt;/code&gt; fails with &quot;Time index track is invalid: frame id out of range&quot;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;4049272577&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/204&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/memvid/memvid/issues/204/hovercard&quot; href=&quot;https://github.com/memvid/memvid/issues/204&quot;&gt;#204&lt;/a&gt; — &lt;code&gt;commit()&lt;/code&gt; raises &lt;code&gt;AttributeError&lt;/code&gt; on &lt;code&gt;_MemvidCore&lt;/code&gt; (tracked, not addressed in this release)&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>Olow304</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7048571?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/991431142/v2.0.138</id>
+    <updated>2026-03-03T22:03:13Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/memvid/memvid/releases/tag/v2.0.138"/>
+    <title>v2.0.138</title>
+    <content type="html">&lt;h2&gt;v2.0.138&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Release Date:&lt;/strong&gt; March 3, 2026&lt;/p&gt;
+&lt;h3&gt;Overview&lt;/h3&gt;
+&lt;p&gt;This release fixes two SDK issues: &lt;code&gt;lex_enabled&lt;/code&gt;/&lt;code&gt;vec_enabled&lt;/code&gt; state not persisting after re-opening &lt;code&gt;.mv2&lt;/code&gt; files, and &lt;code&gt;ask()&lt;/code&gt; crashing with &quot;frame id out of range&quot; on files with inconsistent time indexes.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;🐛 Bug Fixes&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;lex_enabled&lt;/code&gt;/&lt;code&gt;vec_enabled&lt;/code&gt; reset to &lt;code&gt;None&lt;/code&gt; on re-open — Issue &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3910491752&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/194&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/memvid/memvid/issues/194/hovercard&quot; href=&quot;https://github.com/memvid/memvid/issues/194&quot;&gt;#194&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Added &lt;code&gt;lex_enabled&lt;/code&gt; and &lt;code&gt;vec_enabled&lt;/code&gt; fields to the core &lt;code&gt;Stats&lt;/code&gt; struct so SDKs can read runtime search engine state&lt;/li&gt;
+&lt;li&gt;Python SDK now auto-detects &lt;code&gt;vec_available&lt;/code&gt; from disk state when opening a file (matches the pattern already used in &lt;code&gt;ask()&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;stats()&lt;/code&gt; in both Python and Node SDKs now includes &lt;code&gt;lex_enabled&lt;/code&gt; and &lt;code&gt;vec_enabled&lt;/code&gt; keys&lt;/li&gt;
+&lt;li&gt;Previously, &lt;code&gt;use()&lt;/code&gt; with default &lt;code&gt;enable_vec=False&lt;/code&gt; would report &lt;code&gt;vec_available=false&lt;/code&gt; even when the file contained a vec index, causing &lt;code&gt;find(mode=&quot;semantic&quot;)&lt;/code&gt; to error immediately&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;ask()&lt;/code&gt; &quot;frame id out of range&quot; on fresh .mv2 files — Issue &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3911740781&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/196&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/memvid/memvid/issues/196/hovercard&quot; href=&quot;https://github.com/memvid/memvid/issues/196&quot;&gt;#196&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;build_timeline()&lt;/code&gt; now gracefully skips time index entries that reference out-of-range frame IDs instead of returning a hard error&lt;/li&gt;
+&lt;li&gt;Logs a &lt;code&gt;tracing::warn!&lt;/code&gt; for observability when skipping invalid entries&lt;/li&gt;
+&lt;li&gt;This matches the existing graceful-skip pattern used in &lt;code&gt;ask.rs&lt;/code&gt; fallback timeline responses&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3&gt;📚 Related Issues&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3910491752&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/194&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/memvid/memvid/issues/194/hovercard&quot; href=&quot;https://github.com/memvid/memvid/issues/194&quot;&gt;#194&lt;/a&gt; — &lt;code&gt;lex_enabled&lt;/code&gt;/&lt;code&gt;vec_enabled&lt;/code&gt; reset to &lt;code&gt;None&lt;/code&gt; on re-open&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3911740781&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/196&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/memvid/memvid/issues/196/hovercard&quot; href=&quot;https://github.com/memvid/memvid/issues/196&quot;&gt;#196&lt;/a&gt; — &lt;code&gt;ask()&lt;/code&gt; &quot;frame id out of range&quot; on fresh .mv2 files&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>Olow304</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7048571?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/991431142/v2.0.157</id>
+    <updated>2026-02-15T19:15:22Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/memvid/memvid/releases/tag/v2.0.157"/>
+    <title>v2.0.157</title>
+    <content type="html">&lt;h2&gt;v2.0.157&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Release Date:&lt;/strong&gt; February 15, 2026&lt;/p&gt;
+&lt;h3&gt;Overview&lt;/h3&gt;
+&lt;p&gt;This release adds a structured XLSX extraction pipeline with table detection, OOXML metadata parsing, and semantic chunking. It also removes a vulnerable &lt;code&gt;xlsx&lt;/code&gt; (SheetJS) dependency from the Node SDK, fixes the CLI deploy pipeline for proprietary crate handling, and includes clippy/lint fixes and documentation updates.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;🚀 New Features&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Structured XLSX Extraction Pipeline (memvid-core)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;New &lt;code&gt;XlsxReader::extract_structured()&lt;/code&gt; API for high-accuracy spreadsheet extraction&lt;/li&gt;
+&lt;li&gt;Automatic table boundary and header detection via heuristics and OOXML table definitions&lt;/li&gt;
+&lt;li&gt;Row-aligned semantic chunking that never splits rows across chunk boundaries&lt;/li&gt;
+&lt;li&gt;Formats rows as &lt;code&gt;Header: Value | Header: Value&lt;/code&gt; pairs for optimal search accuracy&lt;/li&gt;
+&lt;li&gt;OOXML metadata parsing: number formats (dates, currency, percentages), merged cell regions, named table definitions&lt;/li&gt;
+&lt;li&gt;Column type inference (text, integer, float, date, currency, percentage, boolean)&lt;/li&gt;
+&lt;li&gt;Backward-compatible flat text output alongside structured chunks&lt;/li&gt;
+&lt;li&gt;New modules: &lt;code&gt;xlsx_chunker&lt;/code&gt;, &lt;code&gt;xlsx_ooxml&lt;/code&gt;, &lt;code&gt;xlsx_table_detect&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Remove Vulnerable xlsx Dependency — Issue &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3942380797&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/198&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/memvid/memvid/issues/198/hovercard&quot; href=&quot;https://github.com/memvid/memvid/issues/198&quot;&gt;#198&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Removed SheetJS &lt;code&gt;xlsx@0.18.5&lt;/code&gt; from &lt;code&gt;@memvid/sdk&lt;/code&gt; (&lt;a title=&quot;CVE-2024-22363&quot; data-hovercard-type=&quot;advisory&quot; data-hovercard-url=&quot;/advisories/GHSA-5pgg-2g8v-p4x9/hovercard&quot; href=&quot;https://github.com/advisories/GHSA-5pgg-2g8v-p4x9&quot;&gt;CVE-2024-22363&lt;/a&gt;, &lt;a title=&quot;CVE-2023-30533&quot; data-hovercard-type=&quot;advisory&quot; data-hovercard-url=&quot;/advisories/GHSA-4r6h-8v6p-xvw6/hovercard&quot; href=&quot;https://github.com/advisories/GHSA-4r6h-8v6p-xvw6&quot;&gt;CVE-2023-30533&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Production code already used ExcelJS — only example files were updated&lt;/li&gt;
+&lt;li&gt;Downstream users no longer receive Dependabot security alerts from &lt;code&gt;@memvid/sdk&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;CLI Deploy Fix: Proprietary Crate Handling&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Made &lt;code&gt;memvid-ghostpack&lt;/code&gt; optional in &lt;code&gt;memvid-ask-model&lt;/code&gt; and removed from workspace members&lt;/li&gt;
+&lt;li&gt;CI builds no longer fail when proprietary crates are absent (&lt;code&gt;.gitignore&lt;/code&gt;&#39;d)&lt;/li&gt;
+&lt;li&gt;Ghost model kind returns a clean error when the runtime is unavailable&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3&gt;🐛 Bug Fixes&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed clippy pedantic lints (&lt;code&gt;implicit_clone&lt;/code&gt;, &lt;code&gt;cast_possible_truncation&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;Fixed &lt;code&gt;dead_code&lt;/code&gt; warning for &lt;code&gt;propagate_merged_cells&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Resolved VecIndexManifest model field lint&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;xlsx_structured&lt;/code&gt; tests now gracefully skip on CI when fixture file is absent&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3&gt;📝 Documentation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Chinese (Simplified) README translation (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3910483818&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/193&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/193/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/193&quot;&gt;#193&lt;/a&gt; by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/nightire/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/nightire&quot;&gt;@nightire&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;README updates (&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/mo-omar-0197/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/mo-omar-0197&quot;&gt;@mo-omar-0197&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3&gt;📚 Related Issues &amp;amp; PRs&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3942380797&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/198&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/memvid/memvid/issues/198/hovercard&quot; href=&quot;https://github.com/memvid/memvid/issues/198&quot;&gt;#198&lt;/a&gt; — Remove vulnerable xlsx (SheetJS) dependency (&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/intergrado-cg/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/intergrado-cg&quot;&gt;@intergrado-cg&lt;/a&gt; report, &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Olow304/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Olow304&quot;&gt;@Olow304&lt;/a&gt; fix)&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3910483818&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/193&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/193/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/193&quot;&gt;#193&lt;/a&gt; — Chinese README translation (&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/nightire/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/nightire&quot;&gt;@nightire&lt;/a&gt;, merged by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/sharafdin/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/sharafdin&quot;&gt;@sharafdin&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3&gt;🙏 Contributors&lt;/h3&gt;
+&lt;p&gt;Thank you to all contributors who made this release possible:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Olow304/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Olow304&quot;&gt;@Olow304&lt;/a&gt; — Structured XLSX pipeline, xlsx vulnerability fix, CLI deploy fix, clippy/lint cleanup&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/nightire/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/nightire&quot;&gt;@nightire&lt;/a&gt; — Chinese (Simplified) README translation&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/sharafdin/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/sharafdin&quot;&gt;@sharafdin&lt;/a&gt; — PR review and merge&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/mo-omar-0197/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/mo-omar-0197&quot;&gt;@mo-omar-0197&lt;/a&gt; — README updates&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/intergrado-cg/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/intergrado-cg&quot;&gt;@intergrado-cg&lt;/a&gt; — Reported xlsx security vulnerability (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3942380797&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/198&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/memvid/memvid/issues/198/hovercard&quot; href=&quot;https://github.com/memvid/memvid/issues/198&quot;&gt;#198&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>Olow304</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7048571?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/991431142/v2.0.136</id>
+    <updated>2026-02-06T23:47:29Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/memvid/memvid/releases/tag/v2.0.136"/>
+    <title>v2.0.136</title>
+    <content type="html">&lt;h2&gt;Release Date: February 6, 2026&lt;/h2&gt;
+&lt;h3&gt;Overview&lt;/h3&gt;
+&lt;p&gt;This release adds frame-level ACL (Access Control Lists), vector index model consistency enforcement, symspell data corruption fixes, and several CI/build improvements. It also includes README documentation updates and ONNX Runtime noise suppression on macOS.&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3&gt;🚀 New Features&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;Frame-Level ACL Enforcement&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Added ACL (Access Control List) plumbing across search, ask, and replay paths&lt;/li&gt;
+&lt;li&gt;Per-frame access control enables fine-grained permission enforcement on chunks&lt;/li&gt;
+&lt;li&gt;Robustness fixes for ACL boundary conditions&lt;/li&gt;
+&lt;li&gt;New tests and benchmark/example updates for ACL workflows&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Vector Index Model Consistency&lt;/strong&gt; (PR &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3862702519&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/188&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/188/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/188&quot;&gt;#188&lt;/a&gt;)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Enforces strict binding between vector index and embedding model&lt;/li&gt;
+&lt;li&gt;Prevents silent model mismatch corruption when switching embedding providers&lt;/li&gt;
+&lt;li&gt;Ensures vector search results are always consistent with the model used at index time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;SymSpell Cleanup Fix &amp;amp; Dictionary Tooling&lt;/strong&gt; (PR &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3856696251&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/187&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/187/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/187&quot;&gt;#187&lt;/a&gt;)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed &lt;code&gt;symspell_cleanup&lt;/code&gt; data corruption bug&lt;/li&gt;
+&lt;li&gt;Added dictionary download tooling for easier setup&lt;/li&gt;
+&lt;li&gt;More reliable spell-correction preprocessing for search queries&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;OpenAI API Embedding Provider&lt;/strong&gt; (PR &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3825575537&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/173&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/173/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/173&quot;&gt;#173&lt;/a&gt;)&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Added OpenAI API as an embedding provider option&lt;/li&gt;
+&lt;li&gt;Enables using OpenAI embeddings alongside local ONNX models&lt;/li&gt;
+&lt;li&gt;Flexible embedding backend selection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3&gt;🐛 Bug Fixes&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;ONNX Runtime Stderr Suppression (macOS)&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Suppressed noisy ONNX Runtime warnings on macOS stderr&lt;/li&gt;
+&lt;li&gt;Cleaner console output during normal operation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;CI Build Fixes&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Added missing &lt;code&gt;#[cfg(feature = &quot;lex&quot;)]&lt;/code&gt; guards for tantivy-dependent code&lt;/li&gt;
+&lt;li&gt;Fixed CI cache key to use &lt;code&gt;Cargo.toml&lt;/code&gt; hash instead of missing &lt;code&gt;Cargo.lock&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Committed &lt;code&gt;Cargo.lock&lt;/code&gt; for reproducible CI builds&lt;/li&gt;
+&lt;li&gt;Moved target-specific deps section after main dependencies&lt;/li&gt;
+&lt;li&gt;Ran &lt;code&gt;cargo fmt&lt;/code&gt; on &lt;code&gt;clip.rs&lt;/code&gt; and &lt;code&gt;text_embed.rs&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Lint Fixes&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Resolved redundant closure lints in &lt;code&gt;tantivy.rs&lt;/code&gt; and &lt;code&gt;search/mod.rs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;General lint formatting cleanup&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3&gt;📝 Documentation&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Added Memvid v1 deprecation warning to README (&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/sharafdin/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/sharafdin&quot;&gt;@sharafdin&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;README updates and improvements (&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/mo-omar-0197/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/mo-omar-0197&quot;&gt;@mo-omar-0197&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3&gt;📊 Performance &amp;amp; Reliability&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;ACL enforcement&lt;/strong&gt;: Zero-overhead when no ACL policy is set&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Model consistency&lt;/strong&gt;: Prevents silent search quality degradation from model mismatch&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SymSpell fix&lt;/strong&gt;: Eliminates data corruption in spell-correction preprocessing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3&gt;📚 Related Pull Requests&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3862702519&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/188&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/188/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/188&quot;&gt;#188&lt;/a&gt; — feat: enforce vector index model consistency (&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/0x-pankaj/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/0x-pankaj&quot;&gt;@0x-pankaj&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3856696251&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/187&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/187/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/187&quot;&gt;#187&lt;/a&gt; — feat: fix symspell_cleanup data corruption and add dictionary tooling (&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/0x-pankaj/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/0x-pankaj&quot;&gt;@0x-pankaj&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3825575537&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/173&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/173/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/173&quot;&gt;#173&lt;/a&gt; — feat: add OpenAI API embedding provider (&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/0x-pankaj/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/0x-pankaj&quot;&gt;@0x-pankaj&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Direct push — Frame-level ACL enforcement across search/ask/replay (&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Olow304/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Olow304&quot;&gt;@Olow304&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3&gt;🎯 Migration Notes&lt;/h3&gt;
+&lt;p&gt;&lt;strong&gt;For Users&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;No breaking changes — all existing &lt;code&gt;.mv2&lt;/code&gt; files remain compatible&lt;/li&gt;
+&lt;li&gt;ACL is opt-in; existing memories work without any ACL configuration&lt;/li&gt;
+&lt;li&gt;Vector model consistency is enforced automatically on new indexes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;For Developers&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;New &lt;code&gt;aclScope&lt;/code&gt; field available on API keys (nullable, no migration needed)&lt;/li&gt;
+&lt;li&gt;ACL types available in &lt;code&gt;types/acl.rs&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Embedding model is now strictly bound to vector index at creation time&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3&gt;🙏 Contributors&lt;/h3&gt;
+&lt;p&gt;Thank you to all contributors who made this release possible:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Olow304/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Olow304&quot;&gt;@Olow304&lt;/a&gt; — ACL enforcement, CI fixes, lint cleanup&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/0x-pankaj/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/0x-pankaj&quot;&gt;@0x-pankaj&lt;/a&gt; — Vector model consistency, symspell fix, OpenAI embeddings&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/sharafdin/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/sharafdin&quot;&gt;@sharafdin&lt;/a&gt; — Documentation (deprecation notice)&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/mo-omar-0197/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/mo-omar-0197&quot;&gt;@mo-omar-0197&lt;/a&gt; — README updates&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>Olow304</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7048571?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/991431142/v2.0.135</id>
+    <updated>2026-01-25T19:31:04Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/memvid/memvid/releases/tag/v2.0.135"/>
+    <title>v2.0.135</title>
+    <content type="html">&lt;p&gt;&lt;strong&gt;Release Date&lt;/strong&gt;: January 25, 2026&lt;/p&gt;
+&lt;h2&gt;Overview&lt;/h2&gt;
+&lt;p&gt;This release includes significant performance improvements, bug fixes, and feature enhancements. Highlights include HNSW vector search implementation, SIMD acceleration, Windows test fixes, and improved query precision with implicit AND operators.&lt;/p&gt;
+&lt;h2&gt;🚀 New Features&lt;/h2&gt;
+&lt;h3&gt;HNSW Vector Search Implementation (PR &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3852349487&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/185&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/185/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/185&quot;&gt;#185&lt;/a&gt;)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Applied HNSW (Hierarchical Navigable Small World) implementation patch&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Enables fast approximate nearest neighbor search for large vector indexes&lt;/li&gt;
+&lt;li&gt;Significant performance improvement for vector search operations&lt;/li&gt;
+&lt;li&gt;Better scalability for memories with many vector embeddings&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;SIMD Acceleration (PR &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3838835501&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/176&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/176/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/176&quot;&gt;#176&lt;/a&gt;)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Added SIMD acceleration for vector distance calculations&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Optimized L2 distance computations using SIMD instructions&lt;/li&gt;
+&lt;li&gt;Faster vector similarity searches&lt;/li&gt;
+&lt;li&gt;Improved performance on modern CPUs with SIMD support&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Extraction Cache Improvements (PR &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3832154902&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/175&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/175/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/175&quot;&gt;#175&lt;/a&gt;)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Added LRU (Least Recently Used) eviction to extraction cache&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Better memory management for document extraction&lt;/li&gt;
+&lt;li&gt;Prevents cache from growing unbounded&lt;/li&gt;
+&lt;li&gt;Improved performance for repeated document processing&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Query Precision Enhancement (PR &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3846388977&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/178&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/178/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/178&quot;&gt;#178&lt;/a&gt;)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Changed implicit query operator from OR to AND for precision&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Multi-word queries now require all terms to match (implicit AND)&lt;/li&gt;
+&lt;li&gt;More precise search results&lt;/li&gt;
+&lt;li&gt;Explicit OR operator still available when needed&lt;/li&gt;
+&lt;li&gt;Better user experience for targeted searches&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;🐛 Bug Fixes&lt;/h2&gt;
+&lt;h3&gt;Windows Test Fixes (PR &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3853637861&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/186&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/186/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/186&quot;&gt;#186&lt;/a&gt;)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Fixed Windows test failures&lt;/strong&gt; by adding delay for Tantivy file handle release&lt;/li&gt;
+&lt;li&gt;Resolved file locking issues on Windows during test cleanup&lt;/li&gt;
+&lt;li&gt;Tests now pass reliably on Windows platforms&lt;/li&gt;
+&lt;li&gt;Improved cross-platform test stability&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Clippy Safety Overhaul (PR &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3848700535&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/180&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/180/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/180&quot;&gt;#180&lt;/a&gt;)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Comprehensive safety improvements&lt;/strong&gt; based on Clippy linter recommendations&lt;/li&gt;
+&lt;li&gt;Fixed potential safety issues across the codebase&lt;/li&gt;
+&lt;li&gt;Improved code quality and maintainability&lt;/li&gt;
+&lt;li&gt;Enhanced memory safety guarantees&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;📝 Documentation&lt;/h2&gt;
+&lt;h3&gt;Internationalization&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Added Bengali (bn) README translation&lt;/strong&gt; (PR &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3851356262&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/182&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/182/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/182&quot;&gt;#182&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Added Japanese README translation&lt;/strong&gt; (PR &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3839745009&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/177&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/177/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/177&quot;&gt;#177&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Improved accessibility for non-English speakers&lt;/li&gt;
+&lt;li&gt;Expanded documentation coverage&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Documentation Improvements (PR &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3851267623&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/181&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/181/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/181&quot;&gt;#181&lt;/a&gt;)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Added HTML markers to all README files&lt;/strong&gt; to make updates easier&lt;/li&gt;
+&lt;li&gt;Improved documentation maintenance workflow&lt;/li&gt;
+&lt;li&gt;Better structure for automated documentation updates&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;🔧 Developer Experience&lt;/h2&gt;
+&lt;h3&gt;Build &amp;amp; Development Tools (PR &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3851771106&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/184&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/184/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/184&quot;&gt;#184&lt;/a&gt;)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Created script to add flags&lt;/strong&gt; for easier development workflow&lt;/li&gt;
+&lt;li&gt;Streamlined feature flag management&lt;/li&gt;
+&lt;li&gt;Improved developer productivity&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;📊 Performance Improvements&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;HNSW Implementation&lt;/strong&gt;: Faster vector search for large indexes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SIMD Acceleration&lt;/strong&gt;: Optimized distance calculations&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LRU Cache&lt;/strong&gt;: Better memory utilization&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Query Precision&lt;/strong&gt;: More accurate search results&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;🙏 Contributors&lt;/h2&gt;
+&lt;p&gt;Thank you to all contributors who made this release possible:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/sharafdin/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/sharafdin&quot;&gt;@sharafdin&lt;/a&gt; - Release manager&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/0x-pankaj/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/0x-pankaj&quot;&gt;@0x-pankaj&lt;/a&gt;  - HNSW implementation, SIMD acceleration, extraction cache, Windows fixes, Clippy safety&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Abhisheklearn12/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Abhisheklearn12&quot;&gt;@Abhisheklearn12&lt;/a&gt; - Query operator precision fix&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Adam-Elmi/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Adam-Elmi&quot;&gt;@Adam-Elmi&lt;/a&gt;  - Documentation improvements, build scripts&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/krishnaK-D-Bair/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/krishnaK-D-Bair&quot;&gt;@krishnaK-D-Bair&lt;/a&gt;  - Bengali translation&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/yukaty/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/yukaty&quot;&gt;@yukaty&lt;/a&gt; - Japanese translation&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;📚 Related Pull Requests&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3853637861&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/186&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/186/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/186&quot;&gt;#186&lt;/a&gt; - fix(tests): add Windows delay for Tantivy file handle release&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3852349487&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/185&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/185/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/185&quot;&gt;#185&lt;/a&gt; - feat: apply HNSW implementation patch&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3851771106&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/184&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/184/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/184&quot;&gt;#184&lt;/a&gt; - Created a script to add flags&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3851356262&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/182&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/182/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/182&quot;&gt;#182&lt;/a&gt; - docs: add Bengali (bn) README translation&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3851267623&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/181&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/181/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/181&quot;&gt;#181&lt;/a&gt; - Added HTML markers to all README files to make updates easier&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3848700535&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/180&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/180/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/180&quot;&gt;#180&lt;/a&gt; - Fix/clippy safety overhaul&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3846388977&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/178&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/178/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/178&quot;&gt;#178&lt;/a&gt; - Fix: Change implicit query operator from OR to AND for precision&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3839745009&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/177&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/177/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/177&quot;&gt;#177&lt;/a&gt; - docs(i18n): add Japanese README translation&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3838835501&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/176&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/176/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/176&quot;&gt;#176&lt;/a&gt; - feat: add SIMD acceleration for vector distance calculations&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3832154902&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/175&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/175/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/175&quot;&gt;#175&lt;/a&gt; - feat(extract): add LRU eviction to extraction cache&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;🎯 Migration Notes&lt;/h2&gt;
+&lt;h3&gt;For Users&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;No breaking changes&lt;/strong&gt; in this release&lt;/li&gt;
+&lt;li&gt;All existing &lt;code&gt;.mv2&lt;/code&gt; files remain compatible&lt;/li&gt;
+&lt;li&gt;Query behavior change: Multi-word queries now use implicit AND (more precise)
+&lt;ul&gt;
+&lt;li&gt;Use explicit &lt;code&gt;OR&lt;/code&gt; operator if you need the old behavior&lt;/li&gt;
+&lt;li&gt;Example: &lt;code&gt;&quot;machine learning&quot;&lt;/code&gt; now requires both words (was: either word)&lt;/li&gt;
+&lt;li&gt;Example: &lt;code&gt;&quot;machine OR learning&quot;&lt;/code&gt; still works for either word&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;For Developers&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Windows developers: Test stability improved&lt;/li&gt;
+&lt;li&gt;Performance: Vector search is significantly faster with HNSW&lt;/li&gt;
+&lt;li&gt;Memory: Extraction cache now has bounded memory usage&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;📚 Documentation&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.memvid.com&quot; rel=&quot;nofollow&quot;&gt;Full Documentation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.memvid.com/api&quot; rel=&quot;nofollow&quot;&gt;API Reference&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.memvid.com/migration&quot; rel=&quot;nofollow&quot;&gt;Migration Guide&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;🔗 Related&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/memvid/memvid&quot;&gt;GitHub Repository&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/memvid/memvid/issues&quot;&gt;Issue Tracker&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/memvid/memvid/discussions&quot;&gt;Discussions&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>Olow304</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7048571?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/991431142/v2.0.134</id>
+    <updated>2026-01-16T17:18:25Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/memvid/memvid/releases/tag/v2.0.134"/>
+    <title>v2.0.134</title>
+    <content type="html">&lt;h2&gt;Highlights&lt;/h2&gt;
+&lt;h3&gt;Encryption Capsule (.mv2e)&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Introduced secure file encryption with .mv2e format&lt;/li&gt;
+&lt;li&gt;AES-256-GCM encryption with Argon2id key derivation&lt;/li&gt;
+&lt;li&gt;Lock/unlock files with password protection via lock_file() and unlock_file() APIs&lt;/li&gt;
+&lt;li&gt;Header contains KDF parameters, salt, and nonce for secure decryption&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Search Improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Multi-word queries now default to OR logic for better recall (e.g., &quot;machine learning&quot; finds documents with either term)&lt;/li&gt;
+&lt;li&gt;Fixed parallel segment indexing to properly use search_text field when no_raw=true&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;SDK &amp;amp; CLI Compatibility&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Full cross-compatibility between CLI and SDK created .mv2 files&lt;/li&gt;
+&lt;li&gt;Removed extractous from Python SDK default features to avoid native library dependencies&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Bug Fixes&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fixed lexical search indexing for documents ingested via SDK putMany&lt;/li&gt;
+&lt;li&gt;Resolved Python SDK import error related to missing Tika native library&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Contributors&lt;/p&gt;
+&lt;p&gt;Thank you to our contributors for this release:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/sharafdin/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/sharafdin&quot;&gt;@sharafdin&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/akash-R-A-J/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/akash-R-A-J&quot;&gt;@akash-R-A-J&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/0x-pankaj/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/0x-pankaj&quot;&gt;@0x-pankaj&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Sjondepon/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Sjondepon&quot;&gt;@Sjondepon&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/karamokoisrael/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/karamokoisrael&quot;&gt;@karamokoisrael&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/shiinedev/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/shiinedev&quot;&gt;@shiinedev&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/DavidReque/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/DavidReque&quot;&gt;@DavidReque&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/GinoGreen/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/GinoGreen&quot;&gt;@GinoGreen&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/omartood/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/omartood&quot;&gt;@omartood&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/krishnaK-D-Bair/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/krishnaK-D-Bair&quot;&gt;@krishnaK-D-Bair&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/reneleonhardt/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/reneleonhardt&quot;&gt;@reneleonhardt&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;@soomin.lee&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/qool/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/qool&quot;&gt;@qool&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>Olow304</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7048571?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/991431142/v2.0.133</id>
+    <updated>2026-01-10T22:13:02Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/memvid/memvid/releases/tag/v2.0.133"/>
+    <title>v2.0.133</title>
+    <content type="html">&lt;h2&gt;v2.0.133&lt;/h2&gt;
+&lt;h3&gt;Features&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Doctor Quiet Mode: Added quiet option to DoctorOptions to suppress debug logs during doctor operations. Useful for SDK integrations where verbose output is unwanted.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Improvements&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Streaming Encryption Tests: Added comprehensive tests for the streaming encryption feature (PR &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3794400887&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/117&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/117/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/117&quot;&gt;#117&lt;/a&gt;):&lt;/li&gt;
+&lt;li&gt;streaming_encryption_large_file - Tests encrypt/decrypt roundtrip for files &amp;gt;1MB&lt;/li&gt;
+&lt;li&gt;wrong_password_fails_streaming - Verifies password validation in streaming format&lt;/li&gt;
+&lt;li&gt;Confirms reserved[0] == 0x01 marker for streaming format detection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Internal&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Replaced println! with doctor_log! macro for conditional logging&lt;/li&gt;
+&lt;li&gt;Added thread-local DOCTOR_QUIET flag for clean log suppression&lt;/li&gt;
+&lt;li&gt;Updated all test files to use quiet: true in DoctorOptions&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Compatibility&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Fully backward compatible with existing .mv2 and .mv2e files&lt;/li&gt;
+&lt;li&gt;Streaming encryption (PR &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3794400887&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/memvid/memvid/issues/117&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/memvid/memvid/pull/117/hovercard&quot; href=&quot;https://github.com/memvid/memvid/pull/117&quot;&gt;#117&lt;/a&gt;) auto-detects format via header byte&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>Olow304</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7048571?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/991431142/v2.0.132</id>
+    <updated>2026-01-09T21:40:24Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/memvid/memvid/releases/tag/v2.0.132"/>
+    <title>v2.0.132</title>
+    <content type="html">&lt;h2&gt;What&#39;s New&lt;/h2&gt;
+&lt;h3&gt;Ed25519 Ticket Signature Verification&lt;/h3&gt;
+&lt;p&gt;Added cryptographic signature verification for dashboard-issued capacity tickets using Ed25519.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Changes:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;New &lt;code&gt;signature.rs&lt;/code&gt; module for Ed25519 verification&lt;/li&gt;
+&lt;li&gt;Ticket validation in lifecycle management&lt;/li&gt;
+&lt;li&gt;Dashboard public key verification for capacity tickets&lt;/li&gt;
+&lt;li&gt;New ticket types in &lt;code&gt;types/ticket.rs&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>Olow304</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7048571?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/991431142/v2.0.131</id>
+    <updated>2026-01-05T01:50:34Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/memvid/memvid/releases/tag/v2.0.131"/>
+    <title>v2.0.131</title>
+    <content type="html">&lt;p&gt;🚀 Memvid 2.0 - Complete Rust Rewrite&lt;/p&gt;
+&lt;p&gt;Give your AI agents memory in one file.&lt;/p&gt;
+&lt;p&gt;This release marks a complete rewrite of Memvid from Python to Rust, delivering 10-100x performance improvements and a truly portable single-file memory system.&lt;/p&gt;
+&lt;p&gt;Highlights&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Single-file architecture - Everything in one .mv2 file, no databases or sidecars&lt;/li&gt;
+&lt;li&gt;Sub-5ms retrieval - Blazing fast local memory access&lt;/li&gt;
+&lt;li&gt;Multi-modal support - Text, PDF, DOCX, images (CLIP), and audio (Whisper)&lt;/li&gt;
+&lt;li&gt;Hybrid search - BM25 full-text + HNSW vector similarity&lt;/li&gt;
+&lt;li&gt;Time-travel - Query any point in memory history&lt;/li&gt;
+&lt;li&gt;Encryption - Optional password-protected capsules (.mv2e)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Installation&lt;/p&gt;
+&lt;p&gt;Rust:&lt;br&gt;
+[dependencies]&lt;br&gt;
+memvid-core = &quot;2.0&quot;&lt;/p&gt;
+&lt;p&gt;CLI:&lt;br&gt;
+npm install -g memvid-cli&lt;/p&gt;
+&lt;p&gt;SDKs:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Node.js: npm install @memvid/sdk&lt;/li&gt;
+&lt;li&gt;Python: pip install memvid-sdk&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Links&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://docs.memvid.com&quot; rel=&quot;nofollow&quot;&gt;https://docs.memvid.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://sandbox.memvid.com&quot; rel=&quot;nofollow&quot;&gt;https://sandbox.memvid.com&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://crates.io/crates/memvid-core&quot; rel=&quot;nofollow&quot;&gt;https://crates.io/crates/memvid-core&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>Olow304</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7048571?s=60&amp;v=4"/>
+  </entry>
+</feed>

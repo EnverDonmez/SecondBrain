@@ -1,0 +1,16 @@
+{
+  "measured_at": "2026-10-27T17:43:09.322277+00:00",
+  "synthetic_records": 5001,
+  "cold_first_ms": 12.304,
+  "warm_runs": 15,
+  "warm_median_ms": 11.354,
+  "warm_p95_ms": 12.814,
+  "candidate_records": 96,
+  "candidate_limit": 96,
+  "window_saturated": true,
+  "context_truncated": true,
+  "context_bytes": 2760,
+  "context_budget": 3000,
+  "additional_model_calls": 0,
+  "limits": "One process and one synthetic hub query. Warm p95 is nearest rank over 15 runs. Candidate cap is loaded content, not total SQL work. Not production latency, QA accuracy, raw archival quality or provider token measurement."
+}

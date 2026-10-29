@@ -1,0 +1,23 @@
+{
+  "runtime": {
+    "pid": 33020,
+    "cpu_seconds": 0.656,
+    "rss_bytes": 69898240,
+    "rss_kind": "current working set",
+    "platform": "win32"
+  },
+  "semantic_worker": {
+    "running": false,
+    "pid": null,
+    "idle_seconds": 30.0,
+    "last_usage": null
+  },
+  "counts": {
+    "events": 0,
+    "assets": 0,
+    "memories": 0,
+    "skills": 0,
+    "jobs": 0
+  },
+  "health": "ok"
+}

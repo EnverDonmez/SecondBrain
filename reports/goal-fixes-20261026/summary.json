@@ -1,0 +1,59 @@
+{
+  "completed_at": "2026-10-26T09:27:18.356939+00:00",
+  "application_tests": 88,
+  "acceptance_passed": 15,
+  "acceptance_total": 15,
+  "quality_passed": true,
+  "natural_extraction_cases": 8,
+  "natural_extraction_succeeded": 8,
+  "tool_discovery": {
+    "registered": 1,
+    "disabled_tool_hidden": true,
+    "registered_tool_discoverable_in_model_capabilities": true,
+    "canonical_json_export_contains_tool_configs": true
+  },
+  "skill_portability": {
+    "skill_text_available": true,
+    "script_content_available_to_model": false,
+    "script_content_available_on_request": true,
+    "package_roundtrip": true
+  },
+  "semantic_index_seconds_before": 441.93977000000086,
+  "semantic_index_seconds_after": 12.586637899999914,
+  "index_speedup": 35.111820448890796,
+  "semantic_rss_bytes_after": 942252032,
+  "live_verified": {
+    "checked_at": "2026-10-26T09:25:00.718000+00:00",
+    "health": {
+      "status": "ok",
+      "application": "second-brain-os",
+      "version": "0.1.0"
+    },
+    "runtime": {
+      "pid": 20484,
+      "cpu_seconds": 0.625,
+      "rss_bytes": 69816320,
+      "rss_kind": "current working set",
+      "platform": "win32"
+    },
+    "counts": {
+      "events": 0,
+      "assets": 0,
+      "memories": 0,
+      "skills": 0,
+      "jobs": 0
+    },
+    "counts_unchanged": true,
+    "integrity": "ok",
+    "new_context_contract_loaded": true,
+    "tool_discovery_contract_loaded": true,
+    "no_test_records_written": true
+  },
+  "remaining": [
+    "Personal AI activation",
+    "General semantic learning and natural retrieval quality",
+    "RAM and large-scale query optimization",
+    "General skill sandbox execution",
+    "Existing generic preference migration"
+  ]
+}

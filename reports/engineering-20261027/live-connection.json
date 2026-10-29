@@ -1,0 +1,12 @@
+{
+  "checked_at": "2026-10-27T17:44:45.182434+00:00",
+  "configured_stdio_initialized": true,
+  "updated_server_instructions": true,
+  "directory_read": true,
+  "context_schema_version": 2,
+  "byte_budget_verified": true,
+  "private_scope_denied": true,
+  "approval_tools_in_allowlist": false,
+  "personal_records_written": 0,
+  "limits": "Configured restricted credential and real stdio/HTTP bridge. Does not prove a host/model follows instructions; existing sessions can retain older instruction text. No personal source content copied into report."
+}

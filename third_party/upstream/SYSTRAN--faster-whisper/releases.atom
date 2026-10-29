@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:https://github.com/SYSTRAN/faster-whisper/releases</id>
+  <link type="text/html" rel="alternate" href="https://github.com/SYSTRAN/faster-whisper/releases"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/SYSTRAN/faster-whisper/releases.atom"/>
+  <title>Release notes from faster-whisper</title>
+  <updated>2025-10-31T11:31:14Z</updated>
+  <entry>
+    <id>tag:github.com,2008:Repository/600368121/v1.2.1</id>
+    <updated>2025-10-31T11:34:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/SYSTRAN/faster-whisper/releases/tag/v1.2.1"/>
+    <title>faster-whisper 1.2.1</title>
+    <content type="html">&lt;h2&gt;What&#39;s Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;only merge when &lt;code&gt;clip_timestamps&lt;/code&gt; are not provided by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/MahmoudAshraf97/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/MahmoudAshraf97&quot;&gt;@MahmoudAshraf97&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3327189395&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1345&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1345/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1345&quot;&gt;#1345&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fix: Prevent &amp;lt;|nocaptions|&amp;gt; tokens in BatchedInferencePipeline by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/mmichelli/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/mmichelli&quot;&gt;@mmichelli&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3314043183&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1338&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1338/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1338&quot;&gt;#1338&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Upgrade to Silero-VAD V6 by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/MahmoudAshraf97/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/MahmoudAshraf97&quot;&gt;@MahmoudAshraf97&lt;/a&gt; and &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/sssshhhhhh/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/sssshhhhhh&quot;&gt;@sssshhhhhh&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3504152485&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1373&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1373/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1373&quot;&gt;#1373&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Offload retry logic to hf hub by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/MahmoudAshraf97/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/MahmoudAshraf97&quot;&gt;@MahmoudAshraf97&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3572072737&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1382&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1382/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1382&quot;&gt;#1382&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Refinements for clip timestamps in batched inference by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/MahmoudAshraf97/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/MahmoudAshraf97&quot;&gt;@MahmoudAshraf97&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3513909194&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1376&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1376/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1376&quot;&gt;#1376&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;New Contributors&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/mmichelli/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/mmichelli&quot;&gt;@mmichelli&lt;/a&gt; made their first contribution in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3314043183&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1338&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1338/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1338&quot;&gt;#1338&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/sssshhhhhh/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/sssshhhhhh&quot;&gt;@sssshhhhhh&lt;/a&gt; made their first contribution in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3430076773&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1365&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1365/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1365&quot;&gt;#1365&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/compare/v1.2.0...v1.2.1&quot;&gt;&lt;tt&gt;v1.2.0...v1.2.1&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>MahmoudAshraf97</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/32404268?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/600368121/v1.2.0</id>
+    <updated>2025-08-06T00:32:35Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/SYSTRAN/faster-whisper/releases/tag/v1.2.0"/>
+    <title>faster-whisper 1.2.0</title>
+    <content type="html">&lt;h2&gt;What&#39;s Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;feat: allow passing specific revision to download by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/felixmosh/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/felixmosh&quot;&gt;@felixmosh&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3021643734&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1292&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1292/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1292&quot;&gt;#1292&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Support &lt;code&gt;distil-large-v3.5&lt;/code&gt; by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/MahmoudAshraf97/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/MahmoudAshraf97&quot;&gt;@MahmoudAshraf97&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3109698013&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1311&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1311/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1311&quot;&gt;#1311&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Feature: Allow loading of private HF models by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/r15hil/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/r15hil&quot;&gt;@r15hil&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3095413095&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1309&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1309/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1309&quot;&gt;#1309&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;bugfix: Get correct chunk index when restoring timestamps by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/MahmoudAshraf97/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/MahmoudAshraf97&quot;&gt;@MahmoudAshraf97&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3294760275&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1336&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1336/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1336&quot;&gt;#1336&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Remove Silence in Batched transcription by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/MahmoudAshraf97/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/MahmoudAshraf97&quot;&gt;@MahmoudAshraf97&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3054512414&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1297&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1297/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1297&quot;&gt;#1297&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;New Contributors&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/djpg/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/djpg&quot;&gt;@djpg&lt;/a&gt; made their first contribution in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2935401642&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1267&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1267/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1267&quot;&gt;#1267&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/felixmosh/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/felixmosh&quot;&gt;@felixmosh&lt;/a&gt; made their first contribution in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3021643734&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1292&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1292/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1292&quot;&gt;#1292&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/r15hil/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/r15hil&quot;&gt;@r15hil&lt;/a&gt; made their first contribution in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3095413095&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1309&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1309/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1309&quot;&gt;#1309&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/compare/v1.1.1...v1.2.0&quot;&gt;&lt;tt&gt;v1.1.1...v1.2.0&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>MahmoudAshraf97</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/32404268?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/600368121/v1.1.1</id>
+    <updated>2025-01-01T14:45:17Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/SYSTRAN/faster-whisper/releases/tag/v1.1.1"/>
+    <title>faster-whisper 1.1.1</title>
+    <content type="html">&lt;h2&gt;What&#39;s Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Brings back original VAD parameters naming by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Purfview/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Purfview&quot;&gt;@Purfview&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2704050375&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1181&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1181/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1181&quot;&gt;#1181&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Make batched &lt;code&gt;suppress_tokens&lt;/code&gt; behaviour same as in sequential by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Purfview/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Purfview&quot;&gt;@Purfview&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2726502378&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1194&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1194/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1194&quot;&gt;#1194&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fixes OOM Errors - too high RAM usage by VAD by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Purfview/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Purfview&quot;&gt;@Purfview&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2730898873&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1198&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1198/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1198&quot;&gt;#1198&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Add duration of audio and VAD removed duration to &lt;code&gt;BatchedInferencePipeline&lt;/code&gt; by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/greenw0lf/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/greenw0lf&quot;&gt;@greenw0lf&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2714649782&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1186&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1186/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1186&quot;&gt;#1186&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Fix &lt;code&gt;neg_threshold&lt;/code&gt; by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Purfview/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Purfview&quot;&gt;@Purfview&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2722743231&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1191&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1191/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1191&quot;&gt;#1191&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;New Contributors&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/greenw0lf/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/greenw0lf&quot;&gt;@greenw0lf&lt;/a&gt; made their first contribution in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2714649782&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1186&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1186/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1186&quot;&gt;#1186&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/compare/v1.1.0...v1.1.1&quot;&gt;&lt;tt&gt;v1.1.0...v1.1.1&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>MahmoudAshraf97</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/32404268?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/600368121/v1.1.0</id>
+    <updated>2024-11-21T17:25:40Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/SYSTRAN/faster-whisper/releases/tag/v1.1.0"/>
+    <title>faster-whisper 1.1.0</title>
+    <content type="html">&lt;h2&gt;New Features&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;New batched inference that is 4x faster and accurate, Refer to &lt;a href=&quot;https://github.com/SYSTRAN/faster-whisper/tree/v1.1.0?tab=readme-ov-file#batched-transcription&quot;&gt;README&lt;/a&gt; on usage instructions.&lt;/li&gt;
+&lt;li&gt;Support for the new &lt;code&gt;large-v3-turbo&lt;/code&gt; model.&lt;/li&gt;
+&lt;li&gt;VAD filter is now 3x faster on CPU.&lt;/li&gt;
+&lt;li&gt;Feature Extraction is now 3x faster.&lt;/li&gt;
+&lt;li&gt;Added &lt;code&gt;log_progress&lt;/code&gt; to &lt;code&gt;WhisperModel.transcribe&lt;/code&gt; to print transcription progress.&lt;/li&gt;
+&lt;li&gt;Added &lt;code&gt;multilingual&lt;/code&gt; option to transcription to allow transcribing multilingual audio. Note that Large models already have codeswitching capabilities, so this is mostly beneficial to &lt;code&gt;medium&lt;/code&gt; model or smaller.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;WhisperModel.detect_language&lt;/code&gt; now has the option to use VAD filter and improved language detection using &lt;code&gt;language_detection_segments&lt;/code&gt; and &lt;code&gt;language_detection_threshold&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Bug Fixes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Use correct features padding for encoder input when &lt;code&gt;chunk_length&lt;/code&gt; &amp;lt;30s&lt;/li&gt;
+&lt;li&gt;Use correct &lt;code&gt;seek&lt;/code&gt; value in output&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Other Changes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;replace &lt;code&gt;NamedTuple&lt;/code&gt; with &lt;code&gt;dataclass&lt;/code&gt; in &lt;code&gt;Word&lt;/code&gt;, &lt;code&gt;Segment&lt;/code&gt;, &lt;code&gt;TranscriptionOptions&lt;/code&gt;, &lt;code&gt;TranscriptionInfo&lt;/code&gt;, and &lt;code&gt;VadOptions&lt;/code&gt;, this allows conversion to &lt;code&gt;json&lt;/code&gt; without nesting. Note that &lt;code&gt;_asdict()&lt;/code&gt; method is still available in &lt;code&gt;Word&lt;/code&gt; and &lt;code&gt;Segment&lt;/code&gt; classes for backward compatibility but will be removed in the next release, you can use &lt;code&gt;dataclasses.asdict()&lt;/code&gt; instead.&lt;/li&gt;
+&lt;li&gt;Added new tests for development&lt;/li&gt;
+&lt;li&gt;Updated benchmarks in the Readme&lt;/li&gt;
+&lt;li&gt;use &lt;code&gt;jiwer&lt;/code&gt; instead of &lt;code&gt;evaluate&lt;/code&gt; in benchmarks&lt;/li&gt;
+&lt;li&gt;Filter out non_speech_tokens in suppressed tokens by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/jordimas/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/jordimas&quot;&gt;@jordimas&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2388339658&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/898&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/898/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/898&quot;&gt;#898&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;New Contributors&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Jiltseb/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Jiltseb&quot;&gt;@Jiltseb&lt;/a&gt; made their first contribution in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2314854257&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/856&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/856/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/856&quot;&gt;#856&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/heimoshuiyu/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/heimoshuiyu&quot;&gt;@heimoshuiyu&lt;/a&gt; made their first contribution in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2614195484&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/1092&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/1092/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/1092&quot;&gt;#1092&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/compare/v1.0.3...v1.1.0&quot;&gt;&lt;tt&gt;v1.0.3...v1.1.0&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>MahmoudAshraf97</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/32404268?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/600368121/v1.0.3</id>
+    <updated>2024-07-01T10:05:08Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/SYSTRAN/faster-whisper/releases/tag/v1.0.3"/>
+    <title>faster-whisper 1.0.3</title>
+    <content type="html">&lt;h2&gt;Upgrade Silero-Vad model to latest V5 version (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2379755552&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/884&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/884/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/884&quot;&gt;#884&lt;/a&gt;)&lt;/h2&gt;
+&lt;p&gt;Silero-vad V5 release: &lt;a href=&quot;https://github.com/snakers4/silero-vad/releases/tag/v5.0&quot;&gt;https://github.com/snakers4/silero-vad/releases/tag/v5.0&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;window_size_samples parameter is fixed at 512.&lt;/li&gt;
+&lt;li&gt;Change to use the state variable instead of the existing h and c variables.&lt;/li&gt;
+&lt;li&gt;Slightly changed internal logic, now some context (part of previous chunk) is passed along with the current chunk.&lt;/li&gt;
+&lt;li&gt;Change the dimensions of the state variable from 64 to 128.&lt;/li&gt;
+&lt;li&gt;Replace ONNX file with V5 version&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Other changes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Improve language detection when using clip_timestamps (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2332554624&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/867&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/867/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/867&quot;&gt;#867&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Docker file improvements (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2304329600&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/848&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/848/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/848&quot;&gt;#848&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Fix &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2297228551&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/839&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/issues/839/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/issues/839&quot;&gt;#839&lt;/a&gt; incorrect clip_timestamps being used in model (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2299242912&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/842&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/842/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/842&quot;&gt;#842&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>trungkienbkhn</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/48075757?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/600368121/v1.0.2</id>
+    <updated>2024-05-06T02:08:27Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/SYSTRAN/faster-whisper/releases/tag/v1.0.2"/>
+    <title>faster-whisper 1.0.2</title>
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Add support for distil-large-v3 (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2199958697&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/755&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/755/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/755&quot;&gt;#755&lt;/a&gt;)&lt;br&gt;
+The latest Distil-Whisper model, &lt;a href=&quot;https://huggingface.co/distil-whisper/distil-large-v3-ct2&quot; rel=&quot;nofollow&quot;&gt;distil-large-v3&lt;/a&gt;, is intrinsically designed to work with the OpenAI sequential algorithm.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Benchmarks (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2217956441&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/773&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/773/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/773&quot;&gt;#773&lt;/a&gt;)&lt;br&gt;
+Introduces functionality to measure benchmarking for memory, Word Error Rate (WER), and speed in Faster-whisper.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Support initializing more whisper model args (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2262851714&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/807&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/807/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/807&quot;&gt;#807&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Small bug fix:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;code breaks if audio is empty (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2216944361&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/768&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/768/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/768&quot;&gt;#768&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Foolproof: Disable VAD if clip_timestamps is in use (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2216987052&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/769&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/769/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/769&quot;&gt;#769&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;make faster_whisper.assets as a valid python package to distribute (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2218279601&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/774&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/774/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/774&quot;&gt;#774&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Loosen tokenizers version constraint (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2261820893&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/804&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/804/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/804&quot;&gt;#804&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;CUDA version and updated installation instructions (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2234492650&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/785&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/785/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/785&quot;&gt;#785&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;New feature from original openai Whisper project:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Feature/add hotwords (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2165442015&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/731&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/731/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/731&quot;&gt;#731&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Improve language detection (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2165854929&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/732&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/732/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/732&quot;&gt;#732&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>trungkienbkhn</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/48075757?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/600368121/v1.0.1</id>
+    <updated>2024-03-01T10:46:22Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/SYSTRAN/faster-whisper/releases/tag/v1.0.1"/>
+    <title>faster-whisper 1.0.1</title>
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;Bug fixes and performance improvements:
+&lt;ul&gt;
+&lt;li&gt;Update logic to get segment from features before encoding (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2150989480&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/705&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/705/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/705&quot;&gt;#705&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Fix window end heuristic for hallucination_silence_threshold (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2151457968&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/706&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/706/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/706&quot;&gt;#706&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>nguyendc-hub</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/13404287?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/600368121/v1.0.0</id>
+    <updated>2024-02-22T08:56:53Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/SYSTRAN/faster-whisper/releases/tag/v1.0.0"/>
+    <title>faster-whisper 1.0.0</title>
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;Support distil-whisper model (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;1988829580&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/557&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/557/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/557&quot;&gt;#557&lt;/a&gt;)&lt;br&gt;
+Robust knowledge distillation of the Whisper model via large-scale pseudo-labelling.&lt;br&gt;
+For more detail: &lt;a href=&quot;https://github.com/huggingface/distil-whisper&quot;&gt;https://github.com/huggingface/distil-whisper&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Upgrade ctranslate2 version to 4.0 to support CUDA 12 (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2143547431&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/694&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/694/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/694&quot;&gt;#694&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Upgrade PyAV version to 11.* to support Python3.12.x (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2129125254&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/679&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/679/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/679&quot;&gt;#679&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Small bug fixes&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Illogical &quot;Avoid computing higher temperatures on no_speech&quot; (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2097064352&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/652&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/652/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/652&quot;&gt;#652&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;broken prompt_reset_on_temperature (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2025263457&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/604&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/604/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/604&quot;&gt;#604&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Word timing tweaks (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2036898574&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/616&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/616/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/616&quot;&gt;#616&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;New improvements from original OpenAI Whisper project&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Skip silence around hallucinations (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2083827684&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/646&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/646/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/646&quot;&gt;#646&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Prevent infinite loop for out-of-bound timestamps in clip_timestamps (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;2146733494&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/SYSTRAN/faster-whisper/issues/697&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/SYSTRAN/faster-whisper/pull/697/hovercard&quot; href=&quot;https://github.com/SYSTRAN/faster-whisper/pull/697&quot;&gt;#697&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>nguyendc-hub</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/13404287?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/600368121/v0.10.1</id>
+    <updated>2024-02-22T12:08:53Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/SYSTRAN/faster-whisper/releases/tag/v0.10.1"/>
+    <title>faster-whisper 0.10.1</title>
+    <content type="html">&lt;p&gt;Fix the broken tag &lt;a href=&quot;https://github.com/SYSTRAN/faster-whisper/releases/tag/v0.10.0&quot;&gt;v0.10.0&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>nguyendc-hub</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/13404287?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/600368121/v0.10.0</id>
+    <updated>2024-02-22T11:55:44Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/SYSTRAN/faster-whisper/releases/tag/v0.10.0"/>
+    <title>faster-whisper 0.10.0</title>
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;Support &quot;large-v3&quot; model with
+&lt;ul&gt;
+&lt;li&gt;The ability to load &lt;code&gt;feature_size/num_mels&lt;/code&gt; and other from &lt;code&gt;preprocessor_config.json&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;A new language token for Cantonese (&lt;code&gt;yue&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Update &lt;code&gt;CTranslate2&lt;/code&gt; requirement to include the latest version 3.22.0&lt;/li&gt;
+&lt;li&gt;Update &lt;code&gt;tokenizers&lt;/code&gt; requirement to include the latest version 0.15&lt;/li&gt;
+&lt;li&gt;Change the hub to fetch models from &lt;a href=&quot;https://huggingface.co/Systran&quot; rel=&quot;nofollow&quot;&gt;Systran organization&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>nguyendc-hub</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/13404287?s=60&amp;v=4"/>
+  </entry>
+</feed>

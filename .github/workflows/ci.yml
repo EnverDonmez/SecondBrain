@@ -1,0 +1,29 @@
+name: verify
+on: [push, pull_request]
+jobs:
+  core:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - run: python -m pip install -c requirements.lock -e .[dev]
+      - run: python -m ruff check second_brain tests scripts
+      - run: python -m ruff format --check second_brain tests scripts
+      - run: python -m mypy second_brain --ignore-missing-imports --check-untyped-defs
+      - run: python -m pytest -q --basetemp=.test-tmp/ci --junitxml=reports/tests.xml
+      - run: node --check second_brain/static/app.js
+      - run: python scripts/scan_secrets.py
+      - run: python -m pip_audit --format json --output reports/dependency-audit.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: verification-${{ matrix.os }}
+          path: reports/

@@ -1,0 +1,24 @@
+{
+  "checked_at": "2026-10-29T22:37:47.041Z",
+  "synthetic_only": true,
+  "nav_sections": 3,
+  "create_approve_delete_controls": 0,
+  "login_source_read_search_mobile_menu_logout": true,
+  "independently_reviewed_clicks": 5,
+  "mobile": {
+    "scrollWidth": 375,
+    "sidebarHidden": "true",
+    "width": 390
+  },
+  "routes": [
+    {
+      "route": "activity",
+      "title": "Yapılanlar"
+    },
+    {
+      "route": "memories",
+      "title": "Hafızada neler var?"
+    }
+  ],
+  "console_errors": []
+}

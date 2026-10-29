@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:https://github.com/OSU-NLP-Group/HippoRAG/releases</id>
+  <link type="text/html" rel="alternate" href="https://github.com/OSU-NLP-Group/HippoRAG/releases"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/OSU-NLP-Group/HippoRAG/releases.atom"/>
+  <title>Release notes from HippoRAG</title>
+  <updated>2025-02-25T17:10:48Z</updated>
+  <entry>
+    <id>tag:github.com,2008:Repository/805115184/v1.0.0</id>
+    <updated>2025-02-27T17:32:45Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/OSU-NLP-Group/HippoRAG/releases/tag/v1.0.0"/>
+    <title>HippoRAG 1</title>
+    <content type="html">&lt;p&gt;This legacy release contains the first version of HippoRAG.&lt;/p&gt;</content>
+    <author>
+      <name>bernaljg</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/8228565?s=60&amp;v=4"/>
+  </entry>
+</feed>

@@ -1,0 +1,27 @@
+{
+  "checked_at": "2026-10-26T09:25:00.718000+00:00",
+  "health": {
+    "status": "ok",
+    "application": "second-brain-os",
+    "version": "0.1.0"
+  },
+  "runtime": {
+    "pid": 20484,
+    "cpu_seconds": 0.625,
+    "rss_bytes": 69816320,
+    "rss_kind": "current working set",
+    "platform": "win32"
+  },
+  "counts": {
+    "events": 0,
+    "assets": 0,
+    "memories": 0,
+    "skills": 0,
+    "jobs": 0
+  },
+  "counts_unchanged": true,
+  "integrity": "ok",
+  "new_context_contract_loaded": true,
+  "tool_discovery_contract_loaded": true,
+  "no_test_records_written": true
+}

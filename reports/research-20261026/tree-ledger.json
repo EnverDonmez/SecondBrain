@@ -1,0 +1,32 @@
+[
+  {
+    "repo": "NevaMind-AI/memU",
+    "revision": "42ef9fa3a8034f5817684cba23ef69fa70a58197",
+    "files": 271,
+    "truncated": false
+  },
+  {
+    "repo": "RamaAditya49/titen",
+    "revision": "23302a16d44d01f3759ef56287847f85352d0fc1",
+    "files": 706,
+    "truncated": false
+  },
+  {
+    "repo": "basicmachines-co/basic-memory",
+    "revision": "9643ec25918e8958629a668e3ce928981ab3ea36",
+    "files": 1921,
+    "truncated": false
+  },
+  {
+    "repo": "samrusani/AliceMemory",
+    "revision": "a6a5f49eebb7377f40b388f2ffe07290b05b85fb",
+    "files": 2038,
+    "truncated": false
+  },
+  {
+    "repo": "rohitg00/agentmemory",
+    "revision": "c5b8ebfb32eb6a08fe301d3bb75840f3597b66c8",
+    "files": 1067,
+    "truncated": false
+  }
+]

@@ -1,0 +1,10 @@
+{
+  "checked_at": "2026-10-28T05:35:11.849996+00:00",
+  "configured_stdio_initialized": true,
+  "direct_user_in_remember_and_correction_schemas": true,
+  "updated_instructions": true,
+  "restricted_read_verified": true,
+  "general_approval_denied": true,
+  "fixture_records_written": 0,
+  "limits": "Live protocol/schema and read-only access check. Actual auto-update behavior is exercised in isolated HTTP/MCP tests. Does not guarantee every host/model selects the correct intent or property."
+}

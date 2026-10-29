@@ -1,0 +1,92 @@
+{
+  "records": 10000,
+  "index": {
+    "indexed": 10000,
+    "chunks": 10000,
+    "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2"
+  },
+  "index_seconds": 120.97876749999705,
+  "parent_after_index": {
+    "pid": 22420,
+    "cpu_seconds": 46.891,
+    "rss_bytes": 61992960,
+    "rss_kind": "current working set",
+    "platform": "win32"
+  },
+  "worker_after_index": {
+    "running": true,
+    "pid": 31824,
+    "idle_seconds": 30.0,
+    "last_usage": {
+      "pid": 14652,
+      "cpu_seconds": 133.953,
+      "rss_bytes": 730607616,
+      "rss_kind": "current working set",
+      "platform": "win32"
+    }
+  },
+  "warmup_ms": 1723.393,
+  "sequential": {
+    "samples_ms": [
+      234.246,
+      239.652,
+      228.676,
+      225.817,
+      237.158,
+      231.045,
+      225.282,
+      237.649,
+      227.548,
+      243.529
+    ],
+    "p50_ms": 232.6455,
+    "p95_ms": 243.529
+  },
+  "concurrent_4": {
+    "samples_ms": [
+      808.75,
+      1078.152,
+      830.669,
+      859.511,
+      912.478,
+      871.947,
+      997.604,
+      798.006,
+      978.677,
+      869.422,
+      761.41,
+      780.804
+    ],
+    "p50_ms": 864.4665,
+    "p95_ms": 1078.152
+  },
+  "parent_after_search": {
+    "pid": 22420,
+    "cpu_seconds": 53.891,
+    "rss_bytes": 130654208,
+    "rss_kind": "current working set",
+    "platform": "win32"
+  },
+  "after_idle": {
+    "parent": {
+      "pid": 22420,
+      "cpu_seconds": 53.922,
+      "rss_bytes": 130613248,
+      "rss_kind": "current working set",
+      "platform": "win32"
+    },
+    "worker": {
+      "running": false,
+      "pid": null,
+      "idle_seconds": 30.0,
+      "last_usage": {
+        "pid": 14652,
+        "cpu_seconds": 134.812,
+        "rss_bytes": 730677248,
+        "rss_kind": "current working set",
+        "platform": "win32"
+      }
+    }
+  },
+  "limitations": "One local run; synthetic short records; p95 is maximum of 10/12 samples, no statistical confidence interval. Worker last_usage is a recent sample, not peak RSS."
+}

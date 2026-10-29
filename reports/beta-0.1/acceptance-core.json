@@ -1,0 +1,23 @@
+{
+  "checked_at": "2026-10-29T21:45:56.342476+00:00",
+  "version": "0.1.0",
+  "checks": {
+    "http_login_logout": true,
+    "core_mcp_tools": 4,
+    "source_grounded_save_and_read": true,
+    "direct_statement_correction_and_history": true,
+    "exact_retry_deduplicated": true,
+    "unchanged_context": true,
+    "scope_and_admin_denied": true,
+    "queued_file_import": true,
+    "encrypted_backup_verify_restore": true,
+    "restored_source_hashes_equal": true,
+    "mcp_autostart_after_process_exit": true,
+    "autostart_lifetime": "Host-managed; use Start.cmd for an independent background service.",
+    "sqlite_integrity": "ok"
+  },
+  "package_location": "installed-wheel",
+  "personal_records_written": 0,
+  "external_model_calls": 0,
+  "limits": "Synthetic local acceptance on Windows; does not measure general language understanding or year-long recall."
+}

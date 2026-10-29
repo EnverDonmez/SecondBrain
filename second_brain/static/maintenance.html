@@ -1,0 +1,12 @@
+<!doctype html>
+<html lang="tr">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="color-scheme" content="light dark"><title>Second Brain · Kişisel veritabanı</title><link rel="stylesheet" href="/static/style.css"><script type="module" src="/static/app.js"></script></head>
+<body>
+<div id="login" class="login-shell" hidden><form id="login-form" class="login-card"><div class="brand-symbol">✳</div><p class="eyebrow">SECOND BRAIN OS</p><h1>Kendi hafızan.<br>Her modelde.</h1><p>Yerel beynine güvenli erişim için <code>data/owner.token</code> dosyasındaki anahtarı gir.</p><label for="login-key">Sahip anahtarı</label><input id="login-key" type="password" required autocomplete="current-password"><button type="submit" class="primary">Beynimi aç <span>→</span></button><p id="login-error" class="error" role="alert"></p><small>Anahtar modellerle paylaşılmaz. Veriler bu bilgisayarda saklanır.</small></form></div>
+<div id="shell" class="shell" hidden>
+<aside class="sidebar"><a class="brand" href="#dashboard"><span class="brand-symbol">✳</span><span>second brain<small>PERSONAL OPERATING SYSTEM</small></span></a><div class="workspace"><span class="avatar">SB</span><div>Yerel çalışma alanı<small>Verinin sahibi sensin</small></div><span class="online-dot"></span></div><p class="nav-label">ÇALIŞMA ALANI</p><nav id="nav" aria-label="Ana menü"></nav><div class="sidebar-footer"><span class="online-dot"></span><span>Local-first · CPU ready<small id="footer-health">Bağlantı denetleniyor</small></span></div></aside>
+<div class="main-shell"><header class="topbar"><button id="menu-button" class="icon-button" aria-label="Menüyü aç">☰</button><div class="breadcrumb">Çalışma alanı <span>/</span> <strong id="crumb">Genel bakış</strong></div><div class="top-actions"><span class="private-pill">◈ Özel & yerel</span><button id="language-button" class="quiet">EN</button><button id="theme-button" class="icon-button" aria-label="Temayı değiştir">◐</button><button id="logout-button" class="quiet">Çıkış</button></div></header><main id="main" tabindex="-1"></main><footer class="page-footer"><span>SECOND BRAIN OS · v0.1 beta</span><span>One canonical brain. Replaceable cognitive engines.</span></footer></div>
+</div>
+<dialog id="dialog"><div id="dialog-content"></div><form method="dialog"><button class="quiet">Kapat / Close</button></form></dialog>
+<div id="toast" role="status" hidden></div>
+</body></html>

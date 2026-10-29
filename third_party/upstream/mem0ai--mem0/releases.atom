@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:https://github.com/mem0ai/mem0/releases</id>
+  <link type="text/html" rel="alternate" href="https://github.com/mem0ai/mem0/releases"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/mem0ai/mem0/releases.atom"/>
+  <title>Release notes from mem0</title>
+  <updated>2026-09-25T17:34:12Z</updated>
+  <entry>
+    <id>tag:github.com,2008:Repository/656099147/v2.2.1</id>
+    <updated>2026-09-25T17:35:20Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/mem0ai/mem0/releases/tag/v2.2.1"/>
+    <title>Mem0 Python SDK (v2.2.1)</title>
+    <content type="html">&lt;p&gt;&lt;strong&gt;Bug Fixes:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Core:&lt;/strong&gt; &lt;code&gt;add()&lt;/code&gt; (&lt;code&gt;Memory&lt;/code&gt; and &lt;code&gt;AsyncMemory&lt;/code&gt;) no longer reports records the vector store rejected as successful &lt;code&gt;ADD&lt;/code&gt; events. Only records that were actually inserted are written to history, entity-linked, and returned. If none of the extracted memories could be inserted, &lt;code&gt;add()&lt;/code&gt; now raises &lt;code&gt;VectorStoreError&lt;/code&gt; instead of returning memories that were never stored (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/7066&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/7066/hovercard&quot;&gt;#7066&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Core:&lt;/strong&gt; Restore the context-manager protocol on &lt;code&gt;Memory&lt;/code&gt; (&lt;code&gt;with Memory() as m:&lt;/code&gt;) and &lt;code&gt;AsyncMemory&lt;/code&gt; (&lt;code&gt;async with AsyncMemory() as m:&lt;/code&gt;), which closes the instance on exit (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/7354&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/7354/hovercard&quot;&gt;#7354&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;LLMs:&lt;/strong&gt; The AWS Bedrock Anthropic path now returns the first Converse content block that carries text instead of always reading &lt;code&gt;content[0]&lt;/code&gt;. Claude reasoning models can emit a &lt;code&gt;reasoningContent&lt;/code&gt; block before the text block, which previously made the call fail with a &lt;code&gt;KeyError&lt;/code&gt; (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/6369&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/6369/hovercard&quot;&gt;#6369&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Vector Stores:&lt;/strong&gt; Turbopuffer filters now apply every operator (&lt;code&gt;eq&lt;/code&gt;, &lt;code&gt;ne&lt;/code&gt;, &lt;code&gt;gt&lt;/code&gt;, &lt;code&gt;gte&lt;/code&gt;, &lt;code&gt;lt&lt;/code&gt;, &lt;code&gt;lte&lt;/code&gt;, &lt;code&gt;in&lt;/code&gt;, &lt;code&gt;nin&lt;/code&gt;). Only &lt;code&gt;gte&lt;/code&gt; and &lt;code&gt;lte&lt;/code&gt; were read before, so any other operator was silently dropped and the query returned unfiltered results. An unsupported operator now raises &lt;code&gt;ValueError&lt;/code&gt; (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/6564&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/6564/hovercard&quot;&gt;#6564&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Vector Stores:&lt;/strong&gt; Turbopuffer &lt;code&gt;search()&lt;/code&gt; scores now respect &lt;code&gt;distance_metric&lt;/code&gt;. With &lt;code&gt;euclidean_squared&lt;/code&gt;, the unbounded squared distance maps to &lt;code&gt;1 / (1 + distance)&lt;/code&gt; instead of &lt;code&gt;1 - distance&lt;/code&gt;, which went negative and inverted ranking for any distance above 1 (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/6559&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/6559/hovercard&quot;&gt;#6559&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Vector Stores:&lt;/strong&gt; S3 Vectors &lt;code&gt;search()&lt;/code&gt; scores are now metric-aware. With &lt;code&gt;euclidean&lt;/code&gt;, the distance maps to &lt;code&gt;1 / (1 + distance)&lt;/code&gt; instead of &lt;code&gt;max(0, 1 - distance)&lt;/code&gt;, which collapsed most scores to 0 (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/6547&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/6547/hovercard&quot;&gt;#6547&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>blazingretinol</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/266917184?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/656099147/ts-v3.3.1</id>
+    <updated>2026-09-25T17:36:35Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/mem0ai/mem0/releases/tag/ts-v3.3.1"/>
+    <title>Mem0 Node SDK (v3.3.1)</title>
+    <content type="html">&lt;p&gt;&lt;strong&gt;Bug Fixes:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Config (OSS):&lt;/strong&gt; &lt;code&gt;ConfigManager&lt;/code&gt; no longer injects OpenAI&#39;s default &lt;code&gt;baseURL&lt;/code&gt; and &lt;code&gt;model&lt;/code&gt; into non-OpenAI LLM providers. The defaults now apply only to &lt;code&gt;openai&lt;/code&gt; and &lt;code&gt;openai_structured&lt;/code&gt;, so a DeepSeek, xAI, or other provider config without an explicit &lt;code&gt;baseURL&lt;/code&gt; or &lt;code&gt;model&lt;/code&gt; falls back to that provider&#39;s own defaults and env vars (&lt;code&gt;DEEPSEEK_API_BASE&lt;/code&gt;, &lt;code&gt;XAI_API_BASE&lt;/code&gt;, ...) instead of pointing at OpenAI with an OpenAI model name (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/7350&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/7350/hovercard&quot;&gt;#7350&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Vector Stores:&lt;/strong&gt; Turbopuffer filters now apply every operator (&lt;code&gt;eq&lt;/code&gt;, &lt;code&gt;ne&lt;/code&gt;, &lt;code&gt;gt&lt;/code&gt;, &lt;code&gt;gte&lt;/code&gt;, &lt;code&gt;lt&lt;/code&gt;, &lt;code&gt;lte&lt;/code&gt;, &lt;code&gt;in&lt;/code&gt;, &lt;code&gt;nin&lt;/code&gt;). Only the range operators were read before, so &lt;code&gt;eq&lt;/code&gt;, &lt;code&gt;ne&lt;/code&gt;, &lt;code&gt;in&lt;/code&gt;, and &lt;code&gt;nin&lt;/code&gt; were silently dropped. A &lt;code&gt;&quot;*&quot;&lt;/code&gt; value now matches anything instead of nothing, an array value is treated as &lt;code&gt;in&lt;/code&gt;, and an unsupported operator throws (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/6578&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/6578/hovercard&quot;&gt;#6578&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Vector Stores:&lt;/strong&gt; Turbopuffer &lt;code&gt;search()&lt;/code&gt; with &lt;code&gt;euclidean_squared&lt;/code&gt; now maps the unbounded squared distance to &lt;code&gt;1 / (1 + distance)&lt;/code&gt; instead of &lt;code&gt;1 - distance&lt;/code&gt;, which went negative and inverted ranking for any distance above 1 (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/6580&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/6580/hovercard&quot;&gt;#6580&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Packaging:&lt;/strong&gt; &lt;code&gt;pg&lt;/code&gt;, &lt;code&gt;@types/pg&lt;/code&gt;, and &lt;code&gt;natural&lt;/code&gt; are now optional peer dependencies, and &lt;code&gt;pg&lt;/code&gt; / &lt;code&gt;@types/pg&lt;/code&gt; accept caret ranges instead of the exact &lt;code&gt;8.11.3&lt;/code&gt; / &lt;code&gt;8.11.0&lt;/code&gt; pins, so installing &lt;code&gt;mem0ai&lt;/code&gt; no longer pulls in &lt;code&gt;pg&lt;/code&gt; or conflicts with an app&#39;s own &lt;code&gt;pg&lt;/code&gt; version. The PGVector store now imports &lt;code&gt;pg&lt;/code&gt; only when it is used, so install it alongside &lt;code&gt;mem0ai&lt;/code&gt; (&lt;code&gt;npm install pg&lt;/code&gt;) if you use that store. &lt;code&gt;@types/jest&lt;/code&gt; moved from peer dependencies to dev dependencies (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/7450&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/7450/hovercard&quot;&gt;#7450&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>blazingretinol</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/266917184?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/656099147/v2.2.0</id>
+    <updated>2026-09-23T19:03:48Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/mem0ai/mem0/releases/tag/v2.2.0"/>
+    <title>Mem0 Python SDK (v2.2.0)</title>
+    <content type="html">&lt;p&gt;&lt;strong&gt;New Features:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Client:&lt;/strong&gt; Add User Profiles to &lt;code&gt;MemoryClient&lt;/code&gt; and &lt;code&gt;AsyncMemoryClient&lt;/code&gt;: &lt;code&gt;get_profile()&lt;/code&gt;, &lt;code&gt;generate_profile()&lt;/code&gt;, &lt;code&gt;get_profile_settings()&lt;/code&gt;, &lt;code&gt;update_profile_settings()&lt;/code&gt;, &lt;code&gt;sample_profiles()&lt;/code&gt;, and &lt;code&gt;get_profile_job()&lt;/code&gt;. A profile is a structured, always-current JSON summary of one user, shaped by a JSON Schema you configure per project and filled by an LLM from that user&#39;s memories. Generation is asynchronous. Every job POST carries an &lt;code&gt;Idempotency-Key&lt;/code&gt;; to retry a lost request without starting a second job, pass the same &lt;code&gt;idempotency_key&lt;/code&gt; on each attempt (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/7340&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/7340/hovercard&quot;&gt;#7340&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Bug Fixes:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Vector Stores:&lt;/strong&gt; Guard against &lt;code&gt;None&lt;/code&gt; timestamps in the Valkey vector store&#39;s &lt;code&gt;insert()&lt;/code&gt; and &lt;code&gt;update()&lt;/code&gt; paths. &lt;code&gt;created_at&lt;/code&gt; and &lt;code&gt;updated_at&lt;/code&gt; fields that were present in the payload but set to &lt;code&gt;None&lt;/code&gt; previously passed the &lt;code&gt;&quot;created_at&quot; not in payload&lt;/code&gt; / &lt;code&gt;&quot;updated_at&quot; in payload&lt;/code&gt; checks and raised &lt;code&gt;TypeError&lt;/code&gt; when &lt;code&gt;datetime.fromisoformat()&lt;/code&gt; received &lt;code&gt;None&lt;/code&gt;. Both paths now use &lt;code&gt;.get()&lt;/code&gt; with a truthiness check so &lt;code&gt;None&lt;/code&gt; values fall through to the default, matching the Redis provider&#39;s behavior (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/6993&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/6993/hovercard&quot;&gt;#6993&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>blazingretinol</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/266917184?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/656099147/ts-v3.3.0</id>
+    <updated>2026-09-23T19:05:42Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/mem0ai/mem0/releases/tag/ts-v3.3.0"/>
+    <title>Mem0 Node SDK (v3.3.0)</title>
+    <content type="html">&lt;p&gt;&lt;strong&gt;New Features:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Client:&lt;/strong&gt; Add User Profiles to &lt;code&gt;MemoryClient&lt;/code&gt;: &lt;code&gt;getProfile()&lt;/code&gt;, &lt;code&gt;generateProfile()&lt;/code&gt;, &lt;code&gt;getProfileSettings()&lt;/code&gt;, &lt;code&gt;updateProfileSettings()&lt;/code&gt;, &lt;code&gt;sampleProfiles()&lt;/code&gt;, and &lt;code&gt;getProfileJob()&lt;/code&gt;. A profile is a structured, always-current JSON summary of one user, shaped by a JSON Schema you configure per project and filled by an LLM from that user&#39;s memories. Generation is asynchronous. Every job POST carries an &lt;code&gt;Idempotency-Key&lt;/code&gt;; to retry a lost request without starting a second job, pass the same &lt;code&gt;idempotencyKey&lt;/code&gt; on each attempt (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/7340&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/7340/hovercard&quot;&gt;#7340&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>blazingretinol</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/266917184?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/656099147/pi-agent-v0.3.2</id>
+    <updated>2026-09-23T19:12:34Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/mem0ai/mem0/releases/tag/pi-agent-v0.3.2"/>
+    <title>Mem0 Pi Agent Plugin (v0.3.2)</title>
+    <content type="html">&lt;p&gt;&lt;strong&gt;Improvements:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Search:&lt;/strong&gt; The memory policy, &lt;code&gt;mem0_memory&lt;/code&gt; tool description, and prompt guidelines no longer ask the agent to search before answering anything that may depend on earlier context or to run several searches per question. They now ask for a search before repeating investigation or when earlier decisions, fixes, commands, or results may help (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/7420&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/7420/hovercard&quot;&gt;#7420&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Skills:&lt;/strong&gt; &lt;code&gt;context-loader&lt;/code&gt; makes one search instead of 2-4 parallel searches, and uses the search skill description from the other coding-agent plugins (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/7420&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/7420/hovercard&quot;&gt;#7420&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automatic recall:&lt;/strong&gt; Injected memories are introduced as &quot;Mem0 found these relevant memories from earlier work in this repository:&quot;, the same heading as the Python plugins. The old heading called them a shallow first pass and told the agent to search again (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/7420&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/7420/hovercard&quot;&gt;#7420&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>blazingretinol</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/266917184?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/656099147/opencode-v0.4.1</id>
+    <updated>2026-09-23T19:09:01Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/mem0ai/mem0/releases/tag/opencode-v0.4.1"/>
+    <title>Mem0 OpenCode Plugin (v0.4.1) </title>
+    <content type="html">&lt;p&gt;&lt;strong&gt;Improvements:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Search:&lt;/strong&gt; The &lt;code&gt;search_memories&lt;/code&gt; tool description no longer asks the agent to search proactively or to run several searches for multi-part questions. It now asks for a search before repeating investigation or when earlier decisions, fixes, commands, or results may help, the same wording as the other coding-agent plugins (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/7420&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/7420/hovercard&quot;&gt;#7420&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Session context:&lt;/strong&gt; Removed two system-context lines that told the agent to run 2 parallel searches before responding and 2-4 parallel searches for non-trivial tasks (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/7420&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/7420/hovercard&quot;&gt;#7420&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Skills:&lt;/strong&gt; &lt;code&gt;/mem0-search&lt;/code&gt; and &lt;code&gt;/mem0-context-loader&lt;/code&gt; make one &lt;code&gt;search_memories&lt;/code&gt; call instead of 2 and 2-4 parallel calls. &lt;code&gt;/mem0-context-loader&lt;/code&gt; now uses the search skill description from the other coding-agent plugins instead of asking to load at every new task or context switch (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/7420&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/7420/hovercard&quot;&gt;#7420&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>blazingretinol</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/266917184?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/656099147/openclaw-v1.2.1</id>
+    <updated>2026-09-23T19:11:05Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/mem0ai/mem0/releases/tag/openclaw-v1.2.1"/>
+    <title>Mem0 OpenClaw Plugin (v1.2.1)</title>
+    <content type="html">&lt;p&gt;&lt;strong&gt;Improvements:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Search:&lt;/strong&gt; The &lt;code&gt;memory_search&lt;/code&gt; tool description no longer asks the agent to search proactively or to run several searches for multi-part questions. It now asks for a search before repeating investigation or when earlier decisions, fixes, commands, or results may help. Recall strategies (&lt;code&gt;smart&lt;/code&gt;, &lt;code&gt;always&lt;/code&gt;, &lt;code&gt;manual&lt;/code&gt;) are unchanged (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/7420&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/7420/hovercard&quot;&gt;#7420&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>blazingretinol</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/266917184?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/656099147/deepseek-plugin-v0.3.2</id>
+    <updated>2026-09-23T19:13:43Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/mem0ai/mem0/releases/tag/deepseek-plugin-v0.3.2"/>
+    <title>Mem0 DeepSeek Plugin (v0.3.2)</title>
+    <content type="html">&lt;p&gt;&lt;strong&gt;Improvements:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Search:&lt;/strong&gt; The &lt;code&gt;search_memory&lt;/code&gt; tool description no longer asks the agent to search proactively before answering anything that may depend on earlier context. It now asks for a search before repeating investigation or when earlier decisions, fixes, commands, or results may help (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/7420&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/7420/hovercard&quot;&gt;#7420&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Automatic recall:&lt;/strong&gt; Injected memories are introduced as &quot;Mem0 found these relevant memories from earlier work:&quot;. The old heading called them a shallow first pass and told the agent to search again with &lt;code&gt;mem0_memory&lt;/code&gt;, a tool DeepSeek does not have (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/7420&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/7420/hovercard&quot;&gt;#7420&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>blazingretinol</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/266917184?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/656099147/vercel-ai-v3.0.3</id>
+    <updated>2026-09-18T11:23:39Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/mem0ai/mem0/releases/tag/vercel-ai-v3.0.3"/>
+    <title>Vercel AI SDK Provider (v3.0.3)</title>
+    <content type="html">&lt;p&gt;&lt;strong&gt;Improvements:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Client:&lt;/strong&gt; Inherits the three surface-identity headers (&lt;code&gt;X-Mem0-Source&lt;/code&gt;, &lt;code&gt;X-Application&lt;/code&gt;, &lt;code&gt;X-Mem0-Client&lt;/code&gt;) from the TypeScript SDK bump, so platform calls made through the Vercel AI SDK provider are now correctly attributed (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/7326&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/7326/hovercard&quot;&gt;#7326&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>blazingretinol</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/266917184?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/656099147/v2.1.0</id>
+    <updated>2026-09-18T11:11:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/mem0ai/mem0/releases/tag/v2.1.0"/>
+    <title>Mem0 Python SDK (v2.1.0)</title>
+    <content type="html">&lt;p&gt;&lt;strong&gt;Improvements:&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Client:&lt;/strong&gt; Requests now carry three surface-identity headers so the platform can tell which product made a call. &lt;code&gt;X-Mem0-Source&lt;/code&gt; names the surface and &lt;code&gt;X-Application&lt;/code&gt; the host app it runs inside, both set-once so a wrapper that already declared its identity keeps it. &lt;code&gt;X-Mem0-Client&lt;/code&gt; is append-only and carries &lt;code&gt;name/version&lt;/code&gt; per layer, outermost first, so a plugin calling this SDK reports the whole chain rather than only the last speaker. &lt;code&gt;MEM0_SOURCE&lt;/code&gt;, &lt;code&gt;MEM0_APPLICATION&lt;/code&gt; and &lt;code&gt;MEM0_CLIENT_STACK&lt;/code&gt; set them from the environment for wrappers that cannot pass options (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/7326&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/7326/hovercard&quot;&gt;#7326&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Client:&lt;/strong&gt; The client stack is bounded by dropping whole entries rather than slicing characters, and this SDK&#39;s own entry is the reserved one. Truncating the joined string could sever an identifier mid-name and the platform parsed the fragment as a real client (&lt;a href=&quot;https://github.com/mem0ai/mem0/pull/7326&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/mem0ai/mem0/pull/7326/hovercard&quot;&gt;#7326&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>blazingretinol</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/266917184?s=60&amp;v=4"/>
+  </entry>
+</feed>

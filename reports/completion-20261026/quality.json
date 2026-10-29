@@ -1,0 +1,83 @@
+{
+  "created_at": "2026-10-26T11:48:11.403275+00:00",
+  "checks": [
+    {
+      "command": [
+        "C:\\Users\\Pc\\Desktop\\SecondBrain\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "check",
+        "second_brain",
+        "tests",
+        "scripts"
+      ],
+      "exit_code": 0,
+      "seconds": 0.09092940000118688,
+      "stdout": "All checks passed!\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\Pc\\Desktop\\SecondBrain\\.venv\\Scripts\\python.exe",
+        "-m",
+        "ruff",
+        "format",
+        "--check",
+        "second_brain",
+        "tests",
+        "scripts"
+      ],
+      "exit_code": 0,
+      "seconds": 0.09157340000092518,
+      "stdout": "66 files already formatted\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\Pc\\Desktop\\SecondBrain\\.venv\\Scripts\\python.exe",
+        "-m",
+        "mypy",
+        "second_brain",
+        "--ignore-missing-imports",
+        "--check-untyped-defs"
+      ],
+      "exit_code": 0,
+      "seconds": 0.7421576999986428,
+      "stdout": "Success: no issues found in 37 source files\n",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "--check",
+        "second_brain/static/app.js"
+      ],
+      "exit_code": 0,
+      "seconds": 0.03679720000218367,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Program Files\\nodejs\\node.EXE",
+        "--check",
+        "second_brain/static/docs.js"
+      ],
+      "exit_code": 0,
+      "seconds": 0.03363639999952284,
+      "stdout": "",
+      "stderr": ""
+    },
+    {
+      "command": [
+        "C:\\Users\\Pc\\Desktop\\SecondBrain\\.venv\\Scripts\\python.exe",
+        "scripts/scan_secrets.py"
+      ],
+      "exit_code": 0,
+      "seconds": 2.7097403000007034,
+      "stdout": "{\"findings\": 0}\n",
+      "stderr": ""
+    }
+  ],
+  "all_passed": true
+}

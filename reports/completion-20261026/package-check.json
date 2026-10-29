@@ -1,0 +1,7 @@
+{
+  "wheel_crc_ok": true,
+  "source_crc_ok": true,
+  "new_modules_and_migration_in_wheel": true,
+  "private_runtime_files_in_source": false,
+  "completion_report_in_source": true
+}

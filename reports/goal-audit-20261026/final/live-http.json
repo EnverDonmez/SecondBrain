@@ -1,0 +1,67 @@
+{
+  "created_at": "2026-10-26T08:58:49.571156+00:00",
+  "read_only_requests": true,
+  "health": {
+    "status_code": 200,
+    "body": {
+      "status": "ok",
+      "application": "second-brain-os",
+      "version": "0.1.0"
+    }
+  },
+  "samples": [
+    {
+      "elapsed_ms": 29.912500000136788,
+      "runtime": {
+        "pid": 30220,
+        "cpu_seconds": 25.062,
+        "rss_bytes": 71745536,
+        "rss_kind": "current working set",
+        "platform": "win32"
+      },
+      "counts": {
+        "events": 0,
+        "assets": 0,
+        "memories": 0,
+        "skills": 0,
+        "jobs": 0
+      }
+    },
+    {
+      "elapsed_ms": 37.61070000109612,
+      "runtime": {
+        "pid": 30220,
+        "cpu_seconds": 25.078,
+        "rss_bytes": 71745536,
+        "rss_kind": "current working set",
+        "platform": "win32"
+      },
+      "counts": {
+        "events": 0,
+        "assets": 0,
+        "memories": 0,
+        "skills": 0,
+        "jobs": 0
+      }
+    },
+    {
+      "elapsed_ms": 35.62029999920924,
+      "runtime": {
+        "pid": 30220,
+        "cpu_seconds": 25.109,
+        "rss_bytes": 71745536,
+        "rss_kind": "current working set",
+        "platform": "win32"
+      },
+      "counts": {
+        "events": 0,
+        "assets": 0,
+        "memories": 0,
+        "skills": 0,
+        "jobs": 0
+      }
+    }
+  ],
+  "cpu_seconds_between_samples": 0.0470000000000006,
+  "note": "Includes three status requests; short sample, not a long leak soak."
+}

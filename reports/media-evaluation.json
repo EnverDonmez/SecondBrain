@@ -1,0 +1,83 @@
+{
+  "data": "generated image/PDF/video and synthetic Windows TTS; no personal media",
+  "processors": {
+    "ocr": {
+      "state": "done",
+      "error": null,
+      "seconds": 1.566,
+      "extracted_text": [
+        "SECONDBRAINMEMORYTEST"
+      ],
+      "all_candidates_untrusted": true,
+      "original_bytes_equal": true,
+      "result": {
+        "candidate_id": "e0a83f9c560b9cbec5f212a3e89f2d31",
+        "extracted": true,
+        "operation": "ocr"
+      }
+    },
+    "pdf_ocr": {
+      "state": "done",
+      "error": null,
+      "seconds": 0.677,
+      "extracted_text": [
+        "SECONDBRAINMEMORYTEST"
+      ],
+      "all_candidates_untrusted": true,
+      "original_bytes_equal": true,
+      "result": {
+        "candidate_ids": [
+          "8e318dbd8a5511622c77028f045cf891"
+        ],
+        "candidates": 1,
+        "operation": "pdf_ocr",
+        "original_preserved": true
+      }
+    },
+    "video": {
+      "state": "done",
+      "error": null,
+      "seconds": 0.588,
+      "extracted_text": [
+        "SECONDBRAINMEMORYTEST"
+      ],
+      "all_candidates_untrusted": true,
+      "original_bytes_equal": true,
+      "result": {
+        "candidate_ids": [
+          "0b4324a3b2cb45212ad35b80543921c4"
+        ],
+        "candidates": 1,
+        "operation": "video",
+        "original_preserved": true
+      }
+    },
+    "transcribe": {
+      "state": "done",
+      "error": null,
+      "seconds": 0.855,
+      "extracted_text": [
+        "Second Brain Stores Local Memories.",
+        "Please answer in short clear sentences."
+      ],
+      "all_candidates_untrusted": true,
+      "original_bytes_equal": true,
+      "result": {
+        "candidate_ids": [
+          "bbdd12a81fbe5b8f35c22052f990813a",
+          "d4fb085df536637a61321cdfce7578cc"
+        ],
+        "candidates": 2,
+        "operation": "transcribe",
+        "original_preserved": true
+      }
+    }
+  },
+  "runtime": {
+    "pid": 17892,
+    "cpu_seconds": 6.125,
+    "rss_bytes": 273563648,
+    "rss_kind": "current working set",
+    "platform": "win32"
+  }
+}

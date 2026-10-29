@@ -1,0 +1,13 @@
+{
+  "isolated_venv": true,
+  "optional_packages_absent": {
+    "fastembed": true,
+    "mem0": true,
+    "av": true,
+    "faster_whisper": true,
+    "rapidocr_onnxruntime": true
+  },
+  "installed_package": true,
+  "pip_check": "passed",
+  "http_mcp_acceptance": "acceptance-core.json"
+}

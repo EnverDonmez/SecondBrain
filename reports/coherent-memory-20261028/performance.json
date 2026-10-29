@@ -1,0 +1,20 @@
+{
+  "measured_at": "2026-10-28T07:27:57.863622+00:00",
+  "synthetic_records": 5001,
+  "warm_fresh_context": {
+    "runs": 30,
+    "median_ms": 73.455,
+    "p95_ms": 75.695
+  },
+  "warm_unchanged_context": {
+    "runs": 30,
+    "median_ms": 4.013,
+    "p95_ms": 4.924
+  },
+  "fresh_bytes": 2856,
+  "unchanged_bytes": 188,
+  "budget_upper_bound": 3000,
+  "additional_model_calls": 0,
+  "unchanged_full_search_calls": 0,
+  "limits": "One process, synthetic hub query, warm nearest-rank p95 over 30 runs. Bytes are conservative serialization units, not provider tokens or billing. Metadata checks still query SQLite indexes. A retained prior packet is necessary to reuse context; no end-to-end answer accuracy claim."
+}

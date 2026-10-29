@@ -1,0 +1,69 @@
+{
+  "measured_at": "2026-10-27T17:43:11.031953+00:00",
+  "phase": "after",
+  "method": "Four synthetic engineering probes on one pooled local store. Not QA accuracy, Turkish language coverage or a comparison with upstream products.",
+  "source_sha256": {
+    "retrieval.py": "0c8bb26c07ce76d04dfb53ae5cfee6e34e773c0c6b57b91fa3105fb10dc4f7ce",
+    "directory.py": "c495dd3fded90add863cc5f848add86b7de41a40ad183a9930aa185a88d14fbe",
+    "core.py": "d62aa51e52f0b0f46670b9b9cc5f7f512d0e38ba9790955b1052ce8ac3130dc4"
+  },
+  "probes": [
+    {
+      "scenario": "direct_vs_topic_distraction",
+      "all_required_evidence": true,
+      "recall_at_k": 1.0,
+      "precision_at_k": 1.0,
+      "k": 4,
+      "elapsed_ms": 7.332,
+      "candidate_records": 29
+    },
+    {
+      "scenario": "explicit_vs_topic_hub",
+      "all_required_evidence": true,
+      "recall_at_k": 1.0,
+      "precision_at_k": 1.0,
+      "k": 2,
+      "elapsed_ms": 6.444,
+      "candidate_records": 30
+    },
+    {
+      "scenario": "old_specific_source_vs_recent_weak_matches",
+      "correct_source_at_1": true,
+      "context_bytes": 1454,
+      "budget": 2000
+    },
+    {
+      "scenario": "unresolved_dispute_visibility",
+      "review_signal": true,
+      "disputed_claim_promoted": false
+    }
+  ],
+  "budget_checks": [
+    {
+      "budget": 512,
+      "bytes": 408,
+      "omission_signal": true,
+      "records": 0
+    },
+    {
+      "budget": 800,
+      "bytes": 736,
+      "omission_signal": true,
+      "records": 1
+    },
+    {
+      "budget": 1500,
+      "bytes": 1135,
+      "omission_signal": true,
+      "records": 2
+    },
+    {
+      "budget": 3000,
+      "bytes": 2871,
+      "omission_signal": true,
+      "records": 6
+    }
+  ],
+  "additional_model_calls": 0,
+  "limits": "Small diagnostic corpus; timings are a single run, not a latency distribution. Gold IDs are used only by the evaluator, not passed as search inputs."
+}

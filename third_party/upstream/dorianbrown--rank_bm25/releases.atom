@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:https://github.com/dorianbrown/rank_bm25/releases</id>
+  <link type="text/html" rel="alternate" href="https://github.com/dorianbrown/rank_bm25/releases"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/dorianbrown/rank_bm25/releases.atom"/>
+  <title>Release notes from rank_bm25</title>
+  <updated>2022-02-16T12:05:23Z</updated>
+  <entry>
+    <id>tag:github.com,2008:Repository/166720547/0.2.2</id>
+    <updated>2022-02-16T12:10:16Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/dorianbrown/rank_bm25/releases/tag/0.2.2"/>
+    <title>0.2.2</title>
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;Added support for non-iterable corpuses (eg. generators)&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>dorianbrown</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7283679?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/166720547/0.2.1</id>
+    <updated>2021-02-08T17:48:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/dorianbrown/rank_bm25/releases/tag/0.2.1"/>
+    <title>0.2.1</title>
+    <content>No content.</content>
+    <author>
+      <name>dorianbrown</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/7283679?s=60&amp;v=4"/>
+  </entry>
+</feed>

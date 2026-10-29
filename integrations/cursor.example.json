@@ -1,0 +1,52 @@
+{
+  "mcpServers": {
+    "second-brain": {
+      "command": "C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe",
+      "args": [
+        "-m",
+        "second_brain",
+        "mcp"
+      ],
+      "cwd": "C:\\path\\to\\SecondBrain",
+      "env": {
+        "SB_TOKEN": "REPLACE_WITH_RESTRICTED_MODEL_TOKEN"
+      }
+    }
+  },
+  "hooks": {
+    "version": 1,
+    "hooks": {
+      "sessionStart": [
+        {
+          "command": "\"C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe\" -m second_brain hook --client cursor"
+        }
+      ],
+      "beforeSubmitPrompt": [
+        {
+          "command": "\"C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe\" -m second_brain hook --client cursor"
+        }
+      ],
+      "preToolUse": [
+        {
+          "command": "\"C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe\" -m second_brain hook --client cursor"
+        }
+      ],
+      "postToolUse": [
+        {
+          "command": "\"C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe\" -m second_brain hook --client cursor"
+        }
+      ],
+      "afterAgentResponse": [
+        {
+          "command": "\"C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe\" -m second_brain hook --client cursor"
+        }
+      ],
+      "sessionEnd": [
+        {
+          "command": "\"C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe\" -m second_brain hook --client cursor"
+        }
+      ]
+    }
+  },
+  "activation": "Merge with the host's existing configuration, replace the token placeholder, restart and run a live capture smoke test."
+}

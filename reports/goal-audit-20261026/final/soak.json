@@ -1,0 +1,68 @@
+{
+  "created_at": "2026-10-26T08:59:36.885724+00:00",
+  "seconds": 60.04580689999966,
+  "samples": [
+    {
+      "elapsed_s": 0,
+      "pid": 30788,
+      "cpu_seconds": 0.469,
+      "rss_bytes": 56909824,
+      "rss_kind": "current working set",
+      "platform": "win32"
+    },
+    {
+      "elapsed_s": 10.009315999999671,
+      "pid": 30788,
+      "cpu_seconds": 0.484,
+      "rss_bytes": 57475072,
+      "rss_kind": "current working set",
+      "platform": "win32"
+    },
+    {
+      "elapsed_s": 20.023402599999827,
+      "pid": 30788,
+      "cpu_seconds": 0.484,
+      "rss_bytes": 57487360,
+      "rss_kind": "current working set",
+      "platform": "win32"
+    },
+    {
+      "elapsed_s": 30.02451629999996,
+      "pid": 30788,
+      "cpu_seconds": 0.562,
+      "rss_bytes": 57548800,
+      "rss_kind": "current working set",
+      "platform": "win32"
+    },
+    {
+      "elapsed_s": 40.027089699999124,
+      "pid": 30788,
+      "cpu_seconds": 0.594,
+      "rss_bytes": 57712640,
+      "rss_kind": "current working set",
+      "platform": "win32"
+    },
+    {
+      "elapsed_s": 50.03109770000083,
+      "pid": 30788,
+      "cpu_seconds": 0.641,
+      "rss_bytes": 57716736,
+      "rss_kind": "current working set",
+      "platform": "win32"
+    },
+    {
+      "elapsed_s": 60.04580689999966,
+      "pid": 30788,
+      "cpu_seconds": 0.703,
+      "rss_bytes": 57651200,
+      "rss_kind": "current working set",
+      "platform": "win32"
+    }
+  ],
+  "cpu_core_percent": 0.38970248228940246,
+  "rss_delta_bytes": 741376,
+  "connections": 118,
+  "connections_per_second": 1.9651663636816024,
+  "worker_stopped": true,
+  "limitations": "60 seconds of an empty synthetic worker; not a multi-hour leak or loaded-server test."
+}

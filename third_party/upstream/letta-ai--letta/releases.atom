@@ -1,0 +1,292 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:https://github.com/letta-ai/letta/releases</id>
+  <link type="text/html" rel="alternate" href="https://github.com/letta-ai/letta/releases"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/letta-ai/letta/releases.atom"/>
+  <title>Release notes from letta</title>
+  <updated>2026-05-14T16:58:54Z</updated>
+  <entry>
+    <id>tag:github.com,2008:Repository/703411624/0.16.8</id>
+    <updated>2026-05-14T17:14:24Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/letta-ai/letta/releases/tag/0.16.8"/>
+    <title>v0.16.8</title>
+    <content type="html">&lt;h2&gt;What&#39;s Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;fix: workflows update by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/cpacker/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/cpacker&quot;&gt;@cpacker&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;4221254453&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3292&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3292/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3292&quot;&gt;#3292&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix(security): use JSON instead of pickle for sandbox-&amp;gt;server tool result transport by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/kianjones9/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/kianjones9&quot;&gt;@kianjones9&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;4440345240&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3343&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3343/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3343&quot;&gt;#3343&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/letta-ai/letta/compare/0.16.7...0.16.8&quot;&gt;&lt;tt&gt;0.16.7...0.16.8&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>kianjones9</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/11655409?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/703411624/0.16.7</id>
+    <updated>2026-04-02T18:01:30Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/letta-ai/letta/releases/tag/0.16.7"/>
+    <title>v0.16.7</title>
+    <content type="html">&lt;h1&gt;Letta Server 0.16.7 Release Notes&lt;/h1&gt;
+&lt;p&gt;&lt;strong&gt;173 commits since 0.16.6&lt;/strong&gt; | Released March 31, 2026&lt;/p&gt;
+&lt;h2&gt;Highlights&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Self-hosted users: this is a big upgrade.&lt;/strong&gt; The default global context window is raised from 32k to 128k, the context window reset bug (LET-7991) is fixed, and compaction has been overhauled. If you&#39;ve been running curl commands to patch your config after every ADE load, most of that pain should be gone.&lt;/p&gt;
+&lt;h2&gt;Breaking Changes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Block limits are no longer enforced&lt;/strong&gt; -- block limit validation has been deprecated and removed from the git memory sync path (#9977, #9983). Blocks can now grow freely. If you were relying on limits to cap per-turn cost, you&#39;ll need to manage block size via other means.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Context Window &amp;amp; Compaction (21 fixes)&lt;/h2&gt;
+&lt;p&gt;The biggest category of fixes. Self-hosted users were hit hardest by these.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Global context window default raised from 32k to 128k&lt;/strong&gt; (#9993) -- self-hosted servers no longer default to 32k for unknown models&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Context window preserved on conversation model override&lt;/strong&gt; (LET-7991, #9986) -- the bug where non-default conversations fell back to 32k is fixed&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Compaction overflow fixes&lt;/strong&gt; (#9897) -- addresses the double-compaction and runaway compaction loops&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Compaction model resets on agent model change&lt;/strong&gt; (#10031) -- switching your agent&#39;s model no longer leaves the old summarizer model behind&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Summarizer prompt improved&lt;/strong&gt; (#10314) -- now remembers plan files, GitHub PRs, and other structured content during summarization&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BYOK summarization fixed&lt;/strong&gt; (#10152) -- summarizer provider fallback no longer fires for BYOK requests&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Better error surfacing&lt;/strong&gt; -- context window exceeded errors now have descriptive messages (#10135, #10171), and system prompt size warnings during compaction (#10058)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Gemini (2 fixes)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;thought_signature preserved on function calls without reasoning&lt;/strong&gt; (LET-8166, #10237) -- the bug blocking all Gemini 2.5+/3.x multi-turn tool calling is fixed&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Streaming interface crash fixed&lt;/strong&gt; (#10306) -- &lt;code&gt;self.model&lt;/code&gt; now initialized in &lt;code&gt;SimpleGeminiStreamingInterface&lt;/code&gt; constructor (LET-8129)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Memory &amp;amp; memfs (10 fixes, 4 features)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;available_skills block no longer duplicates in system prompt&lt;/strong&gt; (#10006, #10011, #10021) -- three separate fixes for the skills block multiplying and inflating context (LET-8013)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Git memory sync deferred until stream close&lt;/strong&gt; (#9951) -- reduces mid-stream sync failures&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;System prompt recompiles on agent creation with git memory&lt;/strong&gt; (#9950) -- new git-enabled agents no longer start with empty compiled context&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Projection-style git memory rendering&lt;/strong&gt; (#10211) -- new rendering approach for memfs content in system prompts&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Manual block edits via API trigger recompile&lt;/strong&gt; (#9775) -- no more stale context after API block updates&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Conversation recompile endpoint&lt;/strong&gt; (#9848) -- &lt;code&gt;POST /v1/conversations/{id}/recompile&lt;/code&gt; is now available&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Conversations (7 features)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Conversation forking&lt;/strong&gt; (#10234, #10263) -- fork conversations with shared message history, including the default conversation&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Sort conversations by last_message_at&lt;/strong&gt; (#10190)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Idempotent conversation streaming&lt;/strong&gt; (#10147) -- OTID-based retry safety&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Request-scoped system overrides&lt;/strong&gt; (#10227) -- per-request system prompt modifications&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Streaming &amp;amp; Reliability (13 fixes)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;OTID retry hardening&lt;/strong&gt; (#10229, #10209) -- stream resume with backoff, race condition fixes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Conversation lock released earlier&lt;/strong&gt; (#10203) -- reduces contention on concurrent requests&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Better error messages&lt;/strong&gt; (#10207) -- known LLM errors now surface descriptive messages instead of generic failures&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;BYOK error tagging&lt;/strong&gt; (#10204, #10311) -- errors now include &lt;code&gt;is_byok&lt;/code&gt; flag for debugging&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;stream_incomplete diagnosis&lt;/strong&gt; (#10033) -- BaseException catching to identify root causes&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Model Support (14 features, 20 fixes)&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;GPT-5.4&lt;/strong&gt; -- full support including mini, nano, and fast variants (#9798, #10043)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;GLM-5&lt;/strong&gt; -- GLM-5, GLM-5.1, GLM-5 Turbo, GLM-4.7 (#10317, #10285, #9994)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;MiniMax M2.7&lt;/strong&gt; (#10093)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Baseten&lt;/strong&gt; -- added as provider with full frontend integration, serverless auto mode, reasoning support (#10250, #9846, #9998)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fireworks&lt;/strong&gt; (#9780) and &lt;strong&gt;zAI coding provider&lt;/strong&gt; (#10064)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Opus 4.6 / Sonnet 4.6&lt;/strong&gt; -- adaptive thinking tokens no longer incorrectly capped (#9795)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OpenAI proxy cleanup&lt;/strong&gt; -- extra fields removed (#9949), parallel tool calling supported (#9879)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Security&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Local filesystem access blocked via ImageContent bypass&lt;/strong&gt; (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;4156769300&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3256&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3256/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3256&quot;&gt;#3256&lt;/a&gt;, #10329) -- &lt;code&gt;file:///&lt;/code&gt; URLs in images are now rejected&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Internal MCP server targets blocked&lt;/strong&gt; (#10009)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SECURITY.md added&lt;/strong&gt; (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;4079737192&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3228&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3228/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3228&quot;&gt;#3228&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Infrastructure&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Readiness enforcement scaffold (M1-M3 metrics pipeline) -- request pressure, DB pool, SSE lifecycle, event loop lag monitoring&lt;/li&gt;
+&lt;li&gt;Multi-agent tools moved to less privileged execution environment (#9779)&lt;/li&gt;
+&lt;li&gt;Subagent agents auto-hidden on create (#10096)&lt;/li&gt;
+&lt;li&gt;WebSocket transport for OpenAI Responses API (#9841)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;p&gt;&lt;strong&gt;For self-hosted users upgrading from 0.16.6:&lt;/strong&gt; This release addresses the majority of issues reported in the community over the past month. The context window default change alone (#9993) eliminates the most common source of &quot;everything breaks when I open ADE&quot; complaints.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/letta-ai/letta/compare/0.16.6...0.16.7&quot;&gt;&lt;tt&gt;0.16.6...0.16.7&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>carenthomas</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/5600960?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/703411624/0.16.6</id>
+    <updated>2026-03-05T22:51:28Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/letta-ai/letta/releases/tag/0.16.6"/>
+    <title>v0.16.6</title>
+    <content type="html">&lt;h2&gt;Highlights&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Expanded Conversations API support for &lt;strong&gt;default conversation / agent-direct mode&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;New conversations now initialize with a &lt;strong&gt;compiled system message at creation time&lt;/strong&gt;.&lt;/li&gt;
+&lt;li&gt;Fixed &lt;code&gt;model_settings.max_output_tokens&lt;/code&gt; default behavior so it &lt;strong&gt;does not silently override&lt;/strong&gt; existing &lt;code&gt;max_tokens&lt;/code&gt; unless explicitly set.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Conversations API updates&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Added support for &lt;code&gt;conversation_id=&quot;default&quot;&lt;/code&gt; + &lt;code&gt;agent_id&lt;/code&gt; across conversation endpoints (send/list/cancel/compact/stream retrieve).&lt;/li&gt;
+&lt;li&gt;Kept backwards compatibility for &lt;code&gt;conversation_id=agent-*&lt;/code&gt; (deprecated path).&lt;/li&gt;
+&lt;li&gt;Added lock-key handling in agent-direct flows to avoid concurrent execution conflicts.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Conversation/system-message behavior&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Conversation creation now compiles and persists a system message immediately.&lt;/li&gt;
+&lt;li&gt;This captures current memory state at conversation start and removes first-message timing edge cases.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Model/config updates&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Added model support for:
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;gpt-5.3-codex&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;gpt-5.3-chat-latest&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Updated defaults:
+&lt;ul&gt;
+&lt;li&gt;context window default: &lt;strong&gt;32k → 128k&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;CORE_MEMORY_BLOCK_CHAR_LIMIT&lt;/code&gt;: &lt;strong&gt;20k → 100k&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;Anthropic model settings now allow &lt;code&gt;effort=&quot;max&quot;&lt;/code&gt; where supported.&lt;/li&gt;
+&lt;li&gt;Gemini request timeout default increased to &lt;strong&gt;600s&lt;/strong&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Memory / memfs updates&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Git-backed memory frontmatter no longer emits &lt;code&gt;limit&lt;/code&gt; (legacy &lt;code&gt;limit&lt;/code&gt; keys are removed on merge).&lt;/li&gt;
+&lt;li&gt;Skills sync now maps only &lt;code&gt;skills/{name}/SKILL.md&lt;/code&gt; to &lt;code&gt;skills/{name}&lt;/code&gt; block labels.&lt;/li&gt;
+&lt;li&gt;Other markdown under &lt;code&gt;skills/&lt;/code&gt; is intentionally ignored for block sync.&lt;/li&gt;
+&lt;li&gt;Memory filesystem rendering now includes descriptions for non-&lt;code&gt;system/&lt;/code&gt; files and condenses skill display.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Reliability and compatibility fixes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Added explicit &lt;code&gt;LLMEmptyResponseError&lt;/code&gt; handling for empty Anthropic streaming responses.&lt;/li&gt;
+&lt;li&gt;Improved Fireworks compatibility by stripping unsupported reasoning fields.&lt;/li&gt;
+&lt;li&gt;Improved Z.ai compatibility by mapping &lt;code&gt;max_completion_tokens&lt;/code&gt; to &lt;code&gt;max_tokens&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/letta-ai/letta/compare/0.16.5...0.16.6&quot;&gt;&lt;tt&gt;0.16.5...0.16.6&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>carenthomas</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/5600960?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/703411624/0.16.5</id>
+    <updated>2026-02-24T19:02:50Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/letta-ai/letta/releases/tag/0.16.5"/>
+    <title>v0.16.5</title>
+    <content type="html">&lt;h2&gt;What&#39;s Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;chore: bump version 0.16.5 by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/carenthomas/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/carenthomas&quot;&gt;@carenthomas&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3985329964&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3202&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3202/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3202&quot;&gt;#3202&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/letta-ai/letta/compare/0.16.4...0.16.5&quot;&gt;&lt;tt&gt;0.16.4...0.16.5&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>carenthomas</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/5600960?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/703411624/0.16.4</id>
+    <updated>2026-01-29T20:50:40Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/letta-ai/letta/releases/tag/0.16.4"/>
+    <title>v0.16.4</title>
+    <content type="html">&lt;h2&gt;What&#39;s Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;fix: update gh templates by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/cpacker/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/cpacker&quot;&gt;@cpacker&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3827359080&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3155&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3155/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3155&quot;&gt;#3155&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;chore: release 0.16.3  by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/sarahwooders/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/sarahwooders&quot;&gt;@sarahwooders&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3831528116&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3158&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3158/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3158&quot;&gt;#3158&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;chore: bump v0.16.4 by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/carenthomas/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/carenthomas&quot;&gt;@carenthomas&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3872530439&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3168&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3168/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3168&quot;&gt;#3168&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/letta-ai/letta/compare/0.16.2...0.16.4&quot;&gt;&lt;tt&gt;0.16.2...0.16.4&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>carenthomas</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/5600960?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/703411624/0.16.2</id>
+    <updated>2026-01-12T19:04:44Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/letta-ai/letta/releases/tag/0.16.2"/>
+    <title>v0.16.2</title>
+    <content type="html">&lt;h2&gt;What&#39;s Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;docs: update README.md by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/cpacker/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/cpacker&quot;&gt;@cpacker&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3745303164&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3110&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3110/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3110&quot;&gt;#3110&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Update contributing.md with corrected local setup steps by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/neversettle17-101/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/neversettle17-101&quot;&gt;@neversettle17-101&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3765411132&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3123&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3123/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3123&quot;&gt;#3123&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;chore: bump version 0.16.2 by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/carenthomas/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/carenthomas&quot;&gt;@carenthomas&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3805590351&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3140&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3140/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3140&quot;&gt;#3140&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;New Contributors&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/neversettle17-101/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/neversettle17-101&quot;&gt;@neversettle17-101&lt;/a&gt; made their first contribution in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3765411132&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3123&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3123/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3123&quot;&gt;#3123&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/letta-ai/letta/compare/0.16.1...0.16.2&quot;&gt;&lt;tt&gt;0.16.1...0.16.2&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>carenthomas</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/5600960?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/703411624/0.16.1</id>
+    <updated>2025-12-18T01:37:57Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/letta-ai/letta/releases/tag/0.16.1"/>
+    <title>v0.16.1</title>
+    <content type="html">&lt;h2&gt;What&#39;s Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Correct provider name for openai-proxy in LLMConfig by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/SootyOwl/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/SootyOwl&quot;&gt;@SootyOwl&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3737177568&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3097&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3097/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3097&quot;&gt;#3097&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;chore: bump v0.16.1 by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/carenthomas/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/carenthomas&quot;&gt;@carenthomas&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3741057765&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3107&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3107/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3107&quot;&gt;#3107&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/letta-ai/letta/compare/0.16.0...0.16.1&quot;&gt;&lt;tt&gt;0.16.0...0.16.1&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>carenthomas</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/5600960?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/703411624/0.16.0</id>
+    <updated>2025-12-15T20:12:52Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/letta-ai/letta/releases/tag/0.16.0"/>
+    <title>v0.16.0</title>
+    <content type="html">&lt;h2&gt;What&#39;s Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Updated readme with actual argument by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Godofnothing/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Godofnothing&quot;&gt;@Godofnothing&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3670465579&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3083&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3083/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3083&quot;&gt;#3083&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;fix: Implement architecture-specific OTEL installation logic by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/SootyOwl/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/SootyOwl&quot;&gt;@SootyOwl&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3596582475&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3061&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3061/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3061&quot;&gt;#3061&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;chore: bump v0.16.0 by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/carenthomas/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/carenthomas&quot;&gt;@carenthomas&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3731938033&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3095&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3095/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3095&quot;&gt;#3095&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;New Contributors&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/Godofnothing/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/Godofnothing&quot;&gt;@Godofnothing&lt;/a&gt; made their first contribution in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3670465579&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3083&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3083/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3083&quot;&gt;#3083&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/SootyOwl/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/SootyOwl&quot;&gt;@SootyOwl&lt;/a&gt; made their first contribution in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3596582475&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3061&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3061/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3061&quot;&gt;#3061&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/letta-ai/letta/compare/0.15.1...0.16.0&quot;&gt;&lt;tt&gt;0.15.1...0.16.0&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>carenthomas</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/5600960?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/703411624/0.15.1</id>
+    <updated>2025-11-26T22:46:17Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/letta-ai/letta/releases/tag/0.15.1"/>
+    <title>v0.15.1</title>
+    <content type="html">&lt;h2&gt;What&#39;s Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;chore: bump version 0.15.1 by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/carenthomas/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/carenthomas&quot;&gt;@carenthomas&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3669268227&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3082&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3082/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3082&quot;&gt;#3082&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/letta-ai/letta/compare/0.15.0...0.15.1&quot;&gt;&lt;tt&gt;0.15.0...0.15.1&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>carenthomas</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/5600960?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/703411624/0.15.0</id>
+    <updated>2025-11-25T03:16:16Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/letta-ai/letta/releases/tag/0.15.0"/>
+    <title>v0.15.0</title>
+    <content type="html">&lt;h2&gt;What&#39;s Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Add context windows for grok-4 models by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/runtimeBob/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/runtimeBob&quot;&gt;@runtimeBob&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3528622985&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3043&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3043/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3043&quot;&gt;#3043&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;chore: bump version 0.15.0 by &lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/carenthomas/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/carenthomas&quot;&gt;@carenthomas&lt;/a&gt; in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3661338489&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3077&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3077/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3077&quot;&gt;#3077&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;New Contributors&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class=&quot;user-mention notranslate&quot; data-hovercard-type=&quot;user&quot; data-hovercard-url=&quot;/users/runtimeBob/hovercard&quot; data-octo-click=&quot;hovercard-link-click&quot; data-octo-dimensions=&quot;link_type:self&quot; href=&quot;https://github.com/runtimeBob&quot;&gt;@runtimeBob&lt;/a&gt; made their first contribution in &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3528622985&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/letta-ai/letta/issues/3043&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/letta-ai/letta/pull/3043/hovercard&quot; href=&quot;https://github.com/letta-ai/letta/pull/3043&quot;&gt;#3043&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/letta-ai/letta/compare/0.14.0...0.15.0&quot;&gt;&lt;tt&gt;0.14.0...0.15.0&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>carenthomas</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/5600960?s=60&amp;v=4"/>
+  </entry>
+</feed>

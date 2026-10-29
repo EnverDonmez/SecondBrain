@@ -1,0 +1,223 @@
+[build-system]
+requires = ["hatchling", "python-semantic-release", "build"]
+build-backend = "hatchling.build"
+
+[project]
+name = "mcp-memory-service"
+version = "12.4.0"
+description = "Semantic memory layer for AI applications. REST API + MCP transport + knowledge graph + autonomous consolidation. Works with 14+ AI clients. Self-host, zero cloud cost."
+readme = "README.md"
+requires-python = ">=3.10"
+keywords = [
+    "semantic-memory", "agent-memory", "ai-memory", "long-term-memory",
+    "multi-agent", "langgraph", "crewai", "autogen", "agentic-ai",
+    "knowledge-graph", "vector-database", "ai-agents", "rag",
+    "semantic-search", "memory-consolidation", "rest-api", "fastapi",
+    "mcp", "model-context-protocol", "sqlite-vec", "cloudflare",
+    "open-source", "privacy-first", "self-hosted", "ai-assistant"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Database :: Database Engines/Servers",
+    "License :: OSI Approved :: Apache Software License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11", 
+    "Programming Language :: Python :: 3.12",
+    "Operating System :: OS Independent",
+    "Environment :: Console",
+    "Framework :: FastAPI"
+]
+authors = [
+    { name = "Heinrich Krupp", email = "heinrich.krupp@gmail.com" }
+]
+license = { text = "Apache-2.0" }
+dependencies = [
+    "aiofiles>=23.2.1",
+    "aiohttp>=3.13.3",
+    "aiosqlite>=0.20.0",
+    "apscheduler>=3.11.0",
+    "authlib>=1.6.9",
+    "build>=0.10.0",
+    "certifi>=2026.10.19",
+    "chardet>=5.0.0",
+    "click>=8.0.0",
+    "cryptography>=46.0.6",
+    "fastapi>=0.115.5",
+    "httpx>=0.24.0",
+    "mcp>=1.19.0,<2.0.0",
+    "numpy>=1.24.0",
+    "psutil>=5.9.0",
+    "PyJWT[crypto]>=2.12.0",
+    "pypdf>=6.9.1",
+    "PyYAML>=6.0",
+    "python-dotenv>=1.0.0",
+    "python-multipart>=0.0.22",
+    "requests>=2.32.4",
+    "sqlite-vec>=0.1.6",
+    "sqlite-vec>=0.1.6",
+    "sse-starlette>=2.1.0",
+    "typing-extensions>=4.0.0; python_version < '3.11'",
+    "uvicorn>=0.30.0",
+    "zeroconf>=0.130.0",
+]
+
+[project.optional-dependencies]
+# Development dependencies for testing and code quality
+dev = [
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.23.0",
+    "pytest-cov>=4.0.0",
+    "pytest-benchmark>=4.0.0",
+    "pytest-timeout>=2.0.0",
+    "pytest-xdist>=3.6.0",
+    "pytest-subtests>=0.10.0",
+    "black>=26.3.1",
+    "ruff>=0.1.0",
+]
+# Machine learning dependencies for semantic search and embeddings
+ml = [
+    "sentence-transformers>=2.2.2",
+    "tokenizers>=0.22.2",
+    "torch>=2.0.0",
+    "transformers>=5.5.0,<6.0.0",
+    # torch.onnx.export routes through the dynamo exporter, which imports
+    # onnxscript. Without it the quality ranker cannot export a model at all --
+    # `ONNXRankerModel('nvidia-quality-classifier-deberta')` dies with
+    # ModuleNotFoundError partway through the export. It was declared only in
+    # tools/docker/Dockerfile.quality-cpu, the image that pre-exports models, so
+    # a plain `pip install mcp-memory-service[ml]` could never do the export
+    # itself. Same lower bound as that Dockerfile.
+    "onnxscript>=0.1.0",
+    # Clustering for consolidation; see the [clustering] extra.
+    "scikit-learn>=1.3.0",
+    "wandb>=0.18.0"  # Fix for Issue #311: Ensure wandb is compatible with protobuf 5.x
+]
+# Consolidation clustering. DBSCAN and hierarchical clustering come from
+# scikit-learn; without it MCP_CLUSTERING_ALGORITHM can only be 'simple', and
+# 'auto' resolves there. Kept out of [sqlite] so the lightweight ONNX install
+# stays lightweight -- scikit-learn pulls scipy with it.
+clustering = [
+    "scikit-learn>=1.3.0",
+]
+# NLI contradiction detection (Phase 3, RFC #732)
+nli = [
+    "transformers>=5.5.0,<6.0.0",
+    "onnxruntime>=1.17.0",
+]
+# SQLite-vec with lightweight ONNX embeddings (recommended for most users)
+# The ONNX embedding path needs both onnxruntime and tokenizers; shipping only
+# onnxruntime leaves the backend unable to initialize and silently falls back to
+# hash pseudo-vectors (see issue #162).
+sqlite = [
+    "onnxruntime>=1.14.1",
+    "tokenizers>=0.22.2",
+    # Needed to fetch pre-exported ONNX models (onnx-community/<model>-ONNX)
+    # when a non-default MCP_EMBEDDING_MODEL is requested under USE_ONNX.
+    "huggingface_hub>=0.20"
+]
+# SQLite-vec with full ML capabilities (for advanced features)
+sqlite-ml = [
+    "sentence-transformers>=2.2.2",
+    "mcp-memory-service[sqlite,ml]"
+]
+# Milvus backend — Milvus Lite (single file), self-hosted Milvus, or Zilliz Cloud.
+# Shipped with the ML extras so sentence-transformers embeddings are available.
+milvus = [
+    # The milvus-tests job in .github/workflows/ci.yml gates the 2.x and 3.x
+    # lines, and the upper bound ships exactly what CI tests. Widen it to the
+    # next major only together with a gating CI leg for that major (#1112).
+    # .github/dependabot.yml ignores major updates for pymilvus, because a group
+    # bump rewrites this line rather than respecting it (#976, #1086).
+    "pymilvus>=2.5.0,<4.0.0",
+    "milvus-lite>=2.4.10",
+    # The default embedding path has been ONNX-first since v11, and [ml] below
+    # only brings torch/sentence-transformers. Without onnxruntime a Milvus-only
+    # install has no ONNX runtime to fall back on — same gap the sqlite extra
+    # documents above (issue #162, reported for milvus in #213).
+    "onnxruntime>=1.14.1",
+    # milvus-lite 2.5.x imports `pkg_resources` unguarded at module top
+    # (milvus_lite/__init__.py) but never declares setuptools itself. That API
+    # was removed in setuptools 82.0.0, so anything from 82 up breaks the import
+    # with ModuleNotFoundError -- and so does having no setuptools at all, which
+    # is the default in a venv since Python 3.12 dropped it from ensurepip.
+    # Declaring the bound unconditionally covers both: it guarantees setuptools
+    # is present and keeps it on a version that still ships pkg_resources.
+    # .github/dependabot.yml carries a matching ignore entry -- lift both
+    # together, never just one.
+    "setuptools<82",
+    "mcp-memory-service[ml]",
+]
+# Full installation including all optional dependencies
+full = [
+    "mcp-memory-service[sqlite,ml,dev]"
+]
+
+[project.scripts]
+memory = "mcp_memory_service.cli.main:main"
+memory-server = "mcp_memory_service.cli.main:memory_server_main"
+mcp-memory-server = "mcp_memory_service.mcp_server:main"
+
+# Keep in sync with pyproject-lite.toml so both distributions link to the same place.
+[project.urls]
+Homepage = "https://github.com/doobidoo/mcp-memory-service"
+Documentation = "https://github.com/doobidoo/mcp-memory-service#readme"
+Repository = "https://github.com/doobidoo/mcp-memory-service"
+Issues = "https://github.com/doobidoo/mcp-memory-service/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/mcp_memory_service"]
+artifacts = ["**/*.yaml"]
+
+[tool.hatch.version]
+path = "src/mcp_memory_service/__init__.py"
+
+[tool.semantic_release]
+version_variable = [
+    "src/mcp_memory_service/_version.py:__version__",
+    "pyproject.toml:version",
+    "pyproject-lite.toml:version"
+]
+branch = "main"
+changelog_file = "CHANGELOG.md"
+build_command = "pip install build && python -m build"
+build_command_env = []
+dist_path = "dist/"
+upload_to_pypi = true
+upload_to_release = true
+commit_message = "chore(release): bump version to {version}"
+
+[tool.semantic_release.commit_parser_options]
+allowed_tags = [
+    "build",
+    "chore",
+    "ci",
+    "docs",
+    "feat",
+    "fix",
+    "perf",
+    "style",
+    "refactor",
+    "test"
+]
+minor_tags = ["feat"]
+patch_tags = ["fix", "perf"]
+
+[tool.semantic_release.changelog]
+template_dir = "templates"
+changelog_sections = [
+    ["feat", "Features"],
+    ["fix", "Bug Fixes"],
+    ["perf", "Performance"],
+    ["refactor", "Code Refactoring"],
+    ["test", "Tests"]
+]
+
+[dependency-groups]
+dev = [
+    "pytest-asyncio>=1.4.0",
+]
+

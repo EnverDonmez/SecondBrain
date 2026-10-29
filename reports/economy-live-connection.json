@@ -1,0 +1,11 @@
+{
+  "configured_allowlist": true,
+  "remember_discovered": true,
+  "server_instructions_received": true,
+  "bounded_context_read": true,
+  "default_engine": "economy",
+  "manual_import_contract": true,
+  "owner_approval_tools_excluded": true,
+  "personal_records_written": 0,
+  "limits": "Protocol verification, not a guarantee that every host/model follows the instructions. Existing sessions may need refresh."
+}

@@ -1,0 +1,21 @@
+{
+  "seconds": 8.006513899999845,
+  "before": {
+    "pid": 37728,
+    "cpu_seconds": 0.484,
+    "rss_bytes": 57196544,
+    "rss_kind": "current working set",
+    "platform": "win32"
+  },
+  "after": {
+    "pid": 37728,
+    "cpu_seconds": 0.516,
+    "rss_bytes": 57651200,
+    "rss_kind": "current working set",
+    "platform": "win32"
+  },
+  "cpu_core_percent": 0.3996745699773362,
+  "database_connections": 16,
+  "connections_per_second": 1.998372849886679,
+  "worker_stopped": true
+}

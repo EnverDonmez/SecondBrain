@@ -1,0 +1,30 @@
+{
+  "created_at": "2026-10-26T07:49:40.534804+00:00",
+  "read_only": true,
+  "content_read": false,
+  "integrity": "ok",
+  "counts": {
+    "events": 0,
+    "memories": 0,
+    "skills": 0,
+    "tool_configs": 0,
+    "tokens": 0,
+    "feedback": 0,
+    "vector_chunks": 0,
+    "usage": 0
+  },
+  "memory_states": [],
+  "memory_types": [],
+  "event_sources": [],
+  "jobs": [],
+  "enabled_skills": 0,
+  "active_model_credentials": 0,
+  "disk_bytes": {
+    ".venv": 714317799,
+    "third_party": 7872936,
+    "data": 834892745,
+    "reports": 14638699,
+    "dist": 3245199,
+    "build": 290613
+  }
+}

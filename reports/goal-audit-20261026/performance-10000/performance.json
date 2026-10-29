@@ -1,0 +1,28 @@
+{
+  "events": 10000,
+  "memories": 10000,
+  "queries_per_engine": 30,
+  "created_at": "2026-10-26T07:50:00.259099+00:00",
+  "results": {
+    "fts": {
+      "p50_ms": 4.0095,
+      "p95_ms": 4.77,
+      "target_ms": 2000,
+      "passed": true
+    },
+    "bm25": {
+      "p50_ms": 287.85400000000004,
+      "p95_ms": 322.221,
+      "target_ms": 2000,
+      "passed": true
+    },
+    "hybrid": {
+      "p50_ms": 279.145,
+      "p95_ms": 292.37,
+      "target_ms": 2000,
+      "passed": true
+    }
+  },
+  "database_bytes": 12177408,
+  "api_cost": 0
+}

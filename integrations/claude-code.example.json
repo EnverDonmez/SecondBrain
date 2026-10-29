@@ -1,0 +1,81 @@
+{
+  "mcpServers": {
+    "second-brain": {
+      "command": "C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe",
+      "args": [
+        "-m",
+        "second_brain",
+        "mcp"
+      ],
+      "cwd": "C:\\path\\to\\SecondBrain",
+      "env": {
+        "SB_TOKEN": "REPLACE_WITH_RESTRICTED_MODEL_TOKEN"
+      }
+    }
+  },
+  "hooks": {
+    "hooks": {
+      "SessionStart": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "\"C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe\" -m second_brain hook --client claude-code"
+            }
+          ]
+        }
+      ],
+      "UserPromptSubmit": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "\"C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe\" -m second_brain hook --client claude-code"
+            }
+          ]
+        }
+      ],
+      "PreToolUse": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "\"C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe\" -m second_brain hook --client claude-code"
+            }
+          ]
+        }
+      ],
+      "PostToolUse": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "\"C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe\" -m second_brain hook --client claude-code"
+            }
+          ]
+        }
+      ],
+      "Stop": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "\"C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe\" -m second_brain hook --client claude-code"
+            }
+          ]
+        }
+      ],
+      "SessionEnd": [
+        {
+          "hooks": [
+            {
+              "type": "command",
+              "command": "\"C:\\path\\to\\SecondBrain\\.venv\\Scripts\\python.exe\" -m second_brain hook --client claude-code"
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "activation": "Merge with the host's existing configuration, replace the token placeholder, restart and run a live capture smoke test."
+}

@@ -1,0 +1,13 @@
+{
+  "status": "verified",
+  "operation": "initialize / initialized only",
+  "private_threads_read": 0,
+  "model_turns_started": 0,
+  "result_fields": [
+    "codexHome",
+    "platformFamily",
+    "platformOs",
+    "userAgent"
+  ],
+  "user_agent": "Codex Desktop/0.164.0-alpha.11.1 (Windows 10.0.26300; x86_64) dumb (second_brain_local_capture; 0.1.0)"
+}

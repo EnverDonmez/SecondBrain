@@ -1,0 +1,719 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:https://github.com/EverMind-AI/EverOS/releases</id>
+  <link type="text/html" rel="alternate" href="https://github.com/EverMind-AI/EverOS/releases"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/EverMind-AI/EverOS/releases.atom"/>
+  <title>Release notes from EverOS</title>
+  <updated>2026-10-22T12:57:13Z</updated>
+  <entry>
+    <id>tag:github.com,2008:Repository/1085086903/v1.5.1</id>
+    <updated>2026-10-22T13:22:17Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/EverMind-AI/EverOS/releases/tag/v1.5.1"/>
+    <title>EverOS 1.5.1</title>
+    <content type="html">&lt;p&gt;&lt;strong&gt;Hybrid and vector search keep up with 10 requests a second out of the box.&lt;/strong&gt;&lt;br&gt;
+Each of those searches embeds its query first, and the slots reserved for&lt;br&gt;
+those calls were the limit: with 4 of them and a remote embedding endpoint&lt;br&gt;
+answering in about 0.45 s, search topped out near 9 requests a second and a&lt;br&gt;
+steady 10 queued without bound. The default is now 16, which held the same&lt;br&gt;
+load at a p50 of 0.42 s and a p95 of 1.45 s.&lt;/p&gt;
+&lt;h2&gt;Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;[embedding].query_max_concurrent&lt;/code&gt; defaults to 16 instead of 4.&lt;/strong&gt; Every&lt;br&gt;
+hybrid or vector search makes one query embedding call, and the budget&lt;br&gt;
+reserved for those calls bounded search throughput: with a remote&lt;br&gt;
+endpoint answering in about 0.45 s, 4 slots capped hybrid search near 9&lt;br&gt;
+requests/s, so a steady 10 requests/s queued without bound (10,020&lt;br&gt;
+indexed entries, 5 minutes: p50 64 s, p95 101 s). At 16 the same load&lt;br&gt;
+held p50 0.42 s, p95 1.45 s, p99 2.11 s, all 3,000 requests served at&lt;br&gt;
+9.99/s. In-flight requests to the endpoint can now reach&lt;br&gt;
+&lt;code&gt;max_concurrent + 16&lt;/code&gt;; set it lower if the endpoint is rate-limited.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Upgrade&lt;/h2&gt;
+&lt;div class=&quot;highlight highlight-source-shell notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;pip install --upgrade everos   # or: uv sync&quot;&gt;&lt;pre&gt;pip install --upgrade everos   &lt;span class=&quot;pl-c&quot;&gt;&lt;span class=&quot;pl-c&quot;&gt;#&lt;/span&gt; or: uv sync&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Nothing to migrate. One thing to check: requests in flight to the embedding&lt;br&gt;
+endpoint can now reach &lt;code&gt;max_concurrent + 16&lt;/code&gt; (26 with the shipped values)&lt;br&gt;
+instead of 14. If your endpoint is rate-limited or a small self-hosted model,&lt;br&gt;
+set &lt;code&gt;[embedding] query_max_concurrent&lt;/code&gt; (or &lt;code&gt;EVEROS_EMBEDDING__QUERY_MAX_CONCURRENT&lt;/code&gt;)&lt;br&gt;
+back to what it can take. Roughly, the searches per second it can serve is&lt;br&gt;
+this value divided by the endpoint&#39;s per-call latency.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Full changelog:&lt;/strong&gt; &lt;a href=&quot;https://github.com/EverMind-AI/EverOS/compare/v1.5.0...v1.5.1&quot;&gt;v1.5.0...v1.5.1&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1085086903/v1.5.0</id>
+    <updated>2026-10-21T13:38:00Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/EverMind-AI/EverOS/releases/tag/v1.5.0"/>
+    <title>EverOS 1.5.0</title>
+    <content type="html">&lt;p&gt;&lt;strong&gt;&lt;code&gt;/add&lt;/code&gt; no longer has to wait for extraction, and an index can no longer be&lt;br&gt;
+wrong without saying so.&lt;/strong&gt; A client can hand a batch to &lt;code&gt;/add&lt;/code&gt; with&lt;br&gt;
+&lt;code&gt;async_mode&lt;/code&gt; and get a &lt;code&gt;202&lt;/code&gt; back in milliseconds, while a durable in-process&lt;br&gt;
+queue runs extraction in session order; the field, the response body and the&lt;br&gt;
+task-status paths match EverOS Cloud, so one client works against both. Vector&lt;br&gt;
+columns now follow &lt;code&gt;[embedding] dim&lt;/code&gt; instead of a hardcoded 1024, startup&lt;br&gt;
+refuses an index the configured model cannot have produced instead of&lt;br&gt;
+accepting writes that are truncated or searches that quietly return nothing,&lt;br&gt;
+and an emptied index is reported instead of looking healthy. The rest is&lt;br&gt;
+reliability: OME writes no longer starve one another on Windows, a session&lt;br&gt;
+lock timeout no longer strands a memcell without its episode, a message the&lt;br&gt;
+model can never segment no longer blocks its session, resolving a cluster&#39;s&lt;br&gt;
+members no longer reads two embedding vectors per member, and a dozen smaller&lt;br&gt;
+faults found by property-based tests are fixed.&lt;/p&gt;
+&lt;h2&gt;Added&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;async_mode&lt;/code&gt; on &lt;code&gt;/add&lt;/code&gt;: accept now, extract in the background.&lt;/strong&gt; A request with &lt;code&gt;async_mode: true&lt;/code&gt; is written to a durable&lt;br&gt;
+SQLite queue (&lt;code&gt;memorize_inbox&lt;/code&gt;) and answered with &lt;code&gt;202 Accepted&lt;/code&gt;; an&lt;br&gt;
+in-process worker then runs the unchanged memorize pipeline for each&lt;br&gt;
+batch, per session in arrival order and several sessions at a time&lt;br&gt;
+(&lt;code&gt;max_concurrency&lt;/code&gt;, default 4), so a session&#39;s batches and its flush&lt;br&gt;
+never overtake each other and one slow session does not hold up the&lt;br&gt;
+others. A synchronous call on a session that still has&lt;br&gt;
+queued batches is queued too, for the same reason; &lt;code&gt;/flush&lt;/code&gt; has no&lt;br&gt;
+&lt;code&gt;async_mode&lt;/code&gt; of its own and queues only behind such a backlog. The queue is bounded&lt;br&gt;
+(&lt;code&gt;413 PAYLOAD_TOO_LARGE&lt;/code&gt;, &lt;code&gt;429 QUEUE_SATURATED&lt;/code&gt;), a batch whose delivery&lt;br&gt;
+fails is marked &lt;code&gt;failed&lt;/code&gt; and skipped (no automatic retry by default: the&lt;br&gt;
+pipeline is not atomic, so a re-run is not a clean retry), and every&lt;br&gt;
+row is deleted seven days after it was accepted. &lt;code&gt;GET /api/v2/tasks/{task_id}&lt;/code&gt;&lt;br&gt;
+reports one request&#39;s outcome and &lt;code&gt;GET /api/v2/tasks&lt;/code&gt; lists them (filter by&lt;br&gt;
+&lt;code&gt;session_id&lt;/code&gt; / &lt;code&gt;status&lt;/code&gt;, paged). The field name, the &lt;code&gt;202&lt;/code&gt; body, the task&lt;br&gt;
+paths and the status vocabulary match the EverOS Cloud gateway. Replays&lt;br&gt;
+after a crash are bounded (&lt;code&gt;max_replays&lt;/code&gt;, default 3), the delivery loop&lt;br&gt;
+relaunches itself if it ever dies, and &lt;code&gt;GET /health&lt;/code&gt; reports the queue&lt;br&gt;
+(&lt;code&gt;memorize_queue&lt;/code&gt; block: loop alive, backlog, failed, restarts). Configured under&lt;br&gt;
+&lt;code&gt;[memorize.async_queue]&lt;/code&gt;; &lt;code&gt;enabled = false&lt;/code&gt; stops accepting new async&lt;br&gt;
+work while rows accepted earlier are still delivered. Synchronous calls&lt;br&gt;
+without a backlog are unchanged.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;[embedding] dim&lt;/code&gt; sets the width of every vector column.&lt;/strong&gt; It used to be&lt;br&gt;
+hardcoded at 1024, so a model of any other width could not be used: a&lt;br&gt;
+narrower one failed every write, a wider one was truncated without saying&lt;br&gt;
+so. &lt;code&gt;dim&lt;/code&gt; now drives the schema, and startup checks the configured model&lt;br&gt;
+against it. (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5349932187&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/EverMind-AI/EverOS/issues/434&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/EverMind-AI/EverOS/issues/434/hovercard&quot; href=&quot;https://github.com/EverMind-AI/EverOS/issues/434&quot;&gt;#434&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;cascade status&lt;/code&gt; and &lt;code&gt;/health&lt;/code&gt; tell an emptied index apart from a healthy&lt;br&gt;
+one.&lt;/strong&gt; Deleting &lt;code&gt;.index/lancedb&lt;/code&gt; used to leave a store that reported perfect&lt;br&gt;
+health: the ledger lives in &lt;code&gt;.index/sqlite&lt;/code&gt; and survives the delete, so every&lt;br&gt;
+file stayed &lt;code&gt;done&lt;/code&gt;, the scanner enqueued nothing, &lt;code&gt;cascade status&lt;/code&gt; showed&lt;br&gt;
+&lt;code&gt;done: 106&lt;/code&gt; with &lt;code&gt;lag: 0&lt;/code&gt;, and &lt;code&gt;/health&lt;/code&gt; reported zero failures — while&lt;br&gt;
+search returned nothing. Startup now counts rows per business table and&lt;br&gt;
+compares them against the ledger. &lt;code&gt;cascade status&lt;/code&gt; prints a live count per&lt;br&gt;
+table and warns when every one of them is empty; &lt;code&gt;/health&lt;/code&gt; carries the&lt;br&gt;
+startup snapshot in &lt;code&gt;cascade.index_rows&lt;/code&gt; and &lt;code&gt;cascade.index_emptied&lt;/code&gt;.&lt;br&gt;
+Reported, not enforced: &lt;code&gt;healthy&lt;/code&gt; does not flip, because these are startup&lt;br&gt;
+counts and a signal that cannot clear until the next restart is worse than a&lt;br&gt;
+number an operator can read. A fresh root, a queue still draining, and a root&lt;br&gt;
+whose markdown was all deleted are each quiet. Recovery is &lt;code&gt;everos cascade rebuild&lt;/code&gt;; markdown is the source of truth and is never touched. (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5842009152&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/EverMind-AI/EverOS/issues/501&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/EverMind-AI/EverOS/issues/501/hovercard&quot; href=&quot;https://github.com/EverMind-AI/EverOS/issues/501&quot;&gt;#501&lt;/a&gt;, &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5936993392&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/EverMind-AI/EverOS/issues/522&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/EverMind-AI/EverOS/pull/522/hovercard&quot; href=&quot;https://github.com/EverMind-AI/EverOS/pull/522&quot;&gt;#522&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Startup refuses an index the configured embedding cannot have produced.&lt;/strong&gt;&lt;br&gt;
+Two cases stop a start that used to proceed and fail later: the model&lt;br&gt;
+returns fewer dimensions than &lt;code&gt;dim&lt;/code&gt; (nothing could ever be stored), and the&lt;br&gt;
+index records a &lt;em&gt;different&lt;/em&gt; model than the one configured (distances&lt;br&gt;
+between vectors from two models are meaningless, and searches just return&lt;br&gt;
+nothing useful). Both name the values involved and point at &lt;code&gt;everos cascade rebuild&lt;/code&gt;; the CLI exits 3 without a traceback. Deployments with no embedding&lt;br&gt;
+configured (keyword-only, an empty &lt;code&gt;api_key&lt;/code&gt;) are unaffected — the check is&lt;br&gt;
+skipped whole.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;An index records which embedding model built it.&lt;/strong&gt; LanceDB keeps it in the&lt;br&gt;
+&lt;code&gt;episode&lt;/code&gt; table&#39;s &lt;code&gt;vector&lt;/code&gt; column metadata, Milvus as a collection property.&lt;br&gt;
+An index that predates this release has no such record: the first start&lt;br&gt;
+after upgrading writes one in place, without touching a row or a column&lt;br&gt;
+type, and logs that it did. &lt;code&gt;everos cascade rebuild&lt;/code&gt; records the model it&lt;br&gt;
+rebuilt with.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;/health&lt;/code&gt; &lt;code&gt;capabilities.embed&lt;/code&gt; reports the startup probe, not whether a&lt;br&gt;
+provider can be constructed.&lt;/strong&gt; It used to be true whenever &lt;code&gt;model&lt;/code&gt;,&lt;br&gt;
+&lt;code&gt;api_key&lt;/code&gt; and &lt;code&gt;base_url&lt;/code&gt; were set, including against a dead endpoint. It is&lt;br&gt;
+now the result of the one embedding call made at startup, and does not flip&lt;br&gt;
+back without a restart.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Every &lt;code&gt;everos&lt;/code&gt; command makes one embedding call at startup&lt;/strong&gt; to measure&lt;br&gt;
+the model&#39;s real output width, with a 5-second budget and no retries. If it&lt;br&gt;
+fails, the start continues with a warning and the width check is skipped —&lt;br&gt;
+the model-change check does not depend on it.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Fixed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;OME: concurrent run-record writes could starve one another until the&lt;br&gt;
+busy timeout.&lt;/strong&gt; Every store write opened its own connection and left the&lt;br&gt;
+waiting to SQLite&#39;s busy handler, which sleeps and retries, so under&lt;br&gt;
+several writers a late arrival could keep taking the write lock ahead of&lt;br&gt;
+an early one. On Windows, where a commit costs 30-80 ms, a writer starved&lt;br&gt;
+that way hit the 5 s timeout and failed with &lt;code&gt;database is locked&lt;/code&gt;&lt;br&gt;
+(measured on CI: 16 writers, p99 3.8 s, one failure in 30 s), which&lt;br&gt;
+silently drops the run when it lands on the RUNNING insert and leaves the&lt;br&gt;
+row RUNNING until a restart when it lands on a status update. Writers now&lt;br&gt;
+queue on an in-process lock that nobody overtakes before touching the&lt;br&gt;
+file. The engine also keeps one connection open for its lifetime: with&lt;br&gt;
+a connection per statement, every close used to be the last close, which&lt;br&gt;
+checkpoints and deletes the WAL files under an exclusive lock and on&lt;br&gt;
+Windows held a fresh connection&#39;s first statement past the same timeout. Found by the OME run state-machine test, which failed on Windows CI.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A message the model can never segment no longer blocks its session.&lt;/strong&gt;&lt;br&gt;
+Boundary detection retries an unusable reply three times per call; a&lt;br&gt;
+message that always produced one stayed in the session&#39;s buffer, every&lt;br&gt;
+later &lt;code&gt;/add&lt;/code&gt; or &lt;code&gt;/flush&lt;/code&gt; merged it back in and failed the same way, and the&lt;br&gt;
+session was stuck until someone cleared the buffer by hand (the async queue&lt;br&gt;
+marked that session&#39;s batches &lt;code&gt;failed&lt;/code&gt; one after another). The third&lt;br&gt;
+consecutive call that ends this way now moves the session&#39;s buffer and the&lt;br&gt;
+call&#39;s own messages to the &lt;code&gt;quarantine&lt;/code&gt; track of &lt;code&gt;unprocessed_buffer&lt;/code&gt;,&lt;br&gt;
+answers &lt;code&gt;422 INVALID_INPUT&lt;/code&gt; naming the session and the count, and the next&lt;br&gt;
+call starts from an empty buffer. Infrastructure failures (no quota,&lt;br&gt;
+network) are not counted and still propagate as &lt;code&gt;EXTERNAL_SERVICE_UNAVAILABLE&lt;/code&gt;,&lt;br&gt;
+so a buffer waits out an outage.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A session-lock timeout could cancel extraction after the memcell was&lt;br&gt;
+written.&lt;/strong&gt; &lt;code&gt;memorize()&lt;/code&gt; wrapped the whole call in&lt;br&gt;
+&lt;code&gt;session_lock_timeout_seconds&lt;/code&gt;; a timeout that landed after the boundary&lt;br&gt;
+had written the memcell row and consumed the buffer cancelled the&lt;br&gt;
+extraction pipelines, and nothing retried them: the cell stayed without an&lt;br&gt;
+episode for good. The timeout now bounds the two places a call can hang&lt;br&gt;
+while another waits on the lock, the lock wait and the boundary LLM call,&lt;br&gt;
+both of which run before any write; once a cell is committed its&lt;br&gt;
+extraction runs to completion, after the lock is released and shielded&lt;br&gt;
+from a cancelled request. Found by a property test that lands random&lt;br&gt;
+concurrent calls under random timeouts.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A replayed clustering run inflated the cluster&#39;s count.&lt;/strong&gt; OME delivers a&lt;br&gt;
+strategy run at least once; when &lt;code&gt;trigger_profile_clustering&lt;/code&gt; or&lt;br&gt;
+&lt;code&gt;trigger_skill_clustering&lt;/code&gt; ran again for an episode or case it had already&lt;br&gt;
+folded in (a crash after the upsert, a retry after the emit failed), it&lt;br&gt;
+folded it in a second time: the member row was deduplicated but &lt;code&gt;count&lt;/code&gt;&lt;br&gt;
+rose and the centroid was re-weighted, and &lt;code&gt;extract_user_profile&lt;/code&gt; gates on&lt;br&gt;
+that count. An entry already among the owner&#39;s members is now left where it&lt;br&gt;
+is; the downstream event is still emitted.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OME &lt;code&gt;inspect&lt;/code&gt; ignored the Counter gate&#39;s cooldown.&lt;/strong&gt; The dry run compared&lt;br&gt;
+the bucket&#39;s counter with the threshold only, so during a cooldown window&lt;br&gt;
+it reported &lt;code&gt;will_run: true&lt;/code&gt; for an event &lt;code&gt;dispatch&lt;/code&gt; would hold back. The&lt;br&gt;
+store now answers the dry run with the same rule &lt;code&gt;dispatch&lt;/code&gt; applies&lt;br&gt;
+(threshold and cooldown, one clock).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Knowledge: a failed &lt;code&gt;PUT /knowledge/{doc_id}&lt;/code&gt; could leave two&lt;br&gt;
+directories for one document, or bury the old one inside the new.&lt;/strong&gt; The&lt;br&gt;
+replace path backs the document&#39;s directory up, writes the new one and&lt;br&gt;
+restores the backup on failure; when the failure came &lt;em&gt;after&lt;/em&gt; the writer&lt;br&gt;
+had created the new directory (the original-file step, for one), the&lt;br&gt;
+restore moved the backup inside it if the name was unchanged, or left it&lt;br&gt;
+next to the restored one if the title or category had changed. The&lt;br&gt;
+half-written directory is now removed before the backup comes back.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A hand-edited &lt;code&gt;entry_count&lt;/code&gt; could make a daily-log writer reuse an entry&lt;br&gt;
+id.&lt;/strong&gt; The episode, atomic-fact, foresight and agent-case writers allocated&lt;br&gt;
+the next id from the frontmatter&#39;s &lt;code&gt;entry_count&lt;/code&gt; alone, so lowering it by&lt;br&gt;
+hand made the next append produce an id the file already held (the index&lt;br&gt;
+keeps one of the two), and a non-numeric value raised a &lt;code&gt;TypeError&lt;/code&gt;. The&lt;br&gt;
+next id is now allocated from the higher of &lt;code&gt;entry_count&lt;/code&gt; and the highest&lt;br&gt;
+sequence number already in the file, and a frontmatter that disagrees is&lt;br&gt;
+logged.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OME &lt;code&gt;wait_for_event&lt;/code&gt; returned while a retry was still pending.&lt;/strong&gt; The&lt;br&gt;
+runner records a failed attempt as &lt;code&gt;FAILED&lt;/code&gt; before its backoff sleep and&lt;br&gt;
+gives the retry a fresh run id, so during the backoff the event&#39;s only row&lt;br&gt;
+is &lt;code&gt;FAILED&lt;/code&gt;; &lt;code&gt;wait_for_event&lt;/code&gt; counted that as terminal and returned.&lt;br&gt;
+Reflection waits on it before deprecating what the extraction replaced, so&lt;br&gt;
+it could act on an outcome that was not final. &lt;code&gt;FAILED&lt;/code&gt; now means &quot;retry&lt;br&gt;
+pending&quot;; a failure with no retry left is &lt;code&gt;DEAD_LETTER&lt;/code&gt;, as before.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;to_timestamp_ms&lt;/code&gt; is now the exact inverse of &lt;code&gt;from_timestamp_ms&lt;/code&gt;.&lt;/strong&gt; It&lt;br&gt;
+computed &lt;code&gt;int(timestamp() * 1000)&lt;/code&gt;, and the float product sat just below&lt;br&gt;
+the integer for about 0.6 % of instants (1095954883735 came back as&lt;br&gt;
+1095954883734); integer arithmetic on the timedelta since the epoch&lt;br&gt;
+replaces it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;The watcher classified md files the scanner never visits.&lt;/strong&gt; Its kind&lt;br&gt;
+matcher was anchored on the right only, so a path with extra leading&lt;br&gt;
+components (&lt;code&gt;x/app/project/users/u/episodes/episode-2026-01-01.md&lt;/code&gt;) was&lt;br&gt;
+accepted and queued while the root-anchored scanner glob ignored it; the&lt;br&gt;
+match now requires the same number of path components.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;default_app&lt;/code&gt; / &lt;code&gt;default_project&lt;/code&gt; are rejected as ids.&lt;/strong&gt; They are the&lt;br&gt;
+on-disk directory names of the default scope, so an app with that literal&lt;br&gt;
+id shared the default app&#39;s directory and its index rows were attributed&lt;br&gt;
+to &lt;code&gt;default&lt;/code&gt;. The API now answers &lt;code&gt;422&lt;/code&gt; for them.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Search: a duplicate id inside the dense pool kept its last score, not&lt;br&gt;
+its highest&lt;/strong&gt;, and the multi-round decider&#39;s JSON parser gave up on a reply&lt;br&gt;
+with a stray &lt;code&gt;{&lt;/code&gt; in the prose before the object (its docstring promised&lt;br&gt;
+otherwise); it now also decodes from every brace.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cascade worker: a bounded wait between optimize and rebuild cancelled the&lt;br&gt;
+task it waited on.&lt;/strong&gt; The optimize runner waits up to 180 s for an in-flight&lt;br&gt;
+index rebuild of the same kind, and the rebuild loop waits for an in-flight&lt;br&gt;
+optimize, so the two never commit on one LanceDB manifest at once. Both&lt;br&gt;
+waits used &lt;code&gt;asyncio.timeout&lt;/code&gt; around &lt;code&gt;await task&lt;/code&gt;, which cancels the awaited&lt;br&gt;
+task when the deadline fires: a rebuild longer than the wait, with a write&lt;br&gt;
+landing on that table meanwhile, was killed mid-flight, and the rebuild loop&lt;br&gt;
+ended with it, silently, so no periodic rebuild ran again until restart and&lt;br&gt;
+that table&#39;s index UUID / FTS segment count grew unbounded. The mirror wait&lt;br&gt;
+cancelled the optimize beat it was meant to stay clear of. Both waits now&lt;br&gt;
+only stop waiting. Present since 1.2.2.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cascade: the handler limit held per drain pass, not per worker.&lt;/strong&gt; A worker&lt;br&gt;
+runs at most four handlers of a batch at once, but the limit was created&lt;br&gt;
+inside each drain pass, so two passes running together each got their own:&lt;br&gt;
+&lt;code&gt;POST /cascade/quiesce&lt;/code&gt; drains while the background loop is still draining,&lt;br&gt;
+and that overlap peaked at eight concurrent handlers. The limit is now&lt;br&gt;
+shared by the worker. (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5824411608&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/EverMind-AI/EverOS/issues/492&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/EverMind-AI/EverOS/pull/492/hovercard&quot; href=&quot;https://github.com/EverMind-AI/EverOS/pull/492&quot;&gt;#492&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Resolving a cluster&#39;s members read each member&#39;s full row, vectors&lt;br&gt;
+included.&lt;/strong&gt; The profile path maps a fresh cluster&#39;s episodes back to their&lt;br&gt;
+parents and needed two fields per member, yet fetched every member&#39;s whole&lt;br&gt;
+episode row with both embedding vectors; a cluster can hold thousands of&lt;br&gt;
+members, so that read dominated the path&#39;s memory. LanceDB now reads only&lt;br&gt;
+&lt;code&gt;parent_type&lt;/code&gt; and &lt;code&gt;parent_id&lt;/code&gt; (Milvus still loads full rows), and the&lt;br&gt;
+reflection path&#39;s bulk read skips the vector columns. (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5824258225&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/EverMind-AI/EverOS/issues/490&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/EverMind-AI/EverOS/pull/490/hovercard&quot; href=&quot;https://github.com/EverMind-AI/EverOS/pull/490&quot;&gt;#490&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;method=&quot;vector&quot;&lt;/code&gt; finds episodes when no atomic fact is in scope.&lt;/strong&gt;&lt;br&gt;
+Vector search over episodes recalls through atomic facts, and it returned&lt;br&gt;
+an empty list (HTTP 200, no log line) whenever none were in scope — fact&lt;br&gt;
+extraction disabled, not caught up yet, or failing — while keyword search&lt;br&gt;
+kept answering. It now falls back to each episode&#39;s own vector, with&lt;br&gt;
+&lt;code&gt;radius&lt;/code&gt; applied, and logs &lt;code&gt;vector_recall_fact_pool_empty&lt;/code&gt; at info.&lt;br&gt;
+(&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5842018159&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/EverMind-AI/EverOS/issues/502&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/EverMind-AI/EverOS/issues/502/hovercard&quot; href=&quot;https://github.com/EverMind-AI/EverOS/issues/502&quot;&gt;#502&lt;/a&gt;, &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5880663530&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/EverMind-AI/EverOS/issues/509&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/EverMind-AI/EverOS/pull/509/hovercard&quot; href=&quot;https://github.com/EverMind-AI/EverOS/pull/509&quot;&gt;#509&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Upgrade&lt;/h2&gt;
+&lt;div class=&quot;highlight highlight-source-shell notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;pip install --upgrade everos   # or: uv sync&quot;&gt;&lt;pre&gt;pip install --upgrade everos   &lt;span class=&quot;pl-c&quot;&gt;&lt;span class=&quot;pl-c&quot;&gt;#&lt;/span&gt; or: uv sync&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;pip install --upgrade everos&lt;/code&gt; is enough for most roots, and nothing in this&lt;br&gt;
+release rewrites or re-embeds anything on its own. The first start records&lt;br&gt;
+which model built the index and logs one line saying so.&lt;/p&gt;
+&lt;p&gt;The first start also creates the &lt;code&gt;memorize_inbox&lt;/code&gt; table in &lt;code&gt;system.db&lt;/code&gt; for the&lt;br&gt;
+async queue. &lt;code&gt;async_mode&lt;/code&gt; is opt-in: clients that never send it get the same&lt;br&gt;
+synchronous responses as before.&lt;/p&gt;
+&lt;p&gt;Two deployments need attention:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A model narrower than &lt;code&gt;dim&lt;/code&gt;&lt;/strong&gt; — the server now refuses to start instead of&lt;br&gt;
+accepting writes that could never be stored (this is &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5349932187&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/EverMind-AI/EverOS/issues/434&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/EverMind-AI/EverOS/issues/434/hovercard&quot; href=&quot;https://github.com/EverMind-AI/EverOS/issues/434&quot;&gt;#434&lt;/a&gt;). The error names&lt;br&gt;
+both numbers and the two steps: set &lt;code&gt;[embedding] dim&lt;/code&gt; (or&lt;br&gt;
+&lt;code&gt;EVEROS_EMBEDDING__DIM&lt;/code&gt;) to what the model returns, &lt;strong&gt;then&lt;/strong&gt; run &lt;code&gt;everos cascade rebuild&lt;/code&gt; — the tables were already created at the old width, so&lt;br&gt;
+fixing the configuration alone is not enough. Your markdown is untouched&lt;br&gt;
+throughout.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A model wider than &lt;code&gt;dim&lt;/code&gt;&lt;/strong&gt; — unchanged behaviour, but the start now warns&lt;br&gt;
+that the extra dimensions are truncated. The shipped default is this case&lt;br&gt;
+(&lt;code&gt;Qwen/Qwen3-Embedding-4B&lt;/code&gt; returns 2560, &lt;code&gt;dim&lt;/code&gt; is 1024) and nothing is&lt;br&gt;
+wrong: that model is Matryoshka-trained, 1024 is one of its published&lt;br&gt;
+truncation points, and the index compares with cosine distance. Set&lt;br&gt;
+&lt;code&gt;dimensions = 1024&lt;/code&gt; to silence it, if your endpoint accepts that parameter.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Changing &lt;code&gt;dim&lt;/code&gt; or &lt;code&gt;model&lt;/code&gt; later&lt;/strong&gt; stops the next start and requires &lt;code&gt;everos cascade rebuild&lt;/code&gt;, which re-embeds every entry from markdown — budget for it.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Downgrading&lt;/strong&gt; to an earlier EverOS is safe as long as &lt;code&gt;dim&lt;/code&gt; is still 1024:&lt;br&gt;
+the older schema check compares column types only and ignores the new record.&lt;br&gt;
+If you changed &lt;code&gt;dim&lt;/code&gt;, set it back and rebuild before downgrading.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Full changelog:&lt;/strong&gt; &lt;a href=&quot;https://github.com/EverMind-AI/EverOS/compare/v1.4.2...v1.5.0&quot;&gt;v1.4.2...v1.5.0&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1085086903/v1.5.0rc1</id>
+    <updated>2026-10-21T12:59:10Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/EverMind-AI/EverOS/releases/tag/v1.5.0rc1"/>
+    <title>EverOS 1.5.0rc1</title>
+    <content type="html">&lt;p&gt;Pre-release build of &lt;code&gt;1.5.0rc1&lt;/code&gt;. See CHANGELOG.md on the tag.&lt;/p&gt;
+&lt;h2&gt;Upgrade&lt;/h2&gt;
+&lt;div class=&quot;highlight highlight-source-shell notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;pip install --upgrade --pre everos==1.5.0rc1   # pip skips pre-releases without --pre&quot;&gt;&lt;pre&gt;pip install --upgrade --pre everos==1.5.0rc1   &lt;span class=&quot;pl-c&quot;&gt;&lt;span class=&quot;pl-c&quot;&gt;#&lt;/span&gt; pip skips pre-releases without --pre&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Full changelog:&lt;/strong&gt; &lt;a href=&quot;https://github.com/EverMind-AI/EverOS/compare/v1.4.2...v1.5.0rc1&quot;&gt;v1.4.2...v1.5.0rc1&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1085086903/v1.4.2</id>
+    <updated>2026-10-14T13:49:58Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/EverMind-AI/EverOS/releases/tag/v1.4.2"/>
+    <title>EverOS 1.4.2</title>
+    <content type="html">&lt;p&gt;&lt;strong&gt;A server that stays healthy for days, not hours.&lt;/strong&gt; Three faults in this&lt;br&gt;
+release compounded on exactly the deployments that ran longest: a long-lived&lt;br&gt;
+index leaked file descriptors until searches took seconds, interactive searches&lt;br&gt;
+queued behind the cascade&#39;s background embedding, and a memory root holding more&lt;br&gt;
+than one project had each project&#39;s index rows overwrite the other&#39;s. All three&lt;br&gt;
+are fixed, and a LanceDB root that the last fault already damaged repairs itself&lt;br&gt;
+on the first start after upgrading.&lt;/p&gt;
+&lt;h2&gt;Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;[embedding].max_concurrent&lt;/code&gt; defaults to 10 instead of 5.&lt;/strong&gt; The&lt;br&gt;
+&lt;code&gt;EmbeddingSettings&lt;/code&gt; class default (50) is aligned to the same value; the&lt;br&gt;
+shipped &lt;code&gt;default.toml&lt;/code&gt; always overrode it, so the effective default moves&lt;br&gt;
+from 5 to 10. (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5809388113&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/EverMind-AI/EverOS/issues/486&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/EverMind-AI/EverOS/issues/486/hovercard&quot; href=&quot;https://github.com/EverMind-AI/EverOS/issues/486&quot;&gt;#486&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Milvus collections must be rebuilt once after upgrading.&lt;/strong&gt; They gain the&lt;br&gt;
+&lt;code&gt;__pk&lt;/code&gt; primary-key column; the server refuses to start on an old&lt;br&gt;
+collection and names &lt;code&gt;everos cascade rebuild&lt;/code&gt;, which recreates them from&lt;br&gt;
+markdown.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;Response &lt;code&gt;id&lt;/code&gt;s are unique within &lt;code&gt;(app_id, project_id)&lt;/code&gt;, not globally; the&lt;br&gt;
+shape of &lt;code&gt;id&lt;/code&gt; is unchanged.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;The cascade optimizes a LanceDB table at most once a minute, not once&lt;br&gt;
+every ten seconds.&lt;/strong&gt; Each optimize pass leaves an &lt;code&gt;_indices/&amp;lt;uuid&amp;gt;/&lt;/code&gt;&lt;br&gt;
+directory behind until cleanup reclaims it, so the old 10 s floor set the&lt;br&gt;
+ceiling on how many could pile up: about 126k directories a day and ~1.8M&lt;br&gt;
+at the retention horizon. The 60 s default costs a sixth of that (~21k a&lt;br&gt;
+day, ~300k at the horizon, roughly 1.2 GB) and keeps a full index sweep&lt;br&gt;
+inside its 60 s deadline. The interval is a built-in floor on how often a&lt;br&gt;
+table may be optimized, not a setting; a write-heavy deployment sees an&lt;br&gt;
+index that trails its markdown by up to a minute longer than before.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Fixed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;A long-running server no longer leaks file descriptors on LanceDB index&lt;br&gt;
+readers.&lt;/strong&gt; Every &lt;code&gt;optimize()&lt;/code&gt; mints a new index version whose reader is&lt;br&gt;
+kept in a session cache, and that reader holds the descriptors of its&lt;br&gt;
+&lt;code&gt;_indices/&amp;lt;uuid&amp;gt;/&lt;/code&gt; files. Lance keys those cache entries by dataset&lt;br&gt;
+version and never evicts them when cleanup deletes the files underneath&lt;br&gt;
+(&lt;code&gt;lance-format/lance#7718&lt;/code&gt;), so the count grew for the life of the&lt;br&gt;
+process: a 65-minute soak went from 74 to 558 index descriptors with no&lt;br&gt;
+plateau, and a deployment on a 1024-descriptor limit exhausts it in&lt;br&gt;
+hours. EverOS capped only one of the session&#39;s two caches and left the&lt;br&gt;
+metadata cache unbounded, which is the one that decides whether the count&lt;br&gt;
+converges. Both are now capped (&lt;code&gt;[lancedb].metadata_cache_size_bytes&lt;/code&gt;,&lt;br&gt;
+default 1 MB): the same soak holds between 6 and 82 descriptors, falling&lt;br&gt;
+as often as it rises. Reported upstream as &lt;code&gt;lance-format/lance#9934&lt;/code&gt;.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;An interactive search no longer queues behind the cascade&#39;s embedding&lt;br&gt;
+work.&lt;/strong&gt; Query embeddings and background write embeddings shared one&lt;br&gt;
+process-wide semaphore, so a burst of writes put the query a user was&lt;br&gt;
+waiting on at the back of the queue. Under three concurrent writers,&lt;br&gt;
+vector search p50 measured 46 s and p95 112 s, while the keyword leg —&lt;br&gt;
+which needs no embedding — answered in 0.35 s. Queries now draw on their&lt;br&gt;
+own budget (&lt;code&gt;[embedding].query_max_concurrent&lt;/code&gt;, default 4): vector p50&lt;br&gt;
+drops to 0.60 s and p95 to 3.70 s under the identical load. Total&lt;br&gt;
+in-flight requests to the endpoint become &lt;code&gt;max_concurrent + query_max_concurrent&lt;/code&gt; rather than a silently shared bound. (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5665571404&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/EverMind-AI/EverOS/issues/473&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/EverMind-AI/EverOS/issues/473/hovercard&quot; href=&quot;https://github.com/EverMind-AI/EverOS/issues/473&quot;&gt;#473&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;The same owner&#39;s memories in two projects no longer overwrite each other&lt;br&gt;
+in the derived index.&lt;/strong&gt; Index rows were merged on &lt;code&gt;id&lt;/code&gt; alone, and &lt;code&gt;id&lt;/code&gt; is&lt;br&gt;
+unique only within one &lt;code&gt;(app_id, project_id)&lt;/code&gt;: a user&#39;s episodes, atomic&lt;br&gt;
+facts, agent cases, foresights, skills and profile written under a second&lt;br&gt;
+project replaced the first project&#39;s rows (markdown was never affected).&lt;br&gt;
+Every table now declares &lt;code&gt;PRIMARY_KEY = (&quot;app_id&quot;, &quot;project_id&quot;, &quot;id&quot;)&lt;/code&gt;;&lt;br&gt;
+LanceDB merges on it and Milvus keys its collections on the composed&lt;br&gt;
+&lt;code&gt;__pk&lt;/code&gt; column. Profile search and get, the handlers&#39; change detection and&lt;br&gt;
+the vector backfill address rows by the full key; the backfill also keeps&lt;br&gt;
+each row&#39;s own vector within a batch, and reflection deprecates atomic&lt;br&gt;
+facts only inside the project it merged.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;A multi-project LanceDB root indexed before this release gets its&lt;br&gt;
+overwritten rows back by itself.&lt;/strong&gt; The first full pass over the root&lt;br&gt;
+after upgrading (server start, or &lt;code&gt;everos cascade sync&lt;/code&gt;) re-reconciles&lt;br&gt;
+every indexed markdown file against the index once and records that in&lt;br&gt;
+&lt;code&gt;.index/.index_reconcile_version&lt;/code&gt;. Entries whose rows are present and&lt;br&gt;
+unchanged are skipped by digest, so a healthy root pays one read pass&lt;br&gt;
+and no embedding; only the rows that were lost are re-embedded.&lt;br&gt;
+&lt;code&gt;everos cascade sync --force-all&lt;/code&gt; runs the same pass on demand. Two&lt;br&gt;
+roots need that command instead: a server started with&lt;br&gt;
+&lt;code&gt;EVEROS_DISABLE_CASCADE=1&lt;/code&gt; never runs the pass (stop it and run&lt;br&gt;
+&lt;code&gt;everos cascade sync --force-all&lt;/code&gt; once), and a multi-project root where&lt;br&gt;
+reflection ran before this release needs &lt;code&gt;everos cascade rebuild&lt;/code&gt; once,&lt;br&gt;
+because the pass does not clear the &lt;code&gt;deprecated_by&lt;/code&gt; stamps one project&#39;s&lt;br&gt;
+reflection left on another project&#39;s rows.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;POST /cascade/quiesce&lt;/code&gt; freezes a complete index.&lt;/strong&gt; Its drain stopped&lt;br&gt;
+at the worker&#39;s per-drain bound, and inside a server it could also stop&lt;br&gt;
+while the background worker still held the last batch, which the stop&lt;br&gt;
+that follows then orphaned in &lt;code&gt;processing&lt;/code&gt;; the ledger an upgrade&lt;br&gt;
+re-queues made both routine. The drain now runs until the ledger holds&lt;br&gt;
+nothing pending, waiting for the worker&#39;s in-flight batch, and&lt;br&gt;
+&lt;code&gt;everos cascade sync&lt;/code&gt; / &lt;code&gt;rebuild&lt;/code&gt; use the same loop.&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;A cascade pass embeds a file&#39;s changed entries in one batched request,&lt;br&gt;
+not one request per entry.&lt;/strong&gt; The four daily-log handlers (episode, atomic&lt;br&gt;
+fact, foresight, agent case) each called the embedding endpoint once per&lt;br&gt;
+entry, so a turn that wrote ~20 atomic facts queued ~20 single-input&lt;br&gt;
+requests on the process-wide embedding semaphore, and the next search&#39;s&lt;br&gt;
+query embedding waited behind all of them: about five times the&lt;br&gt;
+endpoint&#39;s latency at the previous default &lt;code&gt;max_concurrent = 5&lt;/code&gt;. The&lt;br&gt;
+handlers now&lt;br&gt;
+send every text of a file through &lt;code&gt;embed_batch&lt;/code&gt;, which&lt;br&gt;
+&lt;code&gt;[embedding].batch_size&lt;/code&gt; splits into requests (23 entries become 3&lt;br&gt;
+requests at the default 10), so after a single turn&#39;s writes the query&lt;br&gt;
+embedding waits for one request; a large backlog still queues ahead of&lt;br&gt;
+it (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5665571404&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/EverMind-AI/EverOS/issues/473&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/EverMind-AI/EverOS/issues/473/hovercard&quot; href=&quot;https://github.com/EverMind-AI/EverOS/issues/473&quot;&gt;#473&lt;/a&gt;). (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5809388113&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/EverMind-AI/EverOS/issues/486&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/EverMind-AI/EverOS/issues/486/hovercard&quot; href=&quot;https://github.com/EverMind-AI/EverOS/issues/486&quot;&gt;#486&lt;/a&gt;)&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Changing a knowledge document&#39;s category keeps it inside &lt;code&gt;knowledge/&lt;/code&gt;.&lt;/strong&gt;&lt;br&gt;
+&lt;code&gt;PATCH /knowledge/documents/{doc_id}&lt;/code&gt; with &lt;code&gt;category_id&lt;/code&gt; set to &lt;code&gt;..&lt;/code&gt; moved&lt;br&gt;
+the document&#39;s directory up into the project directory, where the markdown&lt;br&gt;
+scan no longer finds it. The category now goes through the same rule as&lt;br&gt;
+document creation, so &lt;code&gt;.&lt;/code&gt; and &lt;code&gt;..&lt;/code&gt; fall back to &lt;code&gt;Others&lt;/code&gt;, and the move is&lt;br&gt;
+refused if its target would leave &lt;code&gt;knowledge/&lt;/code&gt;. A document an earlier move&lt;br&gt;
+left outside is moved back on its next category change. Reported by&lt;br&gt;
+White0xdi3.&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Upgrade&lt;/h2&gt;
+&lt;div class=&quot;highlight highlight-source-shell notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;pip install --upgrade everos   # or: uv sync&quot;&gt;&lt;pre&gt;pip install --upgrade everos   &lt;span class=&quot;pl-c&quot;&gt;&lt;span class=&quot;pl-c&quot;&gt;#&lt;/span&gt; or: uv sync&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;code&gt;pip install --upgrade everos&lt;/code&gt; is enough for most roots: the first full pass&lt;br&gt;
+after the upgrade (server start, or &lt;code&gt;everos cascade sync&lt;/code&gt;) re-reconciles every&lt;br&gt;
+indexed markdown file against the index once, re-embeds only the rows that were&lt;br&gt;
+lost, and records that it ran in &lt;code&gt;.index/.index_reconcile_version&lt;/code&gt;. A healthy&lt;br&gt;
+root pays one read pass and no embedding.&lt;/p&gt;
+&lt;p&gt;Three roots need a command instead:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;A root where reflection already ran across projects&lt;/strong&gt; — &lt;code&gt;everos cascade rebuild&lt;/code&gt; once. The automatic pass does not clear the &lt;code&gt;deprecated_by&lt;/code&gt; stamps&lt;br&gt;
+one project&#39;s reflection left on another project&#39;s rows.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A server started with &lt;code&gt;EVEROS_DISABLE_CASCADE=1&lt;/code&gt;&lt;/strong&gt; — it never runs the&lt;br&gt;
+pass. Stop it and run &lt;code&gt;everos cascade sync --force-all&lt;/code&gt; once.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A Milvus derived index&lt;/strong&gt; — &lt;code&gt;everos cascade rebuild&lt;/code&gt; once. Collections gain&lt;br&gt;
+the &lt;code&gt;__pk&lt;/code&gt; primary-key column and the server refuses to start on an old&lt;br&gt;
+collection.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full changelog:&lt;/strong&gt; &lt;a href=&quot;https://github.com/EverMind-AI/EverOS/compare/v1.4.1...v1.4.2&quot;&gt;v1.4.1...v1.4.2&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1085086903/v1.4.2rc1</id>
+    <updated>2026-10-14T09:26:52Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/EverMind-AI/EverOS/releases/tag/v1.4.2rc1"/>
+    <title>EverOS 1.4.2rc1</title>
+    <content type="html">&lt;p&gt;Pre-release build of &lt;code&gt;1.4.2rc1&lt;/code&gt;. See CHANGELOG.md on the tag.&lt;/p&gt;
+&lt;h2&gt;Upgrade&lt;/h2&gt;
+&lt;div class=&quot;highlight highlight-source-shell notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;pip install --upgrade everos   # or: uv sync&quot;&gt;&lt;pre&gt;pip install --upgrade everos   &lt;span class=&quot;pl-c&quot;&gt;&lt;span class=&quot;pl-c&quot;&gt;#&lt;/span&gt; or: uv sync&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Full changelog:&lt;/strong&gt; &lt;a href=&quot;https://github.com/EverMind-AI/EverOS/compare/v1.4.1...v1.4.2rc1&quot;&gt;v1.4.1...v1.4.2rc1&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1085086903/v1.4.1</id>
+    <updated>2026-09-24T10:52:51Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/EverMind-AI/EverOS/releases/tag/v1.4.1"/>
+    <title>EverOS 1.4.1</title>
+    <content type="html">&lt;p&gt;&lt;strong&gt;A fresh install works again.&lt;/strong&gt; The &lt;code&gt;openai&lt;/code&gt; SDK released its 3.x line on&lt;br&gt;
+2026-09-24; an unconstrained install picked it up together with an httpx&lt;br&gt;
+pre-release, and every LLM and embedding call failed before reaching the&lt;br&gt;
+network. This release pins the SDK to the 2.x line the project is tested&lt;br&gt;
+against. Nothing else changed since 1.4.0.&lt;/p&gt;
+&lt;h2&gt;Fixed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;openai&lt;/code&gt; is pinned below 3.&lt;/strong&gt; Fresh installs from PyPI resolved&lt;br&gt;
+&lt;code&gt;openai 3.19.2&lt;/code&gt;, whose client raises &lt;code&gt;AttributeError: module &#39;httpx&#39; has no attribute &#39;Timeout&#39;&lt;/code&gt; on every request, so memorize and hybrid / vector&lt;br&gt;
+search returned 500. Existing environments built from &lt;code&gt;uv.lock&lt;/code&gt; were never&lt;br&gt;
+affected.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Upgrade&lt;/h2&gt;
+&lt;div class=&quot;highlight highlight-source-shell notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;pip install --upgrade everos   # or: uv sync&quot;&gt;&lt;pre&gt;pip install --upgrade everos   &lt;span class=&quot;pl-c&quot;&gt;&lt;span class=&quot;pl-c&quot;&gt;#&lt;/span&gt; or: uv sync&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;pip install --upgrade everos&lt;/code&gt; brings &lt;code&gt;openai&lt;/code&gt; back to 2.x. If a fresh&lt;br&gt;
+install of 1.4.0 (or any earlier version) today shows the &lt;code&gt;httpx&lt;/code&gt; error&lt;br&gt;
+above, upgrade to 1.4.1 or run &lt;code&gt;pip install &quot;openai&amp;lt;3&quot;&lt;/code&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full changelog:&lt;/strong&gt; &lt;a href=&quot;https://github.com/EverMind-AI/EverOS/compare/v1.4.0...v1.4.1&quot;&gt;v1.4.0...v1.4.1&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1085086903/v1.4.0</id>
+    <updated>2026-09-24T10:31:52Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/EverMind-AI/EverOS/releases/tag/v1.4.0"/>
+    <title>EverOS 1.4.0</title>
+    <content type="html">&lt;p&gt;&lt;strong&gt;EverOS runs natively on Windows, and dense search stops scanning the whole&lt;br&gt;
+table.&lt;/strong&gt; &lt;code&gt;pip install everos&lt;/code&gt; on a stock Windows 11 machine now works with no&lt;br&gt;
+manual steps beyond an LLM key; the unit suite runs on Windows in CI. Every&lt;br&gt;
+vector column gets an IVF_FLAT index once it holds enough rows, built and&lt;br&gt;
+maintained by the cascade worker, so hybrid search no longer reads the entire&lt;br&gt;
+column per query. A ten-hour Windows soak drove the rest of this release: a&lt;br&gt;
+second process can no longer write the index behind a running server, watcher&lt;br&gt;
+events for one file commit in the order they arrived, and a transient Lance&lt;br&gt;
+spill failure is retried instead of filing the markdown file as unrecoverable.&lt;/p&gt;
+&lt;h2&gt;Added&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Native Windows support.&lt;/strong&gt; The package ships the MSVC runtime&lt;br&gt;
+(&lt;code&gt;msvc-runtime&lt;/code&gt;, Windows only) and registers its directory before any&lt;br&gt;
+native extension loads, so a clean machine needs no Visual C++&lt;br&gt;
+Redistributable. Text fixtures are read as UTF-8 regardless of the system&lt;br&gt;
+locale, and a &lt;code&gt;unit tests (Windows)&lt;/code&gt; CI job covers the platform.&lt;br&gt;
+&lt;a href=&quot;/EverMind-AI/EverOS/blob/v1.4.0/docs/windows.md&quot;&gt;docs/windows.md&lt;/a&gt; leads with the native install and keeps&lt;br&gt;
+the WSL2 walkthrough.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Vector (ANN) indexes.&lt;/strong&gt; Once a vector column holds&lt;br&gt;
+&lt;code&gt;[lancedb] vector_index_min_rows&lt;/code&gt; (default 2000) non-null vectors, the&lt;br&gt;
+cascade worker builds an IVF_FLAT cosine index on it — on its first rebuild&lt;br&gt;
+sweep after server start and on the heavy maintenance beat — and retrains it&lt;br&gt;
+once light-beat delta indices pile past 16. Partition size (4096 rows) and&lt;br&gt;
+&lt;code&gt;nprobes&lt;/code&gt; (32) are pinned together, so the search is exact up to ~130k rows.&lt;br&gt;
+Measured on 27k rows of 1024-dim vectors: 245 ms → 84 ms per query with&lt;br&gt;
+recall@10 of 0.98. The CLI never builds indexes; only the server&#39;s worker&lt;br&gt;
+does.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;[cascade] scan_interval_seconds&lt;/code&gt;&lt;/strong&gt; is a setting (default 30 s) instead of&lt;br&gt;
+a constant.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;everos cascade sync&lt;/code&gt;, &lt;code&gt;cascade fix --apply&lt;/code&gt; and &lt;code&gt;cascade rebuild&lt;/code&gt; refuse&lt;br&gt;
+to run next to a running server&lt;/strong&gt; (exit code 3) and hold the root&#39;s lock for&lt;br&gt;
+their whole run. Two processes writing the same index inserted every row&lt;br&gt;
+twice; a running server projects markdown changes on its own.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pyarrow floor raised to 25.0.1.&lt;/strong&gt; Materialising timestamp columns no&lt;br&gt;
+longer imports &lt;code&gt;pytz&lt;/code&gt; per value on the query hot path (a 312 ms → 13 ms&lt;br&gt;
+difference per query on Windows).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Watcher paths are relativised without a &lt;code&gt;resolve()&lt;/code&gt; per event&lt;/strong&gt;, which was&lt;br&gt;
+~40 % of the worker threads&#39; CPU under write load on Windows.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;A late &lt;code&gt;modified&lt;/code&gt; event for a path that is already gone is recorded as a&lt;br&gt;
+deletion&lt;/strong&gt;, so a create-then-unlink inside the event latency window cannot&lt;br&gt;
+resurrect a file.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;&lt;code&gt;POST /memory/add&lt;/code&gt; rejects a &lt;code&gt;role = &quot;tool&quot;&lt;/code&gt; message without&lt;br&gt;
+&lt;code&gt;tool_call_id&lt;/code&gt; with 422&lt;/strong&gt; instead of failing with 500 inside extraction.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;OME strategies only receive event classes they declared.&lt;/strong&gt; A bare manual&lt;br&gt;
+tick no longer reaches business-event strategies (which crashed on it), and a&lt;br&gt;
+manual trigger reaches a Cron strategy again.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;API docs&lt;/strong&gt; describe the response envelope&#39;s exceptions and the OME latency&lt;br&gt;
+after a flush.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Milvus CI&lt;/strong&gt; pulls MinIO from quay.io (the Docker Hub image was withdrawn).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Fixed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Watcher upserts for one file commit in delivery order.&lt;/strong&gt; Each event used to&lt;br&gt;
+schedule its own upsert and the last committer won; Windows synthesises a&lt;br&gt;
+&lt;code&gt;created&lt;/code&gt; per freshly created parent directory, so a stale duplicate could&lt;br&gt;
+put the first write&#39;s mtime back on the row after an atomic save. Sequence&lt;br&gt;
+numbers are now unique as well.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Transient Lance spill failures are retried.&lt;/strong&gt; &lt;code&gt;LanceError(IO): Execution error: Spill has sent an error&lt;/code&gt; (DataFusion spilling to the temp dir under&lt;br&gt;
+heavy concurrent writes) surfaced as a bare &lt;code&gt;RuntimeError&lt;/code&gt; on &lt;code&gt;merge_insert&lt;/code&gt;&lt;br&gt;
+and marked the markdown file permanently failed; it is now a retryable error&lt;br&gt;
+and the same row projects on the next attempt.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Markdown staging swap survives a Windows sharing violation.&lt;/strong&gt; &lt;code&gt;os.replace&lt;/code&gt;&lt;br&gt;
+over a file another process has open (the worker, an antivirus scan) is&lt;br&gt;
+retried with backoff instead of failing the write.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Deleting a knowledge document before it was indexed removes its directory&lt;/strong&gt;&lt;br&gt;
+and reports the real topic count instead of leaving the files to be re-indexed.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Upgrade&lt;/h2&gt;
+&lt;div class=&quot;highlight highlight-source-shell notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;pip install --upgrade everos   # or: uv sync&quot;&gt;&lt;pre&gt;pip install --upgrade everos   &lt;span class=&quot;pl-c&quot;&gt;&lt;span class=&quot;pl-c&quot;&gt;#&lt;/span&gt; or: uv sync&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;First server start builds the vector indexes&lt;/strong&gt; on every table past the row&lt;br&gt;
+threshold: seconds per 10k rows of 1024-dim vectors (0.5 s at 27k, ~1.4 s at&lt;br&gt;
+100k per column), during which searches keep working with a flat scan. Set&lt;br&gt;
+&lt;code&gt;[lancedb] vector_index_min_rows&lt;/code&gt; higher to defer it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Stores created before the &lt;code&gt;subject_vector&lt;/code&gt; column existed&lt;/strong&gt; fail the&lt;br&gt;
+startup schema check with &lt;code&gt;LanceDBSchemaMismatchError&lt;/code&gt;. Stop the server and&lt;br&gt;
+run &lt;code&gt;EVEROS_ROOT=&amp;lt;memory root&amp;gt; everos cascade rebuild&lt;/code&gt; — it re-indexes from&lt;br&gt;
+markdown, which stays the source of truth. Note that &lt;code&gt;cascade rebuild&lt;/code&gt; reads&lt;br&gt;
+the root from &lt;code&gt;EVEROS_ROOT&lt;/code&gt;, not from &lt;code&gt;--root&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scripts that ran &lt;code&gt;everos cascade sync&lt;/code&gt; next to a running server&lt;/strong&gt; now get&lt;br&gt;
+exit code 3. Drop the call (the server projects changes itself) or stop the&lt;br&gt;
+server first.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;pyarrow ≥ 25.0.1&lt;/strong&gt; is required; &lt;code&gt;pip install --upgrade everos&lt;/code&gt; resolves it.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full changelog:&lt;/strong&gt; &lt;a href=&quot;https://github.com/EverMind-AI/EverOS/compare/v1.3.1...v1.4.0&quot;&gt;v1.3.1...v1.4.0&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1085086903/v1.4.0rc2</id>
+    <updated>2026-09-24T10:06:21Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/EverMind-AI/EverOS/releases/tag/v1.4.0rc2"/>
+    <title>EverOS 1.4.0rc2</title>
+    <content type="html">&lt;p&gt;Pre-release build of &lt;code&gt;1.4.0rc2&lt;/code&gt;. See CHANGELOG.md on the tag.&lt;/p&gt;
+&lt;h2&gt;Upgrade&lt;/h2&gt;
+&lt;div class=&quot;highlight highlight-source-shell notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;pip install --upgrade everos   # or: uv sync&quot;&gt;&lt;pre&gt;pip install --upgrade everos   &lt;span class=&quot;pl-c&quot;&gt;&lt;span class=&quot;pl-c&quot;&gt;#&lt;/span&gt; or: uv sync&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Full changelog:&lt;/strong&gt; &lt;a href=&quot;https://github.com/EverMind-AI/EverOS/compare/v1.3.1...v1.4.0rc2&quot;&gt;v1.3.1...v1.4.0rc2&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1085086903/v1.4.0rc1</id>
+    <updated>2026-09-24T09:32:21Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/EverMind-AI/EverOS/releases/tag/v1.4.0rc1"/>
+    <title>EverOS 1.4.0rc1</title>
+    <content type="html">&lt;p&gt;Pre-release build of &lt;code&gt;1.4.0rc1&lt;/code&gt;. See CHANGELOG.md on the tag.&lt;/p&gt;
+&lt;h2&gt;Upgrade&lt;/h2&gt;
+&lt;div class=&quot;highlight highlight-source-shell notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;pip install --upgrade everos   # or: uv sync&quot;&gt;&lt;pre&gt;pip install --upgrade everos   &lt;span class=&quot;pl-c&quot;&gt;&lt;span class=&quot;pl-c&quot;&gt;#&lt;/span&gt; or: uv sync&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;strong&gt;Full changelog:&lt;/strong&gt; &lt;a href=&quot;https://github.com/EverMind-AI/EverOS/compare/v1.3.1...v1.4.0rc1&quot;&gt;v1.3.1...v1.4.0rc1&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1085086903/v1.3.1</id>
+    <updated>2026-09-08T08:19:26Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/EverMind-AI/EverOS/releases/tag/v1.3.1"/>
+    <title>EverOS 1.3.1</title>
+    <content type="html">&lt;p&gt;&lt;strong&gt;One reproducible runner for four long-term-memory benchmarks, plus an&lt;br&gt;
+LLM-guided multi-round retrieval method.&lt;/strong&gt; LoCoMo, LongMemEval, EverMemBench,&lt;br&gt;
+and SubtleMemory now share the same staged ADD → SEARCH → ANSWER → JUDGE&lt;br&gt;
+workflow, resume model, metrics, and run manifest. The new&lt;br&gt;
+&lt;code&gt;llm_multiround&lt;/code&gt; search method iteratively recalls episode blocks, asks a&lt;br&gt;
+separately configurable decider to retain core evidence and issue follow-up&lt;br&gt;
+queries, and returns a bounded final context without a cross-encoder.&lt;/p&gt;
+&lt;h2&gt;Added&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;LLM-guided multi-round episode retrieval.&lt;/strong&gt;&lt;br&gt;
+&lt;code&gt;POST /api/v2/memory/search&lt;/code&gt; accepts &lt;code&gt;method = &quot;llm_multiround&quot;&lt;/code&gt; for user&lt;br&gt;
+memory. Each round independently fuses BM25 and vector candidates for the&lt;br&gt;
+current sub-queries with RRF, then uses the decider to select core evidence&lt;br&gt;
+and identify remaining gaps. Existing search response fields are unchanged;&lt;br&gt;
+decider failures are recorded in structured logs and optional trace dumps.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Independent decider configuration.&lt;/strong&gt; The new &lt;code&gt;[decider]&lt;/code&gt; section selects&lt;br&gt;
+the model, endpoint, timeout, request extras, retry policy, and loop tuning.&lt;br&gt;
+Empty connection fields inherit &lt;code&gt;[llm]&lt;/code&gt;, preserving single-model setups.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Unified benchmark harness.&lt;/strong&gt; One runner and four adapters cover LoCoMo,&lt;br&gt;
+LongMemEval, EverMemBench, and SubtleMemory with explicit dataset configs,&lt;br&gt;
+resumable stage artifacts, deterministic run identities, shared IR metrics,&lt;br&gt;
+decider preflight checks, and trace validation that rejects degraded&lt;br&gt;
+multi-round runs before reporting scores.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Cascade snapshot control.&lt;/strong&gt; &lt;code&gt;POST /api/v1/cascade/quiesce&lt;/code&gt; and&lt;br&gt;
+&lt;code&gt;POST /api/v2/cascade/quiesce&lt;/code&gt; drain the Markdown-to-index queue and stop the&lt;br&gt;
+cascade subsystem until restart. Startup switches can disable all cascade&lt;br&gt;
+work or only the filesystem watcher for managed read-only workloads.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;OME attempts are bounded.&lt;/strong&gt; One strategy attempt now has a 1,800-second&lt;br&gt;
+default wall-clock timeout and follows the existing retry/dead-letter path on&lt;br&gt;
+timeout. Environment settings can tune concurrency or disable the timeout.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;SQLite pool saturation fails visibly.&lt;/strong&gt; Pool size, overflow, checkout&lt;br&gt;
+timeout, recycle, and pre-ping are explicit settings; exhausted pools now&lt;br&gt;
+raise after a bounded wait and emit saturation diagnostics instead of waiting&lt;br&gt;
+indefinitely.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Extraction LLM transport is configurable.&lt;/strong&gt; &lt;code&gt;[llm]&lt;/code&gt; now exposes request&lt;br&gt;
+timeout and provider-specific SDK arguments while retaining the previous&lt;br&gt;
+60-second default.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Fixed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Permanent embedding request errors no longer retry.&lt;/strong&gt; HTTP 400, 401, 403,&lt;br&gt;
+404, 413, 414, and 422 responses are classified as rejected input or&lt;br&gt;
+configuration and leave the retry loop; timeouts, 429 responses, and server&lt;br&gt;
+errors remain retryable.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;EverMemBench owner mapping no longer changes profile extraction.&lt;/strong&gt; The&lt;br&gt;
+adapter uses one stable synthetic owner per topic for both ingestion and&lt;br&gt;
+search while preserving each real participant&#39;s name in message metadata.&lt;br&gt;
+The production Profile cluster/direct extraction paths are unchanged.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Upgrade&lt;/h2&gt;
+&lt;div class=&quot;highlight highlight-source-shell notranslate position-relative overflow-auto&quot; data-snippet-clipboard-copy-content=&quot;pip install --upgrade everos   # or: uv sync&quot;&gt;&lt;pre&gt;pip install --upgrade everos   &lt;span class=&quot;pl-c&quot;&gt;&lt;span class=&quot;pl-c&quot;&gt;#&lt;/span&gt; or: uv sync&lt;/span&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;ul&gt;
+&lt;li&gt;No storage migration or index rebuild is required. Existing search methods&lt;br&gt;
+keep their prior behavior unless callers explicitly select&lt;br&gt;
+&lt;code&gt;llm_multiround&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Deployments with a healthy OME strategy that legitimately runs for more than&lt;br&gt;
+1,800 seconds must raise &lt;code&gt;EVEROS_OME_RUN_TIMEOUT_SECONDS&lt;/code&gt; or set it to &lt;code&gt;0&lt;/code&gt; /&lt;br&gt;
+&lt;code&gt;off&lt;/code&gt; before upgrading.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full changelog:&lt;/strong&gt; &lt;a href=&quot;https://github.com/EverMind-AI/EverOS/compare/v1.3.0...v1.3.1&quot;&gt;v1.3.0...v1.3.1&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+</feed>

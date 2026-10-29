@@ -1,0 +1,16 @@
+[
+  {
+    "model": "Qdrant/paraphrase-multilingual-MiniLM-L12-v2-onnx-Q",
+    "revision": "faf4aa4225822f3bc6376869cb1164e8e3feedd0",
+    "card_url": "https://huggingface.co/Qdrant/paraphrase-multilingual-MiniLM-L12-v2-onnx-Q/raw/faf4aa4225822f3bc6376869cb1164e8e3feedd0/README.md",
+    "card_sha256": "c96c17d91a9e83ec840da5a517277f5164315bd765e21da4216a568008c4f74e",
+    "status": "retrieved"
+  },
+  {
+    "model": "Systran/faster-whisper-tiny",
+    "revision": "d90ca5fe260221311c53c58e660288d3deb8d356",
+    "card_url": "https://huggingface.co/Systran/faster-whisper-tiny/raw/d90ca5fe260221311c53c58e660288d3deb8d356/README.md",
+    "card_sha256": "29fb8444a02c1f133ab7e538525aa478ff68845964f21cf42500842b0e4a7b20",
+    "status": "retrieved"
+  }
+]

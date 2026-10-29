@@ -1,0 +1,13 @@
+{
+  "repository_attempts": 37,
+  "public_repositories": 36,
+  "standard_snapshots": 99,
+  "selected_successful_snapshots": 45,
+  "selected_successful_repositories": 14,
+  "validated_evidence_records": 144,
+  "markdown_words": 5814,
+  "html_tables": 10,
+  "html_sections": 13,
+  "report_sha256": "db62c5281fefcf411b2b09ce1cbb358ca8e8199d191f2d4197f8f44db67ac7cb",
+  "validation": "Local evidence digests, completeness and relative links verified; no cross-project execution benchmark performed"
+}

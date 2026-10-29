@@ -1,0 +1,273 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "a-memory"
+version = "1.13.0"
+description = "a-memory — persistent, layer-isolated memory for AI agents: 7 primitives, hybrid search, knowledge graphs"
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [
+    { name = "Ariel Memory Team" }
+]
+keywords = ["mcp", "memory", "ai-agent", "llm", "knowledge-graph", "rag", "wiki"]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+
+dependencies = [
+    "mcp[cli]>=2,<3",
+    "pyyaml>=6.0.3",
+    "pydantic>=2.0",
+    "pynacl>=1.6.2",
+    "python-frontmatter>=1.0.0",
+    "prometheus-client>=0.26.0",
+    "aiosqlite>=0.22.1",
+    "alembic>=1.20.0",
+    "starlette>=1.3.1",
+    "uvicorn>=0.52.1",
+    "numpy>=2.2.6",
+    "spacy>=3.8.16",
+    # preshed 3.0.14 (spaCy's transitive dep) breaks model loading:
+    # `spacy.load("en_core_web_sm")` raises
+    # `OverflowError: Python int too large to convert to C ssize_t`.
+    # 3.0.13 loads fine. Cap until upstream fixes it.
+    "preshed>=3.0.0,<3.0.14",
+    "pymorphy3>=2.0.6",
+    # lifecycle/ uses both at runtime (best-effort imports); they previously
+    # arrived transitively via the embeddings extra — declared explicitly
+    # now that the embeddings extra is optional (remote indexer service).
+    "scikit-learn>=1.6",
+    "networkx>=3.0",
+]
+
+# spaCy NER models — the privacy gate (hooks ingest) and the graph miners.
+#
+# These cannot be project dependencies. PyPI refuses any distribution whose
+# metadata carries a direct URL, and neither model is on PyPI: `en-core-web-sm`
+# 404s there, and `ru-core-news-sm` resolves to an unrelated placeholder. They
+# were declared under `dependencies` with their wheel URLs, which needed
+# `[tool.hatch.metadata] allow-direct-references = true` to build at all — so the
+# build succeeded and the *upload* was refused with a bare HTTP 400, after the
+# GitHub Release had already been published. That flag is deliberately gone: if a
+# URL dependency ever reaches the metadata again, the build fails loudly rather
+# than producing a wheel PyPI will not accept.
+#
+# The URLs live in `mcp_server/utils/ner_models.py`, which ships inside the wheel,
+# and are installed by the `a-memory-ner` console script below. They are NOT also
+# listed here: a `[dependency-groups]` entry would be a second literal copy of the
+# same URLs, and pip does not install groups anyway — CI broke on exactly that.
+# One list, in the artifact every kind of user receives.
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-asyncio>=0.21",
+    "pytest-timeout>=2.0",
+    "pytest-cov>=4.0",
+    "pytest-xdist>=3.0",
+    "ruff>=0.1",
+    "mypy>=1.0",
+    "hypothesis>=6.0",
+]
+docs = [
+    "mkdocs>=1.5",
+    "mkdocs-material>=9.0",
+    "mkdocstrings[python]>=0.24",
+]
+win = [
+    "aiosqlite>=0.21.0,!=0.22.0",
+]
+binary = [
+    "numpy>=1.24",
+]
+vec = [
+    "sqlite-vec>=0.1",
+]
+ann = [
+    "hnswlib>=0.7",
+]
+embeddings = [
+    "sentence-transformers>=6.1.0",
+]
+all = [
+    "a-memory[dev,win,binary,vec,ann,embeddings]",
+]
+
+[project.scripts]
+a-memory = "mcp_server.server:main"
+ariel-memory = "mcp_server.server:main"
+mcp-ariel-memory = "mcp_server.server:main"
+# Optional spaCy NER models for the privacy gate. They cannot be dependencies
+# (see the note above `[project.optional-dependencies]`), so they install with
+# their own command — and it has to be a console script, because a `pip install
+# a-memory` user never receives `scripts/`.
+a-memory-ner = "mcp_server.utils.ner_models:main"
+
+[project.urls]
+Homepage = "https://github.com/Cipher208/a-memory"
+Repository = "https://github.com/Cipher208/a-memory"
+Issues = "https://github.com/Cipher208/a-memory/issues"
+Documentation = "https://cipher208.github.io/a-memory/"
+
+[tool.hatch.build.targets.wheel]
+# Explicit, not `packages = ["."]`. The dot made the repository root the package
+# root, so the wheel shipped tests/ (115 files), docs/, .github/, uv.lock, the
+# Dockerfile and the raw pytest logs — a map of the project rather than the
+# project. Everything listed below is runtime code; anything missing here is a
+# file the installed package no longer has, so add new top-level packages here.
+only-include = [
+    "mcp_server",
+    "shared",
+    "features",
+    "rag",
+    "lifecycle",
+    "core",
+    "hooks",
+    "graph",
+    "wiki",
+    "alembic",
+    "config.py",
+    "config.yaml",
+    "py.typed",
+    "alembic.ini",
+]
+
+[tool.hatch.build.targets.sdist]
+exclude = [
+    "full_test_output.txt",
+    "test_output.txt",
+]
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+asyncio_default_fixture_loop_scope = "function"
+testpaths = ["tests"]
+timeout = 60
+filterwarnings = [
+    "ignore::pytest.PytestUnhandledThreadExceptionWarning",
+    "ignore::DeprecationWarning:features.auth",
+]
+
+[tool.ruff]
+line-length = 150
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["ALL"]
+ignore = [
+    "INP001",   # Missing __init__.py in subdirs
+    "ANN",      # Missing type annotations (using mypy strict instead)
+    "EM",       # Exception message literals
+    "TRY003",   # Long exception messages
+    "PLR2004",  # Magic numbers
+    "COM812",   # Missing trailing comma
+    "ISC001",   # Implicit string concatenation
+    "T201",     # print() found (we use it in demo/cli)
+    "S101",     # Use of assert (standard for tests)
+    "PLC0415",  # Import at top level (we use dynamic imports)
+    "E501",     # Line too long (SQL strings)
+    "RUF001",   # Ambiguous character (Cyrillic in strings)
+    "I001",     # Import sorting (let developer decide)
+    "BLE001",   # Blind except (legacy code)
+    "G004",     # Logging f-strings (standard in this repo)
+    "PTH123",   # open() is fine in legacy
+    "PTH101",   # os.chmod() is fine in legacy
+    "S608",     # SQL injection false positives (verified)
+    "S311",     # random is fine for non-crypto
+    "TRY300",   # else block suggestions (too noisy)
+    "PERF203",  # try-except in loops (needed for stability)
+    "A002",     # shadowing builtin (next)
+    "CPY001",   # Missing copyright (unnecessary)
+    "N999",     # Invalid module name (hyphen is fine for root dir)
+    "ARG",      # Unused arguments (fine in tests/hooks)
+    "PLR",      # Complexity rules (too strict for legacy)
+    "SLF001",   # Private member access (fine in tests)
+    "FBT",      # Boolean trap (too strict)
+    "PT011",    # Pytest raises too broad (fine for logic)
+    "ERA001",   # Commented out code (standard in dev)
+    "B017",     # Assert Exception (fine in tests)
+    "B007",     # Loop variable unused (pass)
+    "E402",     # Module level import not at top (needed for path inserts)
+    "S108",     # hardcoded-temp-file (used in tests)
+    "TC010",    # runtime-string-union (type alias issues)
+    "G002",     # logging-percent-format (standard here)
+    "RUF002",   # ambiguous-unicode-character-docstring (cyrillic)
+    "RUF003",   # ambiguous-unicode-character-comment (cyrillic)
+    "PERF401",  # manual-list-comprehension (noisy)
+    "C901",     # complex-structure (needed for some logic)
+    "N806",     # non-lowercase-variable-in-function (standard)
+    "PLW0603",  # global-statement (used in some places)
+    "S603",     # subprocess-untrusted-input (demo only)
+    "RUF012",   # mutable-class-default (standard in pydantic/legacy)
+    "PLW2901",  # loop-variable-overwritten (noisy)
+    "RUF006",   # asyncio-task-no-reference (noisy in this setup)
+    "S324",     # hashlib-insecure-hash-function (used for cache)
+    "DTZ005",   # datetime-now-without-tz (legacy)
+    "PTH",      # pathlib-recommendations (legacy)
+    "W291",     # trailing-whitespace (noisy in docs/tests)
+    "PT",       # pytest-recommendations (noisy)
+    "N817",     # camelcase-as-acronym (standard for MM)
+    "NPY002",   # legacy-numpy-random (standard here)
+    "B023",     # loop-variable-non-binding (standard pattern)
+    "D100",     # Missing docstring in public module
+    "D101",     # Missing docstring in public class
+    "D102",     # Missing docstring in public method
+    "D103",     # Missing docstring in public function
+    "D104",     # Missing docstring in public package
+    "D105",     # Missing docstring in magic method
+    "D107",     # Missing docstring in __init__
+    "D203",     # One blank line before class (incompatible with D211)
+    "D213",     # Multi-line docstring summary should start at second line
+]
+
+[tool.ruff.lint.per-file-ignores]
+"__init__.py" = ["F401"]
+"tests/*" = ["S101", "ANN", "D", "SLF001", "PLR", "ARG", "FBT", "PT", "B011", "B023", "B904", "RET504", "TRY", "EM", "S", "PLW", "PLR", "ASYNC240"]
+
+[tool.mypy]
+python_version = "3.12"
+warn_return_any = true
+warn_unused_configs = true
+disallow_untyped_defs = true
+check_untyped_defs = true
+ignore_missing_imports = false
+explicit_package_bases = true
+exclude = ["tests", ".venv"]
+strict = true
+
+[[tool.mypy.overrides]]
+module = [
+    "yaml.*",
+    "alembic.*",
+    "keyring.*",
+    "sentence_transformers.*",
+]
+ignore_missing_imports = true
+
+[tool.coverage.run]
+omit = ["demo.py", "__main__.py"]
+
+[tool.skylos]
+# SKY-D260 (cyrillic homoglyphs) is disabled project-wide: RU text here is
+# product data (classification keywords, synonyms, RU morphology) and a
+# deliberate language policy, not obfuscated code. Revisit only if a
+# homoglyph-attack audit is actually needed.
+ignore = ["SKY-D260"]
+
+[[tool.uv.index]]
+name = "pytorch-cpu"
+url = "https://download.pytorch.org/whl/cpu"
+explicit = true
+
+[tool.uv.sources]
+torch = { index = "pytorch-cpu" }

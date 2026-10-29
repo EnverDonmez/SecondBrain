@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:https://github.com/thedotmack/claude-mem/releases</id>
+  <link type="text/html" rel="alternate" href="https://github.com/thedotmack/claude-mem/releases"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/thedotmack/claude-mem/releases.atom"/>
+  <title>Release notes from claude-mem</title>
+  <updated>2026-10-25T19:45:20Z</updated>
+  <entry>
+    <id>tag:github.com,2008:Repository/1048065319/v15.2.1</id>
+    <updated>2026-10-25T19:45:33Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/thedotmack/claude-mem/releases/tag/v15.2.1"/>
+    <title>v15.2.1 — npm trusted publishing</title>
+    <content type="html">&lt;h2&gt;What changed&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;npm publishing now uses trusted publishing (OIDC).&lt;/strong&gt; The &quot;Publish to npm&quot; GitHub Actions workflow authenticates to npm with a short-lived OIDC token issued for this repository&#39;s workflow instead of the long-lived &lt;code&gt;NPM_TOKEN&lt;/code&gt; secret, which had been failing on every tag since v13.26.1. Trusted publishes also carry an npm provenance attestation linking the package to the commit and workflow that built it. (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;6028342440&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5063&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5063/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5063&quot;&gt;#5063&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;No runtime behavior changes in the plugin or worker; this release exists to ship through the new publishing path.&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/thedotmack/claude-mem/compare/v15.2.0...v15.2.1&quot;&gt;&lt;tt&gt;v15.2.0...v15.2.1&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>thedotmack</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/683968?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1048065319/v15.2.0</id>
+    <updated>2026-10-25T11:52:16Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/thedotmack/claude-mem/releases/tag/v15.2.0"/>
+    <title>v15.2.0 — Browser install funnel</title>
+    <content type="html">&lt;h2&gt;Highlights&lt;/h2&gt;
+&lt;h3&gt;Install funnel in the browser (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;6002932917&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5031&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5031/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5031&quot;&gt;#5031&lt;/a&gt;)&lt;/h3&gt;
+&lt;p&gt;Fresh installs now open a browser setup flow that finds your recent work and turns it into Work, Goals and Rules before setup finishes. Existing installations keep opening My Work as before.&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Install&lt;/strong&gt; — &lt;code&gt;npx claude-mem install&lt;/code&gt; installs the detected hooks, starts the worker and opens the browser.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Scan&lt;/strong&gt; — reads the last 30 days of supported local agent history. Configured excluded projects and agent-authored prompts are left out, stored prompts are deduplicated, and private-tag cleanup and configured redaction run before anything is shown or extracted.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reveal&lt;/strong&gt; — uploads the filtered owner prompts (gzip) to CMEM Cloud for hosted intent extraction. Anonymous installs get a private, persistent installation credential that retries and sign-in reuse. Returned goals, rules and request groups fill the local My Work snapshots. Upload and extraction errors are shown and can be retried. The pre-checked product-improvement box only changes &lt;code&gt;improveProduct&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Storage choice&lt;/strong&gt; — At Home or On The Go. On The Go uses the existing pairing, login and checkout flow; delivered memory credentials are activated before checkout is marked paid, and sync-only accounts keep their provider.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Finish Setup&lt;/strong&gt; — installs any other selected local tools and can import existing memory. Extraction or import in progress is kept when a settings change restarts the worker.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;What&#39;s next&lt;/strong&gt; — search saved memory and prompts, keep a result as a note, then hand off to My Work. The terminal exits successfully.&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;Ongoing goals and progress refresh uses an installed, logged-in agent: Claude Code gets bounded file tools and memory recall only; Codex runs with a strict read-only workspace/runtime profile (no writes, no network), with native and npm runtime layouts supported; Gemini gets prepared evidence inline with no builtin tools, hooks or YOLO mode. Every saved answer passes the worker&#39;s validators.&lt;/p&gt;
+&lt;h3&gt;Setup no longer fails when Cloud leaves conversations ungrouped (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;6023443529&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5060&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5060/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5060&quot;&gt;#5060&lt;/a&gt;)&lt;/h3&gt;
+&lt;p&gt;On real 30-day scans the hosted model sometimes leaves conversations out of every group. The worker used to throw &lt;code&gt;Hosted extraction omitted conversation …&lt;/code&gt; and fail setup after a successful hosted run. Now the groups Cloud returned are saved and conversations it did not place stay undecided: they show in My Work as their own request, and the local refresh can group them later. Unknown or repeated conversation ids still fail loudly.&lt;/p&gt;
+&lt;h2&gt;Requirements&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Node &lt;code&gt;^20.19.0 || &amp;gt;=22.12.0&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Uses CMEM Cloud hosted history import and intent extraction (claude-mem-pro &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3735451449&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/353&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/issues/353/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/issues/353&quot;&gt;#353&lt;/a&gt;, &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3736511243&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/355&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/355/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/355&quot;&gt;#355&lt;/a&gt;, &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;3736993288&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/358&quot; data-hovercard-type=&quot;issue&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/issues/358/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/issues/358&quot;&gt;#358&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Full Changelog&lt;/strong&gt;: &lt;a class=&quot;commit-link&quot; href=&quot;https://github.com/thedotmack/claude-mem/compare/v15.1.0...v15.2.0&quot;&gt;&lt;tt&gt;v15.1.0...v15.2.0&lt;/tt&gt;&lt;/a&gt;&lt;/p&gt;</content>
+    <author>
+      <name>thedotmack</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/683968?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1048065319/v15.1.0</id>
+    <updated>2026-10-25T07:44:32Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/thedotmack/claude-mem/releases/tag/v15.1.0"/>
+    <title>v15.1.0</title>
+    <content type="html">&lt;h2&gt;claude-mem 15.1.0&lt;/h2&gt;
+&lt;h3&gt;Highlights&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;New My Work viewer (React, live data).&lt;/strong&gt; The localhost viewer at &lt;code&gt;http://localhost:37777&lt;/code&gt; is replaced by the React My Work viewer on live worker data: one card per human request, progress meters, owner goals, goal alignment, shipping velocity and the build story (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5990914556&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5010&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5010/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5010&quot;&gt;#5010&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;My Work is always live.&lt;/strong&gt; Updates appear as they arrive; the &quot;Show updates&quot; button is gone. The header now reads &quot;claude-mem&quot;, links to the Classic viewer at &lt;code&gt;/viewer&lt;/code&gt;, and shows a GitHub stars button. An open request drawer no longer reopens by itself when its request returns to the feed (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;6021747017&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5056&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5056/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5056&quot;&gt;#5056&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Request grouping and progress review.&lt;/strong&gt; The build story stays under its cap and the story update is told how much room it has (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;6018439793&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5053&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5053/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5053&quot;&gt;#5053&lt;/a&gt;, &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;6018771173&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5054&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5054/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5054&quot;&gt;#5054&lt;/a&gt;); every agent&#39;s refresh failure is shown; finished subagents show as finished, and a subagent can be marked finished from its agent card; Claude Code subagent stops are recorded.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Server&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Per-prompt semantic injection in server mode (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5985781997&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5004&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5004/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5004&quot;&gt;#5004&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;The configured embedding model is baked into the Docker image (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5985781335&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5003&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5003/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5003&quot;&gt;#5003&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;MCP&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Opt-in loopback HTTP transport with per-session workspaces (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5996917511&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5028&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5028/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5028&quot;&gt;#5028&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Fixes&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Observer: reasoning gets its own budget and cut-off replies are reported (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;6005496799&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5033&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5033/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5033&quot;&gt;#5033&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Search: unfiltered timelines are scoped to their anchor project (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5991932997&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5013&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5013/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5013&quot;&gt;#5013&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Worker: cross-origin loopback writes to &lt;code&gt;/api/import&lt;/code&gt; are rejected (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5993743129&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5025&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5025/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5025&quot;&gt;#5025&lt;/a&gt;); Edit payloads carrying new scalar flags keep being trimmed (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5994349665&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5027&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5027/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5027&quot;&gt;#5027&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Redaction: AWS secret keys under lowercase key names, PGP private key blocks and encrypted PKCS#8 keys (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5992284604&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5014&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5014/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5014&quot;&gt;#5014&lt;/a&gt;, &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5992430237&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5017&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5017/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5017&quot;&gt;#5017&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Security: private prompt text stays out of Goals.&lt;/li&gt;
+&lt;li&gt;Smart-read: tree-sitter probe output read when Bun returns a Buffer (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5993738240&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5024&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5024/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5024&quot;&gt;#5024&lt;/a&gt;), Go type aliases (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5993130406&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5020&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5020/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5020&quot;&gt;#5020&lt;/a&gt;), Swift extension methods (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5992399904&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5016&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5016/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5016&quot;&gt;#5016&lt;/a&gt;), symbols ending at column 0 (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5992298898&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5015&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5015/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5015&quot;&gt;#5015&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Hooks: &lt;code&gt;last_assistant_message&lt;/code&gt; mapped in the raw adapter (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5991365195&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5011&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5011/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5011&quot;&gt;#5011&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Agent runner: npm-installed codex and gemini are found and started.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Tests&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Suite split into fast and integration lanes; slow, failing and source-grep tests cut (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;6004049897&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5032&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5032/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5032&quot;&gt;#5032&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>thedotmack</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/683968?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1048065319/v15.0.2</id>
+    <updated>2026-10-23T18:51:46Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/thedotmack/claude-mem/releases/tag/v15.0.2"/>
+    <title>v15.0.2 — Stop observer reasoning from consuming the output budget</title>
+    <content type="html">&lt;h1&gt;Stop observer reasoning from consuming the output budget&lt;/h1&gt;
+&lt;p&gt;Observer requests to OpenRouter, the cmem.ai gateway, and OpenAI-compatible endpoints now disable reasoning by default, so reasoning tokens no longer fill the output budget and leave a session with zero observations.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;An empty reply with finish_reason=length is logged and retried once with reasoning forced off. That retry counts against the existing paid-send budget and is bounded by the per-attempt timeout.&lt;/li&gt;
+&lt;li&gt;Billed usage keeps the retry&#39;s prompt size and adds completion tokens and cost from both attempts.&lt;/li&gt;
+&lt;li&gt;Health status names the active OpenRouter credential, including a custom OPENROUTER_BASE_URL.&lt;/li&gt;
+&lt;li&gt;OpenAI &quot;Unsupported parameter&quot; responses drop the reasoning field and remember the endpoint. Mandatory-reasoning and invalid-effort refusals are left in place.&lt;/li&gt;
+&lt;li&gt;Empty replies that finish with stop stay accepted.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Ships the observer repair from &lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;6002114922&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/5029&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/5029/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/5029&quot;&gt;#5029&lt;/a&gt;.&lt;/p&gt;</content>
+    <author>
+      <name>cursor[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/1210556?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1048065319/v15.0.1</id>
+    <updated>2026-10-20T22:41:06Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/thedotmack/claude-mem/releases/tag/v15.0.1"/>
+    <title>v15.0.1 — Consistent Smart recall across merged projects</title>
+    <content type="html">&lt;h1&gt;Keep Smart recall consistent across merged projects&lt;/h1&gt;
+&lt;p&gt;Smart search, timeline context, and selected observation details now use the same checkout project scope. An observation found through a merged project alias remains available in the next two steps, instead of incorrectly returning “not found.”&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Resolves the same project read keys for search results, explicit timeline anchors, query-selected timeline anchors, and selected observation reads.&lt;/li&gt;
+&lt;li&gt;Keeps adopted records visible while excluding unrelated or unadopted records and respecting platform-source filters.&lt;/li&gt;
+&lt;li&gt;Preserves the Smart default three-step workflow and the optional &lt;code&gt;dumb_search&lt;/code&gt; alternative introduced in 15.0.0. No API or schema migration is required.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Regression coverage includes real HTTP/SQLite cases that fail on 15.0.0 and pass with this repair, plus related scope-isolation checks.&lt;/p&gt;</content>
+    <author>
+      <name>thedotmack</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/683968?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1048065319/v15.0.0</id>
+    <updated>2026-10-20T21:52:33Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/thedotmack/claude-mem/releases/tag/v15.0.0"/>
+    <title>v15.0.0 — Smart memory search by default</title>
+    <content type="html">&lt;h1&gt;Smart memory search by default&lt;/h1&gt;
+&lt;p&gt;Memory recall now defaults to Smart: search the compact index, inspect context around relevant results, then fetch only the selected details. The agent reasons about relevance between these three steps. Local, cloud/Pro, and standalone-server instructions describe the tools available in that runtime.&lt;/p&gt;
+&lt;p&gt;The optional one-call lookup is now &lt;code&gt;dumb_search&lt;/code&gt;. Its description is explicit: “Doesn’t reason about the results. Fast, but shallow. Use Smart for reliable recall.” It performs deterministic title matching and does not reason about relevance.&lt;/p&gt;
+&lt;h2&gt;Migration&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Use the &lt;code&gt;mem-search&lt;/code&gt; skill for default Smart recall. Local tools are &lt;code&gt;search&lt;/code&gt; → &lt;code&gt;timeline&lt;/code&gt; → &lt;code&gt;get_observations&lt;/code&gt;; Cloud/Pro starts with &lt;code&gt;memory_search&lt;/code&gt; and can fetch selected summaries with &lt;code&gt;get_summaries&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;Replace calls to the old &lt;code&gt;mem_search&lt;/code&gt; guided/auto API and &lt;code&gt;flash_search&lt;/code&gt; with the Smart workflow, or explicitly choose &lt;code&gt;dumb_search&lt;/code&gt; for a shallow lookup. Auto/guided modes and continuation cursors are removed.&lt;/li&gt;
+&lt;li&gt;Refresh existing MCP connections so clients load the new tool catalog and descriptions.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Correctness&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Cloud timeline supports context anchored to a selected search result.&lt;/li&gt;
+&lt;li&gt;Standalone-server recall stays scoped to its configured server project rather than reading a local worker&#39;s memory.&lt;/li&gt;
+&lt;li&gt;Selected-detail output reports its bounds honestly and preserves selected record identities when long content must be shortened.&lt;/li&gt;
+&lt;li&gt;Native memory lookup uses observation-only indexes, and mixed local indexes retain session/prompt ID prefixes so follow-up reads cannot select a different record kind with the same number.&lt;/li&gt;
+&lt;li&gt;Installer prompts, public documentation, integration instructions, and generated memory guidance use the same Smart-first policy.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Other changes since v14.0.1&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Added Hermes Agent memory support and installation, including safe handling of existing YAML configuration.&lt;/li&gt;
+&lt;li&gt;Added fallback between an Anthropic API key and the Claude subscription, with quota classification and recovery back to the primary provider at a message boundary.&lt;/li&gt;
+&lt;li&gt;Kept worker HTTP requests responsive during local context reads, bounded broad full-text fallback searches, and removed quadratic tag-stripping stalls.&lt;/li&gt;
+&lt;li&gt;Improved memory correctness: &lt;code&gt;type=&quot;all&quot;&lt;/code&gt; searches every category, deleted observations remove their Chroma documents, unexpected Chroma exits reject pending requests, and failed Windows checkpoint renames preserve the previous checkpoint.&lt;/li&gt;
+&lt;li&gt;Tightened privacy and request handling: fully private prompts no longer become stored user requests; key redaction handles trailing dashes; internal Grok research briefs do not become user work; multilingual work requests are recognized; and OpenRouter field condensation avoids unnecessary reasoning.&lt;/li&gt;
+&lt;li&gt;Improved installation and runtime reliability across Windows, macOS, Conda, Qoder, Goose, OpenCode, Antigravity, Codex, and TeamBrain. Fixes include launcher self-recursion and working-directory handling, stale temporary-directory cleanup, actionable authentication and missing-runtime errors, and correct host hook registration.&lt;/li&gt;
+&lt;li&gt;Added optional cross-project context with &lt;code&gt;CLAUDE_MEM_CONTEXT_PROJECTS=all&lt;/code&gt;, corrected folder context ordering and glob matching, expired orphaned summary spool entries, and improved effective-data-directory log lookup and cloud authentication telemetry.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Validation and delivery identities are recorded separately in the release receipt after the final builds, deployment, and package checks complete.&lt;/p&gt;</content>
+    <author>
+      <name>thedotmack</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/683968?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1048065319/v14.0.1</id>
+    <updated>2026-10-17T16:25:51Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/thedotmack/claude-mem/releases/tag/v14.0.1"/>
+    <title>v14.0.1</title>
+    <content type="html">&lt;p&gt;Cards keep the agent who did the work when new updates arrive, instead of showing Unassigned work.&lt;/p&gt;</content>
+    <author>
+      <name>thedotmack</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/683968?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1048065319/v14.0.0</id>
+    <updated>2026-10-17T15:50:36Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/thedotmack/claude-mem/releases/tag/v14.0.0"/>
+    <title>v14.0.0</title>
+    <content type="html">&lt;h2&gt;Claude-Mem 14.0.0: My Work and TeamBrain&lt;/h2&gt;
+&lt;h3&gt;My Work: see what you asked for, and where it stands&lt;/h3&gt;
+&lt;p&gt;Claude-Mem now opens on &lt;strong&gt;My Work&lt;/strong&gt;, a local, human-readable view of the requests you&#39;ve given your agents.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Cards, List and Agents views.&lt;/strong&gt; Full-width request cards with the title, a plain-language summary, who worked on it and the project. Switch to a sortable list or a view by agent. &quot;Attention first&quot; sorting brings anything that needs you to the top.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Readable summaries.&lt;/strong&gt; Each request gets a short everyday-language summary of what happened and the next step, written by the model you&#39;ve already configured. The last good summary stays visible while a new one is written. With no compatible provider, you see the recorded wording.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Live status.&lt;/strong&gt; In progress, Needs you, No recent update, Ready to check and Checked update as work is recorded, without the page jumping while you read.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Review.&lt;/strong&gt; Mark a result as checked yourself, so an agent reporting &quot;done&quot; is never mistaken for a person confirming it.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Drill down.&lt;/strong&gt; Open any request to see the work behind it: workstreams, recorded evidence and the original request.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;My Work is free, open source and runs on your machine.&lt;/p&gt;
+&lt;h3&gt;TeamBrain: shared work for teams (optional)&lt;/h3&gt;
+&lt;p&gt;TeamBrain brings the work your team chooses to share into the same experience: open work, useful context and handoffs, without anyone&#39;s private work being broadcast. Teams can set it up self-serve at &lt;strong&gt;$50 per seat per month&lt;/strong&gt; at &lt;a href=&quot;https://cmem.ai/teambrain&quot; rel=&quot;nofollow&quot;&gt;https://cmem.ai/teambrain&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Also in this release&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Codex: skips next-message suggestion and rollout-consolidation helper prompts (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5880486213&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4812&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4812/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4812&quot;&gt;#4812&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Windows tests now spawn the running Bun directly (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5882313676&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4814&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4814/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4814&quot;&gt;#4814&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;Upgrade:&lt;/strong&gt; &lt;code&gt;npx claude-mem@latest install&lt;/code&gt;&lt;/p&gt;</content>
+    <author>
+      <name>thedotmack</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/683968?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1048065319/v13.41.0</id>
+    <updated>2026-10-17T02:17:07Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/thedotmack/claude-mem/releases/tag/v13.41.0"/>
+    <title>v13.41.0</title>
+    <content type="html">&lt;h1&gt;Build, release, and work-state visibility&lt;/h1&gt;
+&lt;h2&gt;Workflow skills&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;build&lt;/code&gt; delegates a coding session through &lt;code&gt;make-plan&lt;/code&gt;, &lt;code&gt;do&lt;/code&gt;, and &lt;code&gt;babysit&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;release&lt;/code&gt; delegates publication through &lt;code&gt;version-bump&lt;/code&gt; and &lt;code&gt;childhood&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;build-and-release&lt;/code&gt; runs both, merging the ready PR before continuing from updated main.&lt;/li&gt;
+&lt;li&gt;Restores the existing &lt;code&gt;childhood&lt;/code&gt; skill so post-release verification is included.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;The new wrappers are deliberately short. They reuse the existing workflows.&lt;/p&gt;
+&lt;h2&gt;Work-state telemetry&lt;/h2&gt;
+&lt;p&gt;Adds privacy-preserving PostHog rollups for work-state usage by release, host platform, and recorded agent role. The rollups distinguish captured reads and writes, outcomes, native to-do use, instruction handoffs, and missing attribution.&lt;/p&gt;
+&lt;p&gt;MCP execution receipts also cover failures before a worker responds. They are a separate observation source and must not be added to captured-call totals.&lt;/p&gt;
+&lt;p&gt;Instruction handoffs are measured after the platform adapter formats the model-bound output and stdout succeeds. Cached context is included; discarded context and failed output are not counted as successful handoffs. Delayed or untimestamped captures cannot inherit a later instruction handoff.&lt;/p&gt;
+&lt;p&gt;These are diagnostic signals, not a compliance score. Returning instructions does not prove that a host accepted them or an agent followed them, and an ordinary question may correctly require no write.&lt;/p&gt;
+&lt;p&gt;No task titles, prompt text, project paths, or raw session/agent IDs are sent. Existing telemetry opt-out remains in effect. This release does not backfill earlier usage.&lt;/p&gt;
+&lt;p&gt;Local replay deduplication lasts 30 days; older events are dropped. Public/private turn boundaries remain content-free and prevent private activity from inheriting an earlier public prompt. Hosts without verified original timestamps remain outside captured prompt/tool totals.&lt;/p&gt;</content>
+    <author>
+      <name>thedotmack</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/683968?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/1048065319/v13.40.0</id>
+    <updated>2026-10-16T12:25:04Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/thedotmack/claude-mem/releases/tag/v13.40.0"/>
+    <title>v13.40.0</title>
+    <content type="html">&lt;h2&gt;What&#39;s new&lt;/h2&gt;
+&lt;h3&gt;TeamBrain from the terminal&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;npx claude-mem teambrain join &amp;lt;invite-link&amp;gt;&lt;/code&gt; connects this install to a TeamBrain team using the same device-code sign-in as &lt;code&gt;install&lt;/code&gt;. You approve the device in the browser, then choose which projects to share. Also: &lt;code&gt;teambrain status&lt;/code&gt;, &lt;code&gt;teambrain share&lt;/code&gt;, &lt;code&gt;teambrain leave&lt;/code&gt;, &lt;code&gt;teambrain start&lt;/code&gt;. (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5882528944&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4815&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4815/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4815&quot;&gt;#4815&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Members who join with a team seat keep their own local observer — joining never switches your observer provider.&lt;/li&gt;
+&lt;li&gt;When an install belongs to a team, SessionStart adds a short &lt;strong&gt;team brief&lt;/strong&gt;: open collisions in this project, recent plans and decisions, who else is active, and items delegated to you. Agents also get read-only &lt;code&gt;team_brief&lt;/code&gt; and &lt;code&gt;team_search&lt;/code&gt; MCP tools. Installs that are not in a team see no change.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Work-state sync&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The agent&#39;s work-state tracker (&lt;code&gt;work_state_write&lt;/code&gt; / &lt;code&gt;work_state_read&lt;/code&gt;) now syncs to the cloud as a &lt;code&gt;work_state&lt;/code&gt; content kind, for accounts where the sync server enables it. Until then rows wait locally — they are never dropped. Devices that skipped work-state ops on older builds apply them once after upgrading. (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5736550173&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4569&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4569/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4569&quot;&gt;#4569&lt;/a&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Also new&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;The Claude observer can batch queued events (opt-in). (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5869056981&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4793&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4793/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4793&quot;&gt;#4793&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;Viewer: the NOTES summary section has its own icon (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5850600105&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4776&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4776/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4776&quot;&gt;#4776&lt;/a&gt;); long prompts clamp behind a &quot;Show more&quot; disclosure (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5840861578&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4765&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4765/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4765&quot;&gt;#4765&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Fixes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Codex: bundle Zod so cached hooks load without &lt;code&gt;node_modules&lt;/code&gt; (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5842594966&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4771&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4771/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4771&quot;&gt;#4771&lt;/a&gt;); reject a host root without its dependencies in the hook resolver (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5841076964&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4766&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4766/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4766&quot;&gt;#4766&lt;/a&gt;); finish teardown before removing the private runtime (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5866788360&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4792&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4792/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4792&quot;&gt;#4792&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Search: reject an unparseable &lt;code&gt;dateStart&lt;/code&gt;/&lt;code&gt;dateEnd&lt;/code&gt; with &lt;code&gt;400 INVALID_DATE&lt;/code&gt; (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5861410035&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4786&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4786/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4786&quot;&gt;#4786&lt;/a&gt;); validate &lt;code&gt;limit&lt;/code&gt;/&lt;code&gt;offset&lt;/code&gt; with &lt;code&gt;400 INVALID_PAGINATION&lt;/code&gt; (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5861441019&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4787&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4787/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4787&quot;&gt;#4787&lt;/a&gt;); make the implicit 90-day recency window configurable (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5843082855&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4773&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4773/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4773&quot;&gt;#4773&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Privacy: strip nested and overlapping memory tags (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5838414470&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4761&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4761/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4761&quot;&gt;#4761&lt;/a&gt;); opt-in generic credential patterns, with the redaction settings documented (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5840235155&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4762&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4762/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4762&quot;&gt;#4762&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Ingest: register an unknown project when hook payloads have no cwd (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5844437059&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4774&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4774/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4774&quot;&gt;#4774&lt;/a&gt;); apply &lt;code&gt;CLAUDE_MEM_SKIP_BASH_PATTERNS&lt;/code&gt; to the PowerShell tool (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5834697927&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4756&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4756/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4756&quot;&gt;#4756&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Hooks: skip SessionEnd for sessions that are never tracked (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5857102428&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4780&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4780/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4780&quot;&gt;#4780&lt;/a&gt;); fix hook spool delivery to remote workers (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5785392076&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4626&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4626/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4626&quot;&gt;#4626&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Worker: spare a silent worker whose liveness heartbeat is fresh, for a bounded time (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5871693919&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4794&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4794/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4794&quot;&gt;#4794&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Projects: promote a merged-from project to a read key only for whole-project merges (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5863149616&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4789&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4789/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4789&quot;&gt;#4789&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Context files: keep CLAUDE.md/AGENTS.md symlinks when refreshing context (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5861370727&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4784&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4784/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4784&quot;&gt;#4784&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Exclusions: a trailing &lt;code&gt;/**&lt;/code&gt; pattern also excludes the directory itself (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5861381819&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4785&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4785/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4785&quot;&gt;#4785&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Cursor: preserve your own &lt;code&gt;hooks.json&lt;/code&gt; entries on install/uninstall (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5861359443&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4783&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4783/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4783&quot;&gt;#4783&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Logger: keep the day log open instead of re-opening it per line (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5866326074&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4791&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4791/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4791&quot;&gt;#4791&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Launcher: ad-hoc re-sign the compiled binary on macOS before the protocol probe (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5858683539&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4781&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4781/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4781&quot;&gt;#4781&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;CLI: show help for &lt;code&gt;install&lt;/code&gt;, &lt;code&gt;update&lt;/code&gt;, &lt;code&gt;uninstall&lt;/code&gt; and other action verbs instead of running them (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5841103813&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4767&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4767/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4767&quot;&gt;#4767&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;DSH: keep every table&#39;s header when collapsing duplicate rows (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5863689482&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4790&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4790/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4790&quot;&gt;#4790&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Tree-sitter: verify the CLI loads, not just that it exists (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5850641413&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4777&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4777/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4777&quot;&gt;#4777&lt;/a&gt;).&lt;/li&gt;
+&lt;li&gt;Build: leave posthog-node&#39;s optional OpenTelemetry import unresolved (&lt;a class=&quot;issue-link js-issue-link&quot; data-error-text=&quot;Failed to load title&quot; data-id=&quot;5872163307&quot; data-permission-text=&quot;Title is private&quot; data-url=&quot;https://github.com/thedotmack/claude-mem/issues/4795&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/thedotmack/claude-mem/pull/4795/hovercard&quot; href=&quot;https://github.com/thedotmack/claude-mem/pull/4795&quot;&gt;#4795&lt;/a&gt;).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2&gt;Upgrade notes&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;The local database schema moves to &lt;strong&gt;v67&lt;/strong&gt; on first open. Older builds refuse a database a newer build has opened (no downgrade), so update every install that shares &lt;code&gt;~/.claude-mem&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;If work-state sync is enabled for your account, your existing work-state history uploads once.&lt;/li&gt;
+&lt;li&gt;Using claude-mem on more than one machine? Update all of them — builds older than v13.29.0 cannot skip sync content they don&#39;t recognize.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>thedotmack</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/u/683968?s=60&amp;v=4"/>
+  </entry>
+</feed>

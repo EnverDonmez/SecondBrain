@@ -1,0 +1,1573 @@
+{
+  "checked_at": "2026-10-26T17:57:57.807436+00:00",
+  "method": "Public GitHub repository metadata and raw source files; code not executed",
+  "repositories": [
+    {
+      "requested_repo": "NevaMind-AI/memU",
+      "repo": "NevaMind-AI/memU",
+      "url": "https://github.com/NevaMind-AI/memU",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-26T04:40:38Z",
+      "created_at": "2025-07-29T01:54:40Z",
+      "license_metadata": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/NevaMind-AI/memU/42ef9fa3a8034f5817684cba23ef69fa70a58197/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\NevaMind-AI--memU\\README.md.txt",
+          "sha256": "8912aae50d53fabe4d53ef81cc3b9a825e3dc86ce5dd4ee59a94bc3541238d71",
+          "bytes": 11661
+        },
+        {
+          "url": "https://raw.githubusercontent.com/NevaMind-AI/memU/42ef9fa3a8034f5817684cba23ef69fa70a58197/LICENSE.txt",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE.txt",
+          "local_path": "sources\\NevaMind-AI--memU\\LICENSE.txt.txt",
+          "sha256": "0e2bcb97222f1ba09e333c70ecef4845470e16fdea953a1d0882d5ef2213d25a",
+          "bytes": 10897
+        },
+        {
+          "url": "https://raw.githubusercontent.com/NevaMind-AI/memU/42ef9fa3a8034f5817684cba23ef69fa70a58197/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\NevaMind-AI--memU\\pyproject.toml.txt",
+          "sha256": "6b397bba06842398a5aaab5480362304833205fb4726b41b06b13c1fda6dd213",
+          "bytes": 4226
+        }
+      ],
+      "commit": "42ef9fa3a8034f5817684cba23ef69fa70a58197",
+      "commit_date": "2026-10-16T08:11:57Z"
+    },
+    {
+      "requested_repo": "volcengine/OpenViking",
+      "repo": "volcengine/OpenViking",
+      "url": "https://github.com/volcengine/OpenViking",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-26T17:34:44Z",
+      "created_at": "2026-01-05T07:11:17Z",
+      "license_metadata": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/volcengine/OpenViking/5c066d97094d713238c483c10691d7b4e1cfbf6e/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\volcengine--OpenViking\\README.md.txt",
+          "sha256": "0887d2b5318c729363da726563ad69c68f1f852117d17aae5c85457799a814c9",
+          "bytes": 26983
+        },
+        {
+          "url": "https://raw.githubusercontent.com/volcengine/OpenViking/5c066d97094d713238c483c10691d7b4e1cfbf6e/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\volcengine--OpenViking\\LICENSE.txt",
+          "sha256": "1bd87fa6d9a5c79daf0c2af042b6725c9773bf095cc3d1bdf3656e66d1c3e5b1",
+          "bytes": 34568
+        },
+        {
+          "url": "https://raw.githubusercontent.com/volcengine/OpenViking/5c066d97094d713238c483c10691d7b4e1cfbf6e/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\volcengine--OpenViking\\pyproject.toml.txt",
+          "sha256": "baa32ec326e3646ec00cf180c5ffb89b9f8a181fb21680c3cc14ff138d0ea9dc",
+          "bytes": 8532
+        }
+      ],
+      "commit": "5c066d97094d713238c483c10691d7b4e1cfbf6e",
+      "commit_date": "2026-10-26T15:02:36Z"
+    },
+    {
+      "requested_repo": "basicmachines-co/basic-memory",
+      "repo": "basicmachines-co/basic-memory",
+      "url": "https://github.com/basicmachines-co/basic-memory",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-26T16:30:07Z",
+      "created_at": "2024-12-02T22:40:43Z",
+      "license_metadata": {
+        "key": "agpl-3.0",
+        "name": "GNU Affero General Public License v3.0",
+        "spdx_id": "AGPL-3.0",
+        "url": "https://api.github.com/licenses/agpl-3.0",
+        "node_id": "MDc6TGljZW5zZTE="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/basicmachines-co/basic-memory/9643ec25918e8958629a668e3ce928981ab3ea36/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\basicmachines-co--basic-memory\\README.md.txt",
+          "sha256": "6f58ce3b76b5e6715baed6e86131e50a3d461d68a184ad5968c7c0cc52e4d067",
+          "bytes": 24832
+        },
+        {
+          "url": "https://raw.githubusercontent.com/basicmachines-co/basic-memory/9643ec25918e8958629a668e3ce928981ab3ea36/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\basicmachines-co--basic-memory\\LICENSE.txt",
+          "sha256": "8486a10c4393cee1c25392769ddd3b2d6c242d6ec7928e1414efff7dfb2f07ef",
+          "bytes": 34523
+        },
+        {
+          "url": "https://raw.githubusercontent.com/basicmachines-co/basic-memory/9643ec25918e8958629a668e3ce928981ab3ea36/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\basicmachines-co--basic-memory\\pyproject.toml.txt",
+          "sha256": "47d050faa01559d58e214e35be331645e9e9dba741f5454ba9b5b63b3f26706b",
+          "bytes": 11084
+        }
+      ],
+      "commit": "9643ec25918e8958629a668e3ce928981ab3ea36",
+      "commit_date": "2026-10-26T16:30:04Z"
+    },
+    {
+      "requested_repo": "doobidoo/mcp-memory-service",
+      "repo": "doobidoo/mcp-memory-service",
+      "url": "https://github.com/doobidoo/mcp-memory-service",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-26T17:02:55Z",
+      "created_at": "2024-12-26T10:15:44Z",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/doobidoo/mcp-memory-service/ef25b93d9565d28388175edf4923c35d39d248fa/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\doobidoo--mcp-memory-service\\README.md.txt",
+          "sha256": "92f1c519597fe82b389d96708fbaccd46bab825423a08a8b5cd2eb1224b9c45e",
+          "bytes": 17159
+        },
+        {
+          "url": "https://raw.githubusercontent.com/doobidoo/mcp-memory-service/ef25b93d9565d28388175edf4923c35d39d248fa/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\doobidoo--mcp-memory-service\\LICENSE.txt",
+          "sha256": "d92a71f96ad18b7e6c112e71f7586b24063d3ab60dc423680eda014043af8858",
+          "bytes": 11343
+        },
+        {
+          "url": "https://raw.githubusercontent.com/doobidoo/mcp-memory-service/ef25b93d9565d28388175edf4923c35d39d248fa/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\doobidoo--mcp-memory-service\\pyproject.toml.txt",
+          "sha256": "df61c4b0b3d4887598e63faeeac15d32681b2f494a29141b4d0916698c5f4e6f",
+          "bytes": 8054
+        }
+      ],
+      "commit": "ef25b93d9565d28388175edf4923c35d39d248fa",
+      "commit_date": "2026-10-26T14:53:10Z"
+    },
+    {
+      "requested_repo": "samrusani/AliceMemory",
+      "repo": "samrusani/AliceMemory",
+      "url": "https://github.com/samrusani/AliceMemory",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-26T16:48:25Z",
+      "created_at": "2026-03-10T21:16:26Z",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/samrusani/AliceMemory/a6a5f49eebb7377f40b388f2ffe07290b05b85fb/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\samrusani--AliceMemory\\README.md.txt",
+          "sha256": "fceb4a60fbcd41bc0044da8f90b4c9e6f220038aaa2e91ef8777437cdd638b28",
+          "bytes": 12616
+        },
+        {
+          "url": "https://raw.githubusercontent.com/samrusani/AliceMemory/a6a5f49eebb7377f40b388f2ffe07290b05b85fb/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\samrusani--AliceMemory\\LICENSE.txt",
+          "sha256": "5c099946e75df8303d0416b8d30613bc959a28b38425218c176e3937f4a2fad6",
+          "bytes": 1075
+        },
+        {
+          "url": "https://raw.githubusercontent.com/samrusani/AliceMemory/a6a5f49eebb7377f40b388f2ffe07290b05b85fb/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\samrusani--AliceMemory\\pyproject.toml.txt",
+          "sha256": "fb45844c7c4f76aa2b81290577a1151c53c443cd00cddc3752a5872f36550d2c",
+          "bytes": 2673
+        }
+      ],
+      "commit": "a6a5f49eebb7377f40b388f2ffe07290b05b85fb",
+      "commit_date": "2026-10-26T11:45:10Z"
+    },
+    {
+      "requested_repo": "RamaAditya49/titen",
+      "repo": "RamaAditya49/titen",
+      "url": "https://github.com/RamaAditya49/titen",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-19T16:46:47Z",
+      "created_at": "2026-07-29T03:23:46Z",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/RamaAditya49/titen/23302a16d44d01f3759ef56287847f85352d0fc1/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\RamaAditya49--titen\\README.md.txt",
+          "sha256": "1d673b9a0ceae7701fef581988e24925aa7ee96add66c6cc82964a891ac92be8",
+          "bytes": 45592
+        },
+        {
+          "url": "https://raw.githubusercontent.com/RamaAditya49/titen/23302a16d44d01f3759ef56287847f85352d0fc1/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\RamaAditya49--titen\\LICENSE.txt",
+          "sha256": "1ed7c721b76ab1f3fa9b54003b15eeb3ab2240c0c8f1d1d5992a57521f55d081",
+          "bytes": 11348
+        },
+        {
+          "url": "https://raw.githubusercontent.com/RamaAditya49/titen/23302a16d44d01f3759ef56287847f85352d0fc1/package.json",
+          "status": 200,
+          "truncated": false,
+          "path": "package.json",
+          "local_path": "sources\\RamaAditya49--titen\\package.json.txt",
+          "sha256": "55dd9c7221155b520c02f9647d54cafbe7338448a597edf7f4b76966c484fbe4",
+          "bytes": 4681
+        }
+      ],
+      "commit": "23302a16d44d01f3759ef56287847f85352d0fc1",
+      "commit_date": "2026-10-19T16:46:46Z"
+    },
+    {
+      "requested_repo": "rohitg00/agentmemory",
+      "repo": "rohitg00/agentmemory",
+      "url": "https://github.com/rohitg00/agentmemory",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-26T14:00:38Z",
+      "created_at": "2026-02-25T07:32:52Z",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/rohitg00/agentmemory/c5b8ebfb32eb6a08fe301d3bb75840f3597b66c8/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\rohitg00--agentmemory\\README.md.txt",
+          "sha256": "585e5aabbe439bbc060814a75f2b0667befebd0dc8ec626f1d3da1d201ec0765",
+          "bytes": 94194
+        },
+        {
+          "url": "https://raw.githubusercontent.com/rohitg00/agentmemory/c5b8ebfb32eb6a08fe301d3bb75840f3597b66c8/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\rohitg00--agentmemory\\LICENSE.txt",
+          "sha256": "76c8d49ab42216a2533f603fbafa20a1bf71b56de136a401be52da034dcc012c",
+          "bytes": 10764
+        },
+        {
+          "url": "https://raw.githubusercontent.com/rohitg00/agentmemory/c5b8ebfb32eb6a08fe301d3bb75840f3597b66c8/package.json",
+          "status": 200,
+          "truncated": false,
+          "path": "package.json",
+          "local_path": "sources\\rohitg00--agentmemory\\package.json.txt",
+          "sha256": "0da620c27e94a3ea0f7fcb029aa65d3a4dcf1ff95870c378d7777f6fbac4e2f4",
+          "bytes": 4792
+        }
+      ],
+      "commit": "c5b8ebfb32eb6a08fe301d3bb75840f3597b66c8",
+      "commit_date": "2026-10-26T13:36:20Z"
+    },
+    {
+      "requested_repo": "modelcontextprotocol/servers",
+      "repo": "modelcontextprotocol/servers",
+      "url": "https://github.com/modelcontextprotocol/servers",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-25T05:26:36Z",
+      "created_at": "2024-11-19T01:10:17Z",
+      "license_metadata": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/modelcontextprotocol/servers/ef9808f71090d0db3eda99e2af2ba78f1086f4fb/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\modelcontextprotocol--servers\\README.md.txt",
+          "sha256": "c112784223279665bda02d79105eff6f268c629f18c4590a50e9305b72bf1f9e",
+          "bytes": 8707
+        },
+        {
+          "url": "https://raw.githubusercontent.com/modelcontextprotocol/servers/ef9808f71090d0db3eda99e2af2ba78f1086f4fb/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\modelcontextprotocol--servers\\LICENSE.txt",
+          "sha256": "0382b0057770ca05e9c350a50aa3b1c1fea84da0bc81d723bf00b9aa841be58a",
+          "bytes": 12227
+        },
+        {
+          "url": "https://raw.githubusercontent.com/modelcontextprotocol/servers/ef9808f71090d0db3eda99e2af2ba78f1086f4fb/package.json",
+          "status": 200,
+          "truncated": false,
+          "path": "package.json",
+          "local_path": "sources\\modelcontextprotocol--servers\\package.json.txt",
+          "sha256": "018b1591231c6eb6349c7237befc2f932c19b819fe55b8bcea7c1d3549e75785",
+          "bytes": 4009
+        }
+      ],
+      "commit": "ef9808f71090d0db3eda99e2af2ba78f1086f4fb",
+      "commit_date": "2026-10-24T23:40:24Z"
+    },
+    {
+      "requested_repo": "mem0ai/mem0",
+      "repo": "mem0ai/mem0",
+      "url": "https://github.com/mem0ai/mem0",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-26T14:51:55Z",
+      "created_at": "2023-06-20T08:58:36Z",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/mem0ai/mem0/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\mem0ai--mem0\\README.md.txt",
+          "sha256": "f72db3426438dbdf6879a2b50583fbee8e7e2dde5d01308c6295bcd09fd3db86",
+          "bytes": 12306
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mem0ai/mem0/main/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\mem0ai--mem0\\LICENSE.txt",
+          "sha256": "0bbcbe931c353293a2fafce08326181dfeea0e568c566afd4ce8337a70f5e219",
+          "bytes": 11349
+        },
+        {
+          "url": "https://raw.githubusercontent.com/mem0ai/mem0/main/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\mem0ai--mem0\\pyproject.toml.txt",
+          "sha256": "d4bc078a05cc7b9d677bbf4d0b262cfc532495b5aadeded053ac84fd90b6e974",
+          "bytes": 3394
+        }
+      ]
+    },
+    {
+      "requested_repo": "getzep/graphiti",
+      "repo": "getzep/graphiti",
+      "url": "https://github.com/getzep/graphiti",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-26T15:38:13Z",
+      "created_at": "2024-08-08T22:08:30Z",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/getzep/graphiti/5c27edfa8d3e0f49b2571bcebb4261bcc89ee037/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\getzep--graphiti\\README.md.txt",
+          "sha256": "ccdd0f4daf286e49345deae615cb8ba46b8d1a79dff78516d589e018e3a6f17c",
+          "bytes": 35219
+        },
+        {
+          "url": "https://raw.githubusercontent.com/getzep/graphiti/5c27edfa8d3e0f49b2571bcebb4261bcc89ee037/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\getzep--graphiti\\LICENSE.txt",
+          "sha256": "2825300b20d7b951209835a4a331f29e24725a39d65168e4b831df53aa372650",
+          "bytes": 11325
+        },
+        {
+          "url": "https://raw.githubusercontent.com/getzep/graphiti/5c27edfa8d3e0f49b2571bcebb4261bcc89ee037/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\getzep--graphiti\\pyproject.toml.txt",
+          "sha256": "fa842260cb2724ef5142ebee50395149dee51d224372bccfeb084a63655563ba",
+          "bytes": 2811
+        }
+      ],
+      "commit": "5c27edfa8d3e0f49b2571bcebb4261bcc89ee037",
+      "commit_date": "2026-10-25T08:32:08Z"
+    },
+    {
+      "requested_repo": "vectorize-io/hindsight",
+      "repo": "vectorize-io/hindsight",
+      "url": "https://github.com/vectorize-io/hindsight",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-26T17:55:13Z",
+      "created_at": "2025-10-30T11:49:48Z",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/vectorize-io/hindsight/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\vectorize-io--hindsight\\README.md.txt",
+          "sha256": "a3e2745dedec4f9e0d4452857ef054699e60414740f5d8f12d41bd42711d476a",
+          "bytes": 24997
+        },
+        {
+          "url": "https://raw.githubusercontent.com/vectorize-io/hindsight/main/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\vectorize-io--hindsight\\LICENSE.txt",
+          "sha256": "01fde0bedf83bdc185065d7af524a61690efe576a67f922eaff3a1280c17b63a",
+          "bytes": 1075
+        },
+        {
+          "url": "https://raw.githubusercontent.com/vectorize-io/hindsight/main/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\vectorize-io--hindsight\\pyproject.toml.txt",
+          "sha256": "053f9add3a6a726254745493425967470b8da784b06bc766b6841b9449c5029e",
+          "bytes": 764
+        },
+        {
+          "url": "https://raw.githubusercontent.com/vectorize-io/hindsight/main/package.json",
+          "status": 200,
+          "truncated": false,
+          "path": "package.json",
+          "local_path": "sources\\vectorize-io--hindsight\\package.json.txt",
+          "sha256": "8cc7fe83775c4a0f9d4309d5fbd007ab7cf75adfbeaabb5f1786590426a33bbe",
+          "bytes": 1765
+        }
+      ]
+    },
+    {
+      "requested_repo": "MemTensor/MemOS",
+      "repo": "MemTensor/MemOS",
+      "url": "https://github.com/MemTensor/MemOS",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-26T14:41:43Z",
+      "created_at": "2025-07-06T09:51:27Z",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/MemTensor/MemOS/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\MemTensor--MemOS\\README.md.txt",
+          "sha256": "9c2ec97ba97e5371088e041d04085f70195b4626a9dcb517194f90b9495b30dc",
+          "bytes": 17535
+        },
+        {
+          "url": "https://raw.githubusercontent.com/MemTensor/MemOS/main/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\MemTensor--MemOS\\LICENSE.txt",
+          "sha256": "154f9be8df2d55ceddcd4646c8d8d4206d48867ae1da2b81ce2ab86b51a5f075",
+          "bytes": 11358
+        },
+        {
+          "url": "https://raw.githubusercontent.com/MemTensor/MemOS/main/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\MemTensor--MemOS\\pyproject.toml.txt",
+          "sha256": "e0e931fe30f7e300ab149ff78492f123459834d6c58d0de9c6ced517310ef3a5",
+          "bytes": 8164
+        }
+      ]
+    },
+    {
+      "requested_repo": "topoteretes/cognee",
+      "repo": "topoteretes/cognee",
+      "url": "https://github.com/topoteretes/cognee",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-26T17:45:27Z",
+      "created_at": "2023-08-16T16:16:33Z",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/topoteretes/cognee/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\topoteretes--cognee\\README.md.txt",
+          "sha256": "a19c715a2c161960f222eb1d52b1f28048bf6d998c8e7b7013bc3cf024c15a89",
+          "bytes": 18243
+        },
+        {
+          "url": "https://raw.githubusercontent.com/topoteretes/cognee/main/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\topoteretes--cognee\\LICENSE.txt",
+          "sha256": "a471e34908f50c3f120e9a56f3c30cb34e133e4ede01a9cbd5ce718fc358ecd4",
+          "bytes": 11344
+        },
+        {
+          "url": "https://raw.githubusercontent.com/topoteretes/cognee/main/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\topoteretes--cognee\\pyproject.toml.txt",
+          "sha256": "a5ca3c4a4e0ad74e812cb06c7c707b62b42e241d5c5ab8013e01ac46ebc7892c",
+          "bytes": 18275
+        }
+      ]
+    },
+    {
+      "requested_repo": "letta-ai/letta",
+      "repo": "letta-ai/letta",
+      "url": "https://github.com/letta-ai/letta",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-18T22:28:04Z",
+      "created_at": "2023-10-11T07:38:37Z",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/letta-ai/letta/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\letta-ai--letta\\README.md.txt",
+          "sha256": "67ec50661bb95db1839101863f08eaaa3cae3f2cc804adb2250a058393e56417",
+          "bytes": 1477
+        },
+        {
+          "url": "https://raw.githubusercontent.com/letta-ai/letta/main/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\letta-ai--letta\\LICENSE.txt",
+          "sha256": "984c6db99fc6609803108dfc196762118662cd94b82a456dd9217583f18f3612",
+          "bytes": 10759
+        }
+      ]
+    },
+    {
+      "requested_repo": "memvid/memvid",
+      "repo": "memvid/memvid",
+      "url": "https://github.com/memvid/memvid",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-07-14T14:39:07Z",
+      "created_at": "2025-05-27T16:01:08Z",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/memvid/memvid/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\memvid--memvid\\README.md.txt",
+          "sha256": "3a2f6a0fea87ed03b4b5a21de90a166ed005627c897a26807c33cd2fd854ce77",
+          "bytes": 16847
+        },
+        {
+          "url": "https://raw.githubusercontent.com/memvid/memvid/main/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\memvid--memvid\\LICENSE.txt",
+          "sha256": "fd64d7380c9889373ec5e3d99ee0e154c8f1707c036054090dc2437eb765cb98",
+          "bytes": 10755
+        }
+      ]
+    },
+    {
+      "requested_repo": "supermemoryai/supermemory",
+      "repo": "supermemoryai/supermemory",
+      "url": "https://github.com/supermemoryai/supermemory",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-25T01:13:52Z",
+      "created_at": "2024-02-27T20:10:04Z",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/supermemoryai/supermemory/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\supermemoryai--supermemory\\README.md.txt",
+          "sha256": "1b3e6d9804718bc94c6309e29a870ce6eabe3fedabb2739152ab85910a29b5f9",
+          "bytes": 17242
+        },
+        {
+          "url": "https://raw.githubusercontent.com/supermemoryai/supermemory/main/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\supermemoryai--supermemory\\LICENSE.txt",
+          "sha256": "9ce388a89cce6a2dc109579d044f7f16e1397d8ee6fdb1f3bd3b980d365a07ae",
+          "bytes": 1068
+        },
+        {
+          "url": "https://raw.githubusercontent.com/supermemoryai/supermemory/main/package.json",
+          "status": 200,
+          "truncated": false,
+          "path": "package.json",
+          "local_path": "sources\\supermemoryai--supermemory\\package.json.txt",
+          "sha256": "1828fa4e016b5b078b4cd9e1971f8a3c06192a7529b23cfde6cef4b7cc496276",
+          "bytes": 2777
+        }
+      ]
+    },
+    {
+      "requested_repo": "OSU-NLP-Group/HippoRAG",
+      "repo": "OSU-NLP-Group/HippoRAG",
+      "url": "https://github.com/OSU-NLP-Group/HippoRAG",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-06T21:03:49Z",
+      "created_at": "2024-05-23T23:07:16Z",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/OSU-NLP-Group/HippoRAG/d5c8329422e0a0b834a15874545cb6a74b4f9b26/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\OSU-NLP-Group--HippoRAG\\README.md.txt",
+          "sha256": "5b6affb7fd746390990c63467f424501a3a67946461aa2e6244561130c3bc60b",
+          "bytes": 29972
+        },
+        {
+          "url": "https://raw.githubusercontent.com/OSU-NLP-Group/HippoRAG/d5c8329422e0a0b834a15874545cb6a74b4f9b26/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\OSU-NLP-Group--HippoRAG\\LICENSE.txt",
+          "sha256": "93b43d692b033b76129504448695bfe76ef22d18b11e51352bfab4b5622e5aaa",
+          "bytes": 1088
+        },
+        {
+          "url": "https://raw.githubusercontent.com/OSU-NLP-Group/HippoRAG/d5c8329422e0a0b834a15874545cb6a74b4f9b26/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\OSU-NLP-Group--HippoRAG\\pyproject.toml.txt",
+          "sha256": "4d3580f63930a31b6317fc6533dab874c5c8046ee487c3d3cba7bf288e4bc5aa",
+          "bytes": 1134
+        }
+      ],
+      "commit": "d5c8329422e0a0b834a15874545cb6a74b4f9b26",
+      "commit_date": "2026-10-06T21:03:48Z"
+    },
+    {
+      "requested_repo": "VectifyAI/PageIndex",
+      "repo": "VectifyAI/PageIndex",
+      "url": "https://github.com/VectifyAI/PageIndex",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-26T16:01:21Z",
+      "created_at": "2025-04-01T10:53:54Z",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/VectifyAI/PageIndex/e38b40ebaeea26d2c7206b80ce7bc9bf2935cdec/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\VectifyAI--PageIndex\\README.md.txt",
+          "sha256": "3e11de29bbe6d109bd42e335750625cbd8a9831b2d6069180599f643ed2fa198",
+          "bytes": 13252
+        },
+        {
+          "url": "https://raw.githubusercontent.com/VectifyAI/PageIndex/e38b40ebaeea26d2c7206b80ce7bc9bf2935cdec/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\VectifyAI--PageIndex\\LICENSE.txt",
+          "sha256": "bca9c3d401fdfd0965a2a2224f7dcf9945b512eaf5802b91d312ba739dbe9584",
+          "bytes": 1067
+        },
+        {
+          "url": "https://raw.githubusercontent.com/VectifyAI/PageIndex/e38b40ebaeea26d2c7206b80ce7bc9bf2935cdec/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\VectifyAI--PageIndex\\pyproject.toml.txt",
+          "sha256": "205d33700941e67f52a337beee9853773dadd036261e5a70d14bcf20ad21543a",
+          "bytes": 2486
+        }
+      ],
+      "commit": "e38b40ebaeea26d2c7206b80ce7bc9bf2935cdec",
+      "commit_date": "2026-10-26T10:01:15Z"
+    },
+    {
+      "requested_repo": "parthsarthi03/raptor",
+      "repo": "parthsarthi03/raptor",
+      "url": "https://github.com/parthsarthi03/raptor",
+      "default_branch": "master",
+      "archived": false,
+      "pushed_at": "2024-09-03T08:34:31Z",
+      "created_at": "2024-02-27T01:33:26Z",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/parthsarthi03/raptor/master/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\parthsarthi03--raptor\\README.md.txt",
+          "sha256": "769bcefe1d7254162a99bf6d8fbbff19cd7e1f2115cae9d18dbcd842e8c802c2",
+          "bytes": 6715
+        },
+        {
+          "url": "https://raw.githubusercontent.com/parthsarthi03/raptor/master/LICENSE.txt",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE.txt",
+          "local_path": "sources\\parthsarthi03--raptor\\LICENSE.txt.txt",
+          "sha256": "96134f372fd6a571d669593efdfc5f3a7ecc488b360b6ed425e7347fb278e194",
+          "bytes": 1068
+        }
+      ]
+    },
+    {
+      "requested_repo": "HKUDS/LightRAG",
+      "repo": "HKUDS/LightRAG",
+      "url": "https://github.com/HKUDS/LightRAG",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-22T18:04:29Z",
+      "created_at": "2024-10-02T11:57:54Z",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/HKUDS/LightRAG/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\HKUDS--LightRAG\\README.md.txt",
+          "sha256": "b495a0fb015976fca63152962ebd4a4daf82f32fdd8c3bb146fab90a0b09e8e4",
+          "bytes": 52594
+        },
+        {
+          "url": "https://raw.githubusercontent.com/HKUDS/LightRAG/main/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\HKUDS--LightRAG\\LICENSE.txt",
+          "sha256": "0c16924564059e493c86854574660a47ed1dcc2a476ba7b5f949d3f2f73a1984",
+          "bytes": 1070
+        },
+        {
+          "url": "https://raw.githubusercontent.com/HKUDS/LightRAG/main/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\HKUDS--LightRAG\\pyproject.toml.txt",
+          "sha256": "cbeb6e6e201a36913d73597e4f9b6148c152751666a9cecc4a2b0301916f5ab0",
+          "bytes": 9189
+        }
+      ]
+    },
+    {
+      "requested_repo": "langchain-ai/langmem",
+      "repo": "langchain-ai/langmem",
+      "url": "https://github.com/langchain-ai/langmem",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-26T08:09:34Z",
+      "created_at": "2025-01-21T20:06:59Z",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/langchain-ai/langmem/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\langchain-ai--langmem\\README.md.txt",
+          "sha256": "e1edd000d263bfea842c34273add82421340c2caf2d7b87edd285daf02156ca3",
+          "bytes": 5205
+        },
+        {
+          "url": "https://raw.githubusercontent.com/langchain-ai/langmem/main/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\langchain-ai--langmem\\LICENSE.txt",
+          "sha256": "98af1351ea856e008c835bc89a312905960a318072f950732bf346c741027c7d",
+          "bytes": 1066
+        },
+        {
+          "url": "https://raw.githubusercontent.com/langchain-ai/langmem/main/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\langchain-ai--langmem\\pyproject.toml.txt",
+          "sha256": "6a964d268d23b8860c848b7b23f2dc6998204eaa0eb28cfe2d404359eb51611a",
+          "bytes": 2056
+        }
+      ]
+    },
+    {
+      "requested_repo": "MemoriLabs/Memori",
+      "repo": "MemoriLabs/Memori",
+      "url": "https://github.com/MemoriLabs/Memori",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-03T01:33:14Z",
+      "created_at": "2025-07-24T07:07:51Z",
+      "license_metadata": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/MemoriLabs/Memori/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\MemoriLabs--Memori\\README.md.txt",
+          "sha256": "2461bae179e10e0178ca0dca8e20404f8d68e39a6c97ea7c79abfa3297bff18e",
+          "bytes": 13474
+        },
+        {
+          "url": "https://raw.githubusercontent.com/MemoriLabs/Memori/main/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\MemoriLabs--Memori\\LICENSE.txt",
+          "sha256": "68f534038937a461ff428a7463558274ea5eb175cd64bd145afb3bbb1d6d41be",
+          "bytes": 10431
+        },
+        {
+          "url": "https://raw.githubusercontent.com/MemoriLabs/Memori/main/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\MemoriLabs--Memori\\pyproject.toml.txt",
+          "sha256": "fde7af837b41cbc20f14f62536aa92af54952f9c5a17e2f1485fab58f8244e23",
+          "bytes": 5153
+        }
+      ]
+    },
+    {
+      "requested_repo": "MemPalace/MemPalace",
+      "repo": "MemPalace/mempalace",
+      "url": "https://github.com/MemPalace/mempalace",
+      "default_branch": "develop",
+      "archived": false,
+      "pushed_at": "2026-10-25T04:41:28Z",
+      "created_at": "2026-04-05T01:12:07Z",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/MemPalace/mempalace/develop/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\MemPalace--MemPalace\\README.md.txt",
+          "sha256": "eb4a6ad734eacd89c8f0ade51b24e35db622b2bb036ada2ba5d57fb24ce61e86",
+          "bytes": 16990
+        },
+        {
+          "url": "https://raw.githubusercontent.com/MemPalace/mempalace/develop/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\MemPalace--MemPalace\\LICENSE.txt",
+          "sha256": "81dc6cc278d80f0f1b028ecd86af30d61e441b9ae53d9d9a2ed19389ba657a5d",
+          "bytes": 1079
+        },
+        {
+          "url": "https://raw.githubusercontent.com/MemPalace/mempalace/develop/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\MemPalace--MemPalace\\pyproject.toml.txt",
+          "sha256": "d6e6a466f37452f9a4a2e18b4b3ed2af7e2a3f2578e6aeb9c4a9400f4ff6869b",
+          "bytes": 12294
+        }
+      ]
+    },
+    {
+      "requested_repo": "thedotmack/claude-mem",
+      "repo": "thedotmack/claude-mem",
+      "url": "https://github.com/thedotmack/claude-mem",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-26T11:34:44Z",
+      "created_at": "2025-08-31T20:50:03Z",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/thedotmack/claude-mem/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\thedotmack--claude-mem\\README.md.txt",
+          "sha256": "dbc7af5c788ee70d33792b32dd3e4334a98bdb6888926f7a940f8aa6ccdc63c4",
+          "bytes": 20457
+        },
+        {
+          "url": "https://raw.githubusercontent.com/thedotmack/claude-mem/main/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\thedotmack--claude-mem\\LICENSE.txt",
+          "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+          "bytes": 11358
+        },
+        {
+          "url": "https://raw.githubusercontent.com/thedotmack/claude-mem/main/package.json",
+          "status": 200,
+          "truncated": false,
+          "path": "package.json",
+          "local_path": "sources\\thedotmack--claude-mem\\package.json.txt",
+          "sha256": "974ba715864cd375f22d3093be7b0c53d91daea117e87e5ea28be4ada65a52e5",
+          "bytes": 10235
+        }
+      ]
+    },
+    {
+      "requested_repo": "alexgarcia/sqlite-vec",
+      "url": "https://api.github.com/repos/alexgarcia/sqlite-vec",
+      "status": 404,
+      "error": "HTTP Error 404: Not Found"
+    },
+    {
+      "requested_repo": "networkx/networkx",
+      "repo": "networkx/networkx",
+      "url": "https://github.com/networkx/networkx",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-22T20:48:41Z",
+      "created_at": "2010-09-06T00:53:44Z",
+      "license_metadata": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/networkx/networkx/main/LICENSE.txt",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE.txt",
+          "local_path": "sources\\networkx--networkx\\LICENSE.txt.txt",
+          "sha256": "6025f323ea29dc2f0ee0abd9523bf910186f55b0e148e6ebf646c55566278e2e",
+          "bytes": 1763
+        },
+        {
+          "url": "https://raw.githubusercontent.com/networkx/networkx/main/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\networkx--networkx\\pyproject.toml.txt",
+          "sha256": "e590b296e2fb6edf03b2b7f03ac70dabf1bd2fcfd0122f314cae208f3626241e",
+          "bytes": 14798
+        }
+      ]
+    },
+    {
+      "requested_repo": "kuzudb/kuzu",
+      "repo": "kuzudb/kuzu",
+      "url": "https://github.com/kuzudb/kuzu",
+      "default_branch": "master",
+      "archived": true,
+      "pushed_at": "2025-10-10T15:34:00Z",
+      "created_at": "2020-09-26T07:43:06Z",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/kuzudb/kuzu/master/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\kuzudb--kuzu\\README.md.txt",
+          "sha256": "4d9a55c3ddbeb99c07a085a4ea681a2e7c2026686f736347c5585db3d08a3978",
+          "bytes": 3679
+        },
+        {
+          "url": "https://raw.githubusercontent.com/kuzudb/kuzu/master/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\kuzudb--kuzu\\LICENSE.txt",
+          "sha256": "c7ac924b150ec18a9d9c7136a8cd533bcfa33109ea7b4b7712ea952a245186b0",
+          "bytes": 1072
+        }
+      ]
+    },
+    {
+      "requested_repo": "ladybugdb/ladybug",
+      "repo": "LadybugDB/ladybug",
+      "url": "https://github.com/LadybugDB/ladybug",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-26T17:47:32Z",
+      "created_at": "2025-10-07T18:33:08Z",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/LadybugDB/ladybug/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\ladybugdb--ladybug\\README.md.txt",
+          "sha256": "57704ece0cbed62d3bf26e23e0e7347081de0c9bc1b172dda4e21ec7717ecddd",
+          "bytes": 3666
+        },
+        {
+          "url": "https://raw.githubusercontent.com/LadybugDB/ladybug/main/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\ladybugdb--ladybug\\LICENSE.txt",
+          "sha256": "1c495c9546d0de02e83c9d50d5f7eb21f0085bc8f77a0ee333081a123a9c8d0c",
+          "bytes": 1116
+        }
+      ]
+    },
+    {
+      "requested_repo": "unum-cloud/usearch",
+      "repo": "unum-cloud/USearch",
+      "url": "https://github.com/unum-cloud/USearch",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-25T01:00:22Z",
+      "created_at": "2023-02-22T09:20:20Z",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/unum-cloud/USearch/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\unum-cloud--usearch\\README.md.txt",
+          "sha256": "6979314581176d18016cd93ae80feb5c4e5298ee16886012de0b678148a9931c",
+          "bytes": 34197
+        },
+        {
+          "url": "https://raw.githubusercontent.com/unum-cloud/USearch/main/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\unum-cloud--usearch\\LICENSE.txt",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "bytes": 11357
+        },
+        {
+          "url": "https://raw.githubusercontent.com/unum-cloud/USearch/main/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\unum-cloud--usearch\\pyproject.toml.txt",
+          "sha256": "2c64e05ebb108825fd7f296a19aa4c9cba104f2ddd45415053cf18f8dd188372",
+          "bytes": 4799
+        },
+        {
+          "url": "https://raw.githubusercontent.com/unum-cloud/USearch/main/package.json",
+          "status": 200,
+          "truncated": false,
+          "path": "package.json",
+          "local_path": "sources\\unum-cloud--usearch\\package.json.txt",
+          "sha256": "404d95bd3668204f5dec92104013857ecd5d08771b1ed2a27c2b830fb987f623",
+          "bytes": 1873
+        }
+      ]
+    },
+    {
+      "requested_repo": "xiaowu0162/LongMemEval",
+      "repo": "xiaowu0162/LongMemEval",
+      "url": "https://github.com/xiaowu0162/LongMemEval",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-05-11T22:49:24Z",
+      "created_at": "2024-10-10T19:24:15Z",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/xiaowu0162/LongMemEval/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\xiaowu0162--LongMemEval\\README.md.txt",
+          "sha256": "c4ff45676683d9e2f7cf7d9099d26426f14635ec110dbb1da818d1019a142573",
+          "bytes": 15970
+        },
+        {
+          "url": "https://raw.githubusercontent.com/xiaowu0162/LongMemEval/main/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\xiaowu0162--LongMemEval\\LICENSE.txt",
+          "sha256": "d3c4b9aa54759df6ded337978a6f3b55b75615e5e4525c3b82d7e2627d4b9732",
+          "bytes": 1062
+        }
+      ]
+    },
+    {
+      "requested_repo": "snap-research/locomo",
+      "repo": "snap-research/locomo",
+      "url": "https://github.com/snap-research/locomo",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2024-08-13T03:21:32Z",
+      "created_at": "2024-02-23T18:28:28Z",
+      "license_metadata": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/snap-research/locomo/main/LICENSE.txt",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE.txt",
+          "local_path": "sources\\snap-research--locomo\\LICENSE.txt.txt",
+          "sha256": "41003d4a74749c0220e33dd415042164b5a1093ed401f36277234f772d22d3d0",
+          "bytes": 19347
+        }
+      ]
+    },
+    {
+      "requested_repo": "agiresearch/A-mem",
+      "repo": "agiresearch/A-mem",
+      "url": "https://github.com/agiresearch/A-mem",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2025-12-12T21:15:29Z",
+      "created_at": "2025-02-25T20:13:43Z",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/agiresearch/A-mem/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\agiresearch--A-mem\\README.md.txt",
+          "sha256": "6f7185bb241d8ed5f7c0b8c4716b4f5e5cf1e9a3c630c3a1a92e54c3f5fb88b0",
+          "bytes": 6390
+        },
+        {
+          "url": "https://raw.githubusercontent.com/agiresearch/A-mem/main/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\agiresearch--A-mem\\LICENSE.txt",
+          "sha256": "c8a51c83455b8afc3a11b085ce57c7b9b34c6725d6b2329ce3dd9a273f0add6d",
+          "bytes": 1068
+        },
+        {
+          "url": "https://raw.githubusercontent.com/agiresearch/A-mem/main/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\agiresearch--A-mem\\pyproject.toml.txt",
+          "sha256": "d0cb38f6860dfa50cdc0141896bc6115501bd181fd6c122910cdf0fb07db9dc5",
+          "bytes": 1184
+        }
+      ]
+    },
+    {
+      "requested_repo": "Cipher208/a-memory",
+      "repo": "Cipher208/a-memory",
+      "url": "https://github.com/Cipher208/a-memory",
+      "default_branch": "master",
+      "archived": false,
+      "pushed_at": "2026-10-26T16:32:59Z",
+      "created_at": "2026-06-28T09:57:46Z",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/Cipher208/a-memory/master/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\Cipher208--a-memory\\README.md.txt",
+          "sha256": "6866c410c59478bf189adcf42d34bf770474f7bae530c6d5c22001f06d39b5de",
+          "bytes": 18995
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Cipher208/a-memory/master/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\Cipher208--a-memory\\LICENSE.txt",
+          "sha256": "06810017adcb74002a6e4b1227bcf2fcf52bac47d29b7e8479133aa0956130ff",
+          "bytes": 1074
+        },
+        {
+          "url": "https://raw.githubusercontent.com/Cipher208/a-memory/master/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\Cipher208--a-memory\\pyproject.toml.txt",
+          "sha256": "3f8db3e19df8836e3b606e51ad0849a91031ecdaeb1fb42bf605f597a9a286aa",
+          "bytes": 9852
+        }
+      ]
+    },
+    {
+      "requested_repo": "openagenthq/localmem-mcp",
+      "repo": "OpenAgentHQ/localmem-mcp",
+      "url": "https://github.com/OpenAgentHQ/localmem-mcp",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-01T01:58:16Z",
+      "created_at": "2026-08-14T11:17:04Z",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/OpenAgentHQ/localmem-mcp/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\openagenthq--localmem-mcp\\README.md.txt",
+          "sha256": "9df65aaebc68fac6cc638b7cd1ac6fe0b935dee9cbfadc3bdbc3800b56440ab7",
+          "bytes": 9023
+        },
+        {
+          "url": "https://raw.githubusercontent.com/OpenAgentHQ/localmem-mcp/main/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\openagenthq--localmem-mcp\\LICENSE.txt",
+          "sha256": "14146b682c6bf01b40872999b0067031aade144a5c16a5599be55620c9d1afa7",
+          "bytes": 1068
+        },
+        {
+          "url": "https://raw.githubusercontent.com/OpenAgentHQ/localmem-mcp/main/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\openagenthq--localmem-mcp\\pyproject.toml.txt",
+          "sha256": "9274f18a6ce62ab45d34e6efda8140b934a08a0448cf14f316aeef20020f75c1",
+          "bytes": 2316
+        }
+      ]
+    },
+    {
+      "requested_repo": "asg017/sqlite-vec",
+      "repo": "asg017/sqlite-vec",
+      "url": "https://github.com/asg017/sqlite-vec",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-05-18T06:50:45Z",
+      "created_at": "2024-04-20T20:43:01Z",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/asg017/sqlite-vec/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\asg017--sqlite-vec\\README.md.txt",
+          "sha256": "9116ef6e0b78eb0caf5c6bb6419ccf4f8c6523967eef2045928c33dc66053d64",
+          "bytes": 9390
+        }
+      ]
+    },
+    {
+      "requested_repo": "microsoft/graphrag",
+      "repo": "microsoft/graphrag",
+      "url": "https://github.com/microsoft/graphrag",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-26T07:23:59Z",
+      "created_at": "2024-03-27T17:57:52Z",
+      "license_metadata": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/microsoft/graphrag/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\microsoft--graphrag\\README.md.txt",
+          "sha256": "36df9326f1e83343fd46373a2a059093590e4c2ad2256d3ed5de5c5e6e492709",
+          "bytes": 5099
+        },
+        {
+          "url": "https://raw.githubusercontent.com/microsoft/graphrag/main/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\microsoft--graphrag\\LICENSE.txt",
+          "sha256": "c2cfccb812fe482101a8f04597dfc5a9991a6b2748266c47ac91b6a5aae15383",
+          "bytes": 1141
+        },
+        {
+          "url": "https://raw.githubusercontent.com/microsoft/graphrag/main/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\microsoft--graphrag\\pyproject.toml.txt",
+          "sha256": "e7ebce5c2fe82a6518c48f1f9d25535829f04f3cb5cb7ef85a19b1952b87ddac",
+          "bytes": 9412
+        }
+      ]
+    },
+    {
+      "requested_repo": "xiaowu0162/LongMemEval-V2",
+      "repo": "xiaowu0162/LongMemEval-V2",
+      "url": "https://github.com/xiaowu0162/LongMemEval-V2",
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-08-09T22:31:22Z",
+      "created_at": "2026-05-11T01:12:24Z",
+      "license_metadata": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "files": [
+        {
+          "url": "https://raw.githubusercontent.com/xiaowu0162/LongMemEval-V2/main/README.md",
+          "status": 200,
+          "truncated": false,
+          "path": "README.md",
+          "local_path": "sources\\xiaowu0162--LongMemEval-V2\\README.md.txt",
+          "sha256": "399cc61c9540e587017fccdde28b29b62ed66326425f16f08b5fe0457a593abd",
+          "bytes": 9720
+        },
+        {
+          "url": "https://raw.githubusercontent.com/xiaowu0162/LongMemEval-V2/main/LICENSE",
+          "status": 200,
+          "truncated": false,
+          "path": "LICENSE",
+          "local_path": "sources\\xiaowu0162--LongMemEval-V2\\LICENSE.txt",
+          "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+          "bytes": 11357
+        },
+        {
+          "url": "https://raw.githubusercontent.com/xiaowu0162/LongMemEval-V2/main/pyproject.toml",
+          "status": 200,
+          "truncated": false,
+          "path": "pyproject.toml",
+          "local_path": "sources\\xiaowu0162--LongMemEval-V2\\pyproject.toml.txt",
+          "sha256": "06ef6a2b995126b1fb0d91f1a50ee1152a150c1754884db5a6e0fba2a09f434e",
+          "bytes": 640
+        }
+      ]
+    }
+  ]
+}

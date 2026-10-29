@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:https://github.com/noahshinn/reflexion/releases</id>
+  <link type="text/html" rel="alternate" href="https://github.com/noahshinn/reflexion/releases"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/noahshinn/reflexion/releases.atom"/>
+  <title>Release notes from reflexion</title>
+  <updated>2026-10-26T05:20:50Z</updated>
+</feed>

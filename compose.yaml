@@ -1,0 +1,17 @@
+services:
+  second-brain:
+    build: .
+    ports:
+      - "127.0.0.1:8765:8765"
+    volumes:
+      - brain-data:/app/data
+    environment:
+      MEM0_TELEMETRY: "false"
+      HF_HUB_DISABLE_TELEMETRY: "1"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+volumes:
+  brain-data:

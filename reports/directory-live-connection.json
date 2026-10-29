@@ -1,0 +1,15 @@
+{
+  "configured_mcp_verified": true,
+  "navigation_verified": true,
+  "exact_source_read_verified": true,
+  "task_context_verified": true,
+  "real_user_project_direction_saved": true,
+  "source_event_id": "8f7c26f8c596ce11f2e701f07367a6f1",
+  "candidate_count": 2,
+  "owner_approval_required": true,
+  "retry_idempotency_verified": true,
+  "context_bytes": 1534,
+  "context_budget": 2400,
+  "synthetic_records_in_personal_database": 0,
+  "limit": "Only captured data is available; host/model behavior and universal platform capture are not guaranteed."
+}

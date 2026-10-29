@@ -1,0 +1,18 @@
+{
+  "measured_at": "2026-10-26T16:51:45.532691+00:00",
+  "synthetic_records": 5001,
+  "query": "Quartz",
+  "engine": "economy",
+  "runs": 15,
+  "median_ms": 7.905,
+  "max_ms": 9.146,
+  "candidates_examined": 41,
+  "candidate_limit": 96,
+  "graph_hops": 1,
+  "returned_items": 12,
+  "context_records": 8,
+  "context_bytes": 2770,
+  "context_budget": 3000,
+  "additional_model_calls": 0,
+  "limits": "Synthetic local measurement, not total SQL rows visited, production latency, model recall quality or the conversation provider's token bill."
+}

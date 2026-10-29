@@ -1,0 +1,217 @@
+{
+  "created_at": "2026-10-26T11:48:02.207960+00:00",
+  "synthetic_only": true,
+  "checks": [
+    {
+      "name": "restart_in_separate_process",
+      "passed": true,
+      "priority": "P1",
+      "evidence": {
+        "expected": {
+          "events": 8,
+          "memories": 3,
+          "skills": 2,
+          "tools": 1
+        },
+        "actual": {
+          "events": 8,
+          "memories": 3,
+          "skills": 2,
+          "tools": 1
+        }
+      }
+    },
+    {
+      "name": "skill_latest_version_selection",
+      "passed": true,
+      "priority": "P2",
+      "evidence": [
+        {
+          "version": 2,
+          "state": "enabled"
+        },
+        {
+          "version": 1,
+          "state": "disabled"
+        }
+      ]
+    },
+    {
+      "name": "encrypted_backup_preserves_complete_state",
+      "passed": true,
+      "priority": "P1",
+      "evidence": {
+        "row_identity_equal": true,
+        "complete_rows_equal": true,
+        "integrity": "ok",
+        "skill_package_sha256_equal": true,
+        "tool_enabled": 1
+      }
+    },
+    {
+      "name": "skill_rollback_preserves_original_package",
+      "passed": true,
+      "priority": "P2",
+      "evidence": {
+        "version": 1
+      }
+    },
+    {
+      "name": "disabled_skill_hidden_from_agent",
+      "passed": true,
+      "priority": "P1",
+      "evidence": {
+        "hidden": true
+      }
+    },
+    {
+      "name": "project_context_contains_global_policy_and_preference",
+      "passed": true,
+      "priority": "P1",
+      "evidence": {
+        "types": [
+          "POLICY",
+          "USER_PREFERENCE",
+          "DECISION"
+        ],
+        "scopes": [
+          "global",
+          "global",
+          "audit-project"
+        ]
+      }
+    },
+    {
+      "name": "task_context_contains_global_policy",
+      "passed": true,
+      "priority": "P1",
+      "evidence": {
+        "types": [
+          "POLICY",
+          "USER_PREFERENCE",
+          "DECISION"
+        ]
+      }
+    },
+    {
+      "name": "context_budget_and_estimate",
+      "passed": true,
+      "priority": "P1",
+      "evidence": {
+        "cases": 149,
+        "failures": []
+      }
+    },
+    {
+      "name": "context_sources_match_records",
+      "passed": true,
+      "priority": "P1",
+      "evidence": {
+        "failing_budgets": []
+      }
+    },
+    {
+      "name": "canonical_export_contains_tool_definitions",
+      "passed": true,
+      "priority": "P1",
+      "evidence": {
+        "json_tables": [
+          "schema_version",
+          "exported_at",
+          "tenant",
+          "events",
+          "memories",
+          "assets",
+          "skills",
+          "tool_configs",
+          "feedback",
+          "tombstones",
+          "checkpoints",
+          "event_assets"
+        ],
+        "tool_in_jsonl": true
+      }
+    },
+    {
+      "name": "enabled_tool_discoverable_to_agent",
+      "passed": true,
+      "priority": "P1",
+      "evidence": {
+        "capability_fields": [
+          "engines",
+          "client_integrations",
+          "permissions",
+          "tools"
+        ],
+        "context_has_tool": true
+      }
+    },
+    {
+      "name": "agent_cannot_approve_or_delete",
+      "passed": true,
+      "priority": "P1",
+      "evidence": {
+        "unexpected_allowed_operations": []
+      }
+    },
+    {
+      "name": "project_only_reader_does_not_leak_global",
+      "passed": true,
+      "priority": "P1",
+      "evidence": {
+        "scopes": [
+          "audit-project"
+        ],
+        "skills": 0
+      }
+    },
+    {
+      "name": "stable_hook_replay_deduplicates_four_clients",
+      "passed": true,
+      "priority": "P1",
+      "evidence": [
+        {
+          "client": "codex",
+          "same_id": true,
+          "duplicate": true
+        },
+        {
+          "client": "claude-code",
+          "same_id": true,
+          "duplicate": true
+        },
+        {
+          "client": "gemini-cli",
+          "same_id": true,
+          "duplicate": true
+        },
+        {
+          "client": "cursor",
+          "same_id": true,
+          "duplicate": true
+        }
+      ]
+    },
+    {
+      "name": "same_feedback_evidence_does_not_inflate_learning",
+      "passed": true,
+      "priority": "P1",
+      "evidence": {
+        "counts": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ]
+      }
+    }
+  ],
+  "idless_capture_limitation": {
+    "stored_as_distinct_events": true,
+    "note": "No stable event ID means replay cannot be distinguished from intentional repeated input."
+  }
+}

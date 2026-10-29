@@ -1,0 +1,1397 @@
+{
+  "created_at": "2026-10-26T07:51:48.331005+00:00",
+  "synthetic_only": true,
+  "extraction": [
+    {
+      "text": "Bana hep Türkçe ve kısa cevap ver.",
+      "control_syntax": false,
+      "candidates": 0
+    },
+    {
+      "text": "Uzun listeler yerine paragraf okumayı seviyorum.",
+      "control_syntax": false,
+      "candidates": 0
+    },
+    {
+      "text": "Hocam bir daha tıklamadan önce başka bir ajana kontrol ettir.",
+      "control_syntax": false,
+      "candidates": 0
+    },
+    {
+      "text": "Kaynak göstermeden kesin konuşmanı istemiyorum.",
+      "control_syntax": false,
+      "candidates": 0
+    },
+    {
+      "text": "Kod örneklerinde Python kullanmanı tercih ederim.",
+      "control_syntax": false,
+      "candidates": 0
+    },
+    {
+      "text": "Arayüzlerde koyu tema seviyorum.",
+      "control_syntax": false,
+      "candidates": 0
+    },
+    {
+      "text": "Benimle konuşurken gereksiz onay soruları sorma.",
+      "control_syntax": false,
+      "candidates": 0
+    },
+    {
+      "text": "Projelerimi kendi bilgisayarımda çalıştırmak istiyorum.",
+      "control_syntax": false,
+      "candidates": 0
+    },
+    {
+      "text": "Tercihim: Türkçe kısa yanıt",
+      "control_syntax": true,
+      "candidates": 1
+    },
+    {
+      "text": "Kuralım: Kaynak göster",
+      "control_syntax": true,
+      "candidates": 1
+    }
+  ],
+  "capture_only": {
+    "events_stored": 10,
+    "recall_found": 0,
+    "timeline_found": true
+  },
+  "independent_explicit_preferences": [
+    "active",
+    "disputed"
+  ],
+  "paraphrased_feedback": [
+    {
+      "text": "Tıklamadan önce bağımsız alt ajana hedefi doğrulat.",
+      "evidence_count": 1,
+      "candidate": false
+    },
+    {
+      "text": "Her tıklama öncesinde başka bir ajan hedefi kontrol etsin.",
+      "evidence_count": 1,
+      "candidate": false
+    },
+    {
+      "text": "Bilgisayarda düğmeye basmadan evvel ikinci ajanın onayını al.",
+      "evidence_count": 1,
+      "candidate": false
+    }
+  ],
+  "repeated_feedback": {
+    "evidence_counts": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8
+    ],
+    "lesson_candidates": 1,
+    "active_before_approval": 0
+  },
+  "retrieval": [
+    {
+      "engine": "fts",
+      "phase": "no_vectors",
+      "cases": [
+        {
+          "query": "Türkçe",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 1.973
+        },
+        {
+          "query": "Hangi dilde ve ne uzunlukta cevap vermelisin?",
+          "kind": "natural",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 1.908
+        },
+        {
+          "query": "Cevaplarını nasıl yazmanı seviyorum?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 1.898
+        },
+        {
+          "query": "tıklamadan önce",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 1.954
+        },
+        {
+          "query": "Ekrandaki düğmeye basmadan önce kime kontrol ettirmelisin?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 1.935
+        },
+        {
+          "query": "kaynakları göster",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 1.931
+        },
+        {
+          "query": "Emin olmadığın bir şeyi bana nasıl anlatmalısın?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 1.989
+        },
+        {
+          "query": "Python",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 1.994
+        },
+        {
+          "query": "Kodları hangi programlama dilinde yazmanı istiyorum?",
+          "kind": "natural",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 1.976
+        },
+        {
+          "query": "gereksiz onay",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 1.988
+        },
+        {
+          "query": "İşe devam etmek için sürekli benden izin istemeli misin?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 1.946
+        },
+        {
+          "query": "SecondBrain SQLite",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 1.97
+        },
+        {
+          "query": "Hafıza uygulamamızda hangi veritabanına karar verdik?",
+          "kind": "natural",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 1.924
+        },
+        {
+          "query": "buluta veri",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 1.933
+        },
+        {
+          "query": "Verilerimi uzak sunuculara yolluyor muyuz?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 1.911
+        },
+        {
+          "query": "regresyon testini",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 2.027
+        },
+        {
+          "query": "Bir bugı giderdikten sonra ne yapmayı öğrenmiştik?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 1.923
+        },
+        {
+          "query": "bahçe sulama",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 1.954
+        },
+        {
+          "query": "Dün bitkileri sulamak hakkında ne konuşmuştuk?",
+          "kind": "natural",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 1.905
+        },
+        {
+          "query": "OCR çözünürlüğünü",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 1.947
+        },
+        {
+          "query": "Görüntüden metin okumada hangi yöntem faydalı olmuştu?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 1.934
+        },
+        {
+          "query": "Mavi Mercan",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 1.973
+        },
+        {
+          "query": "koyu tema",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 1.915
+        },
+        {
+          "query": "Arayüzün aydınlık mı karanlık mı olmasını seviyorum?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 2.79
+        }
+      ],
+      "top1": 12,
+      "recall5": 12
+    },
+    {
+      "engine": "bm25",
+      "phase": "no_vectors",
+      "cases": [
+        {
+          "query": "Türkçe",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 2.599
+        },
+        {
+          "query": "Hangi dilde ve ne uzunlukta cevap vermelisin?",
+          "kind": "natural",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 2.258
+        },
+        {
+          "query": "Cevaplarını nasıl yazmanı seviyorum?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 2.248
+        },
+        {
+          "query": "tıklamadan önce",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 2.948
+        },
+        {
+          "query": "Ekrandaki düğmeye basmadan önce kime kontrol ettirmelisin?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 2.583
+        },
+        {
+          "query": "kaynakları göster",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 2.342
+        },
+        {
+          "query": "Emin olmadığın bir şeyi bana nasıl anlatmalısın?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 2.52
+        },
+        {
+          "query": "Python",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 2.225
+        },
+        {
+          "query": "Kodları hangi programlama dilinde yazmanı istiyorum?",
+          "kind": "natural",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 2.302
+        },
+        {
+          "query": "gereksiz onay",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 2.201
+        },
+        {
+          "query": "İşe devam etmek için sürekli benden izin istemeli misin?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 2.305
+        },
+        {
+          "query": "SecondBrain SQLite",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 2.172
+        },
+        {
+          "query": "Hafıza uygulamamızda hangi veritabanına karar verdik?",
+          "kind": "natural",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 2.188
+        },
+        {
+          "query": "buluta veri",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 2.25
+        },
+        {
+          "query": "Verilerimi uzak sunuculara yolluyor muyuz?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 2.221
+        },
+        {
+          "query": "regresyon testini",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 2.196
+        },
+        {
+          "query": "Bir bugı giderdikten sonra ne yapmayı öğrenmiştik?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 2.49
+        },
+        {
+          "query": "bahçe sulama",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 2.334
+        },
+        {
+          "query": "Dün bitkileri sulamak hakkında ne konuşmuştuk?",
+          "kind": "natural",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 2.227
+        },
+        {
+          "query": "OCR çözünürlüğünü",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 2.18
+        },
+        {
+          "query": "Görüntüden metin okumada hangi yöntem faydalı olmuştu?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 2.295
+        },
+        {
+          "query": "Mavi Mercan",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 2.16
+        },
+        {
+          "query": "koyu tema",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 2.169
+        },
+        {
+          "query": "Arayüzün aydınlık mı karanlık mı olmasını seviyorum?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 2.232
+        }
+      ],
+      "top1": 12,
+      "recall5": 12
+    },
+    {
+      "engine": "hybrid",
+      "phase": "no_vectors",
+      "cases": [
+        {
+          "query": "Türkçe",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 5.545
+        },
+        {
+          "query": "Hangi dilde ve ne uzunlukta cevap vermelisin?",
+          "kind": "natural",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 5.694
+        },
+        {
+          "query": "Cevaplarını nasıl yazmanı seviyorum?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 5.733
+        },
+        {
+          "query": "tıklamadan önce",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 5.624
+        },
+        {
+          "query": "Ekrandaki düğmeye basmadan önce kime kontrol ettirmelisin?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 5.827
+        },
+        {
+          "query": "kaynakları göster",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 6.462
+        },
+        {
+          "query": "Emin olmadığın bir şeyi bana nasıl anlatmalısın?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 6.137
+        },
+        {
+          "query": "Python",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 6.177
+        },
+        {
+          "query": "Kodları hangi programlama dilinde yazmanı istiyorum?",
+          "kind": "natural",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 6.697
+        },
+        {
+          "query": "gereksiz onay",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 5.93
+        },
+        {
+          "query": "İşe devam etmek için sürekli benden izin istemeli misin?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 5.822
+        },
+        {
+          "query": "SecondBrain SQLite",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 5.601
+        },
+        {
+          "query": "Hafıza uygulamamızda hangi veritabanına karar verdik?",
+          "kind": "natural",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 5.939
+        },
+        {
+          "query": "buluta veri",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 5.664
+        },
+        {
+          "query": "Verilerimi uzak sunuculara yolluyor muyuz?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 5.699
+        },
+        {
+          "query": "regresyon testini",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 5.669
+        },
+        {
+          "query": "Bir bugı giderdikten sonra ne yapmayı öğrenmiştik?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 5.624
+        },
+        {
+          "query": "bahçe sulama",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 5.631
+        },
+        {
+          "query": "Dün bitkileri sulamak hakkında ne konuşmuştuk?",
+          "kind": "natural",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 5.786
+        },
+        {
+          "query": "OCR çözünürlüğünü",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 5.606
+        },
+        {
+          "query": "Görüntüden metin okumada hangi yöntem faydalı olmuştu?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 6.038
+        },
+        {
+          "query": "Mavi Mercan",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 5.65
+        },
+        {
+          "query": "koyu tema",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 5.604
+        },
+        {
+          "query": "Arayüzün aydınlık mı karanlık mı olmasını seviyorum?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 7.248
+        }
+      ],
+      "top1": 12,
+      "recall5": 12
+    },
+    {
+      "engine": "vector",
+      "phase": "indexed",
+      "cases": [
+        {
+          "query": "Türkçe",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 12.421
+        },
+        {
+          "query": "Hangi dilde ve ne uzunlukta cevap vermelisin?",
+          "kind": "natural",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 13.718
+        },
+        {
+          "query": "Cevaplarını nasıl yazmanı seviyorum?",
+          "kind": "paraphrase",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 10.633
+        },
+        {
+          "query": "tıklamadan önce",
+          "kind": "keyword",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 9.829
+        },
+        {
+          "query": "Ekrandaki düğmeye basmadan önce kime kontrol ettirmelisin?",
+          "kind": "paraphrase",
+          "top1": true,
+          "recall5": true,
+          "returned": 2,
+          "elapsed_ms": 11.995
+        },
+        {
+          "query": "kaynakları göster",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 10.558
+        },
+        {
+          "query": "Emin olmadığın bir şeyi bana nasıl anlatmalısın?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 14.478
+        },
+        {
+          "query": "Python",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 10.879
+        },
+        {
+          "query": "Kodları hangi programlama dilinde yazmanı istiyorum?",
+          "kind": "natural",
+          "top1": true,
+          "recall5": true,
+          "returned": 2,
+          "elapsed_ms": 14.682
+        },
+        {
+          "query": "gereksiz onay",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 11.779
+        },
+        {
+          "query": "İşe devam etmek için sürekli benden izin istemeli misin?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 15.569
+        },
+        {
+          "query": "SecondBrain SQLite",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 2,
+          "elapsed_ms": 12.91
+        },
+        {
+          "query": "Hafıza uygulamamızda hangi veritabanına karar verdik?",
+          "kind": "natural",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 15.155
+        },
+        {
+          "query": "buluta veri",
+          "kind": "keyword",
+          "top1": false,
+          "recall5": false,
+          "returned": 1,
+          "elapsed_ms": 11.63
+        },
+        {
+          "query": "Verilerimi uzak sunuculara yolluyor muyuz?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 15.708
+        },
+        {
+          "query": "regresyon testini",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 12.307
+        },
+        {
+          "query": "Bir bugı giderdikten sonra ne yapmayı öğrenmiştik?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 15.178
+        },
+        {
+          "query": "bahçe sulama",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 11.274
+        },
+        {
+          "query": "Dün bitkileri sulamak hakkında ne konuşmuştuk?",
+          "kind": "natural",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 11.635
+        },
+        {
+          "query": "OCR çözünürlüğünü",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 10.225
+        },
+        {
+          "query": "Görüntüden metin okumada hangi yöntem faydalı olmuştu?",
+          "kind": "paraphrase",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 13.936
+        },
+        {
+          "query": "Mavi Mercan",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 11.482
+        },
+        {
+          "query": "koyu tema",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 11.628
+        },
+        {
+          "query": "Arayüzün aydınlık mı karanlık mı olmasını seviyorum?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 14.739
+        }
+      ],
+      "top1": 16,
+      "recall5": 16
+    },
+    {
+      "engine": "hybrid",
+      "phase": "indexed",
+      "cases": [
+        {
+          "query": "Türkçe",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 15.67
+        },
+        {
+          "query": "Hangi dilde ve ne uzunlukta cevap vermelisin?",
+          "kind": "natural",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 20.168
+        },
+        {
+          "query": "Cevaplarını nasıl yazmanı seviyorum?",
+          "kind": "paraphrase",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 17.899
+        },
+        {
+          "query": "tıklamadan önce",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 16.356
+        },
+        {
+          "query": "Ekrandaki düğmeye basmadan önce kime kontrol ettirmelisin?",
+          "kind": "paraphrase",
+          "top1": true,
+          "recall5": true,
+          "returned": 2,
+          "elapsed_ms": 20.576
+        },
+        {
+          "query": "kaynakları göster",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 16.363
+        },
+        {
+          "query": "Emin olmadığın bir şeyi bana nasıl anlatmalısın?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 19.395
+        },
+        {
+          "query": "Python",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 15.77
+        },
+        {
+          "query": "Kodları hangi programlama dilinde yazmanı istiyorum?",
+          "kind": "natural",
+          "top1": true,
+          "recall5": true,
+          "returned": 2,
+          "elapsed_ms": 15.929
+        },
+        {
+          "query": "gereksiz onay",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 15.923
+        },
+        {
+          "query": "İşe devam etmek için sürekli benden izin istemeli misin?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 20.733
+        },
+        {
+          "query": "SecondBrain SQLite",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 2,
+          "elapsed_ms": 17.495
+        },
+        {
+          "query": "Hafıza uygulamamızda hangi veritabanına karar verdik?",
+          "kind": "natural",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 20.188
+        },
+        {
+          "query": "buluta veri",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 2,
+          "elapsed_ms": 16.567
+        },
+        {
+          "query": "Verilerimi uzak sunuculara yolluyor muyuz?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 20.41
+        },
+        {
+          "query": "regresyon testini",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 15.572
+        },
+        {
+          "query": "Bir bugı giderdikten sonra ne yapmayı öğrenmiştik?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 15.417
+        },
+        {
+          "query": "bahçe sulama",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 14.176
+        },
+        {
+          "query": "Dün bitkileri sulamak hakkında ne konuşmuştuk?",
+          "kind": "natural",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 15.291
+        },
+        {
+          "query": "OCR çözünürlüğünü",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 14.025
+        },
+        {
+          "query": "Görüntüden metin okumada hangi yöntem faydalı olmuştu?",
+          "kind": "paraphrase",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 15.385
+        },
+        {
+          "query": "Mavi Mercan",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 13.411
+        },
+        {
+          "query": "koyu tema",
+          "kind": "keyword",
+          "top1": true,
+          "recall5": true,
+          "returned": 1,
+          "elapsed_ms": 13.204
+        },
+        {
+          "query": "Arayüzün aydınlık mı karanlık mı olmasını seviyorum?",
+          "kind": "paraphrase",
+          "top1": false,
+          "recall5": false,
+          "returned": 0,
+          "elapsed_ms": 19.601
+        }
+      ],
+      "top1": 18,
+      "recall5": 18
+    }
+  ],
+  "model_available": true,
+  "unknown_queries": [
+    {
+      "engine": "fts",
+      "phase": "no_vectors",
+      "cases": [
+        {
+          "query": "Kan grubum ne?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Doğum tarihim hangi gün?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Evimin açık adresi nedir?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Kedimin adı ne?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Atlas projesinin bütçesi kaç lira?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "En sevdiğim yemek hangisi?",
+          "returned": 0,
+          "abstain": true
+        }
+      ]
+    },
+    {
+      "engine": "bm25",
+      "phase": "no_vectors",
+      "cases": [
+        {
+          "query": "Kan grubum ne?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Doğum tarihim hangi gün?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Evimin açık adresi nedir?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Kedimin adı ne?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Atlas projesinin bütçesi kaç lira?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "En sevdiğim yemek hangisi?",
+          "returned": 0,
+          "abstain": true
+        }
+      ]
+    },
+    {
+      "engine": "hybrid",
+      "phase": "no_vectors",
+      "cases": [
+        {
+          "query": "Kan grubum ne?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Doğum tarihim hangi gün?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Evimin açık adresi nedir?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Kedimin adı ne?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Atlas projesinin bütçesi kaç lira?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "En sevdiğim yemek hangisi?",
+          "returned": 0,
+          "abstain": true
+        }
+      ]
+    },
+    {
+      "engine": "vector",
+      "phase": "indexed",
+      "cases": [
+        {
+          "query": "Kan grubum ne?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Doğum tarihim hangi gün?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Evimin açık adresi nedir?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Kedimin adı ne?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Atlas projesinin bütçesi kaç lira?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "En sevdiğim yemek hangisi?",
+          "returned": 0,
+          "abstain": true
+        }
+      ]
+    },
+    {
+      "engine": "hybrid",
+      "phase": "indexed",
+      "cases": [
+        {
+          "query": "Kan grubum ne?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Doğum tarihim hangi gün?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Evimin açık adresi nedir?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Kedimin adı ne?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "Atlas projesinin bütçesi kaç lira?",
+          "returned": 0,
+          "abstain": true
+        },
+        {
+          "query": "En sevdiğim yemek hangisi?",
+          "returned": 0,
+          "abstain": true
+        }
+      ]
+    }
+  ],
+  "indexing": {
+    "indexed": 12,
+    "chunks": 12,
+    "model": "sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
+    "wall_seconds": 6.976
+  },
+  "embedding_usage": {
+    "before": {
+      "pid": 12484,
+      "cpu_seconds": 1.078,
+      "rss_bytes": 57618432,
+      "rss_kind": "current working set",
+      "platform": "win32"
+    },
+    "after": {
+      "pid": 12484,
+      "cpu_seconds": 10.234,
+      "rss_bytes": 745775104,
+      "rss_kind": "current working set",
+      "platform": "win32"
+    },
+    "network_attempts": []
+  },
+  "scoped_bootstrap": {
+    "record_types": [
+      "PROJECT_STATE",
+      "DECISION"
+    ],
+    "global_policy_included": false,
+    "global_preference_included": false
+  },
+  "budget_bootstrap": [
+    {
+      "budget": 512,
+      "actual_bytes": 392,
+      "record_count": 0,
+      "policies": 0,
+      "types": []
+    },
+    {
+      "budget": 1000,
+      "actual_bytes": 703,
+      "record_count": 1,
+      "policies": 0,
+      "types": [
+        "USER_PREFERENCE"
+      ]
+    },
+    {
+      "budget": 3000,
+      "actual_bytes": 2603,
+      "record_count": 6,
+      "policies": 1,
+      "types": [
+        "USER_PREFERENCE",
+        "POLICY",
+        "PROJECT_STATE",
+        "DECISION",
+        "LESSON",
+        "USER_PREFERENCE"
+      ]
+    },
+    {
+      "budget": 6000,
+      "actual_bytes": 4514,
+      "record_count": 11,
+      "policies": 2,
+      "types": [
+        "USER_PREFERENCE",
+        "POLICY",
+        "PROJECT_STATE",
+        "DECISION",
+        "LESSON",
+        "USER_PREFERENCE",
+        "POLICY",
+        "PROJECT_STATE",
+        "LESSON",
+        "USER_PREFERENCE",
+        "USER_PREFERENCE"
+      ]
+    },
+    {
+      "budget": 12000,
+      "actual_bytes": 4515,
+      "record_count": 11,
+      "policies": 2,
+      "types": [
+        "USER_PREFERENCE",
+        "POLICY",
+        "PROJECT_STATE",
+        "DECISION",
+        "LESSON",
+        "USER_PREFERENCE",
+        "POLICY",
+        "PROJECT_STATE",
+        "LESSON",
+        "USER_PREFERENCE",
+        "USER_PREFERENCE"
+      ]
+    }
+  ],
+  "skill_portability": {
+    "skill_text_available": true,
+    "script_content_available_to_model": false,
+    "package_roundtrip": true
+  },
+  "tool_inventory": {
+    "registered": 1,
+    "registered_tool_discoverable_in_model_capabilities": false,
+    "canonical_json_export_contains_tool_configs": false
+  },
+  "persistence": {
+    "memory_count": 12,
+    "enabled_skills": 1,
+    "tools": 1
+  }
+}

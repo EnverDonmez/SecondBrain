@@ -1,0 +1,166 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xml:lang="en-US">
+  <id>tag:github.com,2008:https://github.com/fastapi/fastapi/releases</id>
+  <link type="text/html" rel="alternate" href="https://github.com/fastapi/fastapi/releases"/>
+  <link type="application/atom+xml" rel="self" href="https://github.com/fastapi/fastapi/releases.atom"/>
+  <title>Release notes from fastapi</title>
+  <updated>2026-10-23T18:45:33Z</updated>
+  <entry>
+    <id>tag:github.com,2008:Repository/160919119/0.162.0</id>
+    <updated>2026-10-23T18:47:17Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/fastapi/fastapi/releases/tag/0.162.0"/>
+    <title>0.162.0</title>
+    <content type="html">&lt;p&gt;Omitted &lt;code&gt;bool&lt;/code&gt; and &lt;code&gt;bool | None&lt;/code&gt; form fields now use their declared defaults or produce missing-field errors, consistent with other fields and Pydantic behavior. FastAPI no longer infers &lt;code&gt;False&lt;/code&gt; for omitted booleans. This applies to individual form parameters, form models, and unions of form models.&lt;/p&gt;
+&lt;p&gt;Omitted boolean model fields are excluded from &lt;code&gt;model_dump(exclude_unset=True)&lt;/code&gt;, and their defaults no longer count as submitted fields during union selection. Default factories and &lt;code&gt;validate_default&lt;/code&gt; follow the usual rules.&lt;/p&gt;
+&lt;p&gt;For HTML checkboxes, declare a boolean with a default of &lt;code&gt;False&lt;/code&gt;. See &lt;a href=&quot;https://fastapi.tiangolo.com/tutorial/request-forms/#boolean-form-fields&quot; rel=&quot;nofollow&quot;&gt;Boolean Form Fields&lt;/a&gt;.&lt;/p&gt;
+&lt;h3&gt;Breaking Changes&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;🐛 Restore default handling for omitted boolean form fields. PR &lt;a href=&quot;https://github.com/fastapi/fastapi/pull/16605&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/fastapi/fastapi/pull/16605/hovercard&quot;&gt;#16605&lt;/a&gt; by &lt;a href=&quot;https://github.com/tiangolo&quot;&gt;@tiangolo&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/160919119/0.161.1</id>
+    <updated>2026-10-22T22:21:50Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/fastapi/fastapi/releases/tag/0.161.1"/>
+    <title>0.161.1</title>
+    <content type="html">&lt;h3&gt;Fixes&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;🐛 Fix OpenAPI schemas for standalone nullable form unions. PR &lt;a href=&quot;https://github.com/fastapi/fastapi/pull/16598&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/fastapi/fastapi/pull/16598/hovercard&quot;&gt;#16598&lt;/a&gt; by &lt;a href=&quot;https://github.com/tiangolo&quot;&gt;@tiangolo&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/160919119/0.161.0</id>
+    <updated>2026-10-22T18:30:24Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/fastapi/fastapi/releases/tag/0.161.0"/>
+    <title>0.161.0</title>
+    <content type="html">&lt;h3&gt;Features&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;✨ Add support for combining unions of form models. PR &lt;a href=&quot;https://github.com/fastapi/fastapi/pull/16596&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/fastapi/fastapi/pull/16596/hovercard&quot;&gt;#16596&lt;/a&gt; by &lt;a href=&quot;https://github.com/tiangolo&quot;&gt;@tiangolo&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/160919119/0.160.0</id>
+    <updated>2026-10-22T16:54:31Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/fastapi/fastapi/releases/tag/0.160.0"/>
+    <title>0.160.0</title>
+    <content type="html">&lt;p&gt;Query, header, cookie, and form parameter models now apply their &lt;code&gt;extra&lt;/code&gt; configuration to all submitted fields in the same parameter location, consistent with Pydantic behavior. This includes fields declared in other models, individual parameters, or dependencies, which were previously excluded.&lt;/p&gt;
+&lt;p&gt;With &lt;code&gt;extra=&quot;forbid&quot;&lt;/code&gt;, fields outside the model are rejected even if another parameter declares them. With &lt;code&gt;extra=&quot;allow&quot;&lt;/code&gt;, those fields are included as model extras. With the default &lt;code&gt;extra=&quot;ignore&quot;&lt;/code&gt;, they are ignored.&lt;/p&gt;
+&lt;h3&gt;Breaking Changes&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;🐛 Apply each parameter model&#39;s &lt;code&gt;extra&lt;/code&gt; configuration to sibling fields. PR &lt;a href=&quot;https://github.com/fastapi/fastapi/pull/16594&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/fastapi/fastapi/pull/16594/hovercard&quot;&gt;#16594&lt;/a&gt; by &lt;a href=&quot;https://github.com/tiangolo&quot;&gt;@tiangolo&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Internal&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;⬆ Bump certifi from 2026.1.4 to 2026.10.19. PR &lt;a href=&quot;https://github.com/fastapi/fastapi/pull/16571&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/fastapi/fastapi/pull/16571/hovercard&quot;&gt;#16571&lt;/a&gt; by &lt;a href=&quot;https://github.com/apps/dependabot&quot;&gt;@dependabot[bot]&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/160919119/0.159.1</id>
+    <updated>2026-10-21T20:59:13Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/fastapi/fastapi/releases/tag/0.159.1"/>
+    <title>0.159.1</title>
+    <content type="html">&lt;h3&gt;Features&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;✨ Add support for optional unions of form models. PR &lt;a href=&quot;https://github.com/fastapi/fastapi/pull/16586&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/fastapi/fastapi/pull/16586/hovercard&quot;&gt;#16586&lt;/a&gt; by &lt;a href=&quot;https://github.com/tiangolo&quot;&gt;@tiangolo&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/160919119/0.159.0</id>
+    <updated>2026-10-21T20:03:57Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/fastapi/fastapi/releases/tag/0.159.0"/>
+    <title>0.159.0</title>
+    <content type="html">&lt;h3&gt;Features&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;✨ Add support for optional query, header, and cookie parameter models. PR &lt;a href=&quot;https://github.com/fastapi/fastapi/pull/16584&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/fastapi/fastapi/pull/16584/hovercard&quot;&gt;#16584&lt;/a&gt; by &lt;a href=&quot;https://github.com/tiangolo&quot;&gt;@tiangolo&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/160919119/0.158.2</id>
+    <updated>2026-10-21T19:20:32Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/fastapi/fastapi/releases/tag/0.158.2"/>
+    <title>0.158.2</title>
+    <content type="html">&lt;h3&gt;Features&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;✨ Add support for optional form models. PR &lt;a href=&quot;https://github.com/fastapi/fastapi/pull/16582&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/fastapi/fastapi/pull/16582/hovercard&quot;&gt;#16582&lt;/a&gt; by &lt;a href=&quot;https://github.com/tiangolo&quot;&gt;@tiangolo&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/160919119/0.158.1</id>
+    <updated>2026-10-21T17:47:27Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/fastapi/fastapi/releases/tag/0.158.1"/>
+    <title>0.158.1</title>
+    <content type="html">&lt;h3&gt;Fixes&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;🐛 Preserve form media types in OpenAPI. PR &lt;a href=&quot;https://github.com/fastapi/fastapi/pull/16579&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/fastapi/fastapi/pull/16579/hovercard&quot;&gt;#16579&lt;/a&gt; by &lt;a href=&quot;https://github.com/tiangolo&quot;&gt;@tiangolo&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/160919119/0.158.0</id>
+    <updated>2026-10-21T17:01:56Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/fastapi/fastapi/releases/tag/0.158.0"/>
+    <title>0.158.0</title>
+    <content type="html">&lt;h3&gt;Features&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;✨ Add support for combining form models. PR &lt;a href=&quot;https://github.com/fastapi/fastapi/pull/16577&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/fastapi/fastapi/pull/16577/hovercard&quot;&gt;#16577&lt;/a&gt; by &lt;a href=&quot;https://github.com/tiangolo&quot;&gt;@tiangolo&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+  <entry>
+    <id>tag:github.com,2008:Repository/160919119/0.157.0</id>
+    <updated>2026-10-21T13:55:34Z</updated>
+    <link rel="alternate" type="text/html" href="https://github.com/fastapi/fastapi/releases/tag/0.157.0"/>
+    <title>0.157.0</title>
+    <content type="html">&lt;h3&gt;Features&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;✨ Add support for combining query, header, and cookie parameter models. PR &lt;a href=&quot;https://github.com/fastapi/fastapi/pull/16573&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/fastapi/fastapi/pull/16573/hovercard&quot;&gt;#16573&lt;/a&gt; by &lt;a href=&quot;https://github.com/tiangolo&quot;&gt;@tiangolo&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Docs&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;📝 Clarify boolean query parameter parsing. PR &lt;a href=&quot;https://github.com/fastapi/fastapi/pull/16569&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/fastapi/fastapi/pull/16569/hovercard&quot;&gt;#16569&lt;/a&gt; by &lt;a href=&quot;https://github.com/tiangolo&quot;&gt;@tiangolo&lt;/a&gt;.&lt;/li&gt;
+&lt;li&gt;📝 Clarify nullable query parameters and path parameter defaults. PR &lt;a href=&quot;https://github.com/fastapi/fastapi/pull/16568&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/fastapi/fastapi/pull/16568/hovercard&quot;&gt;#16568&lt;/a&gt; by &lt;a href=&quot;https://github.com/tiangolo&quot;&gt;@tiangolo&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3&gt;Internal&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;👷 Remove translation notifications and approval labeling. PR &lt;a href=&quot;https://github.com/fastapi/fastapi/pull/16570&quot; data-hovercard-type=&quot;pull_request&quot; data-hovercard-url=&quot;/fastapi/fastapi/pull/16570/hovercard&quot;&gt;#16570&lt;/a&gt; by &lt;a href=&quot;https://github.com/tiangolo&quot;&gt;@tiangolo&lt;/a&gt;.&lt;/li&gt;
+&lt;/ul&gt;</content>
+    <author>
+      <name>github-actions[bot]</name>
+    </author>
+    <media:thumbnail height="30" width="30" url="https://avatars.githubusercontent.com/in/15368?s=60&amp;v=4"/>
+  </entry>
+</feed>
