@@ -4,6 +4,10 @@ Kamuya açık envelope sürümü 1'dir; SQLite migration sürümü bundan bağı
 
 Şema 7'de `subject_key/predicate_key` türetilmiş arama/özellik kimliğidir; ham alanlar korunur. `identity_aliases` sahibin açık varlık birleştirmeleridir. `statement_receipts` birebir tekrar edilen beyanların yeni kaynaklarını aynı assertion'a bağlar; kaynak olayı da korunur. `context_clock` tenant/scope/hassasiyet/tür bazında bağlam geçersizleştirmesi içindir. Export alias ve kanıt ilişkilerini içerir; şifreli backup tüm tabloları korur. [ADR 0006](docs/adr/0006-coherent-memory.md).
 
+Şema 8, eski kaynak ve kayıtların FTS indeksine Türkçe kök terimlerini ekler. Devir kartı mevcut `conversation.memory_excerpt` olayının `checkpoint` alanından okunur. Gelen kutusu öğesi `clip.captured` olayıdır. `clip_receipts` bir işlemenin tekrarını tanır, kaynak bağlantısını korur ve bağlı olay silindiğinde temizlenir.
+
+Şema 9, iptal edilebilir tarayıcı oturumlarını ve bağlantı başına tek son erişim kaydını ekler. Eski audit kayıtlarından son erişim bilgisi taşınır. İşlem geçmişi ve ayrıntı sorguları ayrı indeksler kullanır. Gelen kutusuna ait dosya işleri, inceleme bitene kadar çıkarılan içeriği otomatik bağlamdan ayırır.
+
 ## Orijinal olay
 
 `id`, `tenant`, `source`, `source_id`, `event_type`, `actor`, `session_id`, `conversation_id`, `parent_id`, `occurred_at`, `ingested_at`, `scope`, `sensitivity`, `text`, `payload`, `metadata`, `attachments`, `content_hash`, `schema_version`.

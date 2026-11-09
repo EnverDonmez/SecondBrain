@@ -24,13 +24,13 @@ Girişte `data/owner.token` dosyasının içeriği istenir. Bu dosya ilk servis 
 
 ```sh
 python3.12 -m venv .venv
-.venv/bin/python -m pip install -c requirements.lock -e '.[engines,media,dev]'
+.venv/bin/python scripts/install_locked.py --editable --extra engines --extra media --extra dev
 .venv/bin/python -m second_brain model-install
 .venv/bin/python -m second_brain speech-model-install
 .venv/bin/python -m second_brain serve
 ```
 
-Yerel doğrulama Windows üzerinde yapıldı; Linux/macOS için CI tanımı bulunuyor, bu oturumda o işletim sistemleri çalıştırılmadı. `requirements.lock` mevcut Windows ortamının tam pin listesidir; `pywin32` platform marker'ı taşır. Yeni platformda pyproject çözümlemesi kullanmak gerekebilir.
+CI matrisi Windows, Linux ve macOS içerir. `requirements.lock` paket sürümlerini, `requirements.hashes.json` onaylı wheel dosyalarının SHA-256 değerlerini tutar. Yerel kurulum aynı kilidi kullanır. `--verify-only` kurulum yapmadan çözümlemeyi ve seçilen hash'leri denetler. Sürüm pini değiştiğinde `python scripts/lock_environment.py` ile hash listesini yenile.
 
 ## Docker / WSL2
 

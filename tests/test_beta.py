@@ -64,6 +64,13 @@ def test_background_start_reuse_restart_and_wrong_brain_guard(tmp_path, monkeypa
         owner = (root / "owner.token").read_text("utf-8")
         with httpx.Client(base_url=running["url"], trust_env=False, timeout=10) as client:
             assert client.get("/api/status").status_code == 403
+            for attempt in range(11):
+                response = client.post(
+                    "/api/login",
+                    headers={"X-Forwarded-For": f"203.0.113.{attempt + 1}"},
+                    json={"token": "incorrect test login"},
+                )
+            assert response.json()["error"].startswith("Too many login attempts")
             client.headers["Authorization"] = "Bearer " + owner
             for year in (3, 4):
                 value = f"Ben {year}. sınıfım."

@@ -1,6 +1,6 @@
 # Yedek ve kurtarma
 
-Yedek ID'si uygulama tarafından üretilir; keyfi dosya yolu kabul edilmez. Format: `SBOS1 | salt(16) | nonce(12) | AES-GCM ciphertext`. İçeride SQLite snapshot, master key, encrypted raw asset'ler, manifest ve kimlik/hash tabanlı deletion ledger bulunur. Auth token tablosu snapshot'tan çıkarılır.
+Yedek kimliğini uygulama üretir. Format `SBOS1 | salt(16) | nonce(12) | AES-GCM ciphertext` şeklindedir. Şifreli pakette SQLite, taşınabilir kasa anahtarı, ham dosyalar, manifest ve silme günlüğü bulunur. Bağlantı anahtarları ve tarayıcı oturumları snapshot'a alınmaz. Geri yükleme tarayıcı oturumlarını iptal eder. Windows'ta kasa anahtarı hedef hesaba DPAPI ile bağlanır.
 
 1. Dashboard'da en az 12 karakterli parola ile oluştur.
 2. Bütünlüğü doğrula: GCM tag, SQLite integrity_check ve her asset'in SHA-256 değeri kontrol edilir.

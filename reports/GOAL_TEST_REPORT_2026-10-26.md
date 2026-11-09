@@ -23,7 +23,7 @@ Bu rapor yarıda kalan test çalışmasını devralır. Önceki performans ölç
 
 ## 2. Uygulama test paketi ve kalite denetimleri
 
-Tam paket: **64 geçti, 0 başarısız, 0 atlandı; 19,50 saniye.** [JUnit](goal-audit-final-tests-20261026.xml), [konsol kaydı](goal-audit-final-pytest-20261026.log).
+Tam paket 19,50 saniye sürdü ve **64 test geçti**. [JUnit](goal-audit-final-tests-20261026.xml).
 
 Bu paket gerçek SQLite işlemlerini, zamansal düzeltmeleri, çelişkileri, scope/tenant/clearance sınırlarını, modelin kendini onaylayamamasını, capture/import tekrarlarını, job iptal/retry akışını, silme ve restore sonrasında yeniden içeri almama davranışını, migration'ı, gerçek HTTP + subprocess stdio MCP akışını, yerel embedding/Mem0, OCR/PDF/ses/video yollarını kapsıyor. Opsiyonel motor ve medya testleri bu çalıştırmada atlanmadı.
 

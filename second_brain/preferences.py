@@ -22,7 +22,8 @@ def preference_candidates(text):
     intent = bool(
         explicit
         or re.search(
-            r"\b(tercih ederim|seviyorum|istiyorum|cevap ver|yanit ver|ettir|kontrol etsin)\b", folded
+            r"\b(tercih ederim|seviyorum|istiyorum|cevap ver|yanit ver|ettir|kontrol etsin|bundan sonra|her zaman)\b",
+            folded,
         )
     )
     negative = bool(
@@ -35,6 +36,14 @@ def preference_candidates(text):
             kind = "POLICY" if explicit[1].casefold().startswith(("kural", "rule")) else "USER_PREFERENCE"
         found.append({"predicate": predicate, "value": canonical, "memory_type": kind})
 
+    if not negative and re.fullmatch(
+        r"(?:lutfen )?(?:commit|git commit) mesajlari(?:mi|ni)? (turkce|ingilizce) yaz[.!]?", folded
+    ):
+        add("commit.language", value)
+    if re.fullmatch(r"(?:lutfen )?(?:yanit|cevap)larinda emoji kullan(?:ma)?[.!]?", folded):
+        add("reply.emoji", value)
+    if re.fullmatch(r"(?:lutfen )?(?:sorun|hata) cozulunce kisa (?:bir )?dogrulama ozeti ekle[.!]?", folded):
+        add("workflow.verification_summary", value)
     if intent and not negative:
         for language, canonical in [("turkce", "Türkçe"), ("ingilizce", "İngilizce")]:
             if re.search(r"\b" + language + r"\b", folded) and re.search(r"cevap|yanit|konus", folded):
@@ -74,8 +83,15 @@ def preference_candidates(text):
     if len({item["predicate"] for item in found}) != len(found):
         # Ambiguous alternatives must not create two conflicting claims from one sentence.
         found = []
-    if explicit and not found:
-        kind = "POLICY" if explicit[1].casefold().startswith(("kural", "rule")) else "USER_PREFERENCE"
+    if not found and (
+        explicit
+        or (intent and not negative and re.search(r"\b(tercih ederim|bundan sonra|her zaman)\b", folded))
+    ):
+        kind = (
+            "POLICY"
+            if explicit and explicit[1].casefold().startswith(("kural", "rule"))
+            else "USER_PREFERENCE"
+        )
         # Unclassified independent statements must not share one conflicting property.
         key = hashlib.sha256(folded.encode()).hexdigest()[:20]
         add(("rule." if kind == "POLICY" else "preference.") + key, value, kind)

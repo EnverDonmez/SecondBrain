@@ -230,6 +230,10 @@ def test_direct_acceptance_is_visible_in_read_and_context(brain):
     [
         ("Ben 4. sınıf değilim.", "Ben 4. sınıf"),
         ("Ben 4. sınıf mıyım?", "Ben 4. sınıf"),
+        ("SQLite kullanıyorum, demedim.", "SQLite kullanıyorum"),
+        ("SQLite kullanıyorum, demedim.", "SQLite kullanıyorum, demedim."),
+        ("SQLite kullanıyorum. Demedim.", "SQLite kullanıyorum."),
+        ("«SQLite kullanıyorum.» sadece bir örnek.", "SQLite kullanıyorum."),
     ],
 )
 def test_fragment_cannot_remove_a_negation_or_question(brain, text, value):

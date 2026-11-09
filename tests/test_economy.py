@@ -225,11 +225,11 @@ def test_version_four_migration_rebuilds_graph_and_vocabulary(tmp_path, brain, m
         con.execute("PRAGMA user_version=4")
         con.commit()
     db = Database(root)
-    assert db.one("PRAGMA user_version")["user_version"] == 7
+    assert db.one("PRAGMA user_version")["user_version"] == 9
     assert db.one("SELECT 1 FROM memory_nodes WHERE memory_id=?", (existing["id"],))
     assert db.one("SELECT 1 FROM memory_fts WHERE memory_fts MATCH 'sbconceptanswer'")
     db.migrate()
-    assert db.one("SELECT COUNT(*) n FROM migrations")["n"] == 3
+    assert db.one("SELECT COUNT(*) n FROM migrations")["n"] == 5
 
 
 def test_portable_instructions_and_manual_json_http(tmp_path):

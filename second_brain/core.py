@@ -11,6 +11,7 @@ from .db import Database, dumps
 from .events import EventStore
 from .entities import EntityRegistry
 from .importers import Importer
+from .language import is_continuity_query
 from .learning import Learning
 from .memory import MemoryRegistry
 from .models import (
@@ -34,11 +35,19 @@ from .skills import SkillRegistry
 from .vault import Vault
 from .runtime import process_usage
 from .tools import ToolManager
-from .context_state import ContextState
+from .context_state import ContextState, SECTION_RESERVE
 from . import __version__
 
 if TYPE_CHECKING:
     from .multimodal import Multimodal
+
+TYPED_OPERATIONS = {
+    "brain.search": ("retrieval", "search", SearchInput),
+    "brain.recall": ("retrieval", "search", SearchInput),
+    "brain.navigate": ("directory", "navigate", NavigateInput),
+    "brain.read": ("directory", "read", ReadInput),
+    "brain.propose_memory": ("memory", "propose", MemoryInput),
+}
 
 
 class Brain:
@@ -226,11 +235,17 @@ class Brain:
             "SELECT ea.* FROM event_assets ea JOIN events e ON e.id=ea.event_id WHERE e.tenant=?",
             (principal.tenant,),
         )
+        data["clip_receipts"] = self.db.rows(
+            "SELECT c.* FROM clip_receipts c JOIN events e ON e.id=c.clip_id WHERE e.tenant=?",
+            (principal.tenant,),
+        )
         if format == "json":
             return json.dumps(data, ensure_ascii=False, indent=2)
         if format == "jsonl":
             return "\n".join(
-                dumps({"table": table, "record": row}) for table in tables for row in data[table]
+                dumps({"table": table, "record": row})
+                for table in [*tables, "clip_receipts"]
+                for row in data[table]
             )
         if format == "markdown":
             lines = [
@@ -267,7 +282,8 @@ class Brain:
         with self.db.lock:
             request = ContextInput(**args)
             args = request.model_dump(mode="json")
-            fingerprint = self.context_state.fingerprint(request, principal)
+            sections = request.known_sections is not None
+            fingerprint = None if sections else self.context_state.fingerprint(request, principal)
             matched = self.context_state.match(request.known_state, fingerprint)
             if matched is not None:
                 packet = {
@@ -281,18 +297,44 @@ class Brain:
                 measure_context(packet)
                 return packet
             reserved = self.context_state.token(fingerprint, False, True) if fingerprint is not None else None
+            handoffs = None
+            if is_continuity_query(request.query):
+                until = min(filter(None, (request.until, request.valid_at)), default=None)
+                handoffs = (
+                    self.directory.handoffs(
+                        NavigateInput(
+                            scope=request.scope,
+                            since=request.since,
+                            until=until,
+                            known_at=request.known_at,
+                        ),
+                        principal,
+                    )
+                    if not (request.since and until and request.since > until)
+                    else []
+                )
             packet = self.retrieval.prepare_context(
                 args.get("query", "Beynimi tara"),
                 principal,
                 args.get("scope"),
-                args.get("budget", 3000),
+                request.budget - SECTION_RESERVE if sections else request.budget,
                 args.get("engine", "economy"),
                 args.get("graph_hops", 1),
                 args.get("valid_at"),
                 args.get("known_at"),
                 state=reserved,
+                handoffs=handoffs,
             )
             query = args.get("query", "Beynimi tara")
+            if packet["intent"] == "continuity":
+                if sections:
+                    return self.context_state.apply_sections(packet, request, principal)
+                if fingerprint is not None:
+                    packet["state"] = self.context_state.token(
+                        fingerprint, packet["policy_context_complete"], packet["truncated"]
+                    )
+                measure_context(packet)
+                return packet
             resource_query = "" if packet["intent"] == "bootstrap" else query
             if resource_query:
                 packet = self.directory.add_source_context(
@@ -325,6 +367,8 @@ class Brain:
                     packet = prospective
                 else:
                     packet["truncated"] = True
+            if sections:
+                return self.context_state.apply_sections(packet, request, principal)
             if fingerprint is not None:
                 packet["state"] = self.context_state.token(
                     fingerprint, packet["policy_context_complete"], packet["truncated"]
@@ -334,12 +378,10 @@ class Brain:
 
     def dispatch(self, operation, args, principal: Principal):
         """Shared typed operations for HTTP and MCP. No arbitrary SQL, paths or execution."""
-        if operation in {"brain.search", "brain.recall"}:
-            return self.retrieval.search(SearchInput(**args), principal)
-        if operation == "brain.navigate":
-            return self.directory.navigate(NavigateInput(**args), principal)
-        if operation == "brain.read":
-            return self.directory.read(ReadInput(**args), principal)
+        typed = TYPED_OPERATIONS.get(operation)
+        if typed:
+            component, method, model = typed
+            return getattr(getattr(self, component), method)(model(**args), principal)
         if operation == "brain.prepare_context":
             return self._prepare_task_context(args, principal)
         if operation == "brain.get_profile":
@@ -360,8 +402,6 @@ class Brain:
             return self.events.list(
                 principal, args.get("scope"), args.get("limit", 100), args.get("offset", 0)
             )
-        if operation == "brain.propose_memory":
-            return self.memory.propose(MemoryInput(**args), principal)
         if operation == "brain.remember":
             from .remember import remember
 

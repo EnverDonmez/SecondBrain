@@ -6,6 +6,7 @@ import threading
 import time
 import sys
 from contextlib import asynccontextmanager
+from datetime import UTC, datetime, timedelta
 from pathlib import Path
 
 from fastapi import Depends, FastAPI, File, Form, Query, Request, UploadFile
@@ -17,7 +18,19 @@ from starlette.middleware.trustedhost import TrustedHostMiddleware
 from .capture import coverage_report, normalize_app_item, normalize_hook
 from .core import Brain
 from .db import dumps
-from .models import OWNER, EventInput, LoginInput, MemoryInput, MemoryType, Principal, SearchInput
+from .models import (
+    OWNER,
+    ClipInput,
+    EventInput,
+    LoginInput,
+    MemoryInput,
+    MemoryType,
+    Principal,
+    ReviewBatchInput,
+    SearchInput,
+)
+from .inbox import capture_clip
+from .http_limits import RequestSizeLimit
 from .security import Denied, NotFound, audit, create_token, require
 from . import __version__
 from .service import instance_id
@@ -54,13 +67,12 @@ def create_app(root=None, run_worker=True):
         openapi_url="/api/openapi.json",
     )
     app.state.brain = brain
+    app.add_middleware(RequestSizeLimit, limit=105 * 1024 * 1024)
     app.add_middleware(TrustedHostMiddleware, allowed_hosts=["127.0.0.1", "localhost", "[::1]", "testserver"])
     attempts: dict[str, list[float]] = {}
 
     @app.middleware("http")
     async def safety_headers(request, call_next):
-        if int(request.headers.get("content-length", "0")) > 105 * 1024 * 1024:
-            return JSONResponse({"error": "Request too large"}, status_code=413)
         if request.method not in {"GET", "HEAD", "OPTIONS"}:
             origin = request.headers.get("origin")
             if origin and origin != str(request.base_url).rstrip("/"):
@@ -103,19 +115,39 @@ def create_app(root=None, run_worker=True):
         )
 
     def authenticate(request: Request):
-        token = request.headers.get("authorization", "").removeprefix("Bearer ") or request.cookies.get(
-            "brain_session", ""
-        )
+        auth = request.headers.get("authorization")
+        if auth is None:
+            cookie = request.cookies.get("brain_session")
+            if cookie and brain.db.one(
+                "SELECT 1 FROM browser_sessions WHERE digest=? AND owner_hash=? AND expires_at>?",
+                (hashlib.sha256(cookie.encode()).hexdigest(), owner_hash, int(time.time())),
+            ):
+                return OWNER
+            raise Denied("Authentication required")
+        scheme, _, token = auth.partition(" ")
+        if scheme.lower() != "bearer" or not token:
+            raise Denied("Authentication required")
         digest = hashlib.sha256(token.encode()).hexdigest()
-        if token and secrets.compare_digest(digest, owner_hash):
-            with brain.db.transaction() as con:
-                audit(con, OWNER, "api.access", request.url.path)
+        if secrets.compare_digest(digest, owner_hash):
             return OWNER
-        record = brain.db.one("SELECT id,principal FROM tokens WHERE token_hash=? AND revoked=0", (digest,))
+        record = brain.db.one(
+            "SELECT t.id,t.principal,a.last_seen FROM tokens t LEFT JOIN connection_access a "
+            "ON a.credential_id=t.id WHERE t.token_hash=? AND t.revoked=0",
+            (digest,),
+        )
         if record:
             principal = Principal(**{**json.loads(record["principal"]), "credential_id": record["id"]})
-            with brain.db.transaction() as con:
-                audit(con, principal, "api.access", request.url.path)
+            instant = datetime.now(UTC)
+            cutoff = (instant - timedelta(minutes=1)).isoformat(timespec="microseconds")
+            if not record["last_seen"] or record["last_seen"] < cutoff:
+                with brain.db.transaction() as con:
+                    con.execute(
+                        "INSERT INTO connection_access(credential_id,last_seen) "
+                        "SELECT id,? FROM tokens WHERE id=? AND revoked=0 "
+                        "ON CONFLICT(credential_id) DO UPDATE SET last_seen=excluded.last_seen "
+                        "WHERE connection_access.last_seen<?",
+                        (instant.isoformat(timespec="microseconds"), record["id"], cutoff),
+                    )
             return principal
         raise Denied("Authentication required")
 
@@ -144,18 +176,45 @@ def create_app(root=None, run_worker=True):
         token = body.token
         if not secrets.compare_digest(hashlib.sha256(token.encode()).hexdigest(), owner_hash):
             raise Denied("Invalid owner key")
+        session = secrets.token_urlsafe(32)
+        expires_in = 30 * 24 * 3600 if body.remember else 24 * 3600
+        instant = int(time.time())
+        with brain.db.transaction() as con:
+            con.execute(
+                "DELETE FROM browser_sessions WHERE expires_at<=? OR owner_hash!=?", (instant, owner_hash)
+            )
+            previous = request.cookies.get("brain_session")
+            if previous:
+                con.execute(
+                    "DELETE FROM browser_sessions WHERE digest=?",
+                    (hashlib.sha256(previous.encode()).hexdigest(),),
+                )
+            con.execute(
+                "INSERT INTO browser_sessions VALUES(?,?,?)",
+                (hashlib.sha256(session.encode()).hexdigest(), owner_hash, instant + expires_in),
+            )
+            audit(con, OWNER, "session.login")
         response = JSONResponse({"authenticated": True, "remembered": body.remember})
         response.set_cookie(
             "brain_session",
-            token,
+            session,
             httponly=True,
             samesite="strict",
-            max_age=30 * 24 * 3600 if body.remember else None,
+            max_age=expires_in if body.remember else None,
         )
         return response
 
     @app.post("/api/logout")
-    def logout():
+    def logout(request: Request):
+        session = request.cookies.get("brain_session")
+        if session:
+            with brain.db.transaction() as con:
+                deleted = con.execute(
+                    "DELETE FROM browser_sessions WHERE digest=?",
+                    (hashlib.sha256(session.encode()).hexdigest(),),
+                ).rowcount
+                if deleted:
+                    audit(con, OWNER, "session.logout")
         response = JSONResponse({"authenticated": False})
         response.delete_cookie("brain_session")
         return response
@@ -243,6 +302,30 @@ def create_app(root=None, run_worker=True):
             raise ValueError("Unknown memory action")
         return methods[operation](identity, principal)
 
+    @app.post("/api/review/batch")
+    def review_batch(request: ReviewBatchInput, principal=Depends(authenticate)):
+        require(principal, "admin")
+        require(principal, "approve")
+        update = brain.memory.commit if request.operation == "approve" else brain.memory.reject
+        terminal = "active" if request.operation == "approve" else "rejected"
+        results = []
+        with brain.db.lock:
+            for identity in request.ids:
+                try:
+                    row = brain.memory.get(identity, principal)
+                    if row["known_to"] is not None or row["status"] not in {
+                        "candidate",
+                        "disputed",
+                        terminal,
+                    }:
+                        raise Denied("Record is unavailable for this review operation")
+                    if row["status"] != terminal:
+                        row = update(identity, principal)
+                    results.append({"id": identity, "status": row["status"]})
+                except (Denied, NotFound, ValueError) as exc:
+                    results.append({"id": identity, "error": str(exc)})
+        return {"operation": request.operation, "results": results}
+
     @app.get("/api/graph")
     def graph(scope: str | None = None, principal=Depends(authenticate)):
         return brain.retrieval.graph(principal, scope)
@@ -260,6 +343,25 @@ def create_app(root=None, run_worker=True):
     ):
         content = await file.read(100 * 1024 * 1024 + 1)
         return brain.importer.submit(content, file.filename or "upload.txt", principal, scope, sensitivity)
+
+    @app.post("/api/inbox")
+    def clip(body: ClipInput, principal=Depends(authenticate)):
+        return capture_clip(brain, body, principal)
+
+    @app.post("/api/inbox/file")
+    async def clip_file(
+        file: UploadFile = File(...),
+        scope: str = Form("global"),
+        sensitivity: int = Form(1),
+        note: str = Form(""),
+        principal=Depends(authenticate),
+    ):
+        from .importers import MAX_FILE
+
+        request = ClipInput(
+            text=file.filename or "upload.txt", scope=scope, sensitivity=sensitivity, note=note
+        )
+        return capture_clip(brain, request, principal, content=await file.read(MAX_FILE + 1))
 
     @app.get("/api/assets")
     def list_assets(principal=Depends(authenticate)):

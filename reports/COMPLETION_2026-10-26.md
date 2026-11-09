@@ -49,7 +49,7 @@ Genel Türkçe anlama, tüm çelişkilerin semantik çözümü, çok büyük cor
 
 ## Kanıtlar ve yeniden çalıştırma
 
-- [96 test JUnit](completion-20261026/tests.xml), [konsol](completion-20261026/pytest.log), [kabul](completion-20261026/supplemental.json), [kalite](completion-20261026/quality.json).
+- [96 test JUnit](completion-20261026/tests.xml), [kabul](completion-20261026/supplemental.json), [kalite](completion-20261026/quality.json).
 - [Eski tanı kümesinin yeni sonucu](completion-20261026/functional.json), [ek sorular ve gerçek modelle öğrenme](completion-20261026/new-quality.json).
 - [Son 10.000 kayıt ölçümü](completion-20261026/final/scale-10000.json). Önceki ara ölçüm `completion-20261026/scale-10000.json` içinde korunur; tokenizer kopyası kaldırılmadan önce alınmıştır.
 - [Gerçek MCP bağlantısı ve DB metadata](completion-20261026/live-connection.json), [son canlı runtime](completion-20261026/live-after.json), [wheel kurulumu](wheel-check.json).

@@ -2,6 +2,7 @@ import asyncio
 import json
 import os
 import socket
+import subprocess
 import sys
 import threading
 import time
@@ -172,6 +173,17 @@ def test_real_mcp_stdio_http_and_cross_client_read(tmp_path):
                 "".join(x.text for x in present.content if x.type == "text")
             )
             assert [row["value"] for row in payload["items"]] == ["Ben 4. sınıfım."]
+            handoff = await session.call_tool(
+                "brain.remember",
+                {
+                    "request": {
+                        "source_text": "Synthetic project decision verified.",
+                        "conversation_id": "synthetic-first-chat",
+                        "checkpoint": "Karar SQLite. Sıradaki adım migration testi.",
+                    }
+                },
+            )
+            assert not handoff.is_error
 
     async def run_core():
         from second_brain.tool_surface import CORE_TOOLS
@@ -200,10 +212,61 @@ def test_real_mcp_stdio_http_and_cross_client_read(tmp_path):
             assert not source.is_error and "brain.prepare_context" in str(source.content)
             outside = await session.call_tool("brain.prepare_context", {"scope": "private"})
             assert outside.is_error
+            resumed = await session.call_tool(
+                "brain.prepare_context", {"query": "Nerede kalmıştık?", "scope": "global"}
+            )
+            result = resumed.structured_content or json.loads(
+                "".join(x.text for x in resumed.content if x.type == "text")
+            )
+            assert not resumed.is_error and result["intent"] == "continuity"
+            assert result["handoffs"][0]["checkpoint"] == "Karar SQLite. Sıradaki adım migration testi."
+
+    async def run_portable():
+        params = parameters("core")
+        params.env = {**(params.env or {}), "SB_MCP_TOOL_NAMES": "portable"}
+        async with stdio_client(params) as (read, write), ClientSession(read, write) as session:
+            initialized = await session.initialize()
+            assert "brain_prepare_context" in initialized.instructions
+            names = {tool.name for tool in (await session.list_tools()).tools}
+            assert names == {"brain_prepare_context", "brain_remember", "brain_navigate", "brain_read"}
+            result = await session.call_tool(
+                "brain_prepare_context", {"query": "Nerede kalmıştık?", "scope": "global"}
+            )
+            assert not result.is_error
 
     try:
         asyncio.run(run())
         asyncio.run(run_core())
+        asyncio.run(run_portable())
+        before = brain.db.one("SELECT COUNT(*) n FROM events")["n"]
+        hook = subprocess.run(  # noqa: S603 -- known local Python and fixed test module
+            [
+                sys.executable,
+                "-m",
+                "second_brain",
+                "hook",
+                "--client",
+                "codex",
+                "--context-only",
+                "--project-root",
+                str(tmp_path),
+            ],
+            env={**parameters("core").env, "SB_SCOPE": "global"},
+            input=json.dumps(
+                {
+                    "hook_event_name": "SessionStart",
+                    "session_id": "synthetic-fresh-chat",
+                    "cwd": str(tmp_path),
+                }
+            ),
+            encoding="utf-8",
+            capture_output=True,
+            timeout=10,
+            check=True,
+        )
+        output = json.loads(json.loads(hook.stdout)["hookSpecificOutput"]["additionalContext"])
+        assert output["handoffs"][0]["conversation_id"] == "synthetic-first-chat"
+        assert brain.db.one("SELECT COUNT(*) n FROM events")["n"] == before
     finally:
         server.should_exit = True
         thread.join(timeout=10)

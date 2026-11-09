@@ -1,5 +1,9 @@
 # MCP
 
+**Oturum devri.** Anlamlı iş sonunda `brain.remember(request={actor:"assistant",scope,source_text,conversation_id,checkpoint,facts:[]})` ile kaynaklı devir kartı kaydedilir. `brain.prepare_context(query="Nerede kalmıştık?",scope=...)` son görünür kartı `handoffs` altında getirir. `brain.read(request={kind:"event",id,section:"checkpoint"})` özetin tamamını bütçeli okur. Özet `client_summary` olarak işaretlenir.
+
+**Gelen kutusu.** `brain.navigate(request={branch:"inbox",scope})` bekleyen link, metin ve dosya kartlarını getirir. `brain.read(request={kind:"event",id})` seçili kaynağı okur. Dosya `import_state=done` olduğunda `navigate` çağrısında `key=clip_id` ile çıkarılan kaynakları listele. `brain.remember` çağrısına `clip_id` ekleyerek kaynaklı adayları veya `facts=[]` ile incelenmiş boş sonucu kaydet. Aynı gönderimin tekrarı `clip_duplicate=true` döner.
+
 v0.1.1: İnsan arayüzü gözlem içindir. Mevcut dört araç korunur. `brain.remember` içinde `facts=[]` ve tek bir `change={operation,id,instruction,...}` kullanılarak mevcut kayıt düzenlenir. `organize` yalnız `topics`/`related_memory_ids` alanlarını, kaynakta aynen geçen kullanıcı/AI açıklamasıyla düzenler. `approve`/`reject`/`hide`, belirli kayıt için kaynakta aynen geçen açık kullanıcı talimatı gerektirir. `hide` geçmişi korur; kalıcı silme değildir. Bekleyen kartlar `navigate(branch=review)` ve `read(include_pending=true)` ile açılır; onaylanmış bilgi sayılmaz. Genel admin yetkisi ve credential erişimi eklenmez. [ADR 0008](docs/adr/0008-ai-managed-observation.md).
 
 Kişisel veritabanı erişimi: `brain.navigate(request)` başlık/kart haritasını, `brain.read(request)` seçili kaydın bütçeli kaynak aralığını verir. `brain.remember` artık `facts=[]` ile konuşma kaynağı ve `checkpoint` saklayabilir; bu kaynak hemen aranabilir, onaylı kişisel kural sayılmaz. [Genelden özele erişim ve tarihli hatırlama](MEMORY_DATABASE.md).
@@ -17,7 +21,11 @@ API servisi önce çalışıyor olmalı. stdout yalnız MCP protokolüne ayrıl�
 
 Varsayılan sözleşme sürümü 3, yalnız dört araç sunar: `brain.prepare_context`, `brain.remember`, `brain.navigate`, `brain.read`. Skill/tool listeleri `navigate` dallarından, seçili ayrıntılar `read` ile alınır. `SB_MCP_PROFILE=full` eski arama, düzeltme, profil, timeline, feedback ve yönetim araçlarını ayrıca açar; model token'ının yetkilerini genişletmez. Aşağıda bu eski araçların davranışları da uyumluluk için açıklanır.
 
-Her tur `prepare_context(query,scope,budget)` çağrılır. Önceki tam paket hâlâ bağlamdaysa aynı istekle `known_state=önceki.state` verilebilir. `unchanged=true` önceki paketin yeniden kullanılmasını söyler; boş hafıza demek değildir. Görünür veri, zaman sınırı, sorgu/scope/bütçe/okuyucu değişince taze paket döner. Önceki paket kaybolduysa `known_state` gönderilmez. Bu yöntem güncelliği kontrol ederken aynı kanıtın tekrar taşınmasını azaltır. [Ayrıntılı karar](docs/adr/0006-coherent-memory.md).
+Kişisel veya proje hafızası gerektiğinde `prepare_context(query,scope,budget)` çağır. Önceki tam paket hâlâ bağlamdaysa aynı istekle `known_state=önceki.state` gönderilebilir. `unchanged=true` önceki paketi yeniden kullanır. Durum kimliği 10 dakika geçerlidir. Yeni sohbet veya bağlam sıkıştırması sonrasında eski paketi yeniden iste.
+
+Bölüm bazlı aktarım için ilk isteğe `known_sections={}` ekle. Sonraki istekte yalnız sakladığın bölümlerin `section_states` değerlerini gönder. `unchanged_sections` içinde belirtilen bölümleri önceki paketten kullan, diğerlerini yeni yanıttan al. Yeni `section_states` listesinde bulunmayan bölümleri bırak. Bölüm modu en az 1.200 byte bütçe gerektirir ve `known_state` ile birlikte kullanılmaz.
+
+Araç adında nokta kabul etmeyen bir istemci için `SB_MCP_TOOL_NAMES=portable` seç. Araçlar `brain_prepare_context` ve `brain_remember` gibi alt çizgili adlarla yayımlanır. İstemci bir izin listesi kullanıyorsa listede aynı adları kullan.
 
 `prepare_context`, modelin global erişimi varsa genel onaylı kuralları ve tercihleri proje/görev bağlamına ekler. Kurallar önceliklidir; `policy_context_complete=false` ve `uncertainties` uyarısı varsa bütün kuralların taşındığı varsayılmamalı, daha geniş veya odaklı bağlam istenmelidir. Bütçe, ek metadata dahil konservatif UTF-8 byte üst sınırıdır. `list_capabilities.tools`, yalnız etkin ve yetkili tool metadata'sını verir; credential değerlerini veya çalışma iznini içermez.
 

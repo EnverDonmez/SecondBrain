@@ -2,11 +2,12 @@ import json
 import secrets
 
 from .db import dumps
-from .models import MemoryInput, MemoryType, Principal, now
+from .models import MemoryInput, MemoryType, Principal, USER_AUTHORITY_TYPES, now
 from .language import terms
 from .graph_index import project_associations
 from .identity import keys as identity_keys, project_keys
 from .security import Denied, NotFound, audit, normalize, require, risks
+from .turkish_search import index_text
 from typing import Callable
 
 
@@ -62,7 +63,9 @@ def project(con, row, catalog=True):
                 (row["tenant"], row["subject_key"]),
             )
         )
-    con.execute("INSERT INTO memory_fts VALUES(?,?)", (row["id"], search_text(row) + " " + aliases))
+    con.execute(
+        "INSERT INTO memory_fts VALUES(?,?)", (row["id"], index_text(search_text(row) + " " + aliases))
+    )
     for name in (row["subject"], row["value"][:200]):
         con.execute(
             "INSERT OR IGNORE INTO entities VALUES(?,?,?,?,?)",
@@ -286,13 +289,7 @@ class MemoryRegistry:
             detected = json.loads(row["risks"])
             if "possible_secret" in detected or "instruction_injection" in detected:
                 raise Denied("Quarantined secret/instruction content cannot become active memory")
-            if row["trust"] != "user_asserted" and row["memory_type"] in {
-                "POLICY",
-                "USER_PREFERENCE",
-                "USER_ASSERTED_FACT",
-                "SKILL",
-                "PROCEDURE",
-            }:
+            if row["trust"] != "user_asserted" and row["memory_type"] in USER_AUTHORITY_TYPES:
                 raise Denied(
                     "External/inferred content cannot become an asserted user rule or skill; record a direct user assertion"
                 )

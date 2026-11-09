@@ -41,6 +41,6 @@ report = {
     "limitations": "Pattern scan is not a comprehensive credential detector; the synthetic quarantine test file is excluded",
 }
 Path("reports").mkdir(exist_ok=True)
-Path("reports/secret-scan.json").write_text(json.dumps(report, indent=2), encoding="utf-8")
+Path("reports/secret-scan.json").write_text(json.dumps(report, indent=2), encoding="utf-8", newline="\n")
 print(json.dumps({"findings": len(findings)}))
 raise SystemExit(1 if findings else 0)

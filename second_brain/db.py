@@ -68,6 +68,16 @@ class Database:
                         project_episode(con, row)
                 if migration.name == "007_coherent_memory.sql":
                     self._coherent_memory(con)
+                if migration.name == "008_continuity_and_inbox.sql" or (
+                    migration.name == "009_local_access.sql" and current == 8
+                ):
+                    from .catalog_index import project_episode
+                    from .memory import project
+
+                    for row in con.execute("SELECT * FROM memories WHERE status='active'"):
+                        project(con, row)
+                    for row in con.execute("SELECT * FROM events"):
+                        project_episode(con, row)
                 con.execute("INSERT INTO migrations VALUES(?,?)", (version, now()))
                 con.execute(f"PRAGMA user_version={version}")
                 con.commit()

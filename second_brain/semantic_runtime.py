@@ -93,7 +93,7 @@ class SemanticWorker:
                     text=True,
                     encoding="utf-8",
                     bufsize=1,
-                    creationflags=subprocess.CREATE_NO_WINDOW if os.name == "nt" else 0,
+                    creationflags=getattr(subprocess, "CREATE_NO_WINDOW", 0),
                 )
                 process, responses = self.process, self.responses
 

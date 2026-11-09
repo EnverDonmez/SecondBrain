@@ -75,6 +75,33 @@ def test_state_is_bound_to_exact_request(brain, changed):
     assert not context(brain, known_state=first["state"], **changed).get("unchanged")
 
 
+def test_context_state_expires_and_section_reuse_keeps_unchanged_records(brain, make_memory, monkeypatch):
+    import time
+
+    from second_brain.context_state import STATE_TTL
+
+    request = {"query": "Nerede kalmıştık?", "scope": "atlas", "budget": 2000}
+    make_memory("Atlas SQLite", scope="atlas", memory_type="DECISION")
+    full = brain.dispatch("brain.prepare_context", request, OWNER)
+    clock = time.time()
+    with monkeypatch.context() as patch:
+        patch.setattr("second_brain.context_state.time.time", lambda: clock + STATE_TTL + 1)
+        expired = brain.dispatch("brain.prepare_context", {**request, "known_state": full["state"]}, OWNER)
+        assert not expired["unchanged"]
+    first = brain.dispatch("brain.prepare_context", {**request, "known_sections": {}}, OWNER)
+    brain.dispatch(
+        "brain.remember",
+        {"scope": "atlas", "source_text": "Migration sonuç raporu", "checkpoint": "Sıradaki adım test"},
+        OWNER,
+    )
+    changed = brain.dispatch(
+        "brain.prepare_context", {**request, "known_sections": first["section_states"]}, OWNER
+    )
+    assert "records" in changed["unchanged_sections"] and "records" not in changed
+    assert changed["handoffs"][0]["checkpoint"] == "Sıradaki adım test"
+    assert changed["estimated_tokens_upper_bound"] <= request["budget"]
+
+
 @pytest.mark.parametrize(
     "principal", [reader(id="other"), reader(clearance=0), reader(tenant="other"), reader(scopes=["atlas"])]
 )
@@ -275,7 +302,7 @@ def test_migration_preserves_original_names_and_builds_property_keys(tmp_path, b
     saved = migrated.one("SELECT * FROM memories WHERE id=?", (first["id"],))
     assert saved["subject"] == "Kullanıcı" and saved["predicate"] == "class_year"
     assert saved["subject_key"] == "user" and saved["predicate_key"] == "education.year"
-    assert migrated.one("PRAGMA user_version")["user_version"] == 7
+    assert migrated.one("PRAGMA user_version")["user_version"] == 9
 
 
 def test_reserved_user_identity_cannot_be_merged_with_another_person(brain, make_memory):

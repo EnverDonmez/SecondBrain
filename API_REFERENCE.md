@@ -1,5 +1,9 @@
 # HTTP API
 
+`POST /api/inbox` JSON olarak `kind` (`url` veya `text`), `text`, isteğe bağlı `note`, `scope` ve `sensitivity` alır. `POST /api/inbox/file` aynı kapsam ve not alanlarıyla multipart `file` alır. İki uç da kapsamda okuma ve kayıt yetkisi gerektirir. Yanıt yakalama kimliğini, türü ve tekrar/işlenme durumunu verir. Dosya mevcut içe aktarma kuyruğunda işlenir. [MCP akışı](MCP_REFERENCE.md).
+
+`POST /api/review/batch` sahibin seçtiği en çok 20 kayıt kimliğini `ids` içinde, işlemi de `operation` içinde `approve` veya `reject` olarak alır. Her kayıt için durum veya hata döner. Tekil inceleme ve karantina kuralları uygulanır.
+
 Yerel servis: `http://127.0.0.1:8765`. Canlı OpenAPI: `/api/openapi.json`; tamamen yerel şema görüntüleyicisi `/api/docs`. Dokümantasyon arayüzü CDN veya dış JavaScript yüklemez.
 
 Kimlik doğrulama `Authorization: Bearer <token>` veya sahip oturum cookie'siyle yapılır. Cookie ile değişiklik istekleri `X-Brain-Request: 1` gerektirir. Başka origin'den POST reddedilir. Model token'larına approve/delete/admin verilemez.

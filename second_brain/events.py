@@ -32,6 +32,7 @@ class EventStore:
                 (principal.tenant, event.source, event.source_id, digest),
             ).fetchone()
             if existing:
+                added_attachment = False
                 for aid in event.attachments:
                     asset = con.execute(
                         "SELECT 1 FROM assets WHERE id=? AND tenant=? AND scope=? AND sensitivity<=?",
@@ -39,7 +40,14 @@ class EventStore:
                     ).fetchone()
                     if not asset:
                         raise Denied("Attachment unavailable")
-                    con.execute("INSERT OR IGNORE INTO event_assets VALUES(?,?)", (existing["id"], aid))
+                    added_attachment |= bool(
+                        con.execute(
+                            "INSERT OR IGNORE INTO event_assets VALUES(?,?)", (existing["id"], aid)
+                        ).rowcount
+                    )
+                if added_attachment:
+                    # A new origin can publish a previously staged event.
+                    con.execute("UPDATE events SET metadata=metadata WHERE id=?", (existing["id"],))
                 return {"id": existing["id"], "duplicate": True}
             for aid in event.attachments:
                 asset = con.execute(

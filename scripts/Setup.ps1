@@ -16,20 +16,20 @@ if (Test-Path -LiteralPath $bundledPython) {
 if ($LASTEXITCODE -ne 0) { throw 'Python 3.12 veya üstü gerekli.' }
 $venvPython = Join-Path $projectRoot '.venv\Scripts\python.exe'
 if (-not (Test-Path -LiteralPath $venvPython)) {
-    & $projectPython -m venv --without-pip .venv
+    & $projectPython -m venv .venv
     if ($LASTEXITCODE -ne 0) { throw 'Sanal ortam oluşturulamadı.' }
 }
 & $venvPython -m pip --version *> $null
 if ($LASTEXITCODE -ne 0) {
-    & $projectPython -m pip --python .venv install pip
+    & $venvPython -m ensurepip
     if ($LASTEXITCODE -ne 0) { throw 'pip kurulamadı. Python kurulumunda pip etkin olmalı.' }
 }
 $extras = @()
 if ($Full) { $extras += 'engines'; $extras += 'media' }
 if ($Dev) { $extras += 'dev' }
-$installTarget = '.'
-if ($extras.Count -gt 0) { $installTarget = '.[' + ($extras -join ',') + ']' }
-& $venvPython -m pip install -c requirements.lock -e $installTarget
+$installOptions = @('--editable')
+foreach ($extra in $extras) { $installOptions += @('--extra', $extra) }
+& $venvPython scripts/install_locked.py @installOptions
 if ($LASTEXITCODE -ne 0) { throw 'Yerel paket kurulamadı.' }
 & $venvPython -m pip check
 if ($LASTEXITCODE -ne 0) { throw 'Bağımlılıklar tutarsız; yukarıdaki pip check çıktısını inceleyin.' }

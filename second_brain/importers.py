@@ -61,7 +61,7 @@ class Importer:
     def __init__(self, db, events, memory, queue):
         self.db, self.events, self.memory, self.queue = db, events, memory, queue
 
-    def submit(self, content, name, principal, scope="global", sensitivity=1):
+    def submit(self, content, name, principal, scope="global", sensitivity=1, *, inbox_only=False):
         if len(content) > MAX_FILE or not content:
             raise Denied("File must be between 1 byte and 100 MiB")
         name = PurePosixPath(name.replace("\\", "/")).name[:250]
@@ -93,7 +93,22 @@ class Importer:
             sensitivity,
             principal,
         )
-        return self.queue.enqueue("import", asset["id"], {"asset_id": asset["id"]}, principal)
+        with self.db.transaction() as con:
+            job = self.queue.enqueue_in(
+                con, "import", asset["id"], {"asset_id": asset["id"], "inbox_only": inbox_only}, principal
+            )
+            if not inbox_only and json.loads(job["payload"]).get("inbox_only"):
+                con.execute(
+                    "UPDATE jobs SET payload=json_set(payload,'$.inbox_only',json('false')) WHERE id=?",
+                    (job["id"],),
+                )
+                # Ordinary import is an explicit publication of an already staged asset.
+                con.execute(
+                    "UPDATE events SET metadata=metadata WHERE event_type='clip.captured' "
+                    "AND id IN (SELECT event_id FROM event_assets WHERE asset_id=?)",
+                    (asset["id"],),
+                )
+            return job
 
     def preflight_erasure(self, content, name, principal):
         documents = []
@@ -144,6 +159,7 @@ class Importer:
             asset,
             principal,
             lambda: self.queue.heartbeat(job["id"], {"stage": "import"}),
+            inbox_only=job["payload"].get("inbox_only", False),
         )
         with self.db.transaction() as con:
             con.execute(
@@ -152,7 +168,7 @@ class Importer:
             )
         return result
 
-    def _parse(self, content, name, asset, principal, progress=None):
+    def _parse(self, content, name, asset, principal, progress=None, *, inbox_only=False):
         if progress:
             progress()
         ext = PurePosixPath(name).suffix.lower()
@@ -167,9 +183,13 @@ class Importer:
                     basename = PurePosixPath(entry.filename).name
                     member = archive.read(entry)
                     if basename == "conversations.json":
-                        imported = self.chatgpt(json.loads(member), asset, principal, progress)
+                        imported = self.chatgpt(
+                            json.loads(member), asset, principal, progress, inbox_only=inbox_only
+                        )
                     elif PurePosixPath(basename).suffix.lower() in TEXT_TYPES | {".pdf", ".docx"}:
-                        imported = self._parse(member, entry.filename, asset, principal, progress)
+                        imported = self._parse(
+                            member, entry.filename, asset, principal, progress, inbox_only=inbox_only
+                        )
                     else:
                         # Entire original ZIP remains encrypted; do not claim transcription/OCR.
                         unavailable.append(entry.filename)
@@ -186,7 +206,7 @@ class Importer:
         if ext == ".json":
             data = json.loads(content)
             if isinstance(data, list) and all(isinstance(c, dict) and "mapping" in c for c in data):
-                return self.chatgpt(data, asset, principal, progress)
+                return self.chatgpt(data, asset, principal, progress, inbox_only=inbox_only)
         if ext == ".jsonl":
             lines = [json.loads(line) for line in content.decode("utf-8-sig").splitlines() if line.strip()]
             if lines and all(isinstance(e, dict) and "source" in e and "source_id" in e for e in lines):
@@ -320,7 +340,7 @@ class Importer:
             "event_ids": [r["id"] for r in results if r["id"]],
         }
 
-    def chatgpt(self, data, asset, principal, progress=None):
+    def chatgpt(self, data, asset, principal, progress=None, *, inbox_only=False):
         if not isinstance(data, list):
             raise ValueError("Expected ChatGPT conversations array")
         results = []
@@ -371,7 +391,8 @@ class Importer:
                     and event.actor == "user"
                     and {"read", "propose"} <= set(principal.permissions)
                 ):
-                    self.extract_explicit(result["id"], principal)
+                    if not inbox_only:
+                        self.extract_explicit(result["id"], principal)
         return self._counts(results)
 
     def extract_explicit(self, event_id, principal):

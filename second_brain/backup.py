@@ -48,7 +48,9 @@ class BackupManager:
             snapshot = Path(temp) / "snapshot.sqlite3"
             with core.db.connect() as con, closing(sqlite3.connect(snapshot)) as destination:
                 con.backup(destination)
+                destination.execute("PRAGMA foreign_keys=ON")
                 destination.execute("DELETE FROM tokens")
+                destination.execute("DELETE FROM browser_sessions")
                 destination.commit()
                 destination.execute("VACUUM")
             content = io.BytesIO()
@@ -145,7 +147,12 @@ class BackupManager:
                     continue
                 path = stage / name
                 path.parent.mkdir(parents=True, exist_ok=True)
-                path.write_bytes(archive.read(name))
+                content = archive.read(name)
+                if name == "master.key":
+                    from .vault import protect_key
+
+                    content = protect_key(content)
+                path.write_bytes(content)
             (stage / "deletions.jsonl").write_text(
                 "".join(dumps(e) + "\n" for e in entries.values()), encoding="utf-8"
             )
@@ -153,7 +160,7 @@ class BackupManager:
             (stage / "READY").write_text("1", encoding="ascii")
             self.finish_restore(core.db.root)
             core.db.migrate()
-            core.vault.key = (core.db.root / "master.key").read_bytes()
+            core.vault.reload_key()
             core.privacy.replay()
             core.memory.rebuild(principal)
             with core.db.transaction() as con:
@@ -183,6 +190,9 @@ class BackupManager:
         for path in (stage / "assets").glob("*.enc"):
             (target_assets / path.name).write_bytes(path.read_bytes())
         with closing(sqlite3.connect(Path(root) / "brain.sqlite3")) as con:
+            con.execute("PRAGMA foreign_keys=ON")
+            if con.execute("SELECT 1 FROM sqlite_master WHERE name='browser_sessions'").fetchone():
+                con.execute("DELETE FROM browser_sessions")
             con.execute("DELETE FROM tokens")
             for token in json.loads((stage / "tokens.json").read_text("utf-8")):
                 con.execute(

@@ -12,6 +12,8 @@ from .models import NavigateInput, ReadInput, SearchInput, now
 from .retrieval import lexical_excerpt, measure_context, tokens
 from .security import Denied, NotFound, require
 from .identity import keys as identity_keys
+from .inbox import PUBLISHED_EPISODE
+from .turkish_search import match_terms
 
 
 BRANCHES = {
@@ -29,7 +31,7 @@ BRANCHES = {
 def match_query(query):
     words = ["sbconcept" + word[1:] if word.startswith("@") else word for word in terms(query)[:24]]
     words += tokens(query)[:24]
-    return " OR ".join('"' + word + '"*' for word in dict.fromkeys(words))
+    return match_terms(words)
 
 
 def bounded(packet, rows, field, request):
@@ -100,6 +102,9 @@ class MemoryDirectory:
     def navigate(self, request: NavigateInput, principal):
         require(principal, "read", request.scope)
         with self.db.lock:
+            if request.branch == "inbox":
+                # File import status and processing receipts change independently of the memory map.
+                return self._navigate(request, principal)
             revision = self.core.retrieval.revision()
             key = (revision, principal.model_dump_json(), request.model_dump_json())
             cached = self.cache.get(key)
@@ -139,6 +144,8 @@ class MemoryDirectory:
 
     def _navigate(self, request, principal):
         packet = {"branch": request.branch, "key": request.key, "evidence_only": True, "cache_hit": False}
+        if request.branch == "inbox":
+            return bounded(packet, self.inbox_cards(request, principal), "cards", request)
         if request.branch == "review":
             where, args = self.review_where(request, principal)
             rows = self.db.rows(
@@ -175,6 +182,7 @@ class MemoryDirectory:
                     count = self.db.one("SELECT COUNT(*) n FROM memories m WHERE " + rw, ra)["n"]
                 elif branch == "conversations":
                     ew, ea = self.episode_where(request, principal)
+                    ew += " AND " + PUBLISHED_EPISODE
                     if request.query.strip():
                         ew += (
                             " AND e.id IN (SELECT id FROM episode_fts WHERE episode_fts MATCH ?)"
@@ -315,6 +323,7 @@ class MemoryDirectory:
 
     def episodes(self, request, principal):
         where, args = self.episode_where(request, principal)
+        where += " AND " + PUBLISHED_EPISODE
         if request.key:
             where += " AND e.conversation_id=?"
             args += [request.key]
@@ -342,6 +351,66 @@ class MemoryDirectory:
             + " LIMIT ? OFFSET ?",
             (*args, request.limit + 1, request.offset),
         )
+        return [{"kind": "event", "approval": "source_only", **row} for row in rows]
+
+    def handoffs(self, request, principal):
+        where, args = self.episode_where(request, principal)
+        return self.db.rows(
+            "WITH recent AS (SELECT e.id,e.scope,e.conversation_id,e.occurred_at,e.ingested_at,"
+            "substr(json_extract(e.metadata,'$.checkpoint'),1,1500) AS checkpoint,"
+            "row_number() OVER (PARTITION BY e.scope ORDER BY e.occurred_at DESC,e.ingested_at DESC,e.id) AS pos "
+            "FROM events e JOIN episode_index ei ON ei.event_id=e.id WHERE "
+            + where
+            + " AND e.event_type='conversation.memory_excerpt' AND json_type(e.metadata,'$.checkpoint')='text'"
+            " AND NOT EXISTS (SELECT 1 FROM event_assets a WHERE a.event_id=e.id)"
+            " AND trim(json_extract(e.metadata,'$.checkpoint'))!='') "
+            "SELECT id,scope,conversation_id,occurred_at,checkpoint FROM recent WHERE pos=1 "
+            "ORDER BY occurred_at DESC,ingested_at DESC,id LIMIT 4",
+            args,
+        )
+
+    def inbox_cards(self, request, principal):
+        where, args = self.episode_where(request, principal)
+        if request.query.strip():
+            match = match_query(request.query)
+            if not match:
+                return []
+            where += " AND e.id IN (SELECT id FROM episode_fts WHERE episode_fts MATCH ?)"
+            args.append(match)
+        if request.key:
+            clip = self.core.events.get(request.key, principal)
+            if (
+                clip["event_type"] != "clip.captured"
+                or clip["source"] != "beyne-at"
+                or clip["metadata"].get("clip_kind") != "file"
+                or not self.db.one(
+                    "SELECT 1 FROM episode_index WHERE event_id=? AND quarantined=0", (clip["id"],)
+                )
+            ):
+                raise NotFound("File capture is unavailable")
+            rows = self.db.rows(
+                "SELECT e.id,e.scope,e.sensitivity,substr(e.text,1,160) AS preview "
+                "FROM events e JOIN episode_index ei ON ei.event_id=e.id "
+                "WHERE e.event_type!='clip.captured' AND e.scope=? AND EXISTS (SELECT 1 FROM event_assets a "
+                "JOIN event_assets c ON c.asset_id=a.asset_id WHERE a.event_id=e.id AND c.event_id=?) AND "
+                + where
+                + " ORDER BY e.occurred_at,e.id LIMIT ? OFFSET ?",
+                (clip["scope"], clip["id"], *args, request.limit + 1, request.offset),
+            )
+        else:
+            rows = self.db.rows(
+                "SELECT e.id,e.scope,e.sensitivity,e.occurred_at,substr(e.text,1,240) AS preview,"
+                "substr(json_extract(e.metadata,'$.note'),1,200) AS note,"
+                "json_extract(e.metadata,'$.clip_kind') AS clip_kind,"
+                "(SELECT j.state FROM event_assets a JOIN jobs j ON j.dedup_key=a.asset_id "
+                "WHERE a.event_id=e.id AND j.tenant=e.tenant AND j.kind='import' LIMIT 1) AS import_state "
+                "FROM events e JOIN episode_index ei ON ei.event_id=e.id "
+                "WHERE e.source='beyne-at' AND e.event_type='clip.captured' "
+                "AND NOT EXISTS (SELECT 1 FROM clip_receipts c WHERE c.clip_id=e.id) AND "
+                + where
+                + " ORDER BY e.occurred_at DESC,e.id LIMIT ? OFFSET ?",
+                (*args, request.limit + 1, request.offset),
+            )
         return [{"kind": "event", "approval": "source_only", **row} for row in rows]
 
     def read(self, request: ReadInput, principal):
@@ -425,6 +494,15 @@ class MemoryDirectory:
             header["trust"] = "source_only"
             capture_path = row["metadata"].get("capture_path", "unspecified")
             header["capture_path"] = capture_path[:80] if isinstance(capture_path, str) else "unspecified"
+            if row["event_type"] == "clip.captured" and row["source"] == "beyne-at":
+                header["clip_kind"] = row["metadata"].get("clip_kind")
+                header["note"] = str(row["metadata"].get("note") or "")[:1000]
+            if request.section == "checkpoint":
+                checkpoint = row["metadata"].get("checkpoint")
+                if row["event_type"] != "conversation.memory_excerpt" or not isinstance(checkpoint, str):
+                    raise NotFound("Handoff is unavailable")
+                text = checkpoint[:1500]
+                header["checkpoint_trust"] = "client_summary"
             # No ingest path in this service independently attests authorship.
             # Caller-controlled metadata must not upgrade itself to proof.
             header["actor_is_client_reported"] = True

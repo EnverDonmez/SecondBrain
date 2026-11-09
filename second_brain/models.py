@@ -37,6 +37,17 @@ class MemoryType(StrEnum):
     EXTERNAL_KNOWLEDGE = "EXTERNAL_KNOWLEDGE"
 
 
+USER_AUTHORITY_TYPES = frozenset(
+    {
+        MemoryType.POLICY,
+        MemoryType.USER_PREFERENCE,
+        MemoryType.USER_ASSERTED_FACT,
+        MemoryType.PROCEDURE,
+        MemoryType.SKILL,
+    }
+)
+
+
 class StrictModel(BaseModel):
     model_config = ConfigDict(extra="forbid")
 
@@ -44,6 +55,26 @@ class StrictModel(BaseModel):
 class LoginInput(StrictModel):
     token: str = Field(default="", max_length=4096)
     remember: bool = Field(default=False, strict=True)
+
+
+class ClipInput(StrictModel):
+    text: str = Field(min_length=1, max_length=24000)
+    kind: Literal["text", "url"] = "text"
+    note: str = Field(default="", max_length=1000)
+    scope: str = Field(default="global", min_length=1, max_length=200)
+    sensitivity: int = Field(default=1, ge=0, le=3)
+
+
+class ReviewBatchInput(StrictModel):
+    operation: Literal["approve", "reject"]
+    ids: list[str] = Field(min_length=1, max_length=20)
+
+    @field_validator("ids")
+    @classmethod
+    def explicit_ids(cls, ids):
+        if any(len(identity) != 32 or any(c not in "0123456789abcdef" for c in identity) for identity in ids):
+            raise ValueError("Supply explicit memory IDs")
+        return list(dict.fromkeys(ids))
 
 
 class EventInput(StrictModel):
@@ -139,6 +170,9 @@ class RememberFact(StrictModel):
     confidence: float = Field(default=0.8, ge=0, le=1)
 
 
+ContextSection = Literal["records", "sources", "episodes", "handoffs", "skills", "tools"]
+
+
 class ContextInput(StrictModel):
     query: str = Field(default="Beynimi tara", max_length=2000)
     scope: str | None = None
@@ -150,6 +184,7 @@ class ContextInput(StrictModel):
     since: str | None = None
     until: str | None = None
     known_state: str | None = Field(default=None, pattern=r"^[A-Za-z0-9_-]{1,80}$")
+    known_sections: dict[ContextSection, str] | None = None
 
     @field_validator("valid_at", "known_at", "since", "until")
     @classmethod
@@ -160,6 +195,12 @@ class ContextInput(StrictModel):
     def interval(self):
         if self.since and self.until and self.since > self.until:
             raise ValueError("since must not be after until")
+        if self.known_sections is not None and (
+            self.budget < 1200
+            or self.known_state
+            or any(len(value) != 51 or not value.isascii() for value in self.known_sections.values())
+        ):
+            raise ValueError("Section reuse requires budget >=1200, section state IDs and no known_state")
         return self
 
 
@@ -196,11 +237,23 @@ class RememberInput(StrictModel):
     checkpoint: str | None = Field(default=None, min_length=1, max_length=1500)
     topics: list[str] = Field(default_factory=list, max_length=8)
     change: MemoryChange | None = None
+    clip_id: str | None = Field(default=None, pattern=r"^[0-9a-f]{32}$")
 
     @model_validator(mode="after")
     def separate_change(self):
         if self.change and self.facts:
             raise ValueError("Save facts and change an existing record in separate requests")
+        if self.clip_id and (self.change or self.checkpoint or self.actor == "user"):
+            raise ValueError("Inbox processing only records source evidence and candidate facts")
+        if self.clip_id and any(
+            fact.memory_type
+            not in {MemoryType.EXTERNAL_KNOWLEDGE, MemoryType.MODEL_INFERENCE, MemoryType.LESSON}
+            or fact.assertion != "candidate"
+            for fact in self.facts
+        ):
+            raise ValueError(
+                "Inbox content can only support candidate external knowledge, inferences, or lessons"
+            )
         return self
 
     @field_validator("topics")
@@ -216,7 +269,16 @@ class RememberInput(StrictModel):
 
 class NavigateInput(StrictModel):
     branch: Literal[
-        "root", "preferences", "projects", "topics", "knowledge", "conversations", "skills", "tools", "review"
+        "root",
+        "preferences",
+        "projects",
+        "topics",
+        "knowledge",
+        "conversations",
+        "skills",
+        "tools",
+        "review",
+        "inbox",
     ] = "root"
     key: str | None = Field(default=None, max_length=500)
     query: str = Field(default="", max_length=2000)
@@ -255,6 +317,7 @@ class ReadInput(StrictModel):
     include_history: bool = False
     include_pending: bool = False
     path: str | None = Field(default=None, min_length=1, max_length=500)
+    section: Literal["checkpoint"] | None = None
 
     @field_validator("valid_at", "known_at")
     @classmethod
@@ -265,6 +328,8 @@ class ReadInput(StrictModel):
     def skill_path(self):
         if self.path is not None and self.kind != "skill":
             raise ValueError("path is only supported for skill files")
+        if self.section is not None and self.kind != "event":
+            raise ValueError("section is only supported for events")
         if self.include_pending and (
             self.kind != "memory" or self.include_history or self.valid_at or self.known_at
         ):

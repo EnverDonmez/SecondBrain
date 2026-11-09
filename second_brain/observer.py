@@ -76,19 +76,18 @@ def overview(brain, principal):
         )
         recent = activity(brain, principal, 8)
         connections = []
-        for row in brain.db.rows("SELECT id,name,principal,revoked FROM tokens"):
+        for row in brain.db.rows(
+            "SELECT t.id,t.name,t.principal,t.revoked,a.last_seen FROM tokens t "
+            "LEFT JOIN connection_access a ON a.credential_id=t.id"
+        ):
             identity = json.loads(row["principal"])
             if identity["tenant"] != principal.tenant:
                 continue
-            seen = brain.db.one(
-                "SELECT MAX(created_at) seen FROM audit WHERE tenant=? AND actor=? AND action='api.access'",
-                (principal.tenant, identity["id"]),
-            )["seen"]
             connections.append(
                 {
                     "name": row["name"],
                     "enabled": not row["revoked"],
-                    "last_seen": seen,
+                    "last_seen": row["last_seen"],
                     "scopes": identity["scopes"],
                 }
             )

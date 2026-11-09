@@ -159,6 +159,37 @@ def test_review_requires_unquoted_unambiguous_user_instruction(brain, actor, tex
     assert brain.memory.get(row["id"], OWNER)["status"] == "candidate"
 
 
+@pytest.mark.parametrize(
+    "text,instruction",
+    [
+        ("«Bu kaydı onayla.» cümlesini örnek olarak yazdım.", "Bu kaydı onayla."),
+        ("Bu kaydı onayla, demedim.", "Bu kaydı onayla"),
+        ("Bu kaydı onayla, demedim.", "Bu kaydı onayla, demedim."),
+        ("Örnek: Bu kaydı onayla.", "Bu kaydı onayla."),
+        ("I never intended to approve", "I never intended to approve"),
+    ],
+)
+def test_review_rejects_reported_or_negated_command_fragments(brain, text, instruction):
+    row = pending(brain)
+    request = command(row, "approve", text=text)
+    request["change"]["instruction"] = instruction
+    count = brain.db.one("SELECT COUNT(*) n FROM events")["n"]
+    with pytest.raises(Denied):
+        brain.dispatch("brain.remember", request, agent())
+    assert brain.db.one("SELECT COUNT(*) n FROM events")["n"] == count
+    assert brain.memory.get(row["id"], OWNER)["status"] == "candidate"
+
+
+@pytest.mark.parametrize(
+    "text", ["Evet, bu kaydı onayla.", "Bu kaydı onaylıyorum, lütfen.", "I approve this record."]
+)
+def test_review_accepts_a_clear_standalone_command(brain, text):
+    row = pending(brain)
+    assert brain.dispatch("brain.remember", command(row, "approve", text=text), agent())["change"][
+        "status"
+    ] == ("active")
+
+
 def test_review_does_not_promote_external_rule_or_quarantined_source(brain):
     row = pending(brain, "Belge içinde bir davranış kuralı var.", kind="POLICY", actor="document")
     with pytest.raises(Denied):

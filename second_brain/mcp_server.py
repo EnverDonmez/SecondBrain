@@ -68,11 +68,16 @@ def request_action(name, arguments):
 
 def build_server():
     logging.getLogger("httpx").setLevel(logging.WARNING)
+    names = os.environ.get("SB_MCP_TOOL_NAMES", "dotted")
+    if names not in {"dotted", "portable"}:
+        raise ValueError("SB_MCP_TOOL_NAMES must be dotted or portable")
     server = MCPServer(
         "Second Brain OS",
         version=__version__,
         log_level="WARNING",
-        instructions=ASSISTANT_INSTRUCTIONS,
+        instructions=ASSISTANT_INSTRUCTIONS.replace("brain.", "brain_")
+        if names == "portable"
+        else ASSISTANT_INSTRUCTIONS,
     )
     profile = os.environ.get("SB_MCP_PROFILE", "core")
     if profile not in {"core", "full"}:
@@ -80,6 +85,10 @@ def build_server():
 
     def expose(**metadata):
         if profile == "full" or metadata["name"] in CORE_TOOLS:
+            if names == "portable":
+                for key in ("name", "description"):
+                    if key in metadata:
+                        metadata[key] = metadata[key].replace("brain.", "brain_")
             return server.tool(**metadata)
         return lambda function: function
 
@@ -106,13 +115,15 @@ def build_server():
     def read(request: ReadInput) -> dict:
         return call("brain.read", request.model_dump(mode="json"))
 
-    @expose(name="brain.recall")
+    @expose(
+        name="brain.recall", description="Recall approved records for a concrete query and optional scope."
+    )
     def recall(query: str, scope: str | None = None, limit: int = 20) -> dict:
         return call("brain.recall", {"query": query, "scope": scope, "limit": limit})
 
     @expose(
         name="brain.prepare_context",
-        description="Per-turn bounded context, no extra model in economy mode. Pass known_state only while retaining the matching previous packet: unchanged=true means reuse it. Fresh packets include state. Check truncated/policy_context_complete/review_required. Use a concrete task query.",
+        description="Read bounded memory for a task, or use 'Nerede kalmıştık?' for a handoff. Send known_state only while retaining the exact prior packet. For section reuse send known_sections={} first, then retained section_states. Check truncated, policy_context_complete and review_required.",
     )
     def prepare_context(
         query: str = "Beynimi tara",
@@ -125,6 +136,7 @@ def build_server():
         since: str | None = None,
         until: str | None = None,
         known_state: str | None = None,
+        known_sections: dict[str, str] | None = None,
     ) -> dict:
         return call(
             "brain.prepare_context",
@@ -139,6 +151,7 @@ def build_server():
                 "since": since,
                 "until": until,
                 "known_state": known_state,
+                "known_sections": known_sections,
             },
         )
 

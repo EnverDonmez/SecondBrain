@@ -7,6 +7,20 @@ from .security import risks
 
 
 DIRECT_TYPES = {"USER_ASSERTED_FACT", "USER_PREFERENCE", "PROJECT_STATE", "DECISION"}
+REPORTING_TAIL = (
+    r"(?:diye|dedim|demedim|demiyorum|demedik|denildi|dedi|soyledim|soylemedim|"
+    r"iddia etmiyorum|i (?:did not|didn't|never) say|i said|they said)\b"
+)
+TRAILING_REPORT = re.compile(r"^[\s,.!?:;…—–-]*" + REPORTING_TAIL)
+INNER_REPORT = re.compile(
+    r"\b(?:demedim|demiyorum|demedik|soylemedim|iddia etmiyorum|i (?:did not|didn't|never) say)\b|"
+    r"[,;:.!?\n…—–-]\s*" + REPORTING_TAIL
+)
+QUOTED_TEXT = re.compile(
+    r'"[^"]*(?:"|\Z)|“[^”]*(?:”|\Z)|„[^“]*(?:“|\Z)|«[^»]*(?:»|\Z)|‹[^›]*(?:›|\Z)'
+    r"|`[^`]*(?:`|\Z)|(?<!\w)['‘](?=\S).*?(?:(?<=\S)['’](?!\w)|\Z)",
+    re.S,
+)
 
 
 def statement_reason(value, evidence):
@@ -23,16 +37,19 @@ def statement_reason(value, evidence):
         return "statement_context_required"
     before = text[:start]
     after = text[start + len(value) :]
+    if TRAILING_REPORT.match(folded(after)) or INNER_REPORT.search(folded(value)):
+        return "reported_statement_requires_review"
+    if (before and before[-1].isalnum() and value[0].isalnum()) or (
+        after and after[0].isalnum() and value[-1].isalnum()
+    ):
+        return "complete_statement_clause_required"
     # Keep the complete clause: selecting '4. sınıf' out of '4. sınıf
     # değilim' or a question must not drop the qualifier/negation.
     if not value.rstrip().endswith((".", "!", ";", "\n")):
         if re.match(r"^[^.!;\n]*\?", after) or re.match(r"^\s*\w", after):
             return "complete_statement_clause_required"
-    if (
-        any(character in value for character in ['"', "“", "”", "`", "?"])
-        or before.count('"') % 2
-        or before.count("`") % 2
-        or before.rfind("“") > before.rfind("”")
+    if "?" in value or any(
+        match.start() < start + len(value) and match.end() > start for match in QUOTED_TEXT.finditer(text)
     ):
         return "quoted_or_questioned_statement"
     # Look behind a selected fragment as well, so selecting only '4. sınıfım'
@@ -43,6 +60,20 @@ def statement_reason(value, evidence):
     boundaries = list(re.finditer(r"(?<!\d)\.\s", prefix))
     if boundaries:
         prefix = prefix[boundaries[-1].end() :]
+    if re.search(
+        r"^\s*>|\b(?:dedi ki|demis ki|ornek olarak|said that)\b|\b(?:ornek(?: cumle)?|example)\s*:\s*$",
+        folded(prefix),
+    ):
+        return "reported_statement_requires_review"
+    previous, comma, continuation = folded(prefix).rpartition(",")
+    if (
+        comma
+        and not continuation.strip()
+        and re.match(r"\s*(?:proje adi|projenin adi|mevcut proje|bu proje|benim adim|adim)\b", folded(value))
+        and re.search(r"\b(?:yok|var|iyi|gerekli|olacak|kullaniyoruz)\s*$", previous)
+        and not re.search(r"\b(?:eger|diyelim|mesela|ornegin|farz|if|suppose|example)\b", previous)
+    ):
+        prefix = ""
     context = folded(prefix + value)
     if re.search(
         r"\b(?:belki|galiba|sanirim|eger|diyelim|mesela|ornegin|farz|maybe|perhaps|if|suppose|imagine|example)\b"

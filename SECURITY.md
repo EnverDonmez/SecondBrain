@@ -2,7 +2,7 @@
 
 ## Sınır
 
-Yerel tek kullanıcı servisi. Düşmanca çok kiracılı SaaS veya internete açık production gateway olarak denetlenmedi. Loopback üzerinde dahi rastgele yerel süreçlerden gelen istekler bearer token olmadan özel veri alamaz. Host allowlist, origin kontrolü, SameSite/HttpOnly cookie, CSRF header, CSP ve login rate limit uygulanır. Token hash'leri SQLite'ta; owner anahtarı yerel dosyada tutulur.
+Yerel tek kullanıcı servisi. Kimlik doğrulama kısıtlı Bearer anahtarı veya iptal edilebilir tarayıcı oturumu ile yapılır. Tarayıcı çerezinde rastgele bir oturum kimliği, SQLite'ta bu kimliğin hash'i ve son kullanma zamanı durur. Çıkış oturumu iptal eder. Host allowlist, origin kontrolü, SameSite/HttpOnly cookie, CSRF başlığı, CSP, giriş deneme sınırı ve akış sırasında HTTP gövde sınırı uygulanır. Sahip anahtarını servis kapalıyken `python -m second_brain rotate-owner-key` ile yenile.
 
 Model token'ı yalnız read/propose/capture alabilir. Scope allowlist ve sensitivity clearance tüm kanonik retrieval yollarına uygulanır. Graph ve Mem0 sonuçları da kanonik filtreyi kullanır. Aynı tenant içindeki kapsamlar otomatik genişletilmez; farklı tenant kayıtları ortak sorguya girmez. Tek owner'ın tüm yönetim yetkisine sahip olması SaaS tenant provisioning desteği anlamına gelmez.
 
@@ -27,8 +27,8 @@ Regex taraması kapsamlı bir injection/secret sınıflandırıcısı değildir.
 
 ## Şifreleme
 
-Raw assets: AES-256-GCM, 96-bit rastgele nonce, asset ID associated data. Master key `data/master.key` içinde; Unix mod 0600 istenir, Windows üzerinde NTFS parent ACL'leri devrededir. DPAPI/HSM/SQLCipher entegrasyonu yoktur. **SQLite content, FTS ve vector sayıları plaintext'tir.** Yedekler ayrı kullanıcı parolasından Scrypt N=32768,r=8,p=1 ile türetilmiş anahtarla şifrelenir; parola saklanmaz.
+Ham dosyalar AES-256-GCM ile şifrelenir. Her dosyanın rastgele 96 bit nonce'u vardır ve dosya kimliği ilişkilendirilmiş veridir. Windows'ta `data/master.key` geçerli Windows kullanıcısına bağlı DPAPI ile korunur. İlk açılışta eski ham anahtar atomik olarak sarılır. Unix'te anahtar dosyası 0600 izinli oluşturulur. **SQLite içeriği, FTS ve vektör değerleri açık metindir.** Taşınabilir yedekler Scrypt ile türetilen ayrı kullanıcı parolasıyla şifrelenir.
 
 ## Kaynak ve güvenlik denetimi
 
-Kurulu paket sürümleri `requirements.lock`, lisans dosyaları `third_party/licenses/`, upstream snapshot'lar ve tam SHA'lar `reports/source-registry.json` içindedir. pip-audit sonucu `reports/dependency-audit.json`dadır. “Bilinen açık bulunmadı” kodun açık içermediği veya saldırı testinin eksiksiz olduğu anlamına gelmez. MemOS, Claude-Mem ve diğer araştırma motorları sırf README güven iddiası nedeniyle runtime'a eklenmedi.
+Paket sürümleri `requirements.lock` dosyasındadır. Kurulum, seçilen wheel dosyalarını `requirements.hashes.json` içindeki SHA-256 değerleriyle doğrular. Lisanslar `third_party/licenses/` altında, upstream kaynakların tam SHA'ları `reports/source-registry.json` içindedir. CI, bağımlılık denetimi için `pip-audit` çalıştırır.

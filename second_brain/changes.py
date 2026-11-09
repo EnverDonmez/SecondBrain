@@ -22,18 +22,23 @@ def validate_authorization(source, instruction, row, operation=None):
         if re.search(r"\b(?:hepsini|her seyi|tum kayitlari|everything|all records)\b", text):
             raise Denied("Blanket delegation is not a specific record review")
         if re.search(
-            r"\b(?:onaylama|onaylamiyorum|reddetme|reddetmiyorum|gizleme|kaldirma|istemiyorum|kabul etme|do not|dont)\b",
+            r"\b(?:onaylama|onaylamiyorum|reddetme|reddetmiyorum|gizleme|kaldirma|istemiyorum|kabul etme|do not|don'?t|never)\b",
             text,
         ):
             raise Denied("A negated instruction cannot authorize this action")
         patterns = {
-            "approve": r"\b(?:onayla|onayliyorum|kabul et|kabul ediyorum|approve|accept)\b",
-            "reject": r"\b(?:reddet|reddediyorum|reject)\b",
-            "hide": r"\b(?:kullanimdan kaldir|gizle|hide|artik kullanma)\b",
+            "approve": r"onayla|onayliyorum|kabul et|kabul ediyorum",
+            "reject": r"reddet|reddediyorum",
+            "hide": r"kullanimdan kaldir|gizle|artik kullanma",
         }
-        if not re.search(patterns[operation], text) and not (
-            operation == "approve" and text.strip(" .!\n") == "evet"
-        ):
+        phrase = text.strip().rstrip(".!").rstrip()
+        # Match a standalone command. English places the action before its object.
+        target = r"[\w][\w '\u2019-]{0,119}"
+        english = {"approve": "approve|accept", "reject": "reject", "hide": "hide"}[operation]
+        command = rf"(?:{target} )?(?:{patterns[operation]})|(?:i )?(?:{english})(?: {target})?"
+        if not re.fullmatch(
+            rf"(?:(?:evet|yes),? )?(?:lutfen |please )?(?:{command})(?:,? (?:lutfen|please))?", phrase
+        ) and not (operation == "approve" and phrase == "evet"):
             raise Denied("The user instruction does not clearly authorize the selected operation")
 
 

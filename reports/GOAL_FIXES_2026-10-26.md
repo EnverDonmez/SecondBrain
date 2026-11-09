@@ -35,7 +35,7 @@
 
 ## Kanıtlar
 
-- [88 testin JUnit çıktısı](goal-fixes-20261026/tests.xml), [konsol kaydı](goal-fixes-pytest.log).
+- [88 testin JUnit çıktısı](goal-fixes-20261026/tests.xml).
 - [15 kabul kontrolü](goal-fixes-20261026/supplemental.json), [Türkçe çıkarım/bağlam deneyi](goal-fixes-20261026/functional.json).
 - [Yeni semantik ölçüm](goal-fixes-20261026/semantic-scale.json), [eski semantik ölçüm](goal-audit-20261026/final/semantic-scale.json).
 - [Kalite kontrolleri](goal-fixes-20261026/quality.json): Ruff, format, mypy, iki JS syntax kontrolü ve secret taraması 6/6 başarılı. Mypy strict değil. Tek pytest uyarısı bilinen Qdrant local payload-index uyarısı.

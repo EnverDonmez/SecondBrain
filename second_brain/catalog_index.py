@@ -5,6 +5,7 @@ import json
 from .graph_index import node_key
 from .language import terms
 from .security import normalize, risks
+from .turkish_search import index_text
 
 
 def project_routes(con, row):
@@ -38,5 +39,10 @@ def project_episode(con, row):
     text = row["text"] + " " + hints
     concepts = " ".join("sbconcept" + term[1:] for term in terms(text) if term.startswith("@"))
     con.execute("DELETE FROM episode_fts WHERE id=?", (row["id"],))
-    con.execute("INSERT INTO episode_fts VALUES(?,?)", (row["id"], normalize(text + " " + concepts)))
-    con.execute("INSERT OR REPLACE INTO episode_index VALUES(?,?)", (row["id"], int(bool(risks(text)))))
+    con.execute(
+        "INSERT INTO episode_fts VALUES(?,?)", (row["id"], index_text(normalize(text + " " + concepts)))
+    )
+    note = str(metadata.get("note") or "") if row["event_type"] == "clip.captured" else ""
+    con.execute(
+        "INSERT OR REPLACE INTO episode_index VALUES(?,?)", (row["id"], int(bool(risks(text + " " + note))))
+    )

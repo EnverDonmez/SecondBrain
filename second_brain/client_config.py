@@ -31,6 +31,11 @@ def generate(client, workspace):
         return {
             "mcp_toml": f'[mcp_servers.second-brain]\ncommand = {executable!r}\nargs = ["-m", "second_brain", "mcp"]\nenv_vars = ["SB_TOKEN"]\ncwd = {str(workspace)!r}\n',
             "hooks_json": hooks,
+            "continuity_only_hooks_json": {
+                "hooks": {
+                    "SessionStart": [{"hooks": [{"type": "command", "command": command + " --context-only"}]}]
+                }
+            },
             "assistant_instructions": ASSISTANT_INSTRUCTIONS,
             "activation": "Merge into a trusted Codex configuration. Hook trust approval is required by the host. Set SB_TOKEN in its environment.",
         }

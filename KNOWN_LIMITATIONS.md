@@ -36,7 +36,7 @@ Bu teslim tüm vizyonun tamamlandığı iddiasında bulunmaz. Kullanılabilir ye
 | Çok kullanıcı / cihaz sync | namespace tabanı var; multi-user auth provisioning ve conflict-free multi-device sync yok |
 | Restore | normal akış ve deletion replay testli; tüm elektrik kesintisi noktaları testli değil |
 | Büyük yedek | 100 MiB upload / 300 MiB expanded ZIP bütçesi; streaming backup yok |
-| Tam at-rest encryption | binary/backup şifreli; canonical SQLite/FTS/vector plaintext; DPAPI/SQLCipher yok |
+| Tam disk üstü şifreleme | Ham dosyalar ve yedekler şifreli. Windows'ta kasa anahtarı DPAPI ile korunur. SQLite içeriği, FTS ve vektör verileri açık metindir. |
 | Unmanaged kopyalar | dış export, OS snapshot, eski harici backup ve üçüncü taraf kopyalar denetlenemez |
 | Frontend | çalışan buildless JavaScript; TypeScript ve tüm sabit metinler için tam EN çeviri yok |
 | Benchmark | 500 sentetik şablon sorusu; curated bağımsız kalite veya final LLM judge değil |

@@ -233,7 +233,8 @@ def test_feedback_requires_repeated_evidence_and_approval(brain):
 
 
 def test_skill_lifecycle_and_capability_truth(brain):
-    skill = brain.skills.register(recall_skill_package(), OWNER)
+    package = recall_skill_package()
+    skill = brain.skills.register(package, OWNER)
     assert skill["state"] == "candidate"
     missing = brain.skills.compatibility(skill["id"], OWNER)
     assert not missing["compatible"] and not missing["execution_verified"]
@@ -242,7 +243,7 @@ def test_skill_lifecycle_and_capability_truth(brain):
         skill["id"], OWNER, ["brain.prepare_context"], ["second-brain"], ["read"]
     )
     assert ready["compatible"] and not ready["execution_verified"]
-    assert brain.skills.export(skill["id"], OWNER) == recall_skill_package()
+    assert brain.skills.export(skill["id"], OWNER) == package
 
 
 @pytest.mark.parametrize(
@@ -279,7 +280,7 @@ def test_context_boundaries_and_budget(brain, make_memory):
 
 def test_migration_rerun(brain):
     brain.db.migrate()
-    assert brain.db.one("SELECT COUNT(*) AS n FROM migrations")["n"] == 7
+    assert brain.db.one("SELECT COUNT(*) AS n FROM migrations")["n"] == 9
 
 
 @given(

@@ -210,3 +210,28 @@ def test_client_token_file_and_owner_key_guard(tmp_path, monkeypatch):
     monkeypatch.setenv("SB_TOKEN_FILE", str(owner))
     with pytest.raises(ValueError):
         client_token()
+
+
+def test_language_guards_accept_independent_clauses_and_reject_quotations():
+    from second_brain.assertions import statement_reason
+    from second_brain.language import terms
+    from second_brain.preferences import preference_candidates
+
+    assert terms("Proje açıklaması, giderleri ve kısayol") == ["proje", "aciklamasi", "giderleri", "kisayol"]
+    assert preference_candidates("Commit mesajlarını İngilizce yaz.")[0]["predicate"] == "commit.language"
+    assert preference_candidates("Yanıtlarında emoji kullanma.")[0]["predicate"] == "reply.emoji"
+    assert preference_candidates("Sorun çözülünce kısa bir doğrulama özeti ekle.")[0]["predicate"] == (
+        "workflow.verification_summary"
+    )
+    assert (
+        statement_reason(
+            "proje adı Atlas.", [{"text": "Yarın toplantı yok, proje adı Atlas.", "actor": "user"}]
+        )
+        is None
+    )
+    assert (
+        statement_reason(
+            "Atlas SQLite kullanır", [{"text": "Ali 'Atlas SQLite kullanır' dedi.", "actor": "user"}]
+        )
+        == "quoted_or_questioned_statement"
+    )

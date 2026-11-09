@@ -3,7 +3,8 @@
 import hashlib
 
 from .db import dumps
-from .models import EventInput, MemoryInput, RememberInput, now
+from .inbox import processing_source
+from .models import EventInput, MemoryInput, RememberInput, USER_AUTHORITY_TYPES, now
 from .security import Denied, require
 
 
@@ -11,14 +12,22 @@ def remember(brain, request: RememberInput, principal):
     require(principal, "capture", request.scope, request.sensitivity)
     require(principal, "propose", request.scope, request.sensitivity)
     require(principal, "read", request.scope, request.sensitivity)
-    if request.actor != "user" and any(
-        fact.memory_type in {"POLICY", "USER_PREFERENCE", "USER_ASSERTED_FACT", "PROCEDURE", "SKILL"}
-        for fact in request.facts
-    ):
+    if request.actor != "user" and any(fact.memory_type in USER_AUTHORITY_TYPES for fact in request.facts):
         raise Denied("User assertions require a verbatim user source; label model conclusions as inferences")
     # Validate the complete batch before persisting any evidence. Only this local
     # API process writes; the database lock also protects against owner erasure.
     with brain.db.lock:
+        clip_hash = None
+        captured_evidence = None
+        if request.clip_id:
+            clip_hash = hashlib.sha256(dumps(request.model_dump(mode="json")).encode("utf-8")).hexdigest()
+            receipt, captured_evidence = processing_source(brain, request, principal, clip_hash)
+            if receipt:
+                return {
+                    "clip_processed": True,
+                    "clip_duplicate": True,
+                    "source_event_id": receipt["source_event_id"] or request.clip_id,
+                }
         if request.change:
             from .changes import preflight
 
@@ -62,27 +71,37 @@ def remember(brain, request: RememberInput, principal):
                 ).encode("utf-8")
             ).hexdigest()
         )
-        source = brain.events.ingest(
-            EventInput(
-                source=request.source,
-                source_id=source_id,
-                text=request.source_text,
-                actor=request.actor,
-                occurred_at=request.occurred_at,
-                scope=request.scope,
-                sensitivity=request.sensitivity,
-                event_type="conversation.memory_excerpt",
-                conversation_id=request.conversation_id,
-                metadata={
-                    "capture_path": "assistant_selected_excerpt",
-                    "actor_is_client_reported": True,
-                    "source_identity_kind": "client_id" if request.source_id else "excerpt_hash",
-                    "checkpoint": request.checkpoint,
-                    **({"change": request.change.model_dump()} if request.change else {}),
-                    "topics": request.topics,
-                },
-            ),
-            principal,
+        if request.clip_id:
+            source_id = (
+                "clip-excerpt:"
+                + hashlib.sha256(dumps([request.clip_id, source_id]).encode("utf-8")).hexdigest()
+            )
+        source = (
+            {"id": captured_evidence or request.clip_id, "duplicate": False}
+            if captured_evidence or (request.clip_id and not candidates)
+            else brain.events.ingest(
+                EventInput(
+                    source=request.source,
+                    source_id=source_id,
+                    text=request.source_text,
+                    actor=request.actor,
+                    occurred_at=request.occurred_at,
+                    scope=request.scope,
+                    sensitivity=request.sensitivity,
+                    event_type="conversation.memory_excerpt",
+                    conversation_id=request.conversation_id,
+                    metadata={
+                        "capture_path": "assistant_selected_excerpt",
+                        "actor_is_client_reported": True,
+                        "source_identity_kind": "client_id" if request.source_id else "excerpt_hash",
+                        "checkpoint": request.checkpoint,
+                        **({"clip_id": request.clip_id} if request.clip_id else {}),
+                        **({"change": request.change.model_dump()} if request.change else {}),
+                        "topics": request.topics,
+                    },
+                ),
+                principal,
+            )
         )
         if not source.get("id"):
             raise Denied("Previously forgotten evidence cannot be saved again automatically")
@@ -92,8 +111,11 @@ def remember(brain, request: RememberInput, principal):
             from .changes import apply_change
 
             change_result = apply_change(brain, request, principal, source["id"])
+        evidence = [source["id"]]
+        if request.clip_id and request.clip_id != source["id"]:
+            evidence.append(request.clip_id)
         for fact, candidate in zip(request.facts, candidates, strict=True):
-            candidate = candidate.model_copy(update={"source_event_ids": [source["id"]]})
+            candidate = candidate.model_copy(update={"source_event_ids": evidence})
             # Retrying old evidence must not undo a later correction, including
             # when its original active version has since become historical.
             existing = (
@@ -110,7 +132,16 @@ def remember(brain, request: RememberInput, principal):
                 if fact.assertion == "direct_user":
                     row = brain.memory.accept_user_statement(row["id"], principal)
             records.append(row)
+        if request.clip_id:
+            with brain.db.transaction() as con:
+                con.execute(
+                    "INSERT INTO clip_receipts(clip_id,request_hash,source_event_id) VALUES(?,?,?)",
+                    (request.clip_id, clip_hash, source["id"] if candidates else None),
+                )
+                # Publishing an imported file changes the visible source packet.
+                con.execute("UPDATE events SET metadata=metadata WHERE id=?", (request.clip_id,))
     return {
+        **({"clip_processed": True, "clip_duplicate": False} if request.clip_id else {}),
         **({"change": change_result} if change_result else {}),
         "source_event_id": source["id"],
         "source_duplicate": source["duplicate"],

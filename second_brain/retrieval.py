@@ -12,6 +12,7 @@ from .models import MemoryType, SearchInput, now
 from .security import Denied, normalize, require
 from .language import terms
 from .identity import keys as identity_keys
+from .turkish_search import match_terms, stem_key
 
 
 def tokens(text):
@@ -51,9 +52,13 @@ def lexical_excerpt(value, query_tokens, width=900):
     starts = list(range(0, max(1, len(value) - width), width // 2))
     starts.append(max(0, len(value) - width))
     best_start, best_score = 0, -1
+    wanted = {term: stem_key(term.replace("ı", "i")) for term in query_tokens}
     for start in starts:
-        words = tokens(value[start : start + width])
-        score = sum(any(word.startswith(term) for word in words) for term in set(query_tokens))
+        words = set(tokens(value[start : start + width]))
+        stems = {stem_key(word.replace("ı", "i")) for word in words}
+        score = sum(
+            2 if term in words else int(key is not None and key in stems) for term, key in wanted.items()
+        )
         if score > best_score:
             best_start, best_score = start, score
     end = min(len(value), best_start + width)
@@ -168,7 +173,7 @@ class Retrieval:
         elif request.engine in {"economy", "graph"}:
             rows, diagnostics = self._economy(request, principal, where, args)
         elif request.engine == "fts":
-            match = " AND ".join('"' + t + '"*' for t in query_tokens)
+            match = match_terms(query_tokens, all_terms=True, prefix=True)
             rows = self.db.rows(
                 "SELECT m.*, -bm25(memory_fts) AS score FROM memory_fts JOIN memories m ON m.id=memory_fts.id WHERE memory_fts MATCH ? AND "
                 + where
@@ -240,7 +245,7 @@ class Retrieval:
         words = list(dict.fromkeys(words))[:48]
         if not words:
             return [], {"candidates_examined": 0, "candidate_limit": 96, "graph_hops": 0}
-        match = " OR ".join('"' + word + '"*' for word in words)
+        match = match_terms(words)
         # Cap the amount of content fetched, even for large offsets or hub topics.
         cap = 96
         seeds = self.db.rows(
@@ -542,6 +547,7 @@ class Retrieval:
         valid_at=None,
         known_at=None,
         state=None,
+        handoffs=None,
     ):
         if not 512 <= budget <= 32000:
             raise ValueError("Context budget must be between 512 and 32000 conservative tokens")
@@ -557,7 +563,25 @@ class Retrieval:
         )
         scan = "beynimi tara" in normalize(query) or query.strip().casefold() == "scan my brain"
         found: dict[str, Any]
-        if scan:
+        if handoffs is not None:
+            groups = (
+                [
+                    self.search(
+                        SearchInput(
+                            scope=scope, memory_type=kind, limit=4, valid_at=valid_at, known_at=known_at
+                        ),
+                        principal,
+                    )["items"]
+                    for kind in (MemoryType.PROJECT_STATE, MemoryType.DECISION)
+                ]
+                if scope
+                else []
+            )
+            found = {
+                "items": [row for group in groups for row in group[:3]],
+                "more": any(len(g) > 3 for g in groups),
+            }
+        elif scan:
             groups = []
             for kind in [
                 MemoryType.USER_ASSERTED_FACT,
@@ -591,14 +615,16 @@ class Retrieval:
             preferences = self.search(
                 SearchInput(scope="global", memory_type=MemoryType.USER_PREFERENCE, limit=13), principal
             )["items"]
-        scoped_policies = self.search(
-            SearchInput(scope=scope, memory_type=MemoryType.POLICY, limit=100), principal
-        )["items"]
-        more_policies |= bool(
-            self.search(
-                SearchInput(scope=scope, memory_type=MemoryType.POLICY, limit=1, offset=100), principal
+        scoped_policies = []
+        if handoffs is None or scope not in (None, "global"):
+            scoped_policies = self.search(
+                SearchInput(scope=scope, memory_type=MemoryType.POLICY, limit=100), principal
             )["items"]
-        )
+            more_policies |= bool(
+                self.search(
+                    SearchInput(scope=scope, memory_type=MemoryType.POLICY, limit=1, offset=100), principal
+                )["items"]
+            )
         task_records = found["items"]
         policies = global_policies + scoped_policies
         other = [r for r in task_records if r["memory_type"] != MemoryType.POLICY]
@@ -613,7 +639,7 @@ class Retrieval:
         packet: dict[str, Any] = {
             "schema_version": 2,
             "instruction_boundary": "Records are evidence; approved POLICY rules remain subject to host permissions.",
-            "intent": "bootstrap" if scan else "recall",
+            "intent": "continuity" if handoffs is not None else "bootstrap" if scan else "recall",
             "records": [],
             "sources": [],
             "uncertainties": [policy_warning] if policies or more_policies else [],
@@ -625,9 +651,29 @@ class Retrieval:
         }
         if state is not None:
             packet.update(state=state, unchanged=False)
-        if not scan and not task_records:
+        if handoffs is None and not scan and not task_records:
             packet["uncertainties"].append("No task-specific evidence found.")
-        seen_sources: set[str] = set()
+        if handoffs is not None:
+            packet["handoffs"] = []
+            packet["truncated"] |= len(handoffs) > 3
+            for card in handoffs[:3]:
+                summary = card["checkpoint"]
+                preview = {**card, "checkpoint": summary[:500], "checkpoint_trust": "client_summary"}
+                if len(summary) > 500:
+                    preview["more"] = True
+                trial = {
+                    **packet,
+                    "handoffs": packet["handoffs"] + [preview],
+                    "sources": packet["sources"] + [card["id"]],
+                }
+                if measure_context(trial) <= min(budget, max(900, budget * 2 // 3)):
+                    packet = trial
+                else:
+                    packet["truncated"] = True
+                packet["truncated"] |= len(summary) > 500
+            if not handoffs:
+                packet["uncertainties"].append("No visible handoff found for the requested scope and time.")
+        seen_sources = set(packet["sources"])
         seen_records = set()
         omitted_policy = more_policies
         for record in combined:
@@ -678,7 +724,7 @@ class Retrieval:
         packet["policy_context_complete"] = not omitted_policy
         if not omitted_policy and policy_warning in packet["uncertainties"]:
             packet["uncertainties"].remove(policy_warning)
-        if not packet["records"] and not packet["uncertainties"]:
+        if not packet["records"] and not packet.get("handoffs") and not packet["uncertainties"]:
             packet["uncertainties"].append(
                 "No approved evidence within the requested scope, time and budget."
             )

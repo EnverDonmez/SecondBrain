@@ -2,7 +2,7 @@
 
 27 Ekim 2026: [36 depoluk araştırmanın](reports/research-20261026/SECOND_BRAIN_ARASTIRMA_RAPORU.md) uygulamaya yansıması [ADR 0004](docs/adr/0004-evidence-before-expansion.md) içinde kayıtlıdır. memU/Titen/OpenViking/Basic Memory tasarım referansıdır; kodları kopyalanmadı, paketleri runtime'a eklenmedi. Yeni üçüncü taraf bağımlılığı yoktur. Bu turdaki davranış ve ölçüm kanıtı [mühendislik raporundadır](reports/engineering-20261027/ENGINEERING_REPORT.md).
 
-Araştırma kanıtı ile çalıştırılan dependency birbirinden ayrılır. Aşağıdaki HEAD snapshot SHA'ları research snapshot'ıdır; kurulan wheel'in o commit olduğu iddia edilmez. Runtime sürümleri `requirements.lock` ile, yayımlanmış artifact hash'leri `reports/package-release-hashes.json` ile sabittir.
+Araştırma snapshot'ları ve aşağıdaki lisans envanteri tarihsel kayıtlardır. Güncel paket sürümleri `requirements.lock`, kurulumda kullanılan wheel hash'leri `requirements.hashes.json` dosyasındadır.
 
 Kontrol zamanı: 2026-10-26T07:20:39.414310+00:00
 

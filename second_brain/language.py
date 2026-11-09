@@ -14,36 +14,108 @@ etmek etmeli misin ne yapmayi yapmali konusmustuk ogrenmistik olmustu kime
 surekli dun simdi yeni verdik""".split()
 )
 
-# Prefixes also cover common Turkish inflections without a heavyweight NLP runtime.
+# Whole forms keep unrelated words out of the concept vocabulary. General
+# Turkish inflection matching is handled separately in the lexical index.
 CONCEPTS = {
-    "answer": ("cevap", "yanit", "response", "answer"),
+    "answer": (
+        "cevap",
+        "cevabi",
+        "cevaplar",
+        "cevaplari",
+        "yanit",
+        "yaniti",
+        "yanitlar",
+        "yanitlari",
+        "response",
+        "responses",
+        "answer",
+        "answers",
+    ),
     "short": ("kisa", "ozlu", "concise", "short"),
     "long": ("uzun", "detayli", "long", "detailed"),
-    "click": ("tikla", "dugme", "click", "basmadan", "basmak"),
-    "review": ("kontrol", "dogrula", "incele", "review", "verify"),
-    "agent": ("ajan", "agent"),
-    "source": ("kaynak", "referans", "citation", "source"),
+    "click": (
+        "tikla",
+        "tiklama",
+        "tiklamadan",
+        "tiklamak",
+        "dugme",
+        "click",
+        "clicking",
+        "basmadan",
+        "basmak",
+    ),
+    "review": (
+        "kontrol",
+        "dogrula",
+        "dogrulasin",
+        "dogrulat",
+        "dogrulama",
+        "incele",
+        "inceleme",
+        "review",
+        "reviewing",
+        "verify",
+    ),
+    "agent": ("ajan", "ajana", "ajani", "ajanin", "ajanlar", "agent", "agents"),
+    "source": (
+        "kaynak",
+        "kaynagi",
+        "kaynaklar",
+        "kaynaklari",
+        "referans",
+        "citation",
+        "citations",
+        "source",
+        "sources",
+    ),
     "uncertain": ("belirsiz", "suphe", "uncertain"),
-    "permission": ("onay", "izin", "permission", "approval"),
+    "permission": ("onay", "onayi", "onayini", "onayla", "izin", "izni", "permission", "approval"),
     "database": ("veritabani", "database", "depolama"),
     "remote": ("bulut", "uzak", "cloud", "remote"),
     "send": ("gonder", "yolla", "send"),
     "data": ("veri", "data"),
-    "bug": ("hata", "bug", "ariza", "defect"),
-    "fix": ("duzelt", "gider", "onar", "fix"),
-    "test": ("test", "regresyon", "regression"),
-    "plant": ("bahce", "bitki", "garden", "plant"),
-    "water": ("sula", "water"),
+    "bug": ("hata", "hatayi", "hatalar", "bug", "bugs", "ariza", "defect"),
+    "fix": (
+        "duzelt",
+        "duzeltme",
+        "duzelttikten",
+        "duzelttim",
+        "duzeltince",
+        "duzeltilince",
+        "giderdik",
+        "giderince",
+        "giderdikten",
+        "onar",
+        "onarim",
+        "fix",
+        "fixed",
+        "fixing",
+    ),
+    "test": ("test", "testi", "testler", "testleri", "testing", "regresyon", "regression"),
+    "plant": ("bahce", "bahcedeki", "bitki", "bitkiler", "bitkileri", "garden", "plant", "plants"),
+    "water": ("sula", "sulama", "sulamayi", "sulamak", "water", "watering"),
     "ocr": ("ocr",),
     "dark": ("koyu", "karanlik", "dark"),
     "light": ("aydinlik", "acik", "light"),
     "interface": ("arayuz", "interface"),
     "code": ("kod", "programlama", "code", "coding"),
 }
+CONCEPT_BY_WORD = {word: key for key, words in CONCEPTS.items() for word in words}
 
 
 def folded(text):
     return normalize(text).replace("ı", "i")
+
+
+def is_continuity_query(query):
+    return folded(query).strip().rstrip("?!.,") in {
+        "nerede kaldik",
+        "nerede kalmistik",
+        "en son ne yaptik",
+        "kaldigimiz yerden devam edelim",
+        "where did we leave off",
+        "continue from the last session",
+    }
 
 
 def terms(text):
@@ -53,7 +125,7 @@ def terms(text):
     for word in words:
         if word in STOP:
             continue
-        concept = next((key for key, prefixes in CONCEPTS.items() if word.startswith(prefixes)), None)
+        concept = CONCEPT_BY_WORD.get(word)
         result.append("@" + concept if concept else word)
     if re.search(r"emin (?:olma|degil)|kesin (?:bilme|olma)", text):
         result.append("@uncertain")

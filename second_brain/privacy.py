@@ -29,6 +29,7 @@ class Privacy:
         memories = self.db.rows("SELECT * FROM memories WHERE tenant=?", (principal.tenant,))
         support = self.receipts(principal.tenant)
         all_events = self.db.rows("SELECT * FROM events WHERE tenant=?", (principal.tenant,))
+        clips = self.clip_links(principal.tenant)
         links = self.db.rows(
             "SELECT ea.* FROM event_assets ea JOIN events e ON e.id=ea.event_id WHERE e.tenant=?",
             (principal.tenant,),
@@ -45,6 +46,9 @@ class Privacy:
                     aids.add(link["asset_id"])
                 if link["asset_id"] in aids:
                     eids.add(link["event_id"])
+            for clip, excerpt in clips:
+                if clip in eids or excerpt in eids:
+                    eids.update((clip, excerpt))
             for row in memories:
                 sources = set(json.loads(row["source_event_ids"])) | support.get(row["id"], set())
                 if row["logical_id"] in logicals or sources & eids:
@@ -94,6 +98,16 @@ class Privacy:
             if row["target"] and row["event_id"]:
                 support.setdefault(row["target"], set()).add(row["event_id"])
         return support
+
+    def clip_links(self, tenant):
+        return [
+            (row["clip_id"], row["source_event_id"])
+            for row in self.db.rows(
+                "SELECT c.clip_id,c.source_event_id FROM clip_receipts c JOIN events e ON e.id=c.clip_id "
+                "WHERE e.tenant=? AND c.source_event_id IS NOT NULL",
+                (tenant,),
+            )
+        ]
 
     def forget(self, identity, principal):
         require(principal, "delete")
@@ -156,10 +170,14 @@ class Privacy:
                 "SELECT id,logical_id,source_event_ids FROM memories WHERE tenant=?", (tenant,)
             ).fetchall()
             support = self.receipts(tenant)
+            clips = self.clip_links(tenant)
             logicals: set[str] = set()
             changed = True
             while changed:
                 before = (len(mids), len(eids), len(logicals))
+                for clip, excerpt in clips:
+                    if clip in eids or excerpt in eids:
+                        eids.update((clip, excerpt))
                 for row in memories:
                     sources = set(json.loads(row["source_event_ids"])) | support.get(row["id"], set())
                     if row["id"] in mids or row["logical_id"] in logicals or sources & eids:
