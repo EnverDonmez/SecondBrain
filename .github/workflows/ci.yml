@@ -23,7 +23,7 @@ jobs:
       - run: python -m ruff check second_brain tests scripts
       - run: python -m ruff format --check second_brain tests scripts
       - run: python -m mypy second_brain --ignore-missing-imports --check-untyped-defs
-      - run: python -m pytest -q --basetemp=.test-tmp/ci --junitxml=reports/tests.xml
+      - run: python -m pytest -q --junitxml=reports/tests.xml
       - run: node --check second_brain/static/app.js
       - run: python scripts/scan_secrets.py
       - run: python -m pip_audit --format json --output reports/dependency-audit.json
